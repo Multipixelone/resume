@@ -30,7 +30,7 @@
   set text(font: fontList, weight: "regular", size: 9pt)
   set align(left)
   set page(
-    paper: "a4",
+    paper: "us-letter",
     margin: (left: 1.4cm, right: 1.4cm, top: .8cm, bottom: .4cm),
     footer: _cvFooter(metadata),
   )
@@ -62,7 +62,7 @@
   set text(font: fontList, weight: "regular", size: 9pt)
   set align(left)
   set page(
-    paper: "a4",
+    paper: "us-letter",
     margin: (left: 1.4cm, right: 1.4cm, top: .8cm, bottom: .4cm),
     footer: letterHeader(
       myAddress: myAddress,
