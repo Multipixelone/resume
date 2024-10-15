@@ -68,6 +68,9 @@
       orcid: fa-orcid(),
       researchgate: fa-researchgate(),
       location: fa-location-dot(),
+      height: fa-ruler(),
+      eyes: fa-eye(),
+      hair: fa-location-dot(),
       extraInfo: "",
     )
     let n = 1
