@@ -231,7 +231,7 @@
   let highlightText = title.slice(0, letters)
   let normalText = title.slice(letters)
   let sectionTitleStyle(str, color: black) = {
-    text(size: 16pt, weight: "bold", fill: color, str)
+    text(size: 16pt, weight: "regular", fill: color, upper(str))
   }
 
   v(beforeSectionSkip)
