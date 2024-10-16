@@ -13,6 +13,8 @@
   profilePhoto: image("./headshot.png")
 )
 #importModules((
+  "film",
+  "commercial",
   "professional",
   "educational",
   "technical",
