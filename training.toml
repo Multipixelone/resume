@@ -1,0 +1,36 @@
+[shows]
+    [shows.show-0]
+        title = "Private Voice Lessons"
+        character = "Molloy University/CAP21"
+        company = ""
+        director = "Julia Kershetsky"
+    [shows.show-1]
+        title = "BFA Musical Theatre"
+        character = "Molloy University/CAP21"
+        company = "Graduation 2026"
+        director = "In Progress"
+    [shows.show-2]
+        title = "Career Path Training"
+        character = "Bridgetown Conservatory"
+        company = ""
+        director = "Del Lewis"
+    [shows.show-3]
+        title = "Young Professionals"
+        character = "Oregon Children's Theatre"
+        company = ""
+        director = "Dani Baldwin"
+    [shows.show-4]
+        title = "Mainstage Company"
+        character = "NW Children's Theatre"
+        company = ""
+        director = "Sarah Jane Hardy"
+    [shows.show-5]
+        title = "Musical Theatre Dance"
+        character = "Bridgetown Conservatory"
+        company = ""
+        director = "Laura Hizcynskyj"
+    [shows.show-6]
+        title = "Private Voice Lessons"
+        character = ""
+        company = ""
+        director = "Rick Lewis"

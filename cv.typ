@@ -16,7 +16,8 @@
   "film",
   "commercial",
   "professional",
-  "educational",
   "technical",
+  "educational",
+  "training",
 ))
 
