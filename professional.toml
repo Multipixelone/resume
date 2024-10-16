@@ -1,0 +1,26 @@
+[shows]
+    [shows.show-5]
+        title = "In Pieces"
+        character = "Grey"
+        company = "Bridgetown Conservatory"
+        director = "Kevin Paul Clark"
+    [shows.show-1]
+        title = "Theory of Relativity"
+        character = "Ryan"
+        company = "Bridgetown Conservatory of Musical Theatre"
+        director = "Rick Lewis"
+    [shows.show-2]
+        title = "A Midsummer Night's Dream"
+        character = "Oberon"
+        company = "NW Children's Theatre"
+        director = "Sarah Jane Hardy"
+    [shows.show-3]
+        title = "Matilda"
+        character = "Sergei/Ensemble"
+        company = "NW Children's Theatre"
+        director = "Sarah Jane Hardy"
+    [shows.show-4]
+        title = "Bridgetown Cabaret 2020"
+        character = "Myself"
+        company = "Bridgetown Conservatory"
+        director = "Rick Lewis"

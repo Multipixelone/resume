@@ -41,13 +41,12 @@
     text(
       font: headerFont,
       size: 32pt,
-      weight: "light",
       fill: regularColors.darkgray,
       str,
     )
   }
   let headerLastNameStyle(str) = {
-    text(font: headerFont, size: 32pt, weight: "bold", str)
+    text(font: headerFont, size: 32pt, str)
   }
   let headerInfoStyle(str) = {
     text(size: 10pt, fill: accentColor, str)
@@ -218,7 +217,7 @@
 /// -> content
 #let cvSection(
   title,
-  highlighted: true,
+  highlighted: false,
   letters: 3,
   metadata: metadata,
   awesomeColors: awesomeColors,
@@ -436,6 +435,42 @@
   v(-6pt)
 }
 
+#let cvPerformanceOld(title: "Title", character: "Character", company: "Company", director: "Director") = {
+  let skillTypeStyle(str) = {
+    align(left, text(size: 10pt, str))
+  }
+  let skillInfoStyle(str) = {
+    text(str)
+  }
+
+  table(
+    columns: (0.25fr, 0.1fr, 0.3fr, 0.15fr),
+    inset: 0pt,
+    column-gutter: 10pt,
+    stroke: none,
+    skillTypeStyle(title), skillInfoStyle(character), skillInfoStyle(company), skillInfoStyle(director)
+  )
+  v(-7pt)
+}
+
+#let cvPerformance(metadata) = {
+  let skillTypeStyle(str) = {
+    align(left, text(size: 10pt, str))
+  }
+  let shows = metadata.shows
+
+  table(
+    columns: (auto, auto, auto, auto),
+    stroke: none,
+    ..for (c) in shows {
+      let title = c.at(1).title
+      let character = c.at(1).character
+      let company = c.at(1).company
+      let director = c.at(1).director
+      (skillTypeStyle(title), skillTypeStyle(character), skillTypeStyle(company), skillTypeStyle(director))
+    }
+  )
+}
 /// Add a Honor to the CV.
 ///
 /// - date (str): The date of the honor.

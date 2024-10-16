@@ -1,0 +1,26 @@
+[shows]
+    [shows.show-1]
+        title = "Portland Spirit Theme Song"
+        character = "Onsite Recording & Audio Production"
+        company = ""
+        director = "Rick Lewis"
+    [shows.show-2]
+        title = "Rosetta Project"
+        character = "Lighting Designer"
+        company = ""
+        director = "Merideth Kaye Clark"
+    [shows.show-3]
+        title = "In The Forest She Grew Fangs"
+        character = "Onsite Recording & Video Editor"
+        company = "Oregon Children's Theatre"
+        director = "Andrea White"
+    [shows.show-4]
+        title = "Young Professionals Showcase"
+        character = "Virtual Video Editor"
+        company = "Oregon Children's Theatre"
+        director = "Matthew Zrebski"
+    [shows.show-5]
+        title = "Virtual Choir Performance"
+        character = "Virtual Video Editor"
+        company = "Bridgetown Conservatory"
+        director = "Rick Lewis"

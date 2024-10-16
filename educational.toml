@@ -1,0 +1,16 @@
+[shows]
+    [shows.show-1]
+        title = "Spamalot"
+        character = "Patsy"
+        company = "Southridge High School Theatre"
+        director = "James Fewer"
+    [shows.show-2]
+        title = "Tuck Everlasting"
+        character = "Jesse Tuck"
+        company = "Broadway Rose"
+        director = "Isaac Lamb"
+    [shows.show-3]
+        title = "Curtains"
+        character = "Bobby Pepper"
+        company = "NW Children's Theatre"
+        director = "Dustin Brown"
