@@ -461,6 +461,8 @@
 
   table(
     columns: (auto, auto, auto, auto),
+    inset: 3.5pt,
+    column-gutter: 0pt,
     stroke: none,
     ..for (c) in shows {
       let title = c.at(1).title
