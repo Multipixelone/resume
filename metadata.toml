@@ -15,8 +15,8 @@ language = "en"
     before_entry_description_skip = "1pt"
 
     [layout.fonts]
-        regular_fonts = ["Garamond Libre", "Source Sans 3"]
-        header_font = "Garamond Libre"
+        regular_fonts = ["EB Garamond", "Source Sans 3"]
+        header_font = "EB Garamond"
 
     [layout.header]
         # Optional values: left, center, right

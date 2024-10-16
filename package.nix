@@ -5,7 +5,7 @@
   font-awesome,
   roboto,
   source-sans-pro,
-  garamond-libre,
+  eb-garamond,
   inputs,
   version ? "",
   src ? null,
@@ -18,7 +18,7 @@ stdenv.mkDerivation {
   postConfigure = ''
     mkdir src/fonts
     ln -s ${font-awesome}/share/fonts/opentype/* src/fonts/
-    ln -s ${garamond-libre}/share/fonts/opentype/* src/fonts/
+    ln -s ${eb-garamond}/share/fonts/opentype/* src/fonts/
     ln -s ${roboto}/share/fonts/truetype/* src/fonts/
     ln -s ${source-sans-pro}/share/fonts/truetype/* src/fonts/
   '';
