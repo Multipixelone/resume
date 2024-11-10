@@ -3,11 +3,14 @@
   outputs = {
     self,
     nixpkgs,
+    devenv,
     ...
   } @ inputs:
     inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["aarch64-linux" "aarch64-darwin" "x86_64-linux" "x86_64-darwin"];
-
+      systems = ["x86_64-linux" "x86_64-darwin"];
+      imports = [
+        inputs.devenv.flakeModule
+      ];
       perSystem = {
         pkgs,
         config,
@@ -22,13 +25,12 @@
         version = mkDate (self.lastModifiedDate or "19700101");
         src = self;
       in {
-        devShells.default = pkgs.mkShell {
-          packages = with pkgs; [
-            typst
-            typst-fmt
-            typst-lsp
+        devenv.shells.default = {
+          packages = [
+            pkgs.typst
+            pkgs.typst-fmt
+            pkgs.typst-lsp
           ];
-          name = "Resume";
         };
 
         packages = {
@@ -39,8 +41,14 @@
       };
     };
 
+  nixConfig = {
+    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
+    extra-substituters = "https://devenv.cachix.org";
+  };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    devenv.url = "github:cachix/devenv";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
