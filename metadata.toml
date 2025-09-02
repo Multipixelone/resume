@@ -49,16 +49,16 @@ language = "en"
     [personal.info]
         # github = "mintyfrankie"
         phone = "503-267-5052"
-        email = "me@finnrut.is"
+        email = "finn@cnwr.net"
         # linkedin = "johndoe"
         # gitlab = "mintyfrankie"
-        homepage = "finnrut.is"
+        # homepage = "finnrut.is"
         # orcid = "0000-0000-0000-0000"
         # researchgate = "John-Doe"
         # extraInfo = "I am a cool kid"
-        height = "6'"
-        eyes = "Green"
-        hair = "Brown"
+        # height = "6'"
+        # eyes = "Green"
+        # hair = "Brown"
 
 # add a new section if you want to include the language of your choice
 # i.e. [[lang.ru]]
