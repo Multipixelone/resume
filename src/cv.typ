@@ -460,7 +460,7 @@
   let shows = metadata.shows
 
   table(
-    columns: (auto, auto, auto, auto),
+    columns: (1fr,) * 4,
     inset: 3.5pt,
     column-gutter: 0pt,
     stroke: none,
