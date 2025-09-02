@@ -1,4 +1,14 @@
 [shows]
+    [shows.show-4]
+        title = "Pirates of Penzance"
+        character = "Pirate"
+        company = "Molloy CAP21"
+        director = "Melissa Firlit"
+    [shows.show-5]
+        title = "Composer Project"
+        character = "Self"
+        company = "Molloy CAP21"
+        director = "Aimée Francis"
     [shows.show-1]
         title = "Spamalot"
         character = "Patsy"
