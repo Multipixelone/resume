@@ -7,7 +7,7 @@
     [shows.show-1]
         title = "Theory of Relativity"
         character = "Ryan"
-        company = "Bridgetown Conservatory of Musical Theatre"
+        company = "Bridgetown Conservatory"
         director = "Rick Lewis"
     [shows.show-2]
         title = "A Midsummer Night's Dream"
@@ -21,6 +21,6 @@
         director = "Sarah Jane Hardy"
     [shows.show-4]
         title = "Bridgetown Cabaret 2020"
-        character = "Myself"
+        character = "Self"
         company = "Bridgetown Conservatory"
         director = "Rick Lewis"

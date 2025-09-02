@@ -1,7 +1,7 @@
 [shows]
     [shows.show-1]
         title = "Portland Spirit Theme Song"
-        character = "Onsite Recording & Audio Production"
+        character = "Audio Production"
         company = ""
         director = "Rick Lewis"
     [shows.show-2]
@@ -11,7 +11,7 @@
         director = "Merideth Kaye Clark"
     [shows.show-3]
         title = "In The Forest She Grew Fangs"
-        character = "Onsite Recording & Video Editor"
+        character = "Video Editor"
         company = "Oregon Children's Theatre"
         director = "Andrea White"
     [shows.show-4]
