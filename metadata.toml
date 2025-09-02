@@ -65,7 +65,7 @@ language = "en"
 # each section must contains the following fields
 [lang.en]
     header_quote = "Trained musical theatre performer & voiceover artist"
-    cv_footer = "Curriculum vitae"
+    cv_footer = "Artistic Resume"
     letter_footer = "Cover letter"
 
 [lang.fr]
