@@ -1,4 +1,14 @@
 [shows]
+    [shows.show-7]
+        title = "Kiss Me Kate"
+        character = "Gangster #2"
+        company = "Madison Theatre"
+        director = "Angelo Fraboni"
+    [shows.show-6]
+        title = "Legally Blonde"
+        character = "Dewey / Aaron"
+        company = "Madison Theatre"
+        director = "Angelo Fraboni"
     [shows.show-5]
         title = "In Pieces"
         character = "Grey"
