@@ -29,7 +29,7 @@
           packages = [
             pkgs.typst
             pkgs.typst-fmt
-            pkgs.typst-lsp
+            pkgs.tinymist
           ];
         };
 
