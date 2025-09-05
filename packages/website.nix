@@ -17,6 +17,8 @@ stdenv.mkDerivation {
 
   buildPhase = ''
     runHook preBuild
+    mkdir -p themes/hugo-resume
+    cp -r ${inputs.resume-theme}/* themes/hugo-resume/
 
     hugo
 
