@@ -24,6 +24,10 @@
           ]);
         version = mkDate (self.lastModifiedDate or "19700101");
         src = self;
+
+        resume = pkgs.callPackage ./resume.nix {
+          inherit inputs version src;
+        };
       in {
         devenv.shells.default = {
           packages = [
@@ -34,9 +38,7 @@
         };
 
         packages = {
-          default = pkgs.callPackage ./package.nix {
-            inherit inputs version src;
-          };
+          default = resume;
         };
       };
     };
