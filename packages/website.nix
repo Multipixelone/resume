@@ -18,8 +18,10 @@ stdenv.mkDerivation {
   buildPhase = ''
     runHook preBuild
 
-    hugo -d $out
+    hugo
 
     runHook postBuild
   '';
+
+  installPhase = "cp -r public $out";
 }
