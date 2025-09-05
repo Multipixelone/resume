@@ -64,7 +64,7 @@ language = "en"
 # i.e. [[lang.ru]]
 # each section must contains the following fields
 [lang.en]
-    header_quote = "Trained musical theatre performer & voiceover artist"
+    header_quote = "Musical theatre performer & voiceover artist interested in shining light on unconscious parts of the human experience."
     cv_footer = "Artistic Resume"
     letter_footer = "Cover letter"
 
