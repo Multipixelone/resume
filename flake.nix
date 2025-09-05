@@ -25,7 +25,7 @@
         version = mkDate (self.lastModifiedDate or "19700101");
         src = self;
 
-        resume = pkgs.callPackage ./resume.nix {
+        resume = pkgs.callPackage ./packages/resume.nix {
           inherit inputs version src;
         };
       in {
