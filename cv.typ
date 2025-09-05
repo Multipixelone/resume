@@ -1,5 +1,5 @@
 #import "./src/lib.typ": cv
-#let metadata = toml("metadata.toml")
+#let metadata = toml("./metadata/metadata.toml")
 #let importModules(modules) = {
   for module in modules {
     include {
@@ -10,7 +10,7 @@
 
 #show: cv.with(
   metadata,
-  profilePhoto: image("./headshot.png")
+  profilePhoto: image("./metadata/headshot.png")
 )
 #importModules((
   "professional",
