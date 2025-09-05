@@ -229,11 +229,28 @@
         "type": "github"
       }
     },
+    "resume-theme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1736175927,
+        "narHash": "sha256-44994csiEZICS71dGM2PnJLEqpD5Z45Re+f7Nro9AdI=",
+        "owner": "eddiewebb",
+        "repo": "hugo-resume",
+        "rev": "aec4897a893796ffb1a365520814a723898077f8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "eddiewebb",
+        "repo": "hugo-resume",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "devenv": "devenv",
         "flake-parts": "flake-parts_2",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "resume-theme": "resume-theme"
       }
     }
   },

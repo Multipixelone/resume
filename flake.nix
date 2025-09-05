@@ -57,6 +57,11 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     devenv.url = "github:cachix/devenv";
 
+    resume-theme = {
+      url = "github:eddiewebb/hugo-resume";
+      flake = false;
+    };
+
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
