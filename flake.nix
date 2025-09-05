@@ -24,9 +24,13 @@
           ]);
         version = mkDate (self.lastModifiedDate or "19700101");
         src = self;
+        websiteRoot = ./website;
 
         resume = pkgs.callPackage ./packages/resume.nix {
           inherit inputs version src;
+        };
+        website = pkgs.callPackage ./packages/website.nix {
+          inherit inputs version websiteRoot;
         };
       in {
         devenv.shells.default = {
@@ -39,6 +43,7 @@
 
         packages = {
           default = resume;
+          website = website;
         };
       };
     };
