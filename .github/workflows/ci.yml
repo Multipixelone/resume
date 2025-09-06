@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   build:
-    name: build site
+    name: build artifacts
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -44,6 +44,13 @@ jobs:
           nix build .#packages.x86_64-linux.website
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./result
+      - name: Build resume
+        run: |
+          nix build .#packages.x86_64-linux.resume
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
           path: ./result
 
