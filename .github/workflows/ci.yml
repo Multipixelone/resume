@@ -52,7 +52,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          path: ./result
+          path: ./result/CV_FinnRutis.pdf
 
   deploy:
     environment:
