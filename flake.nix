@@ -43,6 +43,7 @@
 
         packages = {
           default = resume;
+          resume = resume;
           website = website;
         };
       };
