@@ -232,16 +232,16 @@
     "resume-theme": {
       "flake": false,
       "locked": {
-        "lastModified": 1736175927,
-        "narHash": "sha256-44994csiEZICS71dGM2PnJLEqpD5Z45Re+f7Nro9AdI=",
-        "owner": "eddiewebb",
-        "repo": "hugo-resume",
-        "rev": "aec4897a893796ffb1a365520814a723898077f8",
+        "lastModified": 1749937524,
+        "narHash": "sha256-tKCV6SceIDRtKuJkxTqv2We+h7DV4yJz05PqaVSjQ6Y=",
+        "owner": "mansoorbarri",
+        "repo": "coming-soon",
+        "rev": "a7f0a30d1349bf3f54fb0c4757d2029859e4422f",
         "type": "github"
       },
       "original": {
-        "owner": "eddiewebb",
-        "repo": "hugo-resume",
+        "owner": "mansoorbarri",
+        "repo": "coming-soon",
         "type": "github"
       }
     },

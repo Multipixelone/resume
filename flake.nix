@@ -58,8 +58,12 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     devenv.url = "github:cachix/devenv";
 
+    # resume-theme = {
+    #   url = "github:eddiewebb/hugo-resume";
+    #   flake = false;
+    # };
     resume-theme = {
-      url = "github:eddiewebb/hugo-resume";
+      url = "github:mansoorbarri/coming-soon";
       flake = false;
     };
 
