@@ -2,17 +2,17 @@
     [shows.show-6]
         title = "Seussical"
         character = "Cat in the Hat"
-        company = "Molloy CAP21"
+        company = "CAP21 / Molloy Univ."
         director = "Darren Lee"
     [shows.show-4]
         title = "Pirates of Penzance"
         character = "Pirate"
-        company = "Molloy CAP21"
+        company = "CAP21 / Molloy Univ."
         director = "Melissa Firlit"
     [shows.show-5]
         title = "Composer Project Revue"
         character = "Self"
-        company = "Molloy CAP21"
+        company = "CAP21 / Molloy Univ."
         director = "Aimée Francis"
     [shows.show-1]
         title = "Spamalot"

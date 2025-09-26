@@ -1,12 +1,12 @@
 [shows]
     [shows.show-0]
         title = "Private Voice Lessons"
-        character = "Molloy University/CAP21"
+        character = "CAP21 / Molloy Univ."
         company = ""
         director = "Julia Kershetsky"
     [shows.show-1]
         title = "BFA Musical Theatre"
-        character = "Molloy University/CAP21"
+        character = "CAP21 / Molloy Univ."
         company = "Graduation 2026"
         director = "In Progress"
     [shows.show-2]
