@@ -16,5 +16,5 @@
 
 #cvSkill(
   type: [Special Skills],
-  info: [Ukulele, fantastic whistler, can drive manual transmission],
+  info: [Ukulele #hBar() Fantastic Whistler #hBar() Manual Transmission],
 )
