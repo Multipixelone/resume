@@ -7,7 +7,7 @@
 #cvSection("Training")
 
 #cvEntry(
-  title: [Bachelor of Fine Arts],
+  title: [Bachelor of Fine Arts in Musical Theatre],
   society: [CAP21 / Molloy University],
   date: [2022 - 2026],
   location: [NYC],
