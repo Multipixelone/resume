@@ -1,4 +1,9 @@
 [shows]
+    [shows.show-6]
+        title = "Seussical"
+        character = "Cat in the Hat"
+        company = "Molloy CAP21"
+        director = "Darren Lee"
     [shows.show-4]
         title = "Pirates of Penzance"
         character = "Pirate"
