@@ -12,10 +12,10 @@
   date: [2022 - 2026],
   location: [NYC],
   // logo: image("../src/logos/ucla.png"),
-  description: list(
-    [Thesis: Predicting Customer Churn in Telecommunications Industry using Machine Learning Algorithms and Network Analysis],
-    [Course: Big Data Systems and Technologies #hBar() Data Mining and Exploration #hBar() Natural Language Processing],
-  ),
+  // description: list(
+  //   [Thesis: Predicting Customer Churn in Telecommunications Industry using Machine Learning Algorithms and Network Analysis],
+  //   [Course: Big Data Systems and Technologies #hBar() Data Mining and Exploration #hBar() Natural Language Processing],
+  // ),
 )
 
 #cvSkill(
