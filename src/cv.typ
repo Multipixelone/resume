@@ -413,7 +413,7 @@
       },
     ),
   )
-  entryDescriptionStyle(description)
+  // entryDescriptionStyle(description)
   entryTagListStyle(tags)
 }
 
