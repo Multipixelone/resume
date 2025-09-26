@@ -10,7 +10,7 @@
 
 #show: cv.with(
   metadata,
-  profilePhoto: image("./metadata/headshot.png")
+  profilePhoto: image("./metadata/qr-code.png")
 )
 #importModules((
   "professional",

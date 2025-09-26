@@ -149,7 +149,8 @@
   let makeHeaderPhotoSection() = {
     set image(height: 3.6cm)
     if displayProfilePhoto {
-      box(profilePhoto, radius: 50%, clip: true)
+      // box(profilePhoto, radius: 50%, clip: true)
+      box(profilePhoto)
     } else {
       v(3.6cm)
     }
