@@ -43,7 +43,7 @@ stdenv.mkDerivation {
     runHook preInstall
 
     mkdir -p $out
-    cp cv.typ $out/cv_edited.typ
+    # cp cv.typ $out/cv_edited.typ
     mv *.pdf $out
     mv $out/cv.pdf $out/CV_FinnRutis.pdf
 
