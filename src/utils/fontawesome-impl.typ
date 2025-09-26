@@ -26,7 +26,7 @@
 /// Returns: The rendered icon as a `text` element
 #let fa-icon(
   name,
-  solid: false,
+  solid: true,
   fa-icon-map: (:),
   ..args,
 ) = (
