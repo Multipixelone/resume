@@ -65,7 +65,7 @@
       phone: fa-phone(),
       email: fa-envelope(),
       linkedin: fa-linkedin(),
-      homepage: fa-pager(),
+      homepage: fa-house-laptop(),
       github: fa-square-github(),
       gitlab: fa-gitlab(),
       orcid: fa-orcid(),
