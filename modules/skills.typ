@@ -5,11 +5,6 @@
 #cvSection("Skills")
 
 #cvSkill(
-  type: [Languages],
-  info: [English #hBar() ASL],
-)
-
-#cvSkill(
   type: [Technical Theatre],
   info: [Audio Production #hBar() Video Editing #hBar() Programming #hBar() Website Design],
 )
@@ -18,3 +13,9 @@
   type: [Special Skills],
   info: [Ukulele #hBar() Fantastic Whistler #hBar() Manual Transmission],
 )
+
+#cvSkill(
+  type: [Languages],
+  info: [English #hBar() ASL],
+)
+
