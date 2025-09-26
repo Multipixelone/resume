@@ -11,7 +11,7 @@
 
 #cvSkill(
   type: [Special Skills],
-  info: [Ukulele #hBar() Fantastic Whistler #hBar() Manual Transmission Driving],
+  info: [Ukulele #hBar() Fantastic Whistler #hBar() Improvisation #hBar() Manual Transmission Driving],
 )
 
 #cvSkill(
