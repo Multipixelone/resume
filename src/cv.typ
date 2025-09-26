@@ -74,6 +74,7 @@
       height: fa-ruler(),
       eyes: fa-eye(),
       hair: fa-location-dot(),
+      vocal-part: fa-microphone(),
       extraInfo: "",
     )
     let n = 1
