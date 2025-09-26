@@ -44,6 +44,7 @@ language = "en"
     first_name = "Finn"
     last_name = "Rutis"
 
+    pronouns = "they / them"
     # The order of this section will affect how the entries are displayed
     # The custom value is for any additional information you want to add, name it as custom-1, custom-2, etc.
     [personal.info]

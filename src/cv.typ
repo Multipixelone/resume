@@ -26,6 +26,7 @@
   let personalInfo = metadata.personal.info
   let firstName = metadata.personal.first_name
   let lastName = metadata.personal.last_name
+  let pronouns = metadata.personal.pronouns
   let headerQuote = metadata.lang.at(metadata.language).header_quote
   let displayProfilePhoto = metadata.layout.header.display_profile_photo
   // let profilePhoto = metadata.layout.header.profile_photo_path
@@ -47,6 +48,9 @@
   }
   let headerLastNameStyle(str) = {
     text(font: headerFont, size: 32pt, str)
+  }
+  let headerPronounStyle(str) = {
+    text(size: 14pt, fill: accentColor, str)
   }
   let headerInfoStyle(str) = {
     text(size: 10pt, fill: accentColor, str)
@@ -136,7 +140,7 @@
     row-gutter: 6mm,
     if nonLatin {
       headerFirstNameStyle(nonLatinName)
-    } else [#headerFirstNameStyle(firstName) #h(5pt) #headerLastNameStyle(lastName)],
+    } else [#headerFirstNameStyle(firstName) #h(5pt) #headerLastNameStyle(lastName) #h(5pt) #headerPronounStyle(pronouns)],
     [#headerInfoStyle(makeHeaderInfo())],
     [#headerQuoteStyle(headerQuote)],
   )
