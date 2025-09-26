@@ -20,7 +20,7 @@
 
 #cvSkill(
   type: [Voice],
-  info: [Julia Kershetsky #hBar() Rick Lewis],
+  info: [Julia Kershetsky #hBar() Farah Alvin #hBar() Rick Lewis],
 )
 
 #cvSkill(
