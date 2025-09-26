@@ -19,5 +19,6 @@
   "film",
   "commercial",
   "training",
+  "skills",
 ))
 
