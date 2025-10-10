@@ -25,12 +25,12 @@
 
 #cvSkill(
   type: [Acting],
-  info: [Andy Schneeflock #hBar() Del Lewis #hBar() Sarah Jane Hardy #hBar() Dani Baldwin],
+  info: [Andy Schneeflock #hBar() Helen Farmer #hBar() Aimée Francis #hBar() Melissa Firlit #hBar() Del Lewis #hBar() Sarah Jane Hardy],
 )
 
 #cvSkill(
   type: [Dance],
-  info: [Kristyn Pope #hBar() Laura Hizcynskyj],
+  info: [Kristyn Pope #hBar() Lori Leshner #hBar() James Bulleri #hBar() Laura Hizcynskyj],
 )
 
 // #cvPerformance(training)
