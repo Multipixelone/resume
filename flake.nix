@@ -48,7 +48,6 @@
               pkgs.typst-fmt
               pkgs.tinymist
               pkgs.nodejs
-              pkgs.npm
             ];
           };
 

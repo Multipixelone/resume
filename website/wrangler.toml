@@ -1,8 +1,0 @@
-name = "coming-soon"
-compatibility_date = "2025-06-14"
-
-[assets]
-directory = "./public"
-
-[build]
-command = "hugo"
