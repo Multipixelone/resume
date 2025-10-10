@@ -1,52 +1,63 @@
 {
   description = "Finn Rutis Resume";
-  outputs = {
-    self,
-    nixpkgs,
-    devenv,
-    ...
-  } @ inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["x86_64-linux" "x86_64-darwin"];
+  outputs =
+    {
+      self,
+      nixpkgs,
+      devenv,
+      ...
+    }@inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "x86_64-linux"
+        "x86_64-darwin"
+      ];
       imports = [
         inputs.devenv.flakeModule
       ];
-      perSystem = {
-        pkgs,
-        config,
-        ...
-      }: let
-        mkDate = longDate:
-          with builtins; (concatStringsSep "-" [
-            (substring 0 4 longDate)
-            (substring 4 2 longDate)
-            (substring 6 2 longDate)
-          ]);
-        version = mkDate (self.lastModifiedDate or "19700101");
-        src = self;
-        websiteRoot = ./website;
+      perSystem =
+        {
+          pkgs,
+          config,
+          ...
+        }:
+        let
+          mkDate =
+            longDate:
+            with builtins;
+            (concatStringsSep "-" [
+              (substring 0 4 longDate)
+              (substring 4 2 longDate)
+              (substring 6 2 longDate)
+            ]);
+          version = mkDate (self.lastModifiedDate or "19700101");
+          src = self;
+          websiteRoot = ./website;
 
-        resume = pkgs.callPackage ./packages/resume.nix {
-          inherit inputs version src;
-        };
-        website = pkgs.callPackage ./packages/website.nix {
-          inherit inputs version websiteRoot;
-        };
-      in {
-        devenv.shells.default = {
-          packages = [
-            pkgs.typst
-            pkgs.typst-fmt
-            pkgs.tinymist
-          ];
-        };
+          resume = pkgs.callPackage ./packages/resume.nix {
+            inherit inputs version src;
+          };
+          website = pkgs.callPackage ./packages/website.nix {
+            inherit inputs version websiteRoot;
+          };
+        in
+        {
+          devenv.shells.default = {
+            packages = [
+              pkgs.typst
+              pkgs.typst-fmt
+              pkgs.tinymist
+              pkgs.nodejs
+              pkgs.npm
+            ];
+          };
 
-        packages = {
-          default = resume;
-          resume = resume;
-          website = website;
+          packages = {
+            default = resume;
+            resume = resume;
+            website = website;
+          };
         };
-      };
     };
 
   nixConfig = {
