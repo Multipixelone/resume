@@ -6,15 +6,31 @@ import { defineConfig, fontProviders } from 'astro/config';
 export default defineConfig({
       experimental: {
         fonts: [{
-            provider: fontProviders.google(),
+      provider: "local",
             name: "Public Sans",
-            cssVariable: "--font-public-sans"
+            cssVariable: "--font-public-sans",
+          variants: [
+        {
+        src: [
+              "./src/assets/fonts/open-sans-v44-latin-regular.woff2"
+            ]  
+        },
+        
+      ]
         },
       {
         
-            provider: fontProviders.google(),
+            provider: "local",
             name: "Caprasimo",
-            cssVariable: "--font-caprasimo"
+            cssVariable: "--font-caprasimo",
+          variants: [
+        {
+        src: [
+              "./src/assets/fonts/caprasimo-v6-latin-regular.woff2"
+            ]  
+        },
+        
+      ]
       }
     ]
     },
