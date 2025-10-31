@@ -6,16 +6,16 @@
 
 #cvSkill(
   type: [Technical Theatre],
-  info: [Audio Production #hBar() Video Editing #hBar() Programming #hBar() Website Design],
+  info: [Audio Production, Video Editing, Programming, Website Design],
 )
 
 #cvSkill(
   type: [Special Skills],
-  info: [Ukulele #hBar() Fantastic Whistler #hBar() Improvisation #hBar() Manual Transmission Driving],
+  info: [Ukulele, Fantastic Whistler, Improvisation, Manual Transmission Driving],
 )
 
 #cvSkill(
   type: [Languages],
-  info: [English #hBar() ASL],
+  info: [English, ASL],
 )
 

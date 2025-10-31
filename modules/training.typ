@@ -14,23 +14,23 @@
   // logo: image("../src/logos/ucla.png"),
   // description: list(
   //   [Thesis: Predicting Customer Churn in Telecommunications Industry using Machine Learning Algorithms and Network Analysis],
-  //   [Course: Big Data Systems and Technologies #hBar() Data Mining and Exploration #hBar() Natural Language Processing],
+  //   [Course: Big Data Systems and Technologies, Data Mining and Exploration, Natural Language Processing],
   // ),
 )
 
 #cvSkill(
   type: [Voice],
-  info: [Julia Kershetsky #hBar() Farah Alvin #hBar() Rick Lewis],
+  info: [Julia Kershetsky, Farah Alvin, Rick Lewis],
 )
 
 #cvSkill(
   type: [Acting],
-  info: [Andy Schneeflock #hBar() Helen Farmer #hBar() Aimée Francis #hBar() Melissa Firlit #hBar() Del Lewis #hBar() Sarah Jane Hardy],
+  info: [Andy Schneeflock, Helen Farmer, Aimée Francis, Melissa Firlit, Del Lewis, Sarah Jane Hardy],
 )
 
 #cvSkill(
   type: [Dance],
-  info: [Kristyn Pope #hBar() Lori Leshner #hBar() James Bulleri #hBar() Laura Hizcynskyj],
+  info: [Kristyn Pope, Lori Leshner, James Bulleri, Laura Hizcynskyj],
 )
 
 // #cvPerformance(training)
