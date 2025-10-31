@@ -14,7 +14,7 @@
   skyblue: rgb("#0395DE"),
   red: rgb("#DC3522"),
   nephritis: rgb("#27AE60"),
-  concrete: rgb("#95A5A6"),
+  concrete: rgb("#606060"),
   darknight: rgb("#131A28"),
 )
 
