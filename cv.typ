@@ -16,9 +16,9 @@
   "professional",
   // "technical",
   "educational",
-  "voiceover",
+  // "voiceover",
   "film",
-  "commercial",
+  // "commercial",
   "training",
   "skills",
 ))
