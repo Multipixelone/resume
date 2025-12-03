@@ -45,7 +45,7 @@
           devenv.shells.default = {
             packages = [
               pkgs.typst
-              pkgs.typstfmt
+              pkgs.typstyle
               pkgs.tinymist
               pkgs.nodejs
             ];
