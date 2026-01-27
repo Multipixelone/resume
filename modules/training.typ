@@ -30,7 +30,7 @@
 
 #cvSkill(
   type: [Dance],
-  info: [Kristyn Pope, Lori Leshner, James Bulleri, Laura Hizcynskyj],
+  info: [Kristyn Pope, Lori Leshner, John Scacchetti, Euraka Nakano, Marilyn D'Honau, Bethany Moore, James Bulleri, Laura Hizcynskyj],
 )
 
 // #cvPerformance(training)
