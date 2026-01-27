@@ -39,6 +39,7 @@ stdenv.mkDerivation {
     runHook preBuild
 
     typst compile cv.typ
+    typst compile rep-sheet.typ
 
     runHook postBuild
   '';
@@ -51,6 +52,7 @@ stdenv.mkDerivation {
     mv *.pdf $out
     pdftoppm -png -singlefile -r 150 $out/cv.pdf $out/CV_FinnRutis_${version}
     mv $out/cv.pdf $out/CV_FinnRutis_${version}.pdf
+    mv $out/rep-sheet.pdf $out/Rep-Sheet_FinnRutis_${version}.pdf
 
     runHook postInstall
   '';
