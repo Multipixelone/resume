@@ -3,6 +3,6 @@
 #let educational = toml("../metadata/educational.toml")
 #let cvSection = cvSection.with(metadata: metadata)
 
-#cvSection("Educational Theatre")
+#cvSection("Concerts / Workshops")
 
 #cvPerformance(educational)
