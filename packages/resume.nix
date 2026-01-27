@@ -13,7 +13,7 @@
 stdenv.mkDerivation {
   pname = "finn_cv";
   inherit src version;
-  nativeBuildInputs = [typst];
+  nativeBuildInputs = [ typst ];
 
   postConfigure = ''
     mkdir src/fonts
@@ -45,7 +45,7 @@ stdenv.mkDerivation {
     mkdir -p $out
     # cp cv.typ $out/cv_edited.typ
     mv *.pdf $out
-    mv $out/cv.pdf $out/CV_FinnRutis.pdf
+    mv $out/cv.pdf $out/CV_FinnRutis_${version}.pdf
 
     runHook postInstall
   '';
