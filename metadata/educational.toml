@@ -1,10 +1,30 @@
 [shows]
-    [shows.show-5]
-        title = "Composer Project Ahrens & Flaherty"
+    [shows.samamtha]
+        title = "Samantha Single Handed"
+        character = "Shelley"
+        company = "First Table Read"
+        director = "Aaron Gandy"
+    [shows.christmas]
+        title = "Christmas Cabaret"
+        character = "Self"
+        company = "Bridgetown Conservatory"
+        director = "Marcus Harbaugh"
+    [shows.alumni]
+        title = "Alumni Cabaret"
+        character = "Self"
+        company = "Bridgetown Conservatory"
+        director = "Marcus Harbaugh"
+    [shows.songdance]
+        title = "Song & Dance Revue"
+        character = "Self"
+        company = "CAP21 / Molloy Univ."
+        director = "Lori Leshner"
+    [shows.composer]
+        title = "Composer Project Revue"
         character = "Self"
         company = "CAP21 / Molloy Univ."
         director = "Aimée Francis"
-    [shows.show-4]
+    [shows.bridgetown]
         title = "Bridgetown Cabaret 2020"
         character = "Self"
         company = "Bridgetown Conservatory"
