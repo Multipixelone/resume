@@ -2,6 +2,7 @@
   lib,
   stdenv,
   typst,
+  poppler-utils,
   font-awesome,
   roboto,
   source-sans-pro,
@@ -13,7 +14,10 @@
 stdenv.mkDerivation {
   pname = "finn_cv";
   inherit src version;
-  nativeBuildInputs = [ typst ];
+  nativeBuildInputs = [
+    typst
+    poppler-utils
+  ];
 
   postConfigure = ''
     mkdir src/fonts
@@ -45,6 +49,7 @@ stdenv.mkDerivation {
     mkdir -p $out
     # cp cv.typ $out/cv_edited.typ
     mv *.pdf $out
+    pdftoppm -png -singlefile -r 150 $out/cv.pdf $out/CV_FinnRutis_${version}
     mv $out/cv.pdf $out/CV_FinnRutis_${version}.pdf
 
     runHook postInstall
