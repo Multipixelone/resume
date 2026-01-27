@@ -41,18 +41,39 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Build site
         run: |
-          nix build .#packages.x86_64-linux.website
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./result
+          nix build .#packages.x86_64-linux.website -o ./result-website
+      - name: Prepare pages artifact
+        run: |
+          mkdir -p ./pages
+          cp -R ./result-website/. ./pages/
       - name: Build resume
         run: |
-          nix build .#packages.x86_64-linux.resume
-      - name: Upload artifact
+          nix build .#packages.x86_64-linux.resume -o ./result-resume
+      - name: Add resume PNG to pages artifact
+        run: |
+          shopt -s nullglob
+          png_files=(./result-resume/CV_FinnRutis_*.png)
+          if [ "${#png_files[@]}" -ne 1 ]; then
+            echo "Expected exactly 1 resume PNG file, but found ${#png_files[@]}."
+            exit 1
+          fi
+          cp "${png_files[0]}" ./pages/resume.png
+          pdf_files=(./result-resume/CV_FinnRutis_*.pdf)
+          if [ "${#pdf_files[@]}" -ne 1 ]; then
+            echo "Expected exactly 1 resume PDF file, but found ${#pdf_files[@]}."
+            exit 1
+          fi
+          mkdir -p ./resume
+          cp "${pdf_files[0]}" ./resume/
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./pages
+      - name: Upload resume PDF artifact
         uses: actions/upload-artifact@v4
         with:
-          path: ./result/CV_FinnRutis.pdf
+          name: resume-pdf
+          path: ./resume
 
   deploy:
     environment:
@@ -64,4 +85,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
