@@ -1,0 +1,51 @@
+[shows]
+    [shows.seussical]
+        title = "Seussical"
+        character = "Cat in the Hat"
+        company = "CAP21 / Molloy Univ."
+        director = "Darren Lee"
+    [shows.kiss-me-kate]
+        title = "Kiss Me Kate"
+        character = "Gangster #2"
+        company = "Madison Theatre"
+        director = "Angelo Fraboni"
+    [shows.legally-blonde]
+        title = "Legally Blonde"
+        character = "Dewey / Aaron"
+        company = "Madison Theatre"
+        director = "Angelo Fraboni"
+    [shows.pop]
+        title = "Pirates of Penzance"
+        character = "Pirate"
+        company = "CAP21 / Molloy Univ."
+        director = "Melissa Firlit"
+    [shows.in-pieces]
+        title = "In Pieces"
+        character = "Grey"
+        company = "Bridgetown Conservatory"
+        director = "Kevin Paul Clark"
+    [shows.theory]
+        title = "Theory of Relativity"
+        character = "Ryan"
+        company = "Bridgetown Conservatory"
+        director = "Rick Lewis"
+    [shows.tuck]
+        title = "Tuck Everlasting"
+        character = "Jesse Tuck"
+        company = "Broadway Rose"
+        director = "Isaac Lamb"
+    [shows.curtains]
+        title = "Curtains"
+        character = "Bobby Pepper"
+        company = "NW Children's Theatre"
+        director = "Dustin Brown"
+    [shows.midsummer]
+        title = "A Midsummer Night's Dream"
+        character = "Oberon"
+        company = "NW Children's Theatre"
+        director = "Sarah Jane Hardy"
+    [shows.matilda]
+        title = "Matilda"
+        character = "Sergei/Ensemble"
+        company = "NW Children's Theatre"
+        director = "Sarah Jane Hardy"

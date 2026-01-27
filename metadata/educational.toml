@@ -1,31 +1,11 @@
 [shows]
-    [shows.show-6]
-        title = "Seussical"
-        character = "Cat in the Hat"
-        company = "CAP21 / Molloy Univ."
-        director = "Darren Lee"
-    [shows.show-4]
-        title = "Pirates of Penzance"
-        character = "Pirate"
-        company = "CAP21 / Molloy Univ."
-        director = "Melissa Firlit"
     [shows.show-5]
-        title = "Composer Project Revue"
+        title = "Composer Project Ahrens & Flaherty"
         character = "Self"
         company = "CAP21 / Molloy Univ."
         director = "Aimée Francis"
-    [shows.show-1]
-        title = "Spamalot"
-        character = "Patsy"
-        company = "Southridge High School"
-        director = "James Fewer"
-    [shows.show-2]
-        title = "Tuck Everlasting"
-        character = "Jesse Tuck"
-        company = "Broadway Rose"
-        director = "Isaac Lamb"
-    [shows.show-3]
-        title = "Curtains"
-        character = "Bobby Pepper"
-        company = "NW Children's Theatre"
-        director = "Dustin Brown"
+    [shows.show-4]
+        title = "Bridgetown Cabaret 2020"
+        character = "Self"
+        company = "Bridgetown Conservatory"
+        director = "Rick Lewis"
