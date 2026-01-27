@@ -25,7 +25,7 @@
 
 #cvSkill(
   type: [Acting],
-  info: [Andy Schneeflock, Helen Farmer, Aimée Francis, Melissa Firlit, Del Lewis, Sarah Jane Hardy],
+  info: [Andy Schneeflock, Melissa Firlit, Helen Farmer, Aimée Francis, Michelle Beck, Peter Marciano, Del Lewis, Sarah Jane Hardy],
 )
 
 #cvSkill(
