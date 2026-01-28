@@ -51,11 +51,18 @@ language = "en"
             time = "1:15"
             bars = "32"
     [songs.sondheim]
-        [songs.sondheim.magicfoot]
-            title = "Magic Foot"
-            source = "25th Annual"
-            composer = "William Finn"
+        [songs.sondheim.calm]
+            title = "I'm Calm"
+            source = "Funny Thing"
+            composer = ""
             type = "Uptempo"
+            time = "1:15"
+            bars = "32"
+        [songs.sondheim.loveihear]
+            title = "Love, I Hear"
+            source = "Funny Thing"
+            composer = ""
+            type = "Ballad"
             time = "1:15"
             bars = "32"
     [songs.speciality]
