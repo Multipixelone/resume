@@ -35,6 +35,13 @@ language = "en"
             type = "Uptempo"
             time = "1:15"
             bars = "32"
+        [songs.contemporary.tryme]
+            title = "Try Me"
+            source = "She Loves Me"
+            composer = "Bock & Harnick"
+            type = "Uptempo"
+            time = "1:15"
+            bars = "32"
     [songs.poprock]
         [songs.poprock.sunday]
             title = "Sunday Morning"
