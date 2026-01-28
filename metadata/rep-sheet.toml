@@ -35,7 +35,30 @@ language = "en"
             type = "Uptempo"
             time = "1:15"
             bars = "32"
+    [songs.poprock]
+        [songs.poprock.sunday]
+            title = "Sunday Morning"
+            source = "Maroon 5"
+            composer = "Adam Levine & Jesse Carmichael"
+            type = "Uptempo"
+            time = "1:15"
+            bars = "32"
+    [songs.sondheim]
+        [songs.sondheim.magicfoot]
+            title = "Magic Foot"
+            source = "25th Annual"
+            composer = "William Finn"
+            type = "Uptempo"
+            time = "1:15"
+            bars = "32"
     [songs.speciality]
+        [songs.speciality.brightside]
+            title = "Bright Side of Life"
+            source = "Life of Brian"
+            composer = "Eric Idle"
+            type = "Uptempo"
+            time = "1:15"
+            bars = "32"
         [songs.speciality.brightside]
             title = "Bright Side of Life"
             source = "Life of Brian"

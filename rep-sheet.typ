@@ -51,8 +51,10 @@
 #repTable(metadata.songs.contemporary)
 
 #cvSection("Pop / Rock")
+#repTable(metadata.songs.poprock)
 
 #cvSection("Sondheim")
+#repTable(metadata.songs.sondheim)
 
 #cvSection("Specialty")
 #repTable(metadata.songs.speciality)
