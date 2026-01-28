@@ -2,6 +2,7 @@
 #let metadata = toml("./metadata/rep-sheet.toml")
 #let cvSection = cvSection.with(metadata: metadata)
 
+
 #show: cv.with(
   metadata,
   // profilePhoto: image("./metadata/qr-code.png")
@@ -11,27 +12,39 @@
   size: 10pt
 )
 
-#let rep-table(..songs) = table(
-  // columns: (auto, auto, auto, auto, auto, auto, auto, auto),
-  columns: (25%, 20%, 22%, 15%, 10%, 8%),
-  stroke: none,
-  inset: 3.5pt,
-  column-gutter: 0pt,
-  align: left,
-  ..songs
-)
+#let repTable(metadata) = {
+  let songStyle(str) = {
+    align(left, text(size: 10pt, str))
+  }
+  let songs = metadata
+
+  table(
+    columns: (25%, 20%, 22%, 15%, 10%, 8%),
+    inset: 3.5pt,
+    column-gutter: 0pt,
+    stroke: none,
+    table.header(
+      [*Song*], [*Source*], [*Composer*], [*Type*], [*Time*], [*Bars*],
+    ),
+    ..for (c) in songs {
+      let song = c.at(1).title
+      let source = c.at(1).source
+      let composer = c.at(1).composer
+      let type = c.at(1).type
+      let time = c.at(1).time
+      let bars = c.at(1).bars
+      (songStyle(song), songStyle(source), songStyle(composer), songStyle(type), songStyle(time), songStyle(bars))
+    }
+  )
+}
 
 #cvSection("Golden Age")
 
-#rep-table(
-  table.header(
-    [*Song*], [*Source*], [*Composer*], [*Type*], [*Time*], [*Bars*],
-  ),
-  [All The Things You Are], [Very Warm for May], [Hammerstein & Kern], [Ballad], [1:15], [32-Bar],
-  [I Love to Sing-a], [The Singing Kid], [Arlen & Yip], [Uptempo], [1:15], [32, 16]
-)
+#repTable(metadata.songs.goldenage)
 
 #cvSection("Contemporary")
+
+#repTable(metadata.songs.contemporary)
 
 #cvSection("Pop / Rock")
 
