@@ -55,3 +55,4 @@
 #cvSection("Sondheim")
 
 #cvSection("Specialty")
+#repTable(metadata.songs.speciality)
