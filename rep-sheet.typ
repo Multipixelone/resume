@@ -13,7 +13,7 @@
 
 #let rep-table(..songs) = table(
   // columns: (auto, auto, auto, auto, auto, auto, auto, auto),
-  columns: (22%, 20%, 18%, 8%, 8%, 6%, 8%, 5%),
+  columns: (25%, 20%, 22%, 15%, 10%, 8%),
   stroke: none,
   inset: 3.5pt,
   column-gutter: 0pt,
@@ -25,10 +25,10 @@
 
 #rep-table(
   table.header(
-    [*Song*], [*Source*], [*Composer*], [*Type*], [*Range*], [*Time*], [*Bars*], [*Notes*]
+    [*Song*], [*Source*], [*Composer*], [*Type*], [*Time*], [*Bars*],
   ),
-  [All The Things You Are], [Very Warm for May], [Hammerstein & Kern], [Ballad], [C4-D4], [1:15], [32-Bar], [],
-  [I Love to Sing-a], [The Singing Kid], [Arlen & Yip], [Uptempo], [C4-D4], [1:15], [32, 16]
+  [All The Things You Are], [Very Warm for May], [Hammerstein & Kern], [Ballad], [1:15], [32-Bar],
+  [I Love to Sing-a], [The Singing Kid], [Arlen & Yip], [Uptempo], [1:15], [32, 16]
 )
 
 #cvSection("Contemporary")
