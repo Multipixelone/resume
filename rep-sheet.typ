@@ -23,9 +23,6 @@
     inset: 3.5pt,
     column-gutter: 0pt,
     stroke: none,
-    table.header(
-      [*Song*], [*Source*], [*Composer*], [*Type*], [*Time*], [*Bars*],
-    ),
     ..for (c) in songs {
       let song = c.at(1).title
       let source = c.at(1).source
@@ -39,11 +36,18 @@
 }
 
 #cvSection("Golden Age")
-
+#table(
+    columns: (25%, 20%, 22%, 15%, 10%, 8%),
+    inset: 3.5pt,
+    column-gutter: 0pt,
+    stroke: none,
+    table.header(
+      [*Song*], [*Source*], [*Composer*], [*Type*], [*Time*], [*Bars*],
+    )
+)
 #repTable(metadata.songs.goldenage)
 
 #cvSection("Contemporary")
-
 #repTable(metadata.songs.contemporary)
 
 #cvSection("Pop / Rock")
