@@ -64,7 +64,7 @@ jobs:
             exit 1
           fi
           mkdir -p ./resume
-          cp "${pdf_files[0]}" ./resume/
+          cp "${pdf_files[0]}" ./pages/resume.pdf
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
