@@ -75,6 +75,7 @@
       eyes: fa-eye(),
       hair: fa-location-dot(),
       vocal-part: fa-microphone(),
+      union: fa-landmark(),
       extraInfo: "",
     )
     let n = 1
