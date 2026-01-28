@@ -4,7 +4,7 @@
 
 #show: cv.with(
   metadata,
-  profilePhoto: image("./metadata/qr-code.png")
+  // profilePhoto: image("./metadata/qr-code.png")
 )
 
 #cvSection("Golden Age")

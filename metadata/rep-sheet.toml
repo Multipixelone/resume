@@ -23,7 +23,7 @@ language = "en"
         header_align = "left"
 
         # Decide if you want to display profile photo or not
-        display_profile_photo = true
+        display_profile_photo = false
 
     [layout.entry]
         # Decide if you want to put your company in bold or your position in bold
