@@ -66,11 +66,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./pages
-      - name: Upload resume PDF artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: resume-pdf
-          path: ./resume
 
   deploy:
     environment:
