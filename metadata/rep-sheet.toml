@@ -40,6 +40,7 @@ language = "en"
     inject_keywords = true
     injected_keywords_list = ["Data Analyst", "GCP", "Python", "SQL", "Tableau"]
 
+# TODO: pull this information from normal metadata.toml so it'd not repeated
 [personal]
     first_name = "Finn"
     last_name = "Rutis"
@@ -53,7 +54,7 @@ language = "en"
         email = "me@finnrut.is"
         # linkedin = "johndoe"
         # gitlab = "mintyfrankie"
-        homepage = "https://finnrut.is"
+        homepage = "www.finnrut.is"
         vocal-part = "Tenor"
         # extraInfo = "I am a cool kid"
         # height = "6'"
