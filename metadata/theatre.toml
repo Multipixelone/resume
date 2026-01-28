@@ -1,4 +1,9 @@
 [shows]
+    [shows.wedding]
+        title = "Wedding Singer"
+        character = "Ensemble"
+        company = "CAP21 / Molloy Univ."
+        director = "Melissa Firlit"
     [shows.seussical]
         title = "Seussical"
         character = "Cat in the Hat"
