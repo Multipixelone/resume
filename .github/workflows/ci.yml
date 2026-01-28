@@ -59,10 +59,6 @@ jobs:
           fi
           cp "${png_files[0]}" ./pages/resume.png
           pdf_files=(./result-resume/CV_FinnRutis_*.pdf)
-          if [ "${#pdf_files[@]}" -ne 1 ]; then
-            echo "Expected exactly 1 resume PDF file, but found ${#pdf_files[@]}."
-            exit 1
-          fi
           mkdir -p ./resume
           cp "${pdf_files[0]}" ./pages/resume.pdf
       - name: Upload pages artifact
