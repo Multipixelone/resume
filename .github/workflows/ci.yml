@@ -49,7 +49,7 @@ jobs:
       - name: Build resume
         run: |
           nix build .#packages.x86_64-linux.resume -o ./result-resume
-      - name: Add resume PNG to pages artifact
+      - name: Add built files to pages artifact
         run: |
           shopt -s nullglob
           png_files=(./result-resume/CV_FinnRutis_*.png)
