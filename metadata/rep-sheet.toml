@@ -20,6 +20,13 @@ language = "en"
             type = "Uptempo"
             time = "1:15"
             bars = "32, 16"
+        [songs.goldenage.kick]
+            title = "Ain't That a Kick in the Head"
+            source = "Dean Martin"
+            composer = "Van Heusen & Cahn"
+            type = "Uptempo"
+            time = "1:15"
+            bars = "32"
     [songs.contemporary]
         [songs.contemporary.allthethings]
             title = "All The Things You Are"
