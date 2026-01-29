@@ -2,6 +2,7 @@
   lib,
   stdenv,
   typst,
+  typstPackages,
   font-awesome,
   roboto,
   source-sans-pro,
@@ -10,10 +11,14 @@
   version ? "",
   src ? null,
 }:
+let
+  # Create typst with the fontawesome package pre-installed
+  typstWithPackages = typst.withPackages (ps: [ typstPackages.fontawesome ]);
+in
 stdenv.mkDerivation {
   pname = "finn_cv";
   inherit src version;
-  nativeBuildInputs = [ typst ];
+  nativeBuildInputs = [ typstWithPackages ];
 
   postConfigure = ''
     mkdir src/fonts
