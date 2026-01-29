@@ -49,6 +49,13 @@ language = "en"
             type = "Uptempo"
             time = "1:15"
             bars = "32"
+        [songs.contemporary.pinkfish]
+            title = "Pink Fish"
+            source = ""
+            composer = "Alan Menkin"
+            type = "Uptempo"
+            time = "1:15"
+            bars = "32"
     [songs.poprock]
         [songs.poprock.sunday]
             title = "Sunday Morning"
