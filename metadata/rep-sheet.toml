@@ -28,6 +28,13 @@ language = "en"
             time = "1:15"
             bars = "32"
     [songs.contemporary]
+        [songs.contemporary.noone]
+            title = "No One Has to Know"
+            source = "Mrs. Maisel"
+            composer = "Mizer & Moore"
+            type = "Ballad"
+            time = "1:15"
+            bars = "32"
         [songs.contemporary.magicfoot]
             title = "Magic Foot"
             source = "25th Annual"
