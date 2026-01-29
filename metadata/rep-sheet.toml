@@ -80,6 +80,13 @@
             type = "Uptempo"
             time = "1:15"
             bars = "32"
+        [songs.sondheim.iremember]
+            title = "I Remember"
+            source = "Evening Primrose"
+            composer = ""
+            type = "Ballad"
+            time = "1:15"
+            bars = "32"
     [songs.speciality]
         [songs.speciality.brightside]
             title = "Bright Side of Life"
