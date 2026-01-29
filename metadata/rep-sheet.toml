@@ -103,5 +103,9 @@
             time = "1:15"
             bars = "32"
 
+# overrides from the resume
+[layout]
+    [layout.header]
+        display_profile_photo = false
 [lang.en]
     cv_footer = "Rep Sheet"
