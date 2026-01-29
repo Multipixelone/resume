@@ -42,6 +42,13 @@ language = "en"
             type = "Uptempo"
             time = "1:15"
             bars = "32"
+        [songs.contemporary.stumble]
+            title = "As We Stumble Along"
+            source = "Drowsy Chaperone"
+            composer = "Lambert & Morrison"
+            type = "Uptempo"
+            time = "1:15"
+            bars = "32"
     [songs.poprock]
         [songs.poprock.sunday]
             title = "Sunday Morning"
