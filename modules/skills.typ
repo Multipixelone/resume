@@ -21,6 +21,6 @@
 
 #cvSkill(
   type: [Languages],
-  info: [English, ASL],
+  info: [English, Intermediate ASL],
 )
 
