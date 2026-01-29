@@ -101,6 +101,13 @@ language = "en"
             type = "Uptempo"
             time = "1:15"
             bars = "32"
+        [songs.speciality.film]
+            title = "I Love a Film Cliche"
+            source = "Hollywood / Ukraine"
+            composer = "Trevor Lyttleton"
+            type = "Uptempo"
+            time = "1:15"
+            bars = "32"
 
 [layout]
     # Optional values: skyblue, red, nephritis, concrete, darknight
