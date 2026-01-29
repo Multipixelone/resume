@@ -22,7 +22,7 @@
   let songs = metadata
 
   table(
-    columns: (25%, 20%, 22%, 15%, 10%, 8%),
+    columns: (28%, 20%, 29%, 15%, 8%),
     inset: 3.5pt,
     column-gutter: 0pt,
     stroke: none,
@@ -31,21 +31,21 @@
       let source = c.at(1).source
       let composer = c.at(1).composer
       let type = c.at(1).type
-      let time = c.at(1).time
+      // let time = c.at(1).time
       let bars = c.at(1).bars
-      (songStyle(song), songStyle(source), songStyle(composer), songStyle(type), songStyle(time), songStyle(bars))
+      (songStyle(song), songStyle(source), songStyle(composer), songStyle(type), songStyle(bars))
     }
   )
 }
 
 #cvSection("Golden Age")
 #table(
-    columns: (25%, 20%, 22%, 15%, 10%, 8%),
+    columns: (28%, 20%, 29%, 15%, 8%),
     inset: 3.5pt,
     column-gutter: 0pt,
     stroke: none,
     table.header(
-      [*Song*], [*Source*], [*Composer*], [*Type*], [*Time*], [*Bars*],
+      [*Song*], [*Source*], [*Composer*], [*Type*], [*Bars*],
     )
 )
 #repTable(metadata.songs.goldenage)
