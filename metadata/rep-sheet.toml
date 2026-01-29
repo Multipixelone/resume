@@ -58,6 +58,13 @@
             time = "1:15"
             bars = "32"
     [songs.poprock]
+        [songs.poprock.mountains]
+            title = "Blue Ridge Mountains"
+            source = "Fleet Foxes"
+            composer = "Robin Pecknold"
+            type = "Folk"
+            time = "1:15"
+            bars = "32"
         [songs.poprock.sunday]
             title = "Sunday Morning"
             source = "Maroon 5"
