@@ -1,5 +1,8 @@
 #import "./src/lib.typ": cv, cvSection
-#let metadata = toml("./metadata/rep-sheet.toml")
+#import "./src/utils/merge.typ": mergeDicts
+#let baseMetadata = toml("./metadata/metadata.toml")
+#let repSheetMetadata = toml("./metadata/rep-sheet.toml")
+#let metadata = mergeDicts(baseMetadata, repSheetMetadata)
 #let cvSection = cvSection.with(metadata: metadata)
 
 
