@@ -1,4 +1,5 @@
 #import "../src/lib.typ": cvSection, cvPerformance, cvSkill, hBar, cvEntry
+#import "../src/utils/styles.typ": latinFontList, latinHeaderFont, awesomeColors, regularColors, setAccentColor, hBar
 #let metadata = toml("../metadata/metadata.toml")
 #let training = toml("../metadata/training.toml")
 #let cvSection = cvSection.with(metadata: metadata)
@@ -30,7 +31,12 @@
 
 #cvSkill(
   type: [Dance],
-  info: [Kristyn Pope, Lori Leshner, John Scacchetti, Euraka Nakano, Marilyn D'Honau, Bethany Moore, James Bulleri, Laura Hizcynskyj],
+  info: [
+    Jazz (Int.), Ballet (Int.), Tap (Beginner) 
+    #text(style: "italic", fill: regularColors.darkgray)[
+      Instructors: Kristyn Pope, Lori Leshner, John Scacchetti, Euraka Nakano, Marilyn D'Honau, Bethany Moore, James Bulleri, Laura Hizcynskyj
+    ]
+  ]
 )
 
 // #cvPerformance(training)
