@@ -10,9 +10,14 @@
 /// - override: The dictionary containing override values
 /// - returns: A new dictionary with merged values
 #let mergeDicts(base, override) = {
-  let result = base
+  // Create a mutable copy to avoid mutating the input
+  let result = (:)
+  for (key, value) in base {
+    result.insert(key, value)
+  }
+  
   for (key, value) in override {
-    if key in result and type(result.at(key)) == "dictionary" and type(value) == "dictionary" {
+    if key in result and type(result.at(key)) == dictionary and type(value) == dictionary {
       // Recursively merge nested dictionaries
       result.insert(key, mergeDicts(result.at(key), value))
     } else {
