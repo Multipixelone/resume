@@ -34,3 +34,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# typst test files and outputs
+test-*.typ
+test-*.pdf
+*.pdf
