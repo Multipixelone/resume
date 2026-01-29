@@ -43,6 +43,13 @@
             type = "Uptempo"
             time = "1:15"
             bars = "32"
+        [songs.contemporary.saralee]
+            title = "Sara Lee"
+            source = "As the World goes Round"
+            composer = "Kander & Ebb"
+            type = "Uptempo"
+            time = "1:15"
+            bars = "32"
         [songs.contemporary.pinkfish]
             title = "Pink Fish"
             source = ""
