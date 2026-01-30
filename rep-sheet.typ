@@ -32,15 +32,15 @@
   )
 }
 #cvSection("Golden Age")
-#table(
-    columns: (28%, 25%, 29%, 12%, 8%),
-    inset: 3.5pt,
-    column-gutter: 0pt,
-    stroke: none,
-    table.header(
-      [*Song*], [*Source*], [*Composer*], [*Type*], [*Bars*],
-    )
-)
+// #table(
+//     columns: (28%, 25%, 29%, 12%, 8%),
+//     inset: 3.5pt,
+//     column-gutter: 0pt,
+//     stroke: none,
+//     table.header(
+//       [*Song*], [*Source*], [*Composer*], [*Type*], [*Bars*],
+//     )
+// )
 #repTable(metadata.songs.goldenage)
 
 #cvSection("Contemporary")
