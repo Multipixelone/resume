@@ -5,21 +5,18 @@
             source = "Very Warm for May"
             composer = "Hammerstein & Kern"
             type = "Ballad"
-            time = "1:15"
             bars = "32"
         [songs.goldenage.singa]
             title = "I Love to Sing-a"
             source = "The Singing Kid"
             composer = "Arlen & Yip"
             type = "Uptempo"
-            time = "1:15"
             bars = "32, 16"
         [songs.goldenage.kick]
             title = "Ain't That a Kick in the Head"
             source = "Dean Martin"
             composer = "Van Heusen & Cahn"
             type = "Uptempo"
-            time = "1:15"
             bars = "32"
     [songs.contemporary]
         [songs.contemporary.noone]
@@ -27,42 +24,36 @@
             source = "Mrs. Maisel"
             composer = "Mizer & Moore"
             type = "Ballad"
-            time = "1:15"
             bars = "32"
         [songs.contemporary.magicfoot]
             title = "Magic Foot"
             source = "25th Annual"
             composer = "William Finn"
             type = "Uptempo"
-            time = "1:15"
             bars = "32"
         [songs.contemporary.stumble]
             title = "As We Stumble Along"
             source = "Drowsy Chaperone"
             composer = "Lambert & Morrison"
             type = "Uptempo"
-            time = "1:15"
             bars = "32"
         [songs.contemporary.saralee]
             title = "Sara Lee"
             source = "As the World goes Round"
             composer = "Kander & Ebb"
             type = "Uptempo"
-            time = "1:15"
             bars = "32"
         [songs.contemporary.cats]
             title = "I'm Allergic to Cats"
             source = "Theory of Relativity"
             composer = "Neil Bartram"
             type = "Uptempo"
-            time = "1:15"
             bars = "32"
         [songs.contemporary.pinkfish]
             title = "Pink Fish"
             source = ""
             composer = "Alan Menkin"
             type = "Uptempo"
-            time = "1:15"
             bars = "32"
     [songs.poprock]
         [songs.poprock.mountains]
@@ -70,14 +61,12 @@
             source = "Fleet Foxes"
             composer = "Robin Pecknold"
             type = "Folk"
-            time = "1:15"
             bars = "32"
         [songs.poprock.sunday]
             title = "Sunday Morning"
             source = "Maroon 5"
             composer = "Adam Levine & Jesse Carmichael"
             type = "Uptempo"
-            time = "1:15"
             bars = "32"
     [songs.sondheim]
         [songs.sondheim.calm]
@@ -85,14 +74,12 @@
             source = "Funny Thing"
             composer = ""
             type = "Uptempo"
-            time = "1:15"
             bars = "32"
         [songs.sondheim.iremember]
             title = "I Remember"
             source = "Evening Primrose"
             composer = ""
             type = "Ballad"
-            time = "1:15"
             bars = "32"
     [songs.speciality]
         [songs.speciality.brightside]
@@ -100,21 +87,18 @@
             source = "Life of Brian"
             composer = "Eric Idle"
             type = "Uptempo"
-            time = "1:15"
             bars = "32"
         [songs.speciality.doris]
             title = "Doris was Nice"
             source = ""
             composer = "Murray Grand"
             type = "Uptempo"
-            time = "1:15"
             bars = "32"
         [songs.speciality.film]
             title = "I Love a Film Cliche"
             source = "Hollywood / Ukraine"
             composer = "Trevor Lyttleton"
             type = "Uptempo"
-            time = "1:15"
             bars = "32"
 
 # overrides from the resume
