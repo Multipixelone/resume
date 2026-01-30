@@ -151,7 +151,12 @@
     set image(height: 3.6cm)
     if displayProfilePhoto {
       // box(profilePhoto, radius: 50%, clip: true)
-      box(profilePhoto)
+      figure(
+        profilePhoto,
+        caption: [_Artistic Website_],
+        gap: 0em,
+        supplement: none,
+      )
     } else {
       v(3.6cm)
     }
