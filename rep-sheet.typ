@@ -22,7 +22,7 @@
   let songs = metadata
 
   table(
-    columns: (28%, 20%, 29%, 15%, 8%),
+    columns: (28%, 25%, 29%, 12%, 8%),
     inset: 3.5pt,
     column-gutter: 0pt,
     stroke: none,
@@ -40,7 +40,7 @@
 
 #cvSection("Golden Age")
 #table(
-    columns: (28%, 20%, 29%, 15%, 8%),
+    columns: (28%, 25%, 29%, 12%, 8%),
     inset: 3.5pt,
     column-gutter: 0pt,
     stroke: none,
