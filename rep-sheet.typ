@@ -5,16 +5,10 @@
 #let metadata = mergeDicts(baseMetadata, repSheetMetadata)
 #let cvSection = cvSection.with(metadata: metadata)
 
-
 #show: cv.with(
   metadata,
   // profilePhoto: image("./metadata/qr-code.png")
 )
-
-#set text(
-  size: 10pt
-)
-
 #let repTable(metadata) = {
   let songStyle(str) = {
     align(left, text(size: 10pt, str))
@@ -37,7 +31,6 @@
     }
   )
 }
-
 #cvSection("Golden Age")
 #table(
     columns: (28%, 25%, 29%, 12%, 8%),
