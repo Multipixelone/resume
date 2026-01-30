@@ -50,6 +50,13 @@
             type = "Uptempo"
             time = "1:15"
             bars = "32"
+        [songs.contemporary.cats]
+            title = "I'm Allergic to Cats"
+            source = "Theory of Relativity"
+            composer = "Neil Bartram"
+            type = "Uptempo"
+            time = "1:15"
+            bars = "32"
         [songs.contemporary.pinkfish]
             title = "Pink Fish"
             source = ""
