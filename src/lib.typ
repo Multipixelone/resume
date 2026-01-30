@@ -27,7 +27,7 @@
   }
 
   // Page layout
-  set text(font: fontList, weight: "regular", size: 9pt)
+  set text(font: fontList, weight: "regular", size: 10pt)
   set align(left)
   set page(
     paper: "us-letter",
