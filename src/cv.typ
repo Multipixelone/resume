@@ -62,20 +62,20 @@
   // Components
   let makeHeaderInfo() = {
     let personalInfoIcons = (
-      phone: fa-phone(),
-      email: fa-envelope(),
-      linkedin: fa-linkedin(),
-      homepage: fa-house-laptop(),
-      github: fa-square-github(),
-      gitlab: fa-gitlab(),
-      orcid: fa-orcid(),
-      researchgate: fa-researchgate(),
-      location: fa-location-dot(),
-      height: fa-ruler(),
-      eyes: fa-eye(),
-      hair: fa-location-dot(),
-      vocal-part: fa-microphone(),
-      union: fa-landmark(),
+      phone: fa-phone(style: "solid"),
+      email: fa-envelope(style: "solid"),
+      linkedin: fa-linkedin(style: "solid"),
+      homepage: fa-house-laptop(style: "solid"),
+      github: fa-square-github(style: "solid"),
+      gitlab: fa-gitlab(style: "solid"),
+      orcid: fa-orcid(style: "solid"),
+      researchgate: fa-researchgate(style: "solid"),
+      location: fa-location-dot(style: "solid"),
+      height: fa-ruler(style: "solid"),
+      eyes: fa-eye(style: "solid"),
+      hair: fa-location-dot(style: "solid"),
+      vocal-part: fa-microphone(style: "solid"),
+      union: fa-landmark(style: "solid"),
       extraInfo: "",
     )
     let n = 1
@@ -95,7 +95,7 @@
         if img != "" {
           icon = img.with(width: 10pt)
         } else {
-          icon = fa-icon(awesomeIcon)
+          icon = fa-icon(awesomeIcon, style: "solid")
         }
         box({
           icon
