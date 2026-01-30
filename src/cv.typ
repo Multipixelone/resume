@@ -91,11 +91,12 @@
         let awesomeIcon = v.at("awesomeIcon", default: "")
         let text = v.at("text", default: "")
         let link_value = v.at("link", default: "")
+        let iconStyle = v.at("style", default: "solid")
         let icon = ""
         if img != "" {
           icon = img.with(width: 10pt)
         } else {
-          icon = fa-icon(awesomeIcon, style: "solid")
+          icon = fa-icon(awesomeIcon, style: iconStyle)
         }
         box({
           icon
