@@ -374,7 +374,7 @@
     inset: 0pt,
     stroke: none,
     align: horizon,
-    column-gutter: ifLogo(logo, 4pt, 0pt),
+    column-gutter: ifLogo(logo, 6pt, 0pt),
     setLogoContent(logo),
     table(
       columns: (1fr, auto),
