@@ -6,7 +6,7 @@
 
 #cvSkill(
   type: [Special Skills],
-  info: [Ukulele, Fantastic Whistler, Improvisation, Voiceover Artist, Drivers License & Passport, Manual Transmission Driving, Home Studio (Scarlett 8i6, Blue Bluebird, Audition)],
+  info: [Ukulele, Fantastic Whistler, Drivers License & Passport, Manual Transmission Driving, Home Studio (Scarlett 8i6, Blue Bluebird, Audition)],
 )
 
 #cvSkill(
