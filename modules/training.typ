@@ -1,4 +1,4 @@
-#import "../src/lib.typ": cvSection, cvPerformance, cvSkill, hBar, cvEntry
+#import "../src/lib.typ": cvSection, cvPerformance, cvTraining, hBar, cvEntry
 #import "../src/utils/styles.typ": latinFontList, latinHeaderFont, awesomeColors, regularColors, setAccentColor, hBar
 #let metadata = toml("../metadata/metadata.toml")
 #let training = toml("../metadata/training.toml")
@@ -19,24 +19,22 @@
   // ),
 )
 
-#cvSkill(
+#cvTraining(
   type: [Voice],
-  info: [Julia Kershetsky, Chris Citera, Farah Alvin, Rick Lewis],
+  info: [Linklater, Voiceover Artist, 10 Years Private Voice Lessons],
+  instructors: [Julia Kershetsky, Chris Citera, Farah Alvin, Rick Lewis],
 )
 
-#cvSkill(
+#cvTraining(
   type: [Acting],
-  info: [Andy Schneeflock, Melissa Firlit, Helen Farmer, Aimée Francis, Michelle Beck, Peter Marciano, Del Lewis, Sarah Jane Hardy],
+  info: [Meisner, Improvisation],
+  instructors: [Andy Schneeflock, Melissa Firlit, Helen Farmer, Aimée Francis, Michelle Beck, Peter Marciano, Del Lewis, Sarah Jane Hardy],
 )
 
-#cvSkill(
+#cvTraining(
   type: [Dance],
-  info: [
-    Jazz (Int.), Ballet (Int.), Tap (Beginner) 
-    #text(style: "italic", fill: regularColors.darkgray)[
-      Instructors: Kristyn Pope, Lori Leshner, John Scacchetti, Euraka Nakano, Marilyn D'Honau, Bethany Moore, James Bulleri, Laura Hizcynskyj
-    ]
-  ]
+  info: [Jazz (Int.), Ballet (Int.), Tap (Beginner)],
+  instructors: [Kristyn Pope, Lori Leshner, John Scacchetti, Eureka Nakano, Marilyn D'Honau, Bethany Moore, James Bulleri, Laura Hizcynskyj]
 )
 
 // #cvPerformance(training)
