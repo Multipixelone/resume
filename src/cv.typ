@@ -448,6 +448,27 @@
   v(-6pt)
 }
 
+#let cvTraining(type: "Type", info: "Info", instructors: "Instructors") = {
+  let skillTypeStyle(str) = {
+    align(right, text(size: 10pt, weight: "bold", str))
+  }
+  let skillInfoStyle(str) = {
+    text(str)
+  }
+  let skillInstructorStyle(str) = {
+    text(style: "italic", fill: regularColors.darkgray, str)
+  }
+
+  table(
+    columns: (12%, 30%, 1fr),
+    inset: 0pt,
+    column-gutter: 12pt,
+    stroke: none,
+    skillTypeStyle(type), skillInfoStyle(info), skillInstructorStyle(instructors)
+  )
+  v(-6pt)
+}
+
 #let cvPerformanceOld(title: "Title", character: "Character", company: "Company", director: "Director") = {
   let skillTypeStyle(str) = {
     align(left, text(size: 10pt, str))
