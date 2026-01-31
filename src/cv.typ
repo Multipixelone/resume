@@ -370,7 +370,7 @@
 
   v(beforeEntrySkip)
   table(
-    columns: (ifLogo(logo, 4%, 0%), 1fr),
+    columns: (ifLogo(logo, 3.5%, 0%), 1fr),
     inset: 0pt,
     stroke: none,
     align: horizon,
