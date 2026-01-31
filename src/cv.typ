@@ -181,7 +181,7 @@
     makeHeader(
       makeHeaderNameSection(),
       makeHeaderPhotoSection(),
-      (auto, 20%),
+      (auto, 12%),
       align,
     )
   } else {
