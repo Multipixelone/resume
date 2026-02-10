@@ -222,8 +222,8 @@
     columns: (1fr, auto),
     inset: -5pt,
     stroke: none,
-    footerStyle([#firstName #lastName]),
-    footerStyle([#footerText | Last Updated #buildDate · #commit]),
+    footerStyle([#firstName #lastName #footerText]),
+    footerStyle([Last Updated #buildDate · #commit]),
   )
 
 }
