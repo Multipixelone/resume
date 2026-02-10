@@ -9,6 +9,7 @@
   eb-garamond,
   inputs,
   version ? "",
+  commit ? "unknown",
   src ? null,
 }:
 let
@@ -39,9 +40,9 @@ stdenv.mkDerivation {
   buildPhase = ''
     runHook preBuild
 
-    typst compile cv.typ
-    typst compile --format png cv.typ
-    typst compile rep-sheet.typ
+    typst compile --input commit="${commit}" cv.typ
+    typst compile --input commit="${commit}" --format png cv.typ
+    typst compile --input commit="${commit}" rep-sheet.typ
 
     runHook postBuild
   '';
