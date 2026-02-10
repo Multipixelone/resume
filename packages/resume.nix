@@ -40,9 +40,9 @@ stdenv.mkDerivation {
   buildPhase = ''
     runHook preBuild
 
-    typst compile --input commit="${commit}" cv.typ
-    typst compile --input commit="${commit}" --format png cv.typ
-    typst compile --input commit="${commit}" rep-sheet.typ
+    typst compile --input commit="${commit}" --input version="${version}" cv.typ
+    typst compile --input commit="${commit}" --input version="${version}" --format png cv.typ
+    typst compile --input commit="${commit}" --input version="${version}" rep-sheet.typ
 
     runHook postBuild
   '';
