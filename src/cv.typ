@@ -226,7 +226,7 @@
     inset: -5pt,
     stroke: none,
     footerStyle([#firstName #lastName #footerText]),
-    [#footerStyle([Last Updated #buildDate ·]) #h(3pt) #commitStyle([#commit])],
+    [#commitStyle([#commit]) #footerStyle([Last Updated #buildDate])],
   )
 
 }
