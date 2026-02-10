@@ -31,11 +31,12 @@
               (substring 6 2 longDate)
             ]);
           version = mkDate (self.lastModifiedDate or "19700101");
+          commit = self.shortRev or "dirty";
           src = self;
           websiteRoot = ./website;
 
           resume = pkgs.callPackage ./packages/resume.nix {
-            inherit inputs version src;
+            inherit inputs version src commit;
           };
           website = pkgs.callPackage ./packages/website.nix {
             inherit inputs version websiteRoot;

@@ -203,6 +203,8 @@
   let firstName = metadata.personal.first_name
   let lastName = metadata.personal.last_name
   let footerText = metadata.lang.at(metadata.language).cv_footer
+  let commit = sys.inputs.at("commit", default: "unknown")
+  let buildDate = datetime.today().display("[month repr:short] [day], [year]")
 
   // Styles
   let footerStyle(str) = {
@@ -213,7 +215,8 @@
     columns: (1fr, auto),
     inset: -5pt,
     stroke: none,
-    footerStyle([#firstName #lastName]), footerStyle(footerText),
+    footerStyle([#firstName #lastName]),
+    footerStyle([#footerText | #commit · #buildDate]),
   )
 
 }
