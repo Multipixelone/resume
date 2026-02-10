@@ -211,7 +211,8 @@
   } else {
     datetime.today()
   }
-  let buildDate = date.display("[month repr:short] [day], [year]")
+  // let buildDate = date.display("[month repr:short] [day], [year]")
+  let buildDate = date.display("[month].[day].[year]")
 
   // Styles
   let footerStyle(str) = {
