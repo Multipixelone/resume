@@ -217,13 +217,16 @@
   let footerStyle(str) = {
     text(size: 8pt, fill: rgb("#999999"), smallcaps(str))
   }
+  let commitStyle(str) = {
+    text(size: 6pt, fill: rgb("#CCCCCC"), font: "monospace", str)
+  }
 
   return table(
     columns: (1fr, auto),
     inset: -5pt,
     stroke: none,
     footerStyle([#firstName #lastName #footerText]),
-    footerStyle([Last Updated #buildDate · #commit]),
+    [#footerStyle([Last Updated #buildDate]) #commitStyle([· #commit])],
   )
 
 }
