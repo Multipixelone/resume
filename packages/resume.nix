@@ -7,6 +7,7 @@
   roboto,
   source-sans-pro,
   eb-garamond,
+  ibm-plex,
   inputs,
   version ? "",
   commit ? "unknown",
@@ -27,6 +28,7 @@ stdenv.mkDerivation {
     ln -s ${eb-garamond}/share/fonts/opentype/* src/fonts/
     ln -s ${roboto}/share/fonts/truetype/* src/fonts/
     ln -s ${source-sans-pro}/share/fonts/truetype/* src/fonts/
+    ln -s ${ibm-plex}/share/fonts/opentype/* src/fonts/
   '';
   TYPST_FONT_PATHS = "src/fonts";
 
