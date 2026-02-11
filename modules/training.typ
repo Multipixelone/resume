@@ -33,8 +33,18 @@
 
 #cvTraining(
   type: [Dance],
-  info: [Jazz (Int.), Ballet (Int.), Tap (Beginner)],
-  instructors: [Kristyn Pope, Lori Leshner, John Scacchetti, Eureka Nakano, Marilyn D'Honau, Bethany Moore, James Bulleri, Laura Hizcynskyj]
+  info: [Jazz (Int.)],
+  instructors: [Kristyn Pope, Lori Leshner, Bethany Moore, Laura Hizcynskyj],
+)
+#cvTraining(
+  type: [],
+  info: [Ballet (Int.)],
+  instructors: [Eureka Nakano, Marilyn D'Honau, James Bulleri],
+)
+#cvTraining(
+  type: [],
+  info: [Tap (Beginner)],
+  instructors: [Kristyn Pope, John Scacchetti],
 )
 
 // #cvPerformance(training)
