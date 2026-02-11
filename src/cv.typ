@@ -475,7 +475,7 @@
   }
 
   table(
-    columns: (12%, 30%, 1fr),
+    columns: (12%, 20%, 1fr),
     inset: 0pt,
     column-gutter: 12pt,
     stroke: none,
