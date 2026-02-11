@@ -228,7 +228,7 @@
     stroke: none,
     // footerStyle([#firstName #lastName #footerText]),
     footerStyle([#footerText]),
-    [#commitStyle([#commit]) #footerStyle([Last Updated #buildDate])],
+    [#commitStyle([#commit]) #h(2pt) #footerStyle([Last Updated #buildDate])],
   )
 
 }
