@@ -39,13 +39,13 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
-      - name: Build site
-        run: |
-          nix build .#packages.x86_64-linux.website -o ./result-website
+      # - name: Build site
+      #   run: |
+      #     nix build .#packages.x86_64-linux.website -o ./result-website
       - name: Prepare pages artifact
         run: |
           mkdir -p ./pages
-          cp -R ./result-website/. ./pages/
+          # cp -R ./result-website/. ./pages/
       - name: Build resume
         run: |
           nix build .#packages.x86_64-linux.resume -o ./result-resume
