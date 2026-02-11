@@ -219,7 +219,7 @@
     text(size: 8pt, fill: rgb("#999999"), smallcaps(str))
   }
   let commitStyle(str) = {
-    text(size: 6pt, fill: rgb("#CCCCCC"), font: "IBM Plex Mono", str)
+    text(size: 6pt, fill: rgb("#CCCCCC"), font: "PragmataPro Mono Liga", str)
   }
 
   return table(
