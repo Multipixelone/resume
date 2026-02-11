@@ -21,7 +21,7 @@
 
 #cvTraining(
   type: [Voice],
-  info: [Linklater, Voiceover Artist],
+  info: [Linklater, VO Artist],
   instructors: [Julia Kershetsky, Chris Citera, Farah Alvin, Rick Lewis],
 )
 
