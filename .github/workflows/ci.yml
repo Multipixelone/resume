@@ -20,22 +20,10 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - run: |
-          sudo mkdir /nix
-      - run: |
-          sudo chown root:root /nix
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Install nix
-        uses: DeterminateSystems/nix-installer-action@v13
-        with:
-          extra-conf: |
-            fallback = true
-            http-connections = 128
-            max-substitution-jobs = 128
-            connect-timeout = 15
-            stalled-download-timeout = 15
-            download-attempts = 100
+        uses: nixbuild/nix-quick-install-action@v34
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
