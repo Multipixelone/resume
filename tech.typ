@@ -15,7 +15,8 @@
 )
 
 #importModules((
-  "tech-skills",
+  "work-experience",
   "tech-projects",
+  "tech-skills",
   "education",
 ))
