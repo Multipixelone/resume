@@ -294,7 +294,7 @@
   society: "Society",
   date: "Date",
   location: "Location",
-  description: "Description",
+  description: "",
   logo: "",
   tags: (),
   metadata: metadata,
@@ -436,8 +436,7 @@
       },
     ),
   )
-  // entryDescriptionStyle(description)
-  entryTagListStyle(tags)
+  if description != "" { entryDescriptionStyle(description) }
 }
 
 /// Add a skill to the CV.

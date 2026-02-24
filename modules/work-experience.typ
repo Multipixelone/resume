@@ -13,5 +13,6 @@
     society: job.company,
     date: job.date,
     location: job.location,
+    description: job.at("summary", default: ""),
   )
 }

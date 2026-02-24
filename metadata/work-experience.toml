@@ -1,5 +1,6 @@
 # Work experience entries
 # Each job entry requires: title, company, date, location
+# summary is optional -- add a brief blurb of what you did at each job.
 # Add, remove, or reorder entries to match your history.
 
 [jobs]
@@ -8,3 +9,4 @@
         company = "Company Name"
         date = "Start – End"
         location = "City, ST"
+        summary = "Brief description of responsibilities and accomplishments."
