@@ -4,9 +4,38 @@
 # Add, remove, or reorder entries to match your history.
 
 [jobs]
-    [jobs.job-1]
-        title = "Job Title"
-        company = "Company Name"
-        date = "Start – End"
-        location = "City, ST"
-        summary = "Brief description of responsibilities and accomplishments."
+[jobs.student-ambassador]
+title = "Student Ambassador"
+company = "Molloy University"
+date = "October 2022-May 2026"
+location = "Rockville Centre, NY"
+summary = "Lead prospective students and family members on campus tours. Answer questions about programs offered & campus life."
+
+[jobs.house-manager]
+title = "House Manager"
+company = "Bridgetown Convervatory of Musical Theatre"
+date = "October 2021-September 2022"
+location = "Portland, OR"
+summary = "Prepare for & manage events. Ensure all clients have everything they need in rented space"
+
+[jobs.facilities-manager]
+title = "Facilities Manager"
+company = "Bridgetown Convervatory of Musical Theatre"
+date = "October 2021-September 2022"
+location = "Portland, OR"
+summary = "General maintenance of theatre and related spaces. On-site experience working with building management & with potential students of the theatre."
+
+
+[jobs.virtual-choir]
+title = "Video Editor"
+company = "Bridgetown Convervatory of Musical Theatre"
+date = "April 2020"
+location = "Portland, OR"
+summary = "Compiled video and audio from 20 students to produce a virtual concert of a song during the COVID-19 pandemic. Managed and communicated with many performers as well as director to ensure smooth production of the piece"
+
+[jobs.video-editor]
+title = "Video Editor"
+company = "Oregon Children's Theatre"
+date = "May 2020 & July 2020"
+location = "Portland, OR"
+summary = "Onsite video recording manager. Video editor & sound engineer for two productions"
