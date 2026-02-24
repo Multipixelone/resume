@@ -62,8 +62,6 @@ jobs:
           cp "${work_png[0]}" ./pages/work-resume.png
           tech_resume=(./result-tech-resume/Tech_CV_FinnRutis_*.pdf)
           cp "${tech_resume[0]}" ./pages/tech-resume.pdf
-          tech_png=(./result-tech-resume/Tech_CV_FinnRutis_*.png)
-          cp "${tech_png[0]}" ./pages/tech-resume.png
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
