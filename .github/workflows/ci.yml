@@ -26,7 +26,7 @@ jobs:
       - name: Get package names
         id: get-package-names
         run: |
-          packages="$(nix eval --json .#packages.x86_64-linux --apply builtins.attrNames)"
+          packages="$(nix eval --json .#packages.x86_64-linux --apply builtins.attrNames | jq -c '[.[] | select(contains("container") | not)]')"
           echo "packages=$packages" >> $GITHUB_OUTPUT
 
   build-package:
