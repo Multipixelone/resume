@@ -3,19 +3,19 @@
 # Only add keys here that differ from the acting resume.
 
 [lang.en]
-    header_quote = "Technical theatre artist & audio/video producer."
-    cv_footer = "Work Resume"
+header_quote = "Technical theatre artist & audio/video producer."
+cv_footer = "Work Resume"
 
 [layout.header]
-    display_profile_photo = false
+display_profile_photo = false
 
 [layout.entry]
-    # Show job title first (bold), then company underneath
-    display_entry_society_first = false
-    display_logo = false
+# Show job title first (bold), then company underneath
+display_entry_society_first = false
+display_logo = false
 
 [personal.info]
-    phone = "503-267-5052"
-    email = "me@finnrut.is"
-    homepage = "www.finnrut.is"
-    # linkedin = ""
+phone = "503-267-5052"
+email = "work@finnrut.is"
+homepage = "www.finnrut.is"
+# linkedin = ""
