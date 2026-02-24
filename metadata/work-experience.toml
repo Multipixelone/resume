@@ -9,32 +9,25 @@ title = "Student Ambassador"
 company = "Molloy University"
 date = "October 2022 – May 2026"
 location = "Rockville Centre, NY"
-summary = "Lead prospective students and families on campus tours, clearly communicating program offerings and campus life. Serve as a key point of contact for undergraduate admissions outreach."
+summary = "Guide prospective students and their families around campus, sharing genuine insights into student life and academic programs. Support the admissions team with daily outreach and help run welcome events."
 
-[jobs.house-manager]
-title = "House Manager"
+[jobs.house-and-facilities-manager]
+title = "House & Facilities Manager"
 company = "Bridgetown Conservatory of Musical Theatre"
 date = "October 2021 – September 2022"
 location = "Portland, OR"
-summary = "Prepared and managed live events, ensuring clients had everything they needed in rented spaces. Coordinated front-of-house logistics and acted as the on-site liaison for patrons and renters."
-
-[jobs.facilities-manager]
-title = "Facilities Manager"
-company = "Bridgetown Conservatory of Musical Theatre"
-date = "October 2021 – September 2022"
-location = "Portland, OR"
-summary = "Maintained theatre and related spaces to a high standard. Coordinated with building management and served as an on-site representative for prospective students."
-
-[jobs.virtual-choir]
-title = "Video Editor – Virtual Choir"
-company = "Bridgetown Conservatory of Musical Theatre"
-date = "April 2020"
-location = "Portland, OR"
-summary = "Compiled and synchronized video and audio from 20 performers to produce a virtual concert during the COVID-19 pandemic. Coordinated with performers and the director to ensure on-time, polished delivery."
+summary = "Ran front-of-house logistics for live shows and managed daily facility operations. Handled everything from keeping the theatre and rehearsal spaces in top shape to acting as the main point of contact for patrons, renters, and building management."
 
 [jobs.video-editor]
 title = "Video Editor & Sound Engineer"
 company = "Oregon Children's Theatre"
 date = "May 2020 – July 2020"
 location = "Portland, OR"
-summary = "Served as on-site video recording manager, video editor, and sound engineer for two professional productions."
+summary = "Ran on-site video and audio recording for two professional theatre productions. Managed the technical setup on recording days and edited the final footage for the theatre's digital distribution."
+
+[jobs.virtual-choir]
+title = "Video Editor – Virtual Choir"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "April 2020"
+location = "Portland, OR"
+summary = "Edited and synced remote audio and video from 20 isolated performers to build a full virtual concert during the pandemic lockdowns. Worked directly with the cast and director to troubleshoot tech issues and deliver a polished video on a tight deadline."
