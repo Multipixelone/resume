@@ -1,4 +1,4 @@
-#import "../src/lib.typ": cvSection, cvEntry
+#import "../src/lib.typ": cvEntry, cvSection
 #import "../src/work-meta.typ": work-metadata
 
 #let jobs = toml("../metadata/work-experience.toml")
