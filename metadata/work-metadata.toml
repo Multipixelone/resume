@@ -6,6 +6,9 @@
 header_quote = "Technical theatre artist & audio/video producer."
 cv_footer = "Work Resume"
 
+[layout]
+before_entry_description_skip = "-4pt"
+
 [layout.header]
 display_profile_photo = false
 
