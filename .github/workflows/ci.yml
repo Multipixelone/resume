@@ -37,6 +37,9 @@ jobs:
       - name: Build resume
         run: |
           nix build .#packages.x86_64-linux.resume -o ./result-resume
+      - name: Build work resume
+        run: |
+          nix build .#packages.x86_64-linux.work-resume -o ./result-work-resume
       - name: Add built files to pages artifact
         run: |
           shopt -s nullglob
@@ -50,6 +53,10 @@ jobs:
           rep=(./result-resume/Rep-Sheet_FinnRutis_*.pdf)
           cp "${resume[0]}" ./pages/resume.pdf
           cp "${rep[0]}" ./pages/rep.pdf
+          work_resume=(./result-work-resume/Work_CV_FinnRutis_*.pdf)
+          cp "${work_resume[0]}" ./pages/work-resume.pdf
+          work_png=(./result-work-resume/Work_CV_FinnRutis_*.png)
+          cp "${work_png[0]}" ./pages/work-resume.png
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

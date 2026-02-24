@@ -38,6 +38,9 @@
           resume = pkgs.callPackage ./packages/resume.nix {
             inherit inputs version src commit;
           };
+          workResume = pkgs.callPackage ./packages/work-resume.nix {
+            inherit inputs version src commit;
+          };
           website = pkgs.callPackage ./packages/website.nix {
             inherit inputs version websiteRoot;
           };
@@ -55,6 +58,7 @@
           packages = {
             default = resume;
             resume = resume;
+            work-resume = workResume;
             website = website;
           };
         };

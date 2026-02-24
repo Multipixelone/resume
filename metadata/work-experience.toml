@@ -1,0 +1,10 @@
+# Work experience entries
+# Each job entry requires: title, company, date, location
+# Add, remove, or reorder entries to match your history.
+
+[jobs]
+    [jobs.job-1]
+        title = "Job Title"
+        company = "Company Name"
+        date = "Start – End"
+        location = "City, ST"
