@@ -15,4 +15,5 @@
     location: job.location,
     description: job.at("summary", default: ""),
   )
+  v(8pt)
 }
