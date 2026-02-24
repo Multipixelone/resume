@@ -31,3 +31,17 @@ company = "Bridgetown Conservatory of Musical Theatre"
 date = "April 2020"
 location = "Portland, OR"
 summary = "Edited and synced remote audio and video from 20 isolated performers to build a full virtual concert during the pandemic lockdowns. Worked directly with the cast and director to troubleshoot tech issues and deliver a polished video on a tight deadline."
+
+[jobs.rosetta-project]
+title = "Lighting Designer"
+company = "The Rosetta Project"                                                                                                                                                                # (Or leave blank if it was an independent production)
+date = "FILL IN DATES"
+location = "Portland, OR"
+summary = "Designed and ran the lighting for a live stage production. Handled the full technical process from hanging and focusing fixtures to programming and executing cues during the run."
+
+[jobs.portland-spirit]
+title = "Audio Producer"
+company = "Portland Spirit"
+date = "FILL IN DATES"
+location = "Portland, OR"
+summary = "Produced and mixed the official theme song for the Portland Spirit river cruise. Managed the audio workflow from the initial recording to the final polish, delivering a crisp, broadcast-ready track."
