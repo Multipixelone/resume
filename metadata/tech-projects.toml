@@ -1,35 +1,28 @@
 [projects]
-[projects.llm-scripting]
-title = "LLM / AI Scripting"
+[projects.declarative-homelab]
+title = "Declarative Infrastructure & Self-Hosting Environment"
 company = "Personal Project"
-date = "Ongoing"
+date = "Nov 2016 – Present"
 location = ""
-summary = "Developed and maintained custom Python scripts and tooling to interact with large language models, automating command submission and response retrieval for repeatable AI-driven workflows."
-
-[projects.llm-prompts]
-title = "LLM / AI Prompt Engineering"
-company = "Personal Project"
-date = "Ongoing"
-location = ""
-summary = "Invested 25+ hours designing and iterating on prompt workflows for large language models, systematically improving response quality through structured prompt engineering techniques."
-
-[projects.homelab]
-title = "Linux Home Lab"
-company = "Personal Project"
-date = "Ongoing"
-location = ""
-summary = "Built and maintained a home lab running multiple Linux distributions for hands-on experimentation with system administration, containerization, and self-hosted applications."
-
-[projects.virtualization]
-title = "Virtualized Server Infrastructure"
-company = "Personal Project"
-date = "Ongoing"
-location = ""
-summary = "Deployed and managed dozens of internet-facing services using VMware ESXi and Docker containers, with automated provisioning via dynamic DNS for reliable external access."
+summary = "Architected a production-grade homelab utilizing VMware ESXi, KVM, and Docker. Leveraged NixOS and Flakes for Infrastructure as Code (IaC) to declaratively provision and manage dozens of internet-facing services, ensuring fully reproducible builds and zero-downtime deployments."
 
 [projects.network-security]
-title = "Network & Security Administration"
+title = "Enterprise-Grade Network Architecture & Security"
 company = "Personal Project"
-date = "Ongoing"
+date = "Aug 2019 – Present"
 location = ""
-summary = "Configured and administered a FortiGate firewall supporting multiple DMZs, VLANs, and NAT rules, enforcing layered network segmentation and access control policies."
+summary = "Designed and administered a secure, highly segmented network topology using a FortiGate firewall. Implemented multiple DMZs, isolated VLANs, and MetalLB load balancing to protect internet-facing applications while adhering to zero-trust network access (ZTNA) principles."
+
+[projects.llm-automation]
+title = "AI-Driven Automation Pipelines"
+company = "Personal Project"
+date = "Jan 2023 – Present"
+location = ""
+summary = "Developed custom Python automation tooling to integrate Large Language Model (LLM) workflows into daily operations. Engineered complex system prompts and structured output requirements (JSON) to guarantee reliable, repeatable AI responses for data parsing and script generation."
+
+[projects.systems-management]
+title = "Cross-Platform Systems Management (Nix)"
+company = "Personal Project"
+date = "Jun 2023 – Present"
+location = ""
+summary = "Engineered a version-controlled dotfiles and systems management repository utilizing Home Manager and nix-darwin. Automated the provisioning of identical, customized development environments across macOS and Linux machines through CI/CD pipelines and GitHub."
