@@ -16,6 +16,7 @@
 
 #importModules((
   "work-experience",
+  "skills",
   // "technical",
   // Add more work-specific modules here
 ))
