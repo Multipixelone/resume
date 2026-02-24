@@ -1,24 +1,20 @@
 [skills]
+[skills.languages]
+type = "Programming & Scripting"
+info = "Python, Nix, Bash / Shell Scripting"
+
+[skills.infrastructure]
+type = "Virtualization & Containers"
+info = "Docker, VMware ESXi, KVM, VirtualBox"
+
+[skills.networking]
+type = "Networking & Security"
+info = "TCP/IP, VLANs, DNS / DDNS, NAT, Load Balancing (MetalLB), Firewall Administration (FortiGate)"
+
+[skills.tools]
+type = "DevOps & Tools"
+info = "Nix Ecosystem (Flakes, Nixpkgs, Home Manager), Declarative Infrastructure, Reproducible Builds, CI/CD Pipelines, Git, GitHub, Typst"
+
 [skills.operating-systems]
 type = "Operating Systems"
 info = "Linux (Ubuntu, NixOS), Windows, macOS, iOS"
-
-[skills.scripting]
-type = "Scripting"
-info = "Python, Bash, familiarity with additional scripting and programming languages"
-
-[skills.virtualization]
-type = "Virtualization"
-info = "VMware ESXi, KVM, VirtualBox"
-
-[skills.networking]
-type = "Networking"
-info = "TCP/IP, firewall management, VLANs, NAT, DNS"
-
-[skills.applications]
-type = "Applications"
-info = "Docker, MetalLB, FortiGate, Dynamic DNS, various self-hosted services"
-
-[skills.tools]
-type = "Tools"
-info = "Git, GitHub, Nix, Typst, CI/CD pipelines, shell scripting utilities"
