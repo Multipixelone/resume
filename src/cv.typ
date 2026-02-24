@@ -76,6 +76,7 @@
       hair: fa-location-dot(solid: true),
       vocal-part: fa-microphone(solid: true),
       union: fa-landmark(solid: true),
+      references: fa-address-book(solid: true),
       extraInfo: "",
     )
     let isFirst = state("header-info-first", true)
