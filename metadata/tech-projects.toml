@@ -1,0 +1,35 @@
+[projects]
+[projects.llm-scripting]
+title = "LLM / AI Scripting"
+company = "Personal Project"
+date = "Ongoing"
+location = ""
+summary = "Developed and maintained custom Python scripts and tooling to interact with large language models, automating command submission and response retrieval for repeatable AI-driven workflows."
+
+[projects.llm-prompts]
+title = "LLM / AI Prompt Engineering"
+company = "Personal Project"
+date = "Ongoing"
+location = ""
+summary = "Invested 25+ hours designing and iterating on prompt workflows for large language models, systematically improving response quality through structured prompt engineering techniques."
+
+[projects.homelab]
+title = "Linux Home Lab"
+company = "Personal Project"
+date = "Ongoing"
+location = ""
+summary = "Built and maintained a home lab running multiple Linux distributions for hands-on experimentation with system administration, containerization, and self-hosted applications."
+
+[projects.virtualization]
+title = "Virtualized Server Infrastructure"
+company = "Personal Project"
+date = "Ongoing"
+location = ""
+summary = "Deployed and managed dozens of internet-facing services using VMware ESXi and Docker containers, with automated provisioning via dynamic DNS for reliable external access."
+
+[projects.network-security]
+title = "Network & Security Administration"
+company = "Personal Project"
+date = "Ongoing"
+location = ""
+summary = "Configured and administered a FortiGate firewall supporting multiple DMZs, VLANs, and NAT rules, enforcing layered network segmentation and access control policies."

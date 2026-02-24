@@ -1,0 +1,24 @@
+[skills]
+[skills.operating-systems]
+type = "Operating Systems"
+info = "Linux (Ubuntu, NixOS), Windows, macOS, iOS"
+
+[skills.scripting]
+type = "Scripting"
+info = "Python, Bash, familiarity with additional scripting and programming languages"
+
+[skills.virtualization]
+type = "Virtualization"
+info = "VMware ESXi, KVM, VirtualBox"
+
+[skills.networking]
+type = "Networking"
+info = "TCP/IP, firewall management, VLANs, NAT, DNS"
+
+[skills.applications]
+type = "Applications"
+info = "Docker, MetalLB, FortiGate, Dynamic DNS, various self-hosted services"
+
+[skills.tools]
+type = "Tools"
+info = "Git, GitHub, Nix, Typst, CI/CD pipelines, shell scripting utilities"

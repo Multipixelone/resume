@@ -1,0 +1,26 @@
+# Tech resume overrides
+# This file is merged on top of metadata.toml via src/tech-meta.typ.
+# Only add keys here that differ from the base resume.
+
+[lang.en]
+header_quote = "IT enthusiast with hands-on experience in Linux administration, virtualization, networking, and AI/LLM automation."
+cv_footer = "Technical Resume"
+
+[layout]
+before_entry_description_skip = "-4pt"
+
+[layout.header]
+display_profile_photo = false
+
+[layout.entry]
+# Show project/role title first (bold), then organization underneath
+display_entry_society_first = false
+display_logo = false
+
+[personal.info]
+phone = "503-267-5052"
+email = "work@finnrut.is"
+homepage = "www.finnrut.is"
+# don't show things that aren't relevant here
+vocal-part = ""
+union = ""

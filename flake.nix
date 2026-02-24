@@ -41,6 +41,9 @@
           workResume = pkgs.callPackage ./packages/work-resume.nix {
             inherit inputs version src commit;
           };
+          techResume = pkgs.callPackage ./packages/tech-resume.nix {
+            inherit inputs version src commit;
+          };
           website = pkgs.callPackage ./packages/website.nix {
             inherit inputs version websiteRoot;
           };
@@ -59,6 +62,7 @@
             default = resume;
             resume = resume;
             work-resume = workResume;
+            tech-resume = techResume;
             website = website;
           };
         };
