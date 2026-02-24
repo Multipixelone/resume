@@ -2,7 +2,6 @@
 #let metadata = toml("../metadata/metadata.toml")
 #let cvSection = cvSection.with(metadata: metadata)
 
-#cvSection("Training")
+#cvSection("Education")
 
 #include "_education-content.typ"
-#include "_training-content.typ"
