@@ -14,53 +14,75 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
-    name: build artifacts
+  get-package-names:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
+    outputs:
+      packages: ${{ steps.get-package-names.outputs.packages }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Install nix
         uses: nixbuild/nix-quick-install-action@v34
+      - name: Get package names
+        id: get-package-names
+        run: |
+          packages="$(nix eval --json .#packages.x86_64-linux --apply builtins.attrNames)"
+          echo "packages=$packages" >> $GITHUB_OUTPUT
+
+  build-package:
+    needs: get-package-names
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJson(needs.get-package-names.outputs.packages) }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install nix
+        uses: nixbuild/nix-quick-install-action@v34
+      - name: Build ${{ matrix.package }}
+        run: |
+          nix build '.#packages.x86_64-linux."${{ matrix.package }}"'
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.package }}
+          path: ./result/
+
+  build:
+    name: build artifacts
+    needs: build-package
+    runs-on: ubuntu-latest
+    steps:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
-      # - name: Build site
-      #   run: |
-      #     nix build .#packages.x86_64-linux.website -o ./result-website
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./artifacts
       - name: Prepare pages artifact
         run: |
           mkdir -p ./pages
-          # cp -R ./result-website/. ./pages/
-      - name: Build resume
-        run: |
-          nix build .#packages.x86_64-linux.resume -o ./result-resume
-      - name: Build work resume
-        run: |
-          nix build .#packages.x86_64-linux.work-resume -o ./result-work-resume
-      - name: Build tech resume
-        run: |
-          nix build .#packages.x86_64-linux.tech-resume -o ./result-tech-resume
       - name: Add built files to pages artifact
         run: |
           shopt -s nullglob
-          png_files=(./result-resume/CV_FinnRutis_*.png)
+          png_files=(./artifacts/resume/CV_FinnRutis_*.png)
           if [ "${#png_files[@]}" -ne 1 ]; then
             echo "Expected exactly 1 resume PNG file, but found ${#png_files[@]}."
             exit 1
           fi
           cp "${png_files[0]}" ./pages/resume.png
-          resume=(./result-resume/CV_FinnRutis_*.pdf)
-          rep=(./result-resume/Rep-Sheet_FinnRutis_*.pdf)
+          resume=(./artifacts/resume/CV_FinnRutis_*.pdf)
+          rep=(./artifacts/resume/Rep-Sheet_FinnRutis_*.pdf)
           cp "${resume[0]}" ./pages/resume.pdf
           cp "${rep[0]}" ./pages/rep.pdf
-          work_resume=(./result-work-resume/Work_CV_FinnRutis_*.pdf)
+          work_resume=(./artifacts/work-resume/Work_CV_FinnRutis_*.pdf)
           cp "${work_resume[0]}" ./pages/work-resume.pdf
-          work_png=(./result-work-resume/Work_CV_FinnRutis_*.png)
+          work_png=(./artifacts/work-resume/Work_CV_FinnRutis_*.png)
           cp "${work_png[0]}" ./pages/work-resume.png
-          tech_resume=(./result-tech-resume/Tech_CV_FinnRutis_*.pdf)
+          tech_resume=(./artifacts/tech-resume/Tech_CV_FinnRutis_*.pdf)
           cp "${tech_resume[0]}" ./pages/tech-resume.pdf
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
