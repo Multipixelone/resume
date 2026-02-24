@@ -78,11 +78,11 @@
       union: fa-landmark(solid: true),
       extraInfo: "",
     )
-    let n = 1
+    let isFirst = state("header-info-first", true)
     for (k, v) in personalInfo {
       // A dirty trick to add linebreaks with "linebreak" as key in personalInfo
       if k == "linebreak" {
-        n = 0
+        isFirst.update(true)
         linebreak()
         continue
       }
@@ -98,12 +98,16 @@
         } else {
           icon = fa-icon(awesomeIcon, style: iconStyle)
         }
+        context if not isFirst.get() { hBar() }
+        isFirst.update(false)
         box({
           icon
           h(5pt)
           link(link_value)[#text]
         })
       } else if v != "" {
+        context if not isFirst.get() { hBar() }
+        isFirst.update(false)
         box({
           // Adds icons
           personalInfoIcons.at(k)
@@ -128,11 +132,6 @@
           }
         })
       }
-      // Adds hBar
-      if n != personalInfo.len() {
-        hBar()
-      }
-      n = n + 1
     }
   }
 
