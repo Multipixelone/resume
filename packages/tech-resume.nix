@@ -39,7 +39,7 @@ stdenv.mkDerivation {
     runHook preBuild
 
     typst compile --input commit="${commit}" --input version="${version}" tech.typ
-    typst compile --input commit="${commit}" --input version="${version}" --format png tech.typ
+    # typst compile --input commit="${commit}" --input version="${version}" --format png tech.typ
 
     runHook postBuild
   '';
@@ -49,7 +49,7 @@ stdenv.mkDerivation {
 
     mkdir -p $out
     mv tech.pdf $out/Tech_CV_FinnRutis_${version}.pdf
-    mv tech.png $out/Tech_CV_FinnRutis_${version}.png
+    # mv tech.png $out/Tech_CV_FinnRutis_${version}.png
 
     runHook postInstall
   '';
