@@ -6,6 +6,13 @@ date = "Nov 2016 – Present"
 location = ""
 summary = "Architected a production-grade homelab utilizing VMware ESXi, KVM, and Docker. Leveraged NixOS and Flakes for Infrastructure as Code (IaC) to declaratively provision and manage dozens of internet-facing services, ensuring fully reproducible builds and zero-downtime deployments."
 
+[projects.building-resume]
+title = "Typst-Generated Resume System"
+company = "Personal Project"
+date = "Oct 2024 – Present"
+location = ""
+summary = "Developed an automated resume builder using the Typst typesetting system. Set up a continuous integration pipeline with GitHub Actions to automatically compile and publish three distinct resumes tailored for different job profiles, ensuring consistent formatting, little repetition, and making content updates effortless."
+
 [projects.network-security]
 title = "Enterprise-Grade Network Architecture & Security"
 company = "Personal Project"
