@@ -1,14 +1,14 @@
 [skills]
 [skills.languages]
-type = "Programming & Scripting"
+type = "Programming"
 info = "Python, Nix, Bash / Shell Scripting"
 
 [skills.infrastructure]
-type = "Virtualization & Containers"
+type = "Virtualization"
 info = "Docker, VMware ESXi, KVM, VirtualBox"
 
 [skills.networking]
-type = "Networking & Security"
+type = "Networking"
 info = "TCP/IP, VLANs, DNS / DDNS, NAT, Load Balancing (MetalLB), Firewall Administration (FortiGate)"
 
 [skills.tools]
