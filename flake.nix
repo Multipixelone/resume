@@ -44,6 +44,9 @@
           techResume = pkgs.callPackage ./packages/tech-resume.nix {
             inherit inputs version src commit;
           };
+          coverLetter = pkgs.callPackage ./packages/cover-letter.nix {
+            inherit inputs version src commit;
+          };
           website = pkgs.callPackage ./packages/website.nix {
             inherit inputs version websiteRoot;
           };
@@ -63,6 +66,7 @@
             resume = resume;
             work-resume = workResume;
             tech-resume = techResume;
+            cover-letter = coverLetter;
             website = website;
           };
         };

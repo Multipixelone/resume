@@ -233,6 +233,38 @@
 
 }
 
+/// Insert the footer section of a cover letter.
+///
+/// - metadata (array): the metadata read from the TOML file.
+/// -> content
+#let _coverLetterFooter(metadata) = {
+  let footerText = metadata.lang.at(metadata.language).letter_footer
+  let commit = sys.inputs.at("commit", default: "unknown")
+  let version = sys.inputs.at("version", default: none)
+  let date = if version != none {
+    let parts = version.split("-")
+    datetime(year: int(parts.at(0)), month: int(parts.at(1)), day: int(parts.at(2)))
+  } else {
+    datetime.today()
+  }
+  let buildDate = date.display("[month].[day].[year]")
+
+  let footerStyle(str) = {
+    text(size: 8pt, fill: rgb("#999999"), smallcaps(str))
+  }
+  let commitStyle(str) = {
+    text(size: 6pt, fill: rgb("#CCCCCC"), font: "PragmataPro Mono Liga", str)
+  }
+
+  return table(
+    columns: (1fr, auto),
+    inset: -5pt,
+    stroke: none,
+    footerStyle([#footerText]),
+    [#commitStyle([#commit]) #h(1pt) #footerStyle([Last Updated #buildDate])],
+  )
+}
+
 /// Add the title of a section.
 ///
 /// NOTE: If the language is non-Latin, the title highlight will not be sliced.

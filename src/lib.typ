@@ -39,6 +39,35 @@
   doc
 }
 
+#let coverLetter(
+  metadata,
+  profilePhoto: image("./avatar.png"),
+  doc,
+) = {
+  let lang = metadata.language
+  let fontList = latinFontList
+  let headerFont = latinHeaderFont
+  fontList = overwriteFonts(metadata, latinFontList, latinHeaderFont).regularFonts
+  headerFont = overwriteFonts(metadata, latinFontList, latinHeaderFont).headerFont
+  if isNonLatin(lang) {
+    let nonLatinFont = metadata.lang.non_latin.font
+    fontList.insert(2, nonLatinFont)
+    headerFont = nonLatinFont
+  }
+
+  set text(font: fontList, weight: "regular", size: 11pt)
+  set align(left)
+  set page(
+    paper: "us-letter",
+    margin: (left: 1.4cm, right: 1.4cm, top: 1.1cm, bottom: 1.1cm),
+    footer: _coverLetterFooter(metadata),
+  )
+  set par(leading: 0.75em, spacing: 1.4em)
+
+  _cvHeader(metadata, profilePhoto, headerFont, regularColors, awesomeColors)
+  doc
+}
+
 #let letter(
   metadata,
   doc,
