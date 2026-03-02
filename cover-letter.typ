@@ -5,11 +5,15 @@
 #let version = sys.inputs.at("version", default: none)
 #let buildDate = if version != none {
   let parts = version.split("-")
-  datetime(year: int(parts.at(0)), month: int(parts.at(1)), day: int(parts.at(2)))
+  datetime(year: int(parts.at(0)), month: int(parts.at(1)), day: int(
+    parts.at(2),
+  ))
 } else {
   datetime.today()
 }
-#let displayDate = buildDate.display("[month repr:long] [day padding:none], [year]")
+#let displayDate = buildDate.display(
+  "[month repr:long] [day padding:none], [year]",
+)
 
 #show: coverLetter.with(
   metadata,
@@ -37,6 +41,5 @@ Dear #recipientName,
 
 Sincerely,
 
-#v(2em)
 #metadata.personal.first_name #metadata.personal.last_name
 
