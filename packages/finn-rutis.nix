@@ -7,7 +7,7 @@
   roboto,
   source-sans-pro,
   eb-garamond,
-  poppler_utils,
+  poppler-utils,
   inputs,
   version ? "",
   commit ? "unknown",
