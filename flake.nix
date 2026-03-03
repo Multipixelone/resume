@@ -47,6 +47,9 @@
           coverLetter = pkgs.callPackage ./packages/cover-letter.nix {
             inherit inputs version src commit;
           };
+          finnRutis = pkgs.callPackage ./packages/finn-rutis.nix {
+            inherit inputs version src commit;
+          };
           website = pkgs.callPackage ./packages/website.nix {
             inherit inputs version websiteRoot;
           };
@@ -67,6 +70,7 @@
             work-resume = workResume;
             tech-resume = techResume;
             cover-letter = coverLetter;
+            finn-rutis = finnRutis;
             website = website;
           };
         };
