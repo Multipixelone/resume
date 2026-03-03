@@ -21,7 +21,7 @@ stdenv.mkDerivation {
   inherit src version;
   nativeBuildInputs = [
     typstWithPackages
-    poppler_utils
+    poppler-utils
   ];
 
   postConfigure = ''
