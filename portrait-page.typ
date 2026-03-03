@@ -8,10 +8,10 @@
 #let pronouns = metadata.personal.pronouns
 
 #set page(paper: "us-letter", margin: (x: 1.4cm, y: 1.1cm))
-#set align(center)
+#set align(left)
 
 #v(1fr)
-#image("./website/public/assets/portrait.jpg", height: 70%)
+#image("./website/public/assets/portrait.jpg", height: 85%)
 #v(1em)
 #text(font: headerFont, size: 32pt, fill: regularColors.darkgray)[#firstName]
 #h(5pt)
