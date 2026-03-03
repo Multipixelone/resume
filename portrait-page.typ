@@ -8,14 +8,21 @@
 #let pronouns = metadata.personal.pronouns
 
 #set page(paper: "us-letter", margin: (x: 1.4cm, y: 1.1cm))
-#set align(left)
 
 #v(1fr)
-#image("./website/public/assets/portrait.jpg", height: 85%)
-#v(1em)
-#text(font: headerFont, size: 32pt, fill: regularColors.darkgray)[#firstName]
-#h(5pt)
-#text(font: headerFont, size: 32pt)[#lastName]
-#h(5pt)
-#text(size: 14pt, fill: accentColor)[#pronouns]
+#align(center,
+  table(
+    columns: (auto,),
+    inset: 0pt,
+    stroke: none,
+    row-gutter: 1em,
+    align: left,
+    [#image("./website/public/assets/portrait.jpg", height: 85%)],
+    [#text(font: headerFont, size: 32pt, fill: regularColors.darkgray)[#firstName]
+     #h(5pt)
+     #text(font: headerFont, size: 32pt)[#lastName]
+     #h(5pt)
+     #text(size: 14pt, fill: accentColor)[#pronouns]],
+  )
+)
 #v(1fr)
