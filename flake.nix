@@ -35,20 +35,63 @@
           src = self;
           websiteRoot = ./website;
 
+          tinymistWrapped =
+            let
+              fakeXdg = pkgs.writeShellScriptBin "xdg-open" ''
+                nohup chromium --app="$@" --hide-scrollbars --no-default-browser-check >/dev/null 2>&1 &
+                exit 0
+              '';
+            in
+            pkgs.writeShellApplication {
+              name = "tinymist";
+              runtimeInputs = [
+                pkgs.tinymist
+                fakeXdg
+              ];
+              text = ''
+                exec tinymist "$@"
+              '';
+            };
+
           resume = pkgs.callPackage ./packages/resume.nix {
-            inherit inputs version src commit;
+            inherit
+              inputs
+              version
+              src
+              commit
+              ;
           };
           workResume = pkgs.callPackage ./packages/work-resume.nix {
-            inherit inputs version src commit;
+            inherit
+              inputs
+              version
+              src
+              commit
+              ;
           };
           techResume = pkgs.callPackage ./packages/tech-resume.nix {
-            inherit inputs version src commit;
+            inherit
+              inputs
+              version
+              src
+              commit
+              ;
           };
           coverLetter = pkgs.callPackage ./packages/cover-letter.nix {
-            inherit inputs version src commit;
+            inherit
+              inputs
+              version
+              src
+              commit
+              ;
           };
           finnRutis = pkgs.callPackage ./packages/finn-rutis.nix {
-            inherit inputs version src commit;
+            inherit
+              inputs
+              version
+              src
+              commit
+              ;
           };
           website = pkgs.callPackage ./packages/website.nix {
             inherit inputs version websiteRoot;
@@ -59,7 +102,7 @@
             packages = [
               pkgs.typst
               pkgs.typstyle
-              pkgs.tinymist
+              tinymistWrapped
               pkgs.nodejs
             ];
           };
