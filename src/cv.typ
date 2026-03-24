@@ -73,7 +73,7 @@
       gitlab: fa-gitlab(solid: true),
       orcid: fa-orcid(solid: true),
       researchgate: fa-researchgate(solid: true),
-      instagram: fa-square-instagram(solid: true),
+      instagram: fa-instagram(solid: true),
       location: fa-location-dot(solid: true),
       height: fa-ruler(solid: true),
       eyes: fa-eye(solid: true),
