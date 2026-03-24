@@ -1,9 +1,12 @@
 /*
-* Functions for the CV template
-*/
+ * Functions for the CV template
+ */
 
 #import "@preview/fontawesome:0.6.0": *
-#import "./utils/styles.typ": latinFontList, latinHeaderFont, awesomeColors, regularColors, setAccentColor, hBar
+#import "./utils/styles.typ": (
+  awesomeColors, hBar, latinFontList, latinHeaderFont, regularColors,
+  setAccentColor,
+)
 #import "./utils/lang.typ": isNonLatin
 
 /// Insert the header section of the CV.
@@ -70,6 +73,7 @@
       gitlab: fa-gitlab(solid: true),
       orcid: fa-orcid(solid: true),
       researchgate: fa-researchgate(solid: true),
+      instagram: fa-square-instagram(solid: true),
       location: fa-location-dot(solid: true),
       height: fa-ruler(solid: true),
       eyes: fa-eye(solid: true),
@@ -122,6 +126,8 @@
             link("https://github.com/" + v)[#v]
           } else if k == "gitlab" {
             link("https://gitlab.com/" + v)[#v]
+          } else if k == "instagram" {
+            link("https://www.instagram.com/" + v)[@#v]
           } else if k == "homepage" {
             link("https://" + v)[#v]
           } else if k == "orcid" {
@@ -143,7 +149,9 @@
     row-gutter: 6mm,
     if nonLatin {
       headerFirstNameStyle(nonLatinName)
-    } else [#headerFirstNameStyle(firstName) #h(5pt) #headerLastNameStyle(lastName) #h(5pt) #headerPronounStyle(pronouns)],
+    } else [#headerFirstNameStyle(firstName) #h(5pt) #headerLastNameStyle(
+        lastName,
+      ) #h(5pt) #headerPronounStyle(pronouns)],
     [#headerInfoStyle(makeHeaderInfo())],
     [#headerQuoteStyle(headerQuote)],
   )
@@ -206,8 +214,10 @@
   let commit = sys.inputs.at("commit", default: "unknown")
   let version = sys.inputs.at("version", default: none)
   let date = if version != none {
-  let parts = version.split("-")
-  datetime(year: int(parts.at(0)), month: int(parts.at(1)), day: int(parts.at(2)))
+    let parts = version.split("-")
+    datetime(year: int(parts.at(0)), month: int(parts.at(1)), day: int(
+      parts.at(2),
+    ))
   } else {
     datetime.today()
   }
@@ -230,7 +240,6 @@
     footerStyle([#footerText]),
     [#commitStyle([#commit]) #h(1pt) #footerStyle([Last Updated #buildDate])],
   )
-
 }
 
 /// Insert the footer section of a cover letter.
@@ -243,7 +252,9 @@
   let version = sys.inputs.at("version", default: none)
   let date = if version != none {
     let parts = version.split("-")
-    datetime(year: int(parts.at(0)), month: int(parts.at(1)), day: int(parts.at(2)))
+    datetime(year: int(parts.at(0)), month: int(parts.at(1)), day: int(
+      parts.at(2),
+    ))
   } else {
     datetime.today()
   }
@@ -510,12 +521,19 @@
     inset: 0pt,
     column-gutter: 12pt,
     stroke: none,
-    skillTypeStyle(type), skillInfoStyle(info), skillInstructorStyle(instructors)
+    skillTypeStyle(type),
+    skillInfoStyle(info),
+    skillInstructorStyle(instructors),
   )
   v(-6pt)
 }
 
-#let cvPerformanceOld(title: "Title", character: "Character", company: "Company", director: "Director") = {
+#let cvPerformanceOld(
+  title: "Title",
+  character: "Character",
+  company: "Company",
+  director: "Director",
+) = {
   let skillTypeStyle(str) = {
     align(left, text(size: 10pt, str))
   }
@@ -528,7 +546,10 @@
     inset: 0pt,
     column-gutter: 10pt,
     stroke: none,
-    skillTypeStyle(title), skillInfoStyle(character), skillInfoStyle(company), skillInfoStyle(director)
+    skillTypeStyle(title),
+    skillInfoStyle(character),
+    skillInfoStyle(company),
+    skillInfoStyle(director),
   )
   v(-7pt)
 }
@@ -550,7 +571,12 @@
       let character = c.at(1).character
       let company = c.at(1).company
       let director = c.at(1).director
-      (skillTypeStyle(title), skillTypeStyle(character), skillTypeStyle(company), skillTypeStyle(director))
+      (
+        skillTypeStyle(title),
+        skillTypeStyle(character),
+        skillTypeStyle(company),
+        skillTypeStyle(director),
+      )
     }
   )
 }
