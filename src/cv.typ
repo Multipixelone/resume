@@ -127,7 +127,8 @@
           } else if k == "gitlab" {
             link("https://gitlab.com/" + v)[#v]
           } else if k == "instagram" {
-            link("https://www.instagram.com/" + v)[@#v]
+            // maybe add @ before username perhaps? add it before the #
+            link("https://www.instagram.com/" + v)[#v]
           } else if k == "homepage" {
             link("https://" + v)[#v]
           } else if k == "orcid" {
