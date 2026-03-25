@@ -1,10 +1,22 @@
 
+## v1.2.1
+
+
+### Features
+
+- Add version number to built artifact
+
 ## v1.2.0
 
 
 ### Bug Fixes
 
 - *(ci)* Better factoring of build & release
+
+
+### Chores
+
+- *(release)* V1.2.0
 
 ## v1.1.0
 
