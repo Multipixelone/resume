@@ -14,6 +14,12 @@ on:
 permissions:
   contents: write
   pull-requests: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   release:
@@ -57,8 +63,7 @@ jobs:
               patch=$((patch + 1))
               ;;
           esac
-          next_version="${major}.${minor}.${patch}"
-          echo "version=$next_version" >> "$GITHUB_OUTPUT"
+          echo "version=${major}.${minor}.${patch}" >> "$GITHUB_OUTPUT"
 
       - name: Ensure release tag does not already exist
         run: |
@@ -68,8 +73,7 @@ jobs:
           fi
 
       - name: Write new version
-        run: |
-          echo "${{ steps.next.outputs.version }}" > VERSION
+        run: echo "${{ steps.next.outputs.version }}" > VERSION
 
       - name: Generate changelog
         uses: orhun/git-cliff-action@v4
@@ -101,3 +105,10 @@ jobs:
           body: ${{ steps.changelog.outputs.content }}
           draft: false
           make_latest: true
+
+  build-and-deploy:
+    needs: release
+    uses: ./.github/workflows/_build.yml
+    with:
+      ref: ${{ github.ref_name }}
+      deploy: true

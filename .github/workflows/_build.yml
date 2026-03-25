@@ -1,0 +1,115 @@
+name: Build
+on:
+  workflow_call:
+    inputs:
+      ref:
+        type: string
+        default: ''
+      deploy:
+        type: boolean
+        default: false
+
+jobs:
+  get-package-names:
+    runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.get-package-names.outputs.packages }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+      - uses: nixbuild/nix-quick-install-action@v34
+      - name: Get package names
+        id: get-package-names
+        run: |
+          packages="$(nix eval --json .#packages.x86_64-linux --apply builtins.attrNames | jq -c '[.[] | select(contains("container") | not)]')"
+          echo "packages=$packages" >> $GITHUB_OUTPUT
+
+  build-package:
+    needs: get-package-names
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJson(needs.get-package-names.outputs.packages) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+      - uses: nixbuild/nix-quick-install-action@v34
+      - name: Build ${{ matrix.package }}
+        run: nix build '.#packages.x86_64-linux."${{ matrix.package }}"'
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.package }}
+          path: ./result/
+
+  build:
+    name: assemble artifacts
+    if: ${{ !cancelled() }}
+    needs: build-package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Pages
+        if: ${{ inputs.deploy }}
+        uses: actions/configure-pages@v5
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./artifacts
+      - name: Assemble pages artifact
+        run: |
+          shopt -s nullglob
+          failed=()
+          succeeded=()
+
+          copy_file() {
+            local pattern="$1"
+            local dest="$2"
+            local files=($pattern)
+            if [ "${#files[@]}" -eq 1 ]; then
+              cp "${files[0]}" "$dest" && succeeded+=("$dest") || failed+=("$dest")
+            elif [ "${#files[@]}" -eq 0 ]; then
+              echo "Warning: No files found matching $pattern"
+              failed+=("$dest")
+            else
+              echo "Warning: Expected 1 file matching $pattern, found ${#files[@]}"
+              failed+=("$dest")
+            fi
+          }
+
+          mkdir -p ./pages
+          copy_file "./artifacts/resume/CV_FinnRutis_*.png" "./pages/resume.png"
+          copy_file "./artifacts/resume/CV_FinnRutis_*.pdf" "./pages/resume.pdf"
+          copy_file "./artifacts/resume/Rep-Sheet_FinnRutis_*.pdf" "./pages/rep.pdf"
+          copy_file "./artifacts/work-resume/Work_CV_FinnRutis_*.pdf" "./pages/work-resume.pdf"
+          copy_file "./artifacts/work-resume/Work_CV_FinnRutis_*.png" "./pages/work-resume.png"
+          copy_file "./artifacts/tech-resume/Tech_CV_FinnRutis_*.pdf" "./pages/tech-resume.pdf"
+          copy_file "./artifacts/cover-letter/Cover_Letter_FinnRutis_*.pdf" "./pages/cover-letter.pdf"
+          cp "./artifacts/finn-rutis/FINN RUTIS.pdf" "./pages/FINN RUTIS.pdf" && succeeded+=("FINN RUTIS.pdf") || failed+=("FINN RUTIS.pdf")
+
+          echo "Succeeded: ${succeeded[*]:-none}"
+          echo "Failed: ${failed[*]:-none}"
+
+          if [ "${#succeeded[@]}" -eq 0 ]; then
+            echo "Error: No files were copied successfully"
+            exit 1
+          fi
+      - name: Upload pages artifact
+        if: ${{ inputs.deploy }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./pages
+
+  deploy:
+    if: ${{ inputs.deploy }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
