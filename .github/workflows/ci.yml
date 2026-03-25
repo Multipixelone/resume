@@ -26,9 +26,10 @@ jobs:
       - name: Detect version bump
         id: version-bump
         run: |
+          initial_push_before_sha="0000000000000000000000000000000000000000"
           should_deploy="false"
           if [ "${{ github.event_name }}" = "push" ] && [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            if [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ]; then
+            if [ "${{ github.event.before }}" = "$initial_push_before_sha" ]; then
               should_deploy="true"
             elif ! git diff --quiet "${{ github.event.before }}" "${{ github.sha }}" -- VERSION; then
               should_deploy="true"
