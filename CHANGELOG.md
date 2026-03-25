@@ -1,4 +1,11 @@
 
+## v1.0.1
+
+
+### Bug Fixes
+
+- *(ci)* Do github release on workflow
+
 ## v1.0.0
 
 
@@ -85,6 +92,8 @@
 - *(ci)* Clarify initial push SHA in version gate
 
 - *(changelog)* Add scoped groups for template commit sorting
+
+- *(release)* V1.0.0
 
 
 ### Features
