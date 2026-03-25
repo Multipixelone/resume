@@ -24,6 +24,7 @@ homepage = "www.finnrut.is"
 github = "Multipixelone"
 location = "NYC"
 # don't show things that aren't relevant here
+height = ""
 instagram = ""
 vocal-part = ""
 union = ""
