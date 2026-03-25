@@ -48,8 +48,9 @@ stdenv.mkDerivation {
     typst compile portrait-page.typ portrait-page.pdf
     gs -q -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER \
       -dFIXEDMEDIA -dDEVICEWIDTHPOINTS=576 -dDEVICEHEIGHTPOINTS=720 \
+      -sOutputFile=cv_cropped.pdf \
       -c "<< /PageOffset [-18 -36] >> setpagedevice" \
-      -f cv.pdf -sOutputFile=cv_cropped.pdf
+      -f cv.pdf
     pdfunite cv_cropped.pdf portrait-page.pdf "FINN RUTIS.pdf"
 
     runHook postBuild
