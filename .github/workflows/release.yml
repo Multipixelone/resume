@@ -59,6 +59,13 @@ jobs:
           next_version="${major}.${minor}.${patch}"
           echo "version=$next_version" >> "$GITHUB_OUTPUT"
 
+      - name: Ensure release tag does not already exist
+        run: |
+          if git ls-remote --tags --exit-code origin "refs/tags/v${{ steps.next.outputs.version }}" >/dev/null 2>&1; then
+            echo "::error::Tag v${{ steps.next.outputs.version }} already exists"
+            exit 1
+          fi
+
       - name: Write new version
         run: |
           echo "${{ steps.next.outputs.version }}" > VERSION
@@ -79,10 +86,6 @@ jobs:
           git add VERSION CHANGELOG.md
           if git diff --cached --quiet; then
             echo "::error::No changes to commit"
-            exit 1
-          fi
-          if git ls-remote --tags --exit-code origin "refs/tags/v${{ steps.next.outputs.version }}" >/dev/null 2>&1; then
-            echo "::error::Tag v${{ steps.next.outputs.version }} already exists"
             exit 1
           fi
           git commit -m "chore(release): v${{ steps.next.outputs.version }}"
