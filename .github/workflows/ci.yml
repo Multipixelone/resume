@@ -26,6 +26,7 @@ jobs:
       - name: Detect version bump
         id: version-bump
         run: |
+          # GitHub sets `before` to 40 zeros for the first push in a repository/branch.
           initial_push_before_sha="0000000000000000000000000000000000000000"
           should_deploy="false"
           if [ "${{ github.event_name }}" = "push" ] && [ "${{ github.ref }}" = "refs/heads/main" ]; then
