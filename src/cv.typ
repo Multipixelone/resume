@@ -107,7 +107,7 @@
         isFirst.update(false)
         box({
           icon
-          h(3pt)
+          h(2pt)
           link(link_value)[#text]
         })
       } else if v != "" {
@@ -116,7 +116,7 @@
         box({
           // Adds icons
           personalInfoIcons.at(k)
-          h(3pt)
+          h(2pt)
           // Adds hyperlinks
           if k == "email" {
             link("mailto:" + v)[#v]
