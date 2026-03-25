@@ -8,6 +8,7 @@
   source-sans-pro,
   eb-garamond,
   poppler-utils,
+  ghostscript,
   inputs,
   version ? "",
   commit ? "unknown",
@@ -22,6 +23,7 @@ stdenv.mkDerivation {
   nativeBuildInputs = [
     typstWithPackages
     poppler-utils
+    ghostscript
   ];
 
   postConfigure = ''
@@ -44,7 +46,11 @@ stdenv.mkDerivation {
 
     typst compile --input commit="${commit}" --input version="${version}" cv.typ cv.pdf
     typst compile portrait-page.typ portrait-page.pdf
-    pdfunite cv.pdf portrait-page.pdf "FINN RUTIS.pdf"
+    gs -q -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER \
+      -dFIXEDMEDIA -dDEVICEWIDTHPOINTS=576 -dDEVICEHEIGHTPOINTS=720 \
+      -c "<< /PageOffset [-18 -36] >> setpagedevice" \
+      -f cv.pdf -sOutputFile=cv_cropped.pdf
+    pdfunite cv_cropped.pdf portrait-page.pdf "FINN RUTIS.pdf"
 
     runHook postBuild
   '';
