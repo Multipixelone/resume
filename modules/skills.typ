@@ -1,4 +1,4 @@
-#import "../src/lib.typ": cvSection, cvPerformance, cvSkill, hBar
+#import "../src/lib.typ": cvPerformance, cvSection, cvSkill, hBar
 #let metadata = toml("../metadata/metadata.toml")
 #let cvSection = cvSection.with(metadata: metadata)
 
@@ -6,7 +6,7 @@
 
 #cvSkill(
   type: [Special Skills],
-  info: [Ukulele, Fantastic Whistler, Drivers License & Passport, Manual Transmission Driving, Home Studio (Scarlett 8i6, Blue Bluebird, Audition)],
+  info: [Ukulele, Fantastic Whistler, Beatboxing, Drivers License & Passport, Manual Transmission Driving, Home Studio (Scarlett 8i6, Blue Bluebird, Audition)],
 )
 
 #cvSkill(
