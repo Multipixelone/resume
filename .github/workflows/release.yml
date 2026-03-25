@@ -81,7 +81,7 @@ jobs:
             echo "::error::No changes to commit"
             exit 1
           fi
-          if git rev-parse "v${{ steps.next.outputs.version }}" >/dev/null 2>&1; then
+          if git ls-remote --tags --exit-code origin "refs/tags/v${{ steps.next.outputs.version }}" >/dev/null 2>&1; then
             echo "::error::Tag v${{ steps.next.outputs.version }} already exists"
             exit 1
           fi
