@@ -1,4 +1,18 @@
 
+## v1.2.0
+
+
+### Bug Fixes
+
+- *(ci)* Better factoring of build & release
+
+## v1.1.0
+
+
+### Chores
+
+- *(release)* V1.1.0
+
 ## v1.0.2
 
 
