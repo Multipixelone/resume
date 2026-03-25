@@ -75,7 +75,7 @@
       researchgate: fa-researchgate(solid: true),
       instagram: fa-instagram(solid: true),
       location: fa-location-dot(solid: true),
-      height: fa-ruler(solid: true),
+      height: fa-ruler-vertical(solid: true),
       eyes: fa-eye(solid: true),
       hair: fa-location-dot(solid: true),
       vocal-part: fa-microphone(solid: true),
