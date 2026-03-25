@@ -44,12 +44,12 @@ stdenv.mkDerivation {
   buildPhase = ''
     runHook preBuild
 
-    typst compile --input commit="${commit}" --input version="${version}" cv.typ cv.pdf
+    typst compile --input commit="${commit}" --input version="${version}" --input no_footer=true cv.typ cv.pdf
     typst compile portrait-page.typ portrait-page.pdf
     gs -q -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER \
       -dFIXEDMEDIA -dDEVICEWIDTHPOINTS=576 -dDEVICEHEIGHTPOINTS=720 \
       -sOutputFile=cv_cropped.pdf \
-      -c "<< /PageOffset [-18 -36] >> setpagedevice" \
+      -c "<< /PageOffset [-18 -60] >> setpagedevice" \
       -f cv.pdf
     pdfunite cv_cropped.pdf portrait-page.pdf "FINN RUTIS.pdf"
 

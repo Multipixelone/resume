@@ -32,7 +32,7 @@
   set page(
     paper: "us-letter",
     margin: (left: 1.4cm, right: 1.4cm, top: 1.3cm, bottom: 1.3cm),
-    footer: _cvFooter(metadata),
+    footer: if sys.inputs.at("no_footer", default: "false") == "true" { none } else { _cvFooter(metadata) },
   )
 
   _cvHeader(metadata, profilePhoto, headerFont, regularColors, awesomeColors)
