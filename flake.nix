@@ -22,12 +22,9 @@
           ...
         }:
         let
-          # versionFile = "${self}/VERSION";
-          # version =
-          #   if builtins.pathExists versionFile then
-          #     builtins.replaceStrings [ "\n" ] [ "" ] (builtins.readFile versionFile)
-          #   else
-          #     "0.0.0";
+          versionFile = "${self}/VERSION";
+          versionString = builtins.replaceStrings [ "\n" ] [ "" ] (builtins.readFile versionFile);
+          commit = "${self.shortRev or "dirty"} v${versionString}";
           mkDate =
             longDate:
             with builtins;
@@ -37,7 +34,6 @@
               (substring 6 2 longDate)
             ]);
           version = mkDate (self.lastModifiedDate or "19700101");
-          commit = self.shortRev or "dirty";
           src = self;
           websiteRoot = ./website;
 
