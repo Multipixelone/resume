@@ -2,6 +2,11 @@
 ## v1.3.0
 
 
+### Chores
+
+- *(release)* V1.3.0
+
+
 ### Content
 
 - *(content)* Add beatboxing
