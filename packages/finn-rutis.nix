@@ -49,7 +49,7 @@ stdenv.mkDerivation {
     gs -q -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER \
       -dFIXEDMEDIA -dDEVICEWIDTHPOINTS=576 -dDEVICEHEIGHTPOINTS=720 \
       -sOutputFile=cv_cropped.pdf \
-      -c "<< /PageOffset [-18 -60] >> setpagedevice" \
+      -c "<< /PageOffset [-18 -56] >> setpagedevice" \
       -f cv.pdf
     pdfunite cv_cropped.pdf portrait-page.pdf "FINN RUTIS.pdf"
 
