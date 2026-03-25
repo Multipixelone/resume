@@ -14,6 +14,28 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  detect-version-bump:
+    runs-on: ubuntu-latest
+    outputs:
+      should_deploy: ${{ steps.version-bump.outputs.should_deploy }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Detect version bump
+        id: version-bump
+        run: |
+          should_deploy="false"
+          if [ "${{ github.event_name }}" = "push" ] && [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            if [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ]; then
+              should_deploy="true"
+            elif ! git diff --quiet "${{ github.event.before }}" "${{ github.sha }}" -- VERSION; then
+              should_deploy="true"
+            fi
+          fi
+          echo "should_deploy=$should_deploy" >> "$GITHUB_OUTPUT"
+
   get-package-names:
     runs-on: ubuntu-latest
     outputs:
@@ -53,7 +75,9 @@ jobs:
   build:
     name: build artifacts
     if: ${{ !cancelled() }}
-    needs: build-package
+    needs:
+      - build-package
+      - detect-version-bump
     runs-on: ubuntu-latest
     steps:
       - name: Setup Pages
@@ -109,11 +133,14 @@ jobs:
           path: ./pages
 
   deploy:
+    if: ${{ needs.detect-version-bump.outputs.should_deploy == 'true' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
+    needs:
+      - build
+      - detect-version-bump
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
