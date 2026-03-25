@@ -30,8 +30,14 @@ jobs:
           initial_push_before_sha="0000000000000000000000000000000000000000"
           should_deploy="false"
           if [ "${{ github.event_name }}" = "push" ] && [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            if [ "${{ github.event.before }}" != "$initial_push_before_sha" ] && ! git diff --quiet "${{ github.event.before }}" "${{ github.sha }}" -- VERSION; then
-              should_deploy="true"
+            if [ "${{ github.event.before }}" != "$initial_push_before_sha" ] && git cat-file -e "${{ github.event.before }}^{commit}" 2>/dev/null; then
+              if ! git diff --quiet "${{ github.event.before }}" "${{ github.sha }}" -- VERSION; then
+                should_deploy="true"
+              fi
+            elif git rev-parse "${{ github.sha }}^" >/dev/null 2>&1; then
+              if ! git diff --quiet "${{ github.sha }}^" "${{ github.sha }}" -- VERSION; then
+                should_deploy="true"
+              fi
             fi
           fi
           echo "should_deploy=$should_deploy" >> "$GITHUB_OUTPUT"
