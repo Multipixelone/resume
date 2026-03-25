@@ -1,10 +1,22 @@
 
+## v1.0.2
+
+
+### Bug Fixes
+
+- *(ci)* Only run on published releases
+
 ## v1.0.1
 
 
 ### Bug Fixes
 
 - *(ci)* Do github release on workflow
+
+
+### Chores
+
+- *(release)* V1.0.1
 
 ## v1.0.0
 
