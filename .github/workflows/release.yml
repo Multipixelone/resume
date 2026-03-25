@@ -99,3 +99,5 @@ jobs:
           tag_name: v${{ steps.next.outputs.version }}
           name: v${{ steps.next.outputs.version }}
           body: ${{ steps.changelog.outputs.content }}
+          draft: false
+          make_latest: true
