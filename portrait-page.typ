@@ -17,21 +17,21 @@
 #set page(
   width: 8in,
   height: 10in,
-  margin: (x: 1.4cm, y: 1.1cm),
+  margin: (x: 0.5cm, y: 0.5cm),
 )
 
-#v(1fr)
+#v(0fr)
 #align(center, table(
   columns: (auto,),
   inset: 0pt,
   stroke: none,
   row-gutter: 1em,
   align: left,
-  [#image("./website/public/assets/portrait.jpg", height: 85%)],
+  [#image("./src/headshot.jpg", height: 95%)],
   [#text(font: headerFont, size: 32pt, fill: regularColors.darkgray)[#firstName]
     #h(5pt)
     #text(font: headerFont, size: 32pt)[#lastName]
     #h(5pt)
     #text(size: 14pt, fill: accentColor)[#pronouns]],
 ))
-#v(1fr)
+#v(0fr)
