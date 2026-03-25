@@ -17,9 +17,9 @@ conventional_commits = true
 filter_unconventional = false
 split_commits = false
 commit_parsers = [
-  { message = "^[A-Za-z]+!?\\(reformat\\):", group = "Reformat" },
-  { message = "^[A-Za-z]+!?\\(template\\):", group = "Template" },
-  { message = "^[A-Za-z]+!?\\(content\\):", group = "Content" },
+  { message = "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)!?\\(reformat\\):", group = "Reformat" },
+  { message = "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)!?\\(template\\):", group = "Template" },
+  { message = "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)!?\\(content\\):", group = "Content" },
   { message = "^feat", group = "Features" },
   { message = "^fix", group = "Bug Fixes" },
   { message = "^docs", group = "Documentation" },
