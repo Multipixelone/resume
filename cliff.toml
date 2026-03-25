@@ -17,6 +17,9 @@ conventional_commits = true
 filter_unconventional = false
 split_commits = false
 commit_parsers = [
+  { message = "^[a-z]+\\(reformat\\):", group = "Reformat" },
+  { message = "^[a-z]+\\(template\\):", group = "Template" },
+  { message = "^[a-z]+\\(content\\):", group = "Content" },
   { message = "^feat", group = "Features" },
   { message = "^fix", group = "Bug Fixes" },
   { message = "^docs", group = "Documentation" },

@@ -6,3 +6,8 @@ Deployments happen only when `VERSION` is changed on `main`; all commits still r
 
 Use `just bump <patch|minor|major>` to trigger the `release.yml` workflow from the command line via GitHub CLI.
 The default Nix dev shell includes both `just` and `gh`.
+
+For changelog sorting with git-cliff, use conventional commit scopes to categorize template work:
+- `type(reformat): ...` for formatting/layout reshaping changes
+- `type(template): ...` for reusable template/module structure updates
+- `type(content): ...` for actual resume text/content additions
