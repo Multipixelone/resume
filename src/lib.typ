@@ -31,7 +31,7 @@
   set align(left)
   set page(
     paper: "us-letter",
-    margin: (left: 1.4cm, right: 1.4cm, top: 1.1cm, bottom: 1.1cm),
+    margin: (left: 1.4cm, right: 1.4cm, top: 1.3cm, bottom: 1.3cm),
     footer: _cvFooter(metadata),
   )
 
