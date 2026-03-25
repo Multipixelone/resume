@@ -1,5 +1,22 @@
 
+## v1.3.0
+
+
+### Content
+
+- *(content)* Add beatboxing
+
+
+### Reformat
+
+- *(reformat)* Version string before commit hash
+
 ## v1.2.1
+
+
+### Chores
+
+- *(release)* V1.2.1
 
 
 ### Features
