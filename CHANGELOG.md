@@ -6,6 +6,11 @@
 
 - *(ci)* Only run on published releases
 
+
+### Chores
+
+- *(release)* V1.0.2
+
 ## v1.0.1
 
 
