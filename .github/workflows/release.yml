@@ -92,3 +92,10 @@ jobs:
           git commit -m "chore(release): v${{ steps.next.outputs.version }}"
           git tag "v${{ steps.next.outputs.version }}"
           git push origin HEAD --tags
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.next.outputs.version }}
+          name: v${{ steps.next.outputs.version }}
+          body: ${{ steps.changelog.outputs.content }}
