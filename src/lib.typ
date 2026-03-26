@@ -1,6 +1,6 @@
 /*
-* Entry point for the package
-*/
+ * Entry point for the package
+ */
 
 /* Packages */
 #import "./cv.typ": *
@@ -18,8 +18,16 @@
   let lang = metadata.language
   let fontList = latinFontList
   let headerFont = latinHeaderFont
-  fontList = overwriteFonts(metadata, latinFontList, latinHeaderFont).regularFonts
-  headerFont = overwriteFonts(metadata, latinFontList, latinHeaderFont).headerFont
+  fontList = overwriteFonts(
+    metadata,
+    latinFontList,
+    latinHeaderFont,
+  ).regularFonts
+  headerFont = overwriteFonts(
+    metadata,
+    latinFontList,
+    latinHeaderFont,
+  ).headerFont
   if isNonLatin(lang) {
     let nonLatinFont = metadata.lang.non_latin.font
     fontList.insert(2, nonLatinFont)
@@ -32,7 +40,9 @@
   set page(
     paper: "us-letter",
     margin: (left: 1.4cm, right: 1.4cm, top: 1.3cm, bottom: 1.3cm),
-    footer: if sys.inputs.at("no_footer", default: "false") == "true" { none } else { _cvFooter(metadata) },
+    footer: if sys.inputs.at("no_footer", default: "false") == "true" {
+      none
+    } else { _cvFooter(metadata) },
   )
 
   _cvHeader(metadata, profilePhoto, headerFont, regularColors, awesomeColors)
@@ -47,8 +57,16 @@
   let lang = metadata.language
   let fontList = latinFontList
   let headerFont = latinHeaderFont
-  fontList = overwriteFonts(metadata, latinFontList, latinHeaderFont).regularFonts
-  headerFont = overwriteFonts(metadata, latinFontList, latinHeaderFont).headerFont
+  fontList = overwriteFonts(
+    metadata,
+    latinFontList,
+    latinHeaderFont,
+  ).regularFonts
+  headerFont = overwriteFonts(
+    metadata,
+    latinFontList,
+    latinHeaderFont,
+  ).headerFont
   if isNonLatin(lang) {
     let nonLatinFont = metadata.lang.non_latin.font
     fontList.insert(2, nonLatinFont)
@@ -81,7 +99,11 @@
   // Non Latin Logic
   let lang = metadata.language
   let fontList = latinFontList
-  fontList = overwriteFonts(metadata, latinFontList, latinHeaderFont).regularFonts
+  fontList = overwriteFonts(
+    metadata,
+    latinFontList,
+    latinHeaderFont,
+  ).regularFonts
   if isNonLatin(lang) {
     let nonLatinFont = metadata.lang.non_latin.font
     fontList.insert(2, nonLatinFont)

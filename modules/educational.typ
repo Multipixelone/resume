@@ -1,4 +1,4 @@
-#import "../src/lib.typ": cvSection, cvPerformance
+#import "../src/lib.typ": cvPerformance, cvSection
 #let metadata = toml("../metadata/metadata.toml")
 #let educational = toml("../metadata/educational.toml")
 #let cvSection = cvSection.with(metadata: metadata)

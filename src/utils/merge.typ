@@ -1,6 +1,6 @@
 /*
-* Utility functions for merging dictionaries
-*/
+ * Utility functions for merging dictionaries
+ */
 
 /// Recursively merge two dictionaries
 /// Values from `override` will take precedence over values in `base`
@@ -15,9 +15,13 @@
   for (key, value) in base {
     result.insert(key, value)
   }
-  
+
   for (key, value) in override {
-    if key in result and type(result.at(key)) == dictionary and type(value) == dictionary {
+    if (
+      key in result
+        and type(result.at(key)) == dictionary
+        and type(value) == dictionary
+    ) {
       // Recursively merge nested dictionaries
       result.insert(key, mergeDicts(result.at(key), value))
     } else {

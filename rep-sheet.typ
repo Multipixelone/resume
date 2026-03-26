@@ -27,7 +27,13 @@
       let type = c.at(1).type
       // let time = c.at(1).time
       let bars = c.at(1).bars
-      (songStyle(song), songStyle(source), songStyle(composer), songStyle(type), songStyle(bars))
+      (
+        songStyle(song),
+        songStyle(source),
+        songStyle(composer),
+        songStyle(type),
+        songStyle(bars),
+      )
     }
   )
 }
