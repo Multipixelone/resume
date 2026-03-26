@@ -24,7 +24,7 @@
         let
           versionFile = "${self}/VERSION";
           versionString = builtins.replaceStrings [ "\n" ] [ "" ] (builtins.readFile versionFile);
-          commit = "v${versionString} ${self.shortRev or "dirty"}";
+          commit = "v${versionString}@${self.shortRev or "dirty"}";
           mkDate =
             longDate:
             with builtins;
