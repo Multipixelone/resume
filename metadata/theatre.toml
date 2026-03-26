@@ -39,11 +39,11 @@ title = "Tuck Everlasting"
 character = "Jesse Tuck"
 company = "Broadway Rose"
 director = "Isaac Lamb"
-# [shows.curtains]
-#     title = "Curtains"
-#     character = "Bobby Pepper"
-#     company = "NW Children's Theatre"
-#     director = "Dustin Brown"
+[shows.curtains]
+title = "Curtains"
+character = "Bobby Pepper"
+company = "NW Children's Theatre"
+director = "Dustin Brown"
 [shows.midsummer]
 title = "A Midsummer Night's Dream"
 character = "Oberon"
