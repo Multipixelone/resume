@@ -22,6 +22,13 @@
           ...
         }:
         let
+          forceLocalBuild =
+            pkg:
+            pkg.overrideAttrs (_: {
+              allowSubstitutes = false;
+              preferLocalBuild = true;
+            });
+
           versionFile = "${self}/VERSION";
           versionString = builtins.replaceStrings [ "\n" ] [ "" ] (builtins.readFile versionFile);
           commit = "v${versionString} (commit ${self.shortRev or "dirty"})";
@@ -112,20 +119,16 @@
           };
 
           packages = {
-            default = resume;
-            resume = resume;
-            work-resume = workResume;
-            tech-resume = techResume;
-            cover-letter = coverLetter;
-            finn-rutis = finnRutis;
-            website = website;
+            default = forceLocalBuild resume;
+            resume = forceLocalBuild resume;
+            work-resume = forceLocalBuild workResume;
+            tech-resume = forceLocalBuild techResume;
+            cover-letter = forceLocalBuild coverLetter;
+            finn-rutis = forceLocalBuild finnRutis;
+            website = forceLocalBuild website;
           };
         };
     };
-
-  nixConfig = {
-    substitute = "false";
-  };
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
