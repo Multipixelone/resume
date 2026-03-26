@@ -1,37 +1,56 @@
 [changelog]
-header = ""
+header = """
+# Changelog\n
+"""
 body = """
-{% if version %}## {{ version }}{% else %}## Unreleased{% endif %}
+{%- macro remote_url() -%}
+  https://github.com/Multipixelone/resume
+{%- endmacro -%}
+
+{% if version -%}
+    ## [{{ version | trim_start_matches(pat="v") }}] - {{ timestamp | date(format="%Y-%m-%d") }}
+{% else -%}
+    ## [Unreleased]
+{% endif -%}
 
 {% for group, commits in commits | group_by(attribute="group") %}
-### {{ group | upper_first }}
-{% for commit in commits %}
-- {% if commit.scope %}*({{ commit.scope }})* {% endif %}{{ commit.message | upper_first }}
-{% endfor %}
-{% endfor %}
+    ### {{ group | striptags | trim | upper_first }}
+    {% for commit in commits %}
+        - {% if commit.scope %}*({{ commit.scope }})* {% endif %}\
+          {% if commit.breaking %}[**breaking**] {% endif %}\
+          {{ commit.message | upper_first }} \
+          in [{{ commit.id | truncate(length=7, end="") }}]({{ self::remote_url() }}/commit/{{ commit.id }})\
+    {% endfor %}
+{% endfor %}\n
 """
 trim = true
+footer = ""
+postprocessors = []
+
 
 [git]
 conventional_commits = true
-filter_unconventional = false
+filter_unconventional = true
 split_commits = false
 commit_parsers = [
-  { message = "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)!?\\(reformat\\):", group = "Reformat" },
-  { message = "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)!?\\(template\\):", group = "Template" },
-  { message = "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)!?\\(content\\):", group = "Content" },
-  { message = "^feat", group = "Features" },
-  { message = "^fix", group = "Bug Fixes" },
-  { message = "^docs", group = "Documentation" },
-  { message = "^refactor", group = "Refactor" },
-  { message = "^perf", group = "Performance" },
-  { message = "^test", group = "Tests" },
-  { message = "^build", group = "Build" },
-  { message = "^ci", group = "CI" },
-  { message = "^chore", group = "Chores" },
-  { body = ".*security", group = "Security" },
+  { message = "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)!?\\(reformat\\):", group = "📐 Reformat" },
+  { message = "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)!?\\(template\\):", group = "📋 Template" },
+  { message = "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)!?\\(content\\):", group = "✍️ Content" },
+  { message = "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)!?\\(ci\\):", group = "<!-- 8 -->🔧 CI" },
+  { message = "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)!?\\(changelog\\):", skip = true },
+  { message = "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)!?\\(dev\\):", skip = true },
+  { message = "^feat", group = "<!-- 0 -->🚀 Features" },
+  { message = "^fix", group = "<!-- 1 -->🐛 Bug Fixes" },
+  { message = "^doc", group = "<!-- 3 -->📚 Documentation" },
+  { message = "^perf", group = "<!-- 4 -->⚡ Performance" },
+  { message = "^refactor", group = "<!-- 2 -->🚜 Refactor" },
+  { message = "^style", group = "<!-- 5 -->🎨 Styling" },
+  { message = "^test", group = "<!-- 6 -->🧪 Testing" },
+  { message = "^chore\\(release\\)", skip = true },
+  { message = "^chore|^ci", group = "<!-- 7 -->⚙️ Miscellaneous Tasks" },
+  { body = ".*security", group = "<!-- 9 -->🛡️ Security" },
 ]
-protect_breaking_commits = false
+protect_breaking_commits = true
 filter_commits = false
 tag_pattern = "v[0-9]+\\.[0-9]+\\.[0-9]+"
 skip_tags = "v0.0.0"
