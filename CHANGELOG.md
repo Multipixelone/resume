@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.5] - 2026-03-26
+
+### 🐛 Bug Fixes
+
+- *(nix)* Disable substitutes only for top-level flake packages in [225dced](https://github.com/Multipixelone/resume/commit/225dced9d12c7e45cd43afe6c26412b6990b661a)
+
 ## [1.3.4] - 2026-03-26
 
 ### 🐛 Bug Fixes
