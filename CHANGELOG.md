@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.3] - 2026-03-26
+
+### 🎨 Styling
+
+- Run typstyle on all files in [6bd37cf](https://github.com/Multipixelone/resume/commit/6bd37cfd1dd852767794fb7deacf04fe73b13ca6)
+- Display version@commit in [79a9cc6](https://github.com/Multipixelone/resume/commit/79a9cc6f87680185f03f25f7e9974a26991605e4)
+
 ## [1.3.2] - 2026-03-26
 
 ### 🔧 CI
