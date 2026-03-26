@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.3.4] - 2026-03-26
+
+### 🐛 Bug Fixes
+
+- Don't include gh in devShell in [423949e](https://github.com/Multipixelone/resume/commit/423949e97e2dd18597de07bab0f280d716f4c8c8)
+- Don't hit caches for built pdfs in [3d9cb6b](https://github.com/Multipixelone/resume/commit/3d9cb6bdca2a0b9173f40e2a6a504ceee63ec625)
+
+### 🎨 Styling
+
+- Commit information in parenthesis in [b953319](https://github.com/Multipixelone/resume/commit/b95331944ae0229823f2b26c4542885561a1f901)
+
+### Content
+
+- Bring back Curtains in [aebd774](https://github.com/Multipixelone/resume/commit/aebd774ccba7cda506da8dfc3cf9b67e6acfda29)
+
 ## [1.3.3] - 2026-03-26
 
 ### 🎨 Styling
