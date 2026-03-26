@@ -1,14 +1,20 @@
 # Changelog
 
+## [1.3.2] - 2026-03-26
+
+### 🔧 CI
+
+- *(ci)* Far better formatting of changelog in [3f5d97e](https://github.com/Multipixelone/resume/commit/3f5d97ef828e3c9bf6e8c458890a44e801b1e616)
+
 ## [1.3.0] - 2026-03-25
 
 ### ✍️ Content
 
-- _(content)_ Add beatboxing in [81f57b0](https://github.com/Multipixelone/resume/commit/81f57b0348890d4287d6e9f1e803f6ea83ca7b36)
+- *(content)* Add beatboxing in [81f57b0](https://github.com/Multipixelone/resume/commit/81f57b0348890d4287d6e9f1e803f6ea83ca7b36)
 
 ### 📐 Reformat
 
-- _(reformat)_ Version string before commit hash in [baee6be](https://github.com/Multipixelone/resume/commit/baee6be1b5cc32ceb6e2cdd0fb01254ea19745f3)
+- *(reformat)* Version string before commit hash in [baee6be](https://github.com/Multipixelone/resume/commit/baee6be1b5cc32ceb6e2cdd0fb01254ea19745f3)
 
 ## [1.2.1] - 2026-03-25
 
@@ -20,19 +26,19 @@
 
 ### 🔧 CI
 
-- _(ci)_ Better factoring of build & release in [0bf3f31](https://github.com/Multipixelone/resume/commit/0bf3f31b6912b2b99a3d75f3c9d3c18519152214)
+- *(ci)* Better factoring of build & release in [0bf3f31](https://github.com/Multipixelone/resume/commit/0bf3f31b6912b2b99a3d75f3c9d3c18519152214)
 
 ## [1.0.2] - 2026-03-25
 
 ### 🔧 CI
 
-- _(ci)_ Only run on published releases in [9ffa7cd](https://github.com/Multipixelone/resume/commit/9ffa7cd250b8422200f0d8e91190393017248ab2)
+- *(ci)* Only run on published releases in [9ffa7cd](https://github.com/Multipixelone/resume/commit/9ffa7cd250b8422200f0d8e91190393017248ab2)
 
 ## [1.0.1] - 2026-03-25
 
 ### 🔧 CI
 
-- _(ci)_ Do github release on workflow in [3c057a3](https://github.com/Multipixelone/resume/commit/3c057a32375876b01e39d1d1fa5427a1f35d9fb9)
+- *(ci)* Do github release on workflow in [3c057a3](https://github.com/Multipixelone/resume/commit/3c057a32375876b01e39d1d1fa5427a1f35d9fb9)
 
 ## [1.0.0] - 2026-03-25
 
@@ -87,14 +93,14 @@
 
 ### 🔧 CI
 
-- _(ci)_ Gate pages deploys on VERSION bumps and add git-cliff release flow in [db10b50](https://github.com/Multipixelone/resume/commit/db10b50cd18667b8e898fb6a2767b89e89309fd6)
-- _(ci)_ Clarify initial push SHA in version gate in [84d2cac](https://github.com/Multipixelone/resume/commit/84d2cac2fef80900364e3c243cfdc7d387d86710)
-- _(ci)_ Harden release tag check and document initial push SHA in [ea34508](https://github.com/Multipixelone/resume/commit/ea345085dc4ba4595bc3a179a668f56f96a18740)
-- _(ci)_ Skip deploy on initial push without version change in [997675f](https://github.com/Multipixelone/resume/commit/997675f23bf965df5ca9a3f5333649eed7c75873)
-- _(ci)_ Handle missing before SHA and precheck release tags in [2172a44](https://github.com/Multipixelone/resume/commit/2172a44c80f2ae15da454ea932556accb506694f)
-- _(ci)_ MkDate bring back in [303a5a5](https://github.com/Multipixelone/resume/commit/303a5a545c8e90dc9ed59952bc028665551aa724)
-- _(ci)_ Add empty changelog file in [f4c94c0](https://github.com/Multipixelone/resume/commit/f4c94c0672bd4eaa028684898392b1a7f283543e)
-- _(ci)_ Bump version to working version in [81df1d3](https://github.com/Multipixelone/resume/commit/81df1d3a09dce6df35100e467ce32534a021a8a9)
+- *(ci)* Gate pages deploys on VERSION bumps and add git-cliff release flow in [db10b50](https://github.com/Multipixelone/resume/commit/db10b50cd18667b8e898fb6a2767b89e89309fd6)
+- *(ci)* Clarify initial push SHA in version gate in [84d2cac](https://github.com/Multipixelone/resume/commit/84d2cac2fef80900364e3c243cfdc7d387d86710)
+- *(ci)* Harden release tag check and document initial push SHA in [ea34508](https://github.com/Multipixelone/resume/commit/ea345085dc4ba4595bc3a179a668f56f96a18740)
+- *(ci)* Skip deploy on initial push without version change in [997675f](https://github.com/Multipixelone/resume/commit/997675f23bf965df5ca9a3f5333649eed7c75873)
+- *(ci)* Handle missing before SHA and precheck release tags in [2172a44](https://github.com/Multipixelone/resume/commit/2172a44c80f2ae15da454ea932556accb506694f)
+- *(ci)* MkDate bring back in [303a5a5](https://github.com/Multipixelone/resume/commit/303a5a545c8e90dc9ed59952bc028665551aa724)
+- *(ci)* Add empty changelog file in [f4c94c0](https://github.com/Multipixelone/resume/commit/f4c94c0672bd4eaa028684898392b1a7f283543e)
+- *(ci)* Bump version to working version in [81df1d3](https://github.com/Multipixelone/resume/commit/81df1d3a09dce6df35100e467ce32534a021a8a9)
 
 ### CvTraining
 
@@ -131,3 +137,5 @@
 ### Website
 
 - Www -> https:// in [87b3979](https://github.com/Multipixelone/resume/commit/87b3979427e16db12c0df828261815a0d3cd798d)
+
+
