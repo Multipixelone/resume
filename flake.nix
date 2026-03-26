@@ -108,7 +108,6 @@
               pkgs.nodejs
               pkgs.git-cliff
               pkgs.just
-              pkgs.gh
             ];
           };
 
