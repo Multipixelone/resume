@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.0] - 2026-03-29
+
+### 🚀 Features
+
+- Nanny resume in [6581fdb](https://github.com/Multipixelone/resume/commit/6581fdb9775d7dd550f09259f02ef3d05e03bec3)
+
 ## [1.3.5] - 2026-03-26
 
 ### 🐛 Bug Fixes
