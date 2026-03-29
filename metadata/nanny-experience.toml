@@ -1,0 +1,35 @@
+[jobs]
+[jobs.student-ambassador]
+title = "Student Ambassador"
+company = "Molloy University"
+date = "October 2022 – Present"
+location = "Rockville Centre, NY"
+summary = "Give campus tours to prospective students and their families. Answer their questions, calm their nerves, and help them picture themselves here. Talk to everyone from nervous high schoolers to their even more nervous parents, adjusting on the fly depending on who I'm with."
+
+[jobs.nw-childrens-theatre]
+title = "Performer: Children's Theatre"
+company = "Northwest Children's Theatre"
+date = "2018 – 2021"
+location = "Portland, OR"
+summary = "Played lead and ensemble roles in A Midsummer Night's Dream and Matilda alongside cast members aged 12–18. Long rehearsal days with a mixed-age group. Learned to keep things moving and stay patient when the energy in the room shifted."
+
+[jobs.house-and-facilities-manager]
+title = "House & Facilities Manager"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "October 2021 – September 2022"
+location = "Portland, OR"
+summary = "Ran the day-to-day of the building: kept things clean, handled setup and breakdown, greeted everyone who walked through the door. Was the person people came to when something went wrong, whether that was a broken prop or a lost kid. Worked mostly on my own and figured things out as they came up."
+
+[jobs.video-editor-oct]
+title = "Video Editor & Sound Engineer"
+company = "Oregon Children's Theatre"
+date = "May 2020 – July 2020"
+location = "Portland, OR"
+summary = "Edited video and mixed sound for two OCT productions on tight turnarounds. Small team, so I got practice wearing a lot of hats and had to be someone they could count on to just get it done."
+
+[jobs.summer-camp-assistant]
+title = "Summer Camp Assistant"
+company = "Northwest Children's Theater"
+date = "Summer 2018"
+location = "Portland, OR"
+summary = "Helped lead teachers run acting camps: warm-ups, theatre games, choreography, and blocking. Supervised 10–15 kids during lunch and snack breaks and played games with them at recess."

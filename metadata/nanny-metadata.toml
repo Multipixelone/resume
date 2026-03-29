@@ -1,0 +1,30 @@
+# Nanny resume overrides
+# Merged on top of metadata.toml via src/nanny-meta.typ.
+# Only keys that differ from the base acting resume live here.
+
+[lang.en]
+header_quote = "BFA musical theatre student in NYC with several years of hands-on experience working with children through theatre — performing, assisting with camps, and managing facilities."
+cv_footer = "Childcare Resume"
+
+[layout]
+before_entry_description_skip = "-4pt"
+
+[layout.header]
+display_profile_photo = false
+
+[layout.entry]
+# Show job title first (bold), then company underneath
+display_entry_society_first = false
+display_logo = false
+
+[personal.info]
+phone = "503-267-5052"
+email = "work@finnrut.is"
+homepage = "www.finnrut.is"
+location = "Brooklyn, NY"
+references = "Available upon request"
+# hide acting-specific fields — not relevant here
+instagram = ""
+vocal-part = ""
+union = ""
+height = ""

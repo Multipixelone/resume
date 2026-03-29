@@ -102,6 +102,14 @@
               commit
               ;
           };
+          nannyResume = pkgs.callPackage ./packages/nanny-resume.nix {
+            inherit
+              inputs
+              version
+              src
+              commit
+              ;
+          };
           website = pkgs.callPackage ./packages/website.nix {
             inherit inputs version websiteRoot;
           };
@@ -125,6 +133,7 @@
             tech-resume = forceLocalBuild techResume;
             cover-letter = forceLocalBuild coverLetter;
             finn-rutis = forceLocalBuild finnRutis;
+            nanny-resume = forceLocalBuild nannyResume;
             website = forceLocalBuild website;
           };
         };
