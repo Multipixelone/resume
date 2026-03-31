@@ -18,9 +18,7 @@ display_entry_society_first = false
 display_logo = false
 
 [personal.info]
-phone = "503-267-5052"
 email = "work@finnrut.is"
-homepage = "www.finnrut.is"
 location = "Brooklyn, NY"
 references = "Available upon request"
 # hide acting-specific fields — not relevant here

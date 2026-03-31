@@ -203,15 +203,8 @@
   }
 }
 
-/// Insert the footer section of the CV.
-///
-/// - metadata (array): the metadata read from the TOML file.
-/// -> content
-#let _cvFooter(metadata) = {
-  // Parameters
-  let firstName = metadata.personal.first_name
-  let lastName = metadata.personal.last_name
-  let footerText = metadata.lang.at(metadata.language).cv_footer
+/// Shared footer date-parsing and style definitions.
+#let _footerCommon() = {
   let commit = sys.inputs.at("commit", default: "unknown")
   let version = sys.inputs.at("version", default: none)
   let date = if version != none {
@@ -222,24 +215,30 @@
   } else {
     datetime.today()
   }
-  // let buildDate = date.display("[month repr:short] [day], [year]")
   let buildDate = date.display("[month].[day].[year]")
-
-  // Styles
   let footerStyle(str) = {
     text(size: 8pt, fill: rgb("#999999"), smallcaps(str))
   }
   let commitStyle(str) = {
     text(size: 6pt, fill: rgb("#CCCCCC"), font: "PragmataPro Mono Liga", str)
   }
+  (commit: commit, buildDate: buildDate, footerStyle: footerStyle, commitStyle: commitStyle)
+}
+
+/// Insert the footer section of the CV.
+///
+/// - metadata (array): the metadata read from the TOML file.
+/// -> content
+#let _cvFooter(metadata) = {
+  let footerText = metadata.lang.at(metadata.language).cv_footer
+  let f = _footerCommon()
 
   return table(
     columns: (1fr, auto),
     inset: -5pt,
     stroke: none,
-    // footerStyle([#firstName #lastName #footerText]),
-    footerStyle([#footerText]),
-    [#commitStyle([#commit]) #h(1pt) #footerStyle([Last Updated #buildDate])],
+    (f.footerStyle)([#footerText]),
+    [#(f.commitStyle)([#f.commit]) #h(1pt) #(f.footerStyle)([Last Updated #f.buildDate])],
   )
 }
 
@@ -249,31 +248,14 @@
 /// -> content
 #let _coverLetterFooter(metadata) = {
   let footerText = metadata.lang.at(metadata.language).letter_footer
-  let commit = sys.inputs.at("commit", default: "unknown")
-  let version = sys.inputs.at("version", default: none)
-  let date = if version != none {
-    let parts = version.split("-")
-    datetime(year: int(parts.at(0)), month: int(parts.at(1)), day: int(
-      parts.at(2),
-    ))
-  } else {
-    datetime.today()
-  }
-  let buildDate = date.display("[month].[day].[year]")
-
-  let footerStyle(str) = {
-    text(size: 8pt, fill: rgb("#999999"), smallcaps(str))
-  }
-  let commitStyle(str) = {
-    text(size: 6pt, fill: rgb("#CCCCCC"), font: "PragmataPro Mono Liga", str)
-  }
+  let f = _footerCommon()
 
   return table(
     columns: (1fr, auto),
     inset: -5pt,
     stroke: none,
-    footerStyle([#footerText]),
-    [#commitStyle([#commit]) #h(1pt) #footerStyle([Last Updated #buildDate])],
+    (f.footerStyle)([#footerText]),
+    [#(f.commitStyle)([#f.commit]) #h(1pt) #(f.footerStyle)([Last Updated #f.buildDate])],
   )
 }
 

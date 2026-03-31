@@ -1,5 +1,6 @@
 #import "./src/lib.typ": cv
-#import "./src/work-meta.typ": work-metadata
+#import "./src/meta.typ": makeMeta
+#let work-metadata = makeMeta("work-metadata.toml")
 
 #let importModules(modules) = {
   for module in modules {

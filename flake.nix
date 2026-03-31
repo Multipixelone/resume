@@ -70,39 +70,7 @@
               commit
               ;
           };
-          workResume = pkgs.callPackage ./packages/work-resume.nix {
-            inherit
-              inputs
-              version
-              src
-              commit
-              ;
-          };
-          techResume = pkgs.callPackage ./packages/tech-resume.nix {
-            inherit
-              inputs
-              version
-              src
-              commit
-              ;
-          };
-          coverLetter = pkgs.callPackage ./packages/cover-letter.nix {
-            inherit
-              inputs
-              version
-              src
-              commit
-              ;
-          };
           finnRutis = pkgs.callPackage ./packages/finn-rutis.nix {
-            inherit
-              inputs
-              version
-              src
-              commit
-              ;
-          };
-          nannyResume = pkgs.callPackage ./packages/nanny-resume.nix {
             inherit
               inputs
               version
@@ -129,11 +97,7 @@
           packages = {
             default = forceLocalBuild resume;
             resume = forceLocalBuild resume;
-            work-resume = forceLocalBuild workResume;
-            tech-resume = forceLocalBuild techResume;
-            cover-letter = forceLocalBuild coverLetter;
             finn-rutis = forceLocalBuild finnRutis;
-            nanny-resume = forceLocalBuild nannyResume;
             website = forceLocalBuild website;
           };
         };

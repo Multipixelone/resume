@@ -18,9 +18,7 @@ display_entry_society_first = false
 display_logo = false
 
 [personal.info]
-phone = "503-267-5052"
 email = "tech@finnrut.is"
-homepage = "www.finnrut.is"
 github = "Multipixelone"
 location = "NYC"
 # don't show things that aren't relevant here

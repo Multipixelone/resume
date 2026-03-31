@@ -42,6 +42,12 @@ stdenv.mkDerivation {
     typst compile --input commit="${commit}" --input version="${version}" cv.typ
     typst compile --input commit="${commit}" --input version="${version}" --format png cv.typ
     typst compile --input commit="${commit}" --input version="${version}" rep-sheet.typ
+    typst compile --input commit="${commit}" --input version="${version}" tech.typ
+    typst compile --input commit="${commit}" --input version="${version}" work.typ
+    typst compile --input commit="${commit}" --input version="${version}" --format png work.typ
+    typst compile --input commit="${commit}" --input version="${version}" nanny.typ
+    typst compile --input commit="${commit}" --input version="${version}" --format png nanny.typ
+    typst compile --input commit="${commit}" --input version="${version}" cover-letter.typ
 
     runHook postBuild
   '';
@@ -50,11 +56,15 @@ stdenv.mkDerivation {
     runHook preInstall
 
     mkdir -p $out
-    # cp cv.typ $out/cv_edited.typ
-    mv *.pdf $out
+    mv cv.pdf $out/CV_FinnRutis_${version}.pdf
     mv cv.png $out/CV_FinnRutis_${version}.png
-    mv $out/cv.pdf $out/CV_FinnRutis_${version}.pdf
-    mv $out/rep-sheet.pdf $out/Rep-Sheet_FinnRutis_${version}.pdf
+    mv rep-sheet.pdf $out/Rep-Sheet_FinnRutis_${version}.pdf
+    mv tech.pdf $out/Tech_CV_FinnRutis_${version}.pdf
+    mv work.pdf $out/Work_CV_FinnRutis_${version}.pdf
+    mv work.png $out/Work_CV_FinnRutis_${version}.png
+    mv nanny.pdf $out/Nanny_CV_FinnRutis_${version}.pdf
+    mv nanny.png $out/Nanny_CV_FinnRutis_${version}.png
+    mv cover-letter.pdf $out/Cover_Letter_FinnRutis_${version}.pdf
 
     runHook postInstall
   '';
