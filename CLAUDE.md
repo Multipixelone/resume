@@ -139,6 +139,48 @@ For data-driven modules, put the content in `metadata/<section>.toml` and load i
 
 Add the new typst compile command to `packages/resume.nix` in the `buildPhase` and `installPhase`.
 
+## Writing Resume Content
+
+When creating or editing job descriptions, summaries, and other resume text, follow these principles strictly. The goal is copy that reads like a capable person wrote it at midnight with a glass of wine — not like it was extruded from a language model.
+
+### Voice & Tone
+
+- **Write like a human, not a hiring-advice blog.** Vary sentence length. Start some sentences with "and" or "but" if it sounds natural. Use contractions. Let the occasional short fragment stand on its own.
+- **Match formality to the audience, not to some universal "resume voice."** A nanny resume should sound warm and grounded. A tech resume can be more direct and precise. An events resume should feel energetic and competent. None of them should sound like a LinkedIn post.
+- **Default register: confident and specific, slightly casual.** The sweet spot is someone explaining what they did to a friend who works in the field — not a cover letter, not a text message. Think the existing `work-experience.toml` voice.
+- **First person is acceptable in informal variants** (nanny, cover letters). Third-person implied subject ("Ran the front desk", "Designed lighting for...") is standard for professional variants. Never mix the two in a single variant.
+
+### Tailoring to a Job Posting
+
+When a variant targets a specific job posting:
+
+- **Echo the posting's language selectively, not systematically.** If the posting says "cross-functional collaboration," you might write "worked across teams" — do NOT parrot "cross-functional collaboration" back verbatim. Mirror the *concepts*, not the exact phrasing.
+- **Foreground relevant experience; don't fabricate it.** Reorder bullet points, emphasize different aspects of the same role, or expand on details that align with the target job. Never invent responsibilities or skills that don't exist in the base data.
+- **One or two keyword echoes per description is enough.** More than that trips ATS-gaming detectors and human suspicion alike. Scatter them across different entries rather than clustering them in one.
+- **Adjust the header quote (`header_quote`) to match the posting's core need**, but phrase it as something the candidate would actually say about themselves — not a rephrased job title.
+
+### What to Avoid (AI Tells)
+
+These patterns are dead giveaways of machine-generated resume text. Do not produce them:
+
+- **Hollow intensifiers**: "leveraged", "utilized", "spearheaded", "orchestrated", "facilitated", "architected" (as a verb). Use plain verbs: ran, built, designed, set up, handled, wrote, fixed, managed.
+- **Stacked buzzwords**: "Engineered scalable cloud-native microservice architecture" — nobody talks like this. Say what was actually built and what it does.
+- **Symmetrical sentence structure**: When every bullet follows the exact same `[Past-tense verb] [object] [prepositional phrase] [result clause]` template, it reads as generated. Vary the structure. Some bullets can be two sentences. Some can omit the result.
+- **Vague impact claims**: "resulting in improved efficiency" or "driving significant growth" with no numbers or specifics. Either include a real metric or leave the claim off entirely.
+- **Thesaurus cycling**: Using a different synonym for "managed" in every single bullet ("oversaw", "directed", "coordinated", "supervised") instead of just repeating "managed" when that's the accurate word.
+- **Gratuitous acronym drops and parenthetical expansions**: "Infrastructure as Code (IaC)" in every mention. Spell it out once or use the acronym — don't do both every time.
+- **Emoji or Unicode dressing**: No bullet-point Unicode symbols, no decorative characters. Plain text only.
+
+### Practical Checklist
+
+Before finalizing any resume text, verify:
+
+1. **Read it aloud.** If it sounds like a press release, rewrite it.
+2. **Could you picture the person saying this in an interview?** If not, it's too stiff.
+3. **Does every sentence contain at least one concrete detail** (a tool name, a number, a specific task)? If it's all abstract, it's filler.
+4. **Are there more than two adjectives in any single sentence?** Cut some.
+5. **Would a recruiter who reads 200 resumes a day notice anything unusual?** That's the bar — invisible competence, not performance.
+
 ## Directory Structure
 
 ```
