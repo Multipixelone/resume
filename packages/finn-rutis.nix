@@ -44,8 +44,8 @@ stdenv.mkDerivation {
   buildPhase = ''
     runHook preBuild
 
-    typst compile --input commit="${commit}" --input version="${version}" --input no_footer=true resumes/cv.typ cv.pdf
-    typst compile resumes/portrait-page.typ portrait-page.pdf
+    typst compile --root . --input commit="${commit}" --input version="${version}" --input no_footer=true resumes/cv.typ cv.pdf
+    typst compile --root . resumes/portrait-page.typ portrait-page.pdf
     gs -q -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER \
       -dFIXEDMEDIA -dDEVICEWIDTHPOINTS=576 -dDEVICEHEIGHTPOINTS=720 \
       -sOutputFile=cv_cropped.pdf \
