@@ -221,9 +221,23 @@ Add the new typst compile command to `packages/resume.nix` in the `buildPhase` a
 
 ## Commit Conventions
 
-Uses conventional commits with these scopes for changelog organization:
-- `type(reformat):` - Layout/formatting changes
-- `type(template):` - Template structure changes
-- `type(content):` - Resume text/content changes
+Use Conventional Commits so `git-cliff` can parse and group changes correctly.
+
+Format:
+- `type(scope): short summary`
+- `type(scope)!: short summary` for breaking changes
+
+Supported `type` values include:
+- `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`
+
+Preferred scopes for resume/template work:
+- `reformat` - Layout/formatting changes
+- `template` - Template/module structure changes
+- `content` - Resume text/content changes
+
+Examples:
+- `feat(template): add reusable project entry block`
+- `fix(content): correct work experience date`
+- `style(reformat): tighten section spacing`
 
 Release: `just bump <patch|minor|major>` triggers the GitHub Actions release workflow.
