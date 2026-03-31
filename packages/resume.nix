@@ -39,15 +39,15 @@ stdenv.mkDerivation {
   buildPhase = ''
     runHook preBuild
 
-    typst compile --input commit="${commit}" --input version="${version}" resumes/cv.typ
-    typst compile --input commit="${commit}" --input version="${version}" --format png resumes/cv.typ
-    typst compile --input commit="${commit}" --input version="${version}" resumes/rep-sheet.typ
-    typst compile --input commit="${commit}" --input version="${version}" resumes/tech.typ
-    typst compile --input commit="${commit}" --input version="${version}" resumes/work.typ
-    typst compile --input commit="${commit}" --input version="${version}" --format png resumes/work.typ
-    typst compile --input commit="${commit}" --input version="${version}" resumes/nanny.typ
-    typst compile --input commit="${commit}" --input version="${version}" --format png resumes/nanny.typ
-    typst compile --input commit="${commit}" --input version="${version}" resumes/cover-letter.typ
+    typst compile --root . --input commit="${commit}" --input version="${version}" resumes/cv.typ
+    typst compile --root . --input commit="${commit}" --input version="${version}" --format png resumes/cv.typ
+    typst compile --root . --input commit="${commit}" --input version="${version}" resumes/rep-sheet.typ
+    typst compile --root . --input commit="${commit}" --input version="${version}" resumes/tech.typ
+    typst compile --root . --input commit="${commit}" --input version="${version}" resumes/work.typ
+    typst compile --root . --input commit="${commit}" --input version="${version}" --format png resumes/work.typ
+    typst compile --root . --input commit="${commit}" --input version="${version}" resumes/nanny.typ
+    typst compile --root . --input commit="${commit}" --input version="${version}" --format png resumes/nanny.typ
+    typst compile --root . --input commit="${commit}" --input version="${version}" resumes/cover-letter.typ
 
     runHook postBuild
   '';
