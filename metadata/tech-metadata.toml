@@ -1,5 +1,5 @@
 # Tech resume overrides
-# This file is merged on top of metadata.toml via src/tech-meta.typ.
+# This file is merged on top of metadata.toml via src/meta.typ::makeMeta().
 # Only add keys here that differ from the base resume.
 
 [lang.en]

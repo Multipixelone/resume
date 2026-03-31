@@ -1,5 +1,6 @@
 #import "../src/lib.typ": cvSection, cvSkill
-#import "../src/nanny-meta.typ": nanny-metadata
+#import "../src/meta.typ": makeMeta
+#let nanny-metadata = makeMeta("nanny-metadata.toml")
 
 #let cvSection = cvSection.with(metadata: nanny-metadata)
 

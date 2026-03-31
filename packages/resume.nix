@@ -39,15 +39,15 @@ stdenv.mkDerivation {
   buildPhase = ''
     runHook preBuild
 
-    typst compile --input commit="${commit}" --input version="${version}" cv.typ
-    typst compile --input commit="${commit}" --input version="${version}" --format png cv.typ
-    typst compile --input commit="${commit}" --input version="${version}" rep-sheet.typ
-    typst compile --input commit="${commit}" --input version="${version}" tech.typ
-    typst compile --input commit="${commit}" --input version="${version}" work.typ
-    typst compile --input commit="${commit}" --input version="${version}" --format png work.typ
-    typst compile --input commit="${commit}" --input version="${version}" nanny.typ
-    typst compile --input commit="${commit}" --input version="${version}" --format png nanny.typ
-    typst compile --input commit="${commit}" --input version="${version}" cover-letter.typ
+    typst compile --input commit="${commit}" --input version="${version}" resumes/cv.typ
+    typst compile --input commit="${commit}" --input version="${version}" --format png resumes/cv.typ
+    typst compile --input commit="${commit}" --input version="${version}" resumes/rep-sheet.typ
+    typst compile --input commit="${commit}" --input version="${version}" resumes/tech.typ
+    typst compile --input commit="${commit}" --input version="${version}" resumes/work.typ
+    typst compile --input commit="${commit}" --input version="${version}" --format png resumes/work.typ
+    typst compile --input commit="${commit}" --input version="${version}" resumes/nanny.typ
+    typst compile --input commit="${commit}" --input version="${version}" --format png resumes/nanny.typ
+    typst compile --input commit="${commit}" --input version="${version}" resumes/cover-letter.typ
 
     runHook postBuild
   '';
@@ -56,15 +56,15 @@ stdenv.mkDerivation {
     runHook preInstall
 
     mkdir -p $out
-    mv cv.pdf $out/CV_FinnRutis_${version}.pdf
-    mv cv.png $out/CV_FinnRutis_${version}.png
-    mv rep-sheet.pdf $out/Rep-Sheet_FinnRutis_${version}.pdf
-    mv tech.pdf $out/Tech_CV_FinnRutis_${version}.pdf
-    mv work.pdf $out/Work_CV_FinnRutis_${version}.pdf
-    mv work.png $out/Work_CV_FinnRutis_${version}.png
-    mv nanny.pdf $out/Nanny_CV_FinnRutis_${version}.pdf
-    mv nanny.png $out/Nanny_CV_FinnRutis_${version}.png
-    mv cover-letter.pdf $out/Cover_Letter_FinnRutis_${version}.pdf
+    mv resumes/cv.pdf $out/CV_FinnRutis_${version}.pdf
+    mv resumes/cv.png $out/CV_FinnRutis_${version}.png
+    mv resumes/rep-sheet.pdf $out/Rep-Sheet_FinnRutis_${version}.pdf
+    mv resumes/tech.pdf $out/Tech_CV_FinnRutis_${version}.pdf
+    mv resumes/work.pdf $out/Work_CV_FinnRutis_${version}.pdf
+    mv resumes/work.png $out/Work_CV_FinnRutis_${version}.png
+    mv resumes/nanny.pdf $out/Nanny_CV_FinnRutis_${version}.pdf
+    mv resumes/nanny.png $out/Nanny_CV_FinnRutis_${version}.png
+    mv resumes/cover-letter.pdf $out/Cover_Letter_FinnRutis_${version}.pdf
 
     runHook postInstall
   '';
