@@ -83,12 +83,12 @@ jobs:
           copy_file "./artifacts/resume/CV_FinnRutis_*.png" "./pages/resume.png"
           copy_file "./artifacts/resume/CV_FinnRutis_*.pdf" "./pages/resume.pdf"
           copy_file "./artifacts/resume/Rep-Sheet_FinnRutis_*.pdf" "./pages/rep.pdf"
-          copy_file "./artifacts/work-resume/Work_CV_FinnRutis_*.pdf" "./pages/work-resume.pdf"
-          copy_file "./artifacts/work-resume/Work_CV_FinnRutis_*.png" "./pages/work-resume.png"
-          copy_file "./artifacts/tech-resume/Tech_CV_FinnRutis_*.pdf" "./pages/tech-resume.pdf"
-          copy_file "./artifacts/cover-letter/Cover_Letter_FinnRutis_*.pdf" "./pages/cover-letter.pdf"
-          copy_file "./artifacts/nanny-resume/Nanny_CV_FinnRutis_*.pdf" "./pages/nanny-resume.pdf"
-          copy_file "./artifacts/nanny-resume/Nanny_CV_FinnRutis_*.png" "./pages/nanny-resume.png"
+          copy_file "./artifacts/resume/Work_CV_FinnRutis_*.pdf" "./pages/work-resume.pdf"
+          copy_file "./artifacts/resume/Work_CV_FinnRutis_*.png" "./pages/work-resume.png"
+          copy_file "./artifacts/resume/Tech_CV_FinnRutis_*.pdf" "./pages/tech-resume.pdf"
+          copy_file "./artifacts/resume/Cover_Letter_FinnRutis_*.pdf" "./pages/cover-letter.pdf"
+          copy_file "./artifacts/resume/Nanny_CV_FinnRutis_*.pdf" "./pages/nanny-resume.pdf"
+          copy_file "./artifacts/resume/Nanny_CV_FinnRutis_*.png" "./pages/nanny-resume.png"
           cp "./artifacts/finn-rutis/FINN RUTIS.pdf" "./pages/FINN RUTIS.pdf" && succeeded+=("FINN RUTIS.pdf") || failed+=("FINN RUTIS.pdf")
 
           echo "Succeeded: ${succeeded[*]:-none}"
