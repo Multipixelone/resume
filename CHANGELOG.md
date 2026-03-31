@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.5.0] - 2026-03-31
+
+### 🚀 Features
+
+- Tone guidance for resume generation in [65288c1](https://github.com/Multipixelone/resume/commit/65288c19e1f9529711c36d27ed85a8ea4aac9086)
+
+### 🐛 Bug Fixes
+
+- Proper --root arguments in [4afebe5](https://github.com/Multipixelone/resume/commit/4afebe5634ba2b7669ec04781e49babc61f9a4ce)
+
+### 🚜 Refactor
+
+- Consolidate resume packages and deduplicate shared code in [db31e1f](https://github.com/Multipixelone/resume/commit/db31e1f80d74bf3e6c6b710a6a9f8291c29ebb05)
+- Move entry files to resumes/ and fix module imports in [ab8e222](https://github.com/Multipixelone/resume/commit/ab8e2225ca93ece9cb9e6472424529149f0aada8)
+- Better commit scoping instruction in [c4916a7](https://github.com/Multipixelone/resume/commit/c4916a7e20fcdc92a8e623e40a754fb148b2ad08)
+- Ditch devenv in [cc462db](https://github.com/Multipixelone/resume/commit/cc462db4721d2a087d98b77d66280cd0d697b765)
+
+### ⚙️ Miscellaneous Tasks
+
+- Bump flake inputs in [aa3eee2](https://github.com/Multipixelone/resume/commit/aa3eee2f452b7428d4765bee2f49a7a4d8468838)
+
+### 📋 Template
+
+- *(template)* Set typst root for consolidated resume build in [6d15502](https://github.com/Multipixelone/resume/commit/6d1550257212c7c872742043493f22b8ec28feed)
+
 ## [1.4.0] - 2026-03-29
 
 ### 🚀 Features
