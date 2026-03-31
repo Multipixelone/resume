@@ -4,7 +4,6 @@
     {
       self,
       nixpkgs,
-      devenv,
       ...
     }@inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
@@ -12,13 +11,9 @@
         "x86_64-linux"
         "x86_64-darwin"
       ];
-      imports = [
-        inputs.devenv.flakeModule
-      ];
       perSystem =
         {
           pkgs,
-          config,
           ...
         }:
         let
@@ -83,7 +78,7 @@
           };
         in
         {
-          devenv.shells.default = {
+          devShells.default = pkgs.mkShell {
             packages = [
               pkgs.typst
               pkgs.typstyle
@@ -105,7 +100,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    devenv.url = "github:cachix/devenv";
 
     # resume-theme = {
     #   url = "github:eddiewebb/hugo-resume";
