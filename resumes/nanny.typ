@@ -1,18 +1,18 @@
-#import "./src/lib.typ": cv
-#import "./src/meta.typ": makeMeta
+#import "../src/lib.typ": cv
+#import "../src/meta.typ": makeMeta
 #let nanny-metadata = makeMeta("nanny-metadata.toml")
 
 #let importModules(modules) = {
   for module in modules {
     include {
-      "modules/" + module + ".typ"
+      "../modules/" + module + ".typ"
     }
   }
 }
 
 #show: cv.with(
   nanny-metadata,
-  profilePhoto: image("./metadata/qr-code.png"),
+  profilePhoto: image("../metadata/qr-code.png"),
 )
 
 #importModules((

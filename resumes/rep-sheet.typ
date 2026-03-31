@@ -1,13 +1,13 @@
-#import "./src/lib.typ": cv, cvSection
-#import "./src/utils/merge.typ": mergeDicts
-#let baseMetadata = toml("./metadata/metadata.toml")
-#let repSheetMetadata = toml("./metadata/rep-sheet.toml")
+#import "../src/lib.typ": cv, cvSection
+#import "../src/utils/merge.typ": mergeDicts
+#let baseMetadata = toml("../metadata/metadata.toml")
+#let repSheetMetadata = toml("../metadata/rep-sheet.toml")
 #let metadata = mergeDicts(baseMetadata, repSheetMetadata)
 #let cvSection = cvSection.with(metadata: metadata)
 
 #show: cv.with(
   metadata,
-  // profilePhoto: image("./metadata/qr-code.png")
+  // profilePhoto: image("../metadata/qr-code.png")
 )
 #let repTable(metadata) = {
   let songStyle(str) = {

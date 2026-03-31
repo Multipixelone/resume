@@ -1,5 +1,5 @@
 # Work resume overrides
-# This file is merged on top of metadata.toml via src/work-meta.typ.
+# This file is merged on top of metadata.toml via src/meta.typ::makeMeta().
 # Only add keys here that differ from the acting resume.
 
 [lang.en]

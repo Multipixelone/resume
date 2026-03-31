@@ -1,5 +1,5 @@
 # Nanny resume overrides
-# Merged on top of metadata.toml via src/nanny-meta.typ.
+# Merged on top of metadata.toml via src/meta.typ::makeMeta().
 # Only keys that differ from the base acting resume live here.
 
 [lang.en]

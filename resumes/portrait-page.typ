@@ -1,5 +1,5 @@
-#let metadata = toml("./metadata/metadata.toml")
-#import "./src/utils/styles.typ": (
+#let metadata = toml("../metadata/metadata.toml")
+#import "../src/utils/styles.typ": (
   awesomeColors, latinFontList, latinHeaderFont, overwriteFonts, regularColors,
   setAccentColor,
 )
@@ -27,7 +27,7 @@
   stroke: none,
   row-gutter: 1em,
   align: left,
-  [#image("./src/headshot.jpg", height: 95%)],
+  [#image("../src/headshot.jpg", height: 95%)],
   [#text(font: headerFont, size: 32pt, fill: regularColors.darkgray)[#firstName]
     #h(5pt)
     #text(font: headerFont, size: 32pt)[#lastName]

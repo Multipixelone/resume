@@ -1,5 +1,6 @@
 #import "../src/lib.typ": cvEntry, cvSection
-#import "../src/work-meta.typ": work-metadata
+#import "../src/meta.typ": makeMeta
+#let work-metadata = makeMeta("work-metadata.toml")
 
 #let jobs = toml("../metadata/work-experience.toml")
 #let cvSection = cvSection.with(metadata: work-metadata)

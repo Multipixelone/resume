@@ -10,38 +10,38 @@ nix build '.#finn-rutis'   # Build composite headshot PDF (cropped CV + portrait
 nix build '.#website'      # Build portfolio website
 
 # Local dev (requires nix develop shell)
-typst compile cv.typ                  # Quick single-file compile
-typst compile --input commit="dev" --input version="2025-01-01" tech.typ
-typst watch cv.typ                    # Live preview
+typst compile resumes/cv.typ                  # Quick single-file compile
+typst compile --input commit="dev" --input version="2025-01-01" resumes/tech.typ
+typst watch resumes/cv.typ                    # Live preview
 ```
 
 All resume PDFs are built by the single `resume` Nix package (`packages/resume.nix`). The `finn-rutis` package stays separate because it needs ghostscript and pdfunite for PDF cropping/merging.
 
 ## How Resume Variants Work
 
-Each variant is a thin entry file at the repo root that:
+Each variant is a thin entry file in `resumes/` that:
 1. Loads base metadata (`metadata/metadata.toml`) merged with a variant-specific override TOML
 2. Selects which modules to include
 3. Passes the merged metadata to the shared `cv` layout from `src/lib.typ`
 
 **Pattern:**
 ```
-[entry .typ file] --> imports src/meta.typ::makeMeta("override.toml")
-                  --> merges metadata/metadata.toml + metadata/<variant>-metadata.toml
-                  --> passes merged metadata to src/lib.typ::cv()
-                  --> includes selected modules/ sections
+resumes/<variant>.typ --> imports src/meta.typ::makeMeta("override.toml")
+                      --> merges metadata/metadata.toml + metadata/<variant>-metadata.toml
+                      --> passes merged metadata to src/lib.typ::cv()
+                      --> includes selected modules/ sections
 ```
 
 ### Current Variants
 
 | File | Override TOML | Modules | Purpose |
 |------|--------------|---------|---------|
-| `cv.typ` | none (base only) | professional, educational, film, training, skills | Acting/performance resume |
-| `tech.typ` | `tech-metadata.toml` | tech-skills, education, tech-projects, work-experience | Technology/IT resume |
-| `work.typ` | `work-metadata.toml` | work-experience, education, skills | Events/operations resume |
-| `nanny.typ` | `nanny-metadata.toml` | nanny-experience, education, nanny-skills | Childcare resume |
-| `cover-letter.typ` | none | (letter body) | Cover letter |
-| `rep-sheet.typ` | none | (rep-sheet data) | Theatre repertory sheet |
+| `resumes/cv.typ` | none (base only) | professional, educational, film, training, skills | Acting/performance resume |
+| `resumes/tech.typ` | `tech-metadata.toml` | tech-skills, education, tech-projects, work-experience | Technology/IT resume |
+| `resumes/work.typ` | `work-metadata.toml` | work-experience, education, skills | Events/operations resume |
+| `resumes/nanny.typ` | `nanny-metadata.toml` | nanny-experience, education, nanny-skills | Childcare resume |
+| `resumes/cover-letter.typ` | none | (letter body) | Cover letter |
+| `resumes/rep-sheet.typ` | none | (rep-sheet data) | Theatre repertory sheet |
 
 ## Creating a New Resume Variant
 
@@ -86,24 +86,24 @@ Key override fields:
 
 ### 2. Create the entry .typ file
 
-Create `<variant>.typ` at the repo root:
+Create `resumes/<variant>.typ`:
 
 ```typst
-#import "./src/lib.typ": cv
-#import "./src/meta.typ": makeMeta
+#import "../src/lib.typ": cv
+#import "../src/meta.typ": makeMeta
 #let variant-metadata = makeMeta("<variant>-metadata.toml")
 
 #let importModules(modules) = {
   for module in modules {
     include {
-      "modules/" + module + ".typ"
+      "../modules/" + module + ".typ"
     }
   }
 }
 
 #show: cv.with(
   variant-metadata,
-  profilePhoto: image("./metadata/qr-code.png"),
+  profilePhoto: image("../metadata/qr-code.png"),
 )
 
 #importModules((
@@ -143,10 +143,14 @@ Add the new typst compile command to `packages/resume.nix` in the `buildPhase` a
 
 ```
 .
-├── cv.typ, tech.typ, work.typ, nanny.typ   # Resume entry files
-├── cover-letter.typ                         # Cover letter entry
-├── rep-sheet.typ                            # Repertory sheet entry
-├── portrait-page.typ                        # Headshot page (for finn-rutis composite)
+├── resumes/                                 # Resume entry files
+│   ├── cv.typ                               # Acting/performance resume
+│   ├── tech.typ                             # Technology/IT resume
+│   ├── work.typ                             # Events/operations resume
+│   ├── nanny.typ                            # Childcare resume
+│   ├── cover-letter.typ                     # Cover letter
+│   ├── rep-sheet.typ                        # Repertory sheet
+│   └── portrait-page.typ                    # Headshot page (for finn-rutis composite)
 ├── src/
 │   ├── lib.typ              # Main layout templates (cv, coverLetter, letter)
 │   ├── cv.typ               # CV component functions (cvSection, cvEntry, cvSkill, etc.)
