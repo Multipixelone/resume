@@ -22,30 +22,30 @@
 
 // ── Recipient ────────────────────────────────────────────────────────────────
 #let recipientName = "Hiring Manager"
-#let recipientTitle = "Title"
-#let recipientCompany = "Company Name"
-#let recipientAddress = "123 Main St, City, State 00000"
+#let recipientTitle = ""
+#let recipientCompany = "Salt & Straw"
+#let recipientAddress = "Hudson, New York City, NY 10014"
 
 #displayDate
 
-// #v(0.5em)
-// #recipientName \
-// #recipientTitle \
-// #recipientCompany \
-// #recipientAddress
+#v(0.5em)
+#recipientCompany \
+#recipientAddress
 
 #v(0.5em)
-// Dear #recipientName,
+Dear #recipientName,
 
-I'm writing to apply for the Lead performer position for your live children's shows. With my background in musical theatre, teaching, and event logistics, this role feels like a great fit.
+I am writing to express my enthusiastic interest in the scooper position for Salt & Straw's new New York City location. My connection to your brand is deeply personal, and I believe my passion for the experience you create makes me an ideal candidate to help introduce Salt & Straw to New York.
 
-Performing for kids means being ready for anything. I recently played the Cat in the Hat for my senior show at CAP21/Molloy University, which involved a lot of direct improvisation with the young audiences. I spent a good portion of the show breaking the fourth wall and pulling the kids into little games to keep them engaged. I actually started doing this kind of work back in Portland at the Northwest Children's Theatre, where I spent time as both a performer and a student teacher. I really enjoy the challenge of matching a room's energy while still keeping the kids focused and on track.
+One of the fondest memories I have as a child was my mother surprising me and two of my friends in elementary school with a trip into the city. Growing up in Portland, that meant a hike through Forest Park, with our reward being a trip to the "hip new ice cream parlor" everyone was talking about. The line at that first, solitary shop was already legendary, stretching clear around the block. When we got to the front, my mind was immediately blown by all the eclectic flavors. The first cup I ever got was a scoop of the olive oil ice cream, and I immediately fell in love with all of the flavor combinations that Salt & Straw was creating.
 
-Beyond the performance side, I know events like this need someone who can actually manage the flow of the day. As a former House & Facilities Manager for Bridgetown Conservatory and a current Student Ambassador at my university, I'm very comfortable taking charge of a space. I have plenty of experience wrangling large groups and acting as a professional point of contact for parents and clients when things get chaotic. I also leverage my background in improv to engage students and to adapt to anything when schedules inevitably change last minute.
+That day, I learned that Salt & Straw isn't just about ice cream. It's about the adventure to get there, the joy of discovery in every flavor, and the community & excitement you build while waiting in line. This understanding is exactly what I would bring to your team. I am passionate about learning the stories behind each flavor and sharing them with customers, and I am dedicated to creating the same welcoming environment that I experienced all those years ago.
 
-Since I am wrapping up my degree this spring, your weekend-based schedule works perfectly for me. I have a valid driver's license to easily commute to different venues.
+While I was born in Portland, New York is my home. Hearing that Salt & Straw was coming to this city wasn't just exciting, it felt personal. It means a piece of my past is becoming part of my future.
 
-Thanks for your time and consideration. I'd love the opportunity to chat more about the role and how my background can help your events run smoothly.
+But this isn't just about enjoying my favorite flavors again. It's about introducing them to the people I hold dear on this coast. More than anything, I want to be on the front lines of that introduction. I want to be part of the team that gets to see the look of delight on a new customer's face---the same joy I felt as a kid. I am ready to help you share that experience, one scoop at a time, bringing my enthusiasm and customer-focused attitude to every shift.
+
+Thank you for your time and consideration! I am eager to discuss how my lifelong appreciation for Salt & Straw can contribute to the success of your New York team for years to come.
 
 Sincerely,
 

@@ -1,0 +1,26 @@
+# Salt & Straw scooper resume overrides
+# Merged on top of metadata.toml via src/meta.typ::makeMeta().
+
+[lang.en]
+header_quote = "Portland-raised hospitality worker and performer relocating the energy of a packed house to a packed scoop shop."
+cv_footer = "Hospitality Resume"
+
+[layout]
+before_entry_description_skip = "-4pt"
+
+[layout.header]
+display_profile_photo = false
+
+[layout.entry]
+display_entry_society_first = false
+display_logo = false
+
+[personal.info]
+email = "work@finnrut.is"
+location = "Brooklyn, NY"
+references = "Available upon request"
+# hide acting-specific fields
+instagram = ""
+vocal-part = ""
+union = ""
+height = ""
