@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1] - 2026-04-06
+
+### 🐛 Bug Fixes
+
+- Copy built .pdf files in workflow in [1f053a6](https://github.com/Multipixelone/resume/commit/1f053a6ffa28c4a018b18d2d7280fc7b6dc7e06f)
+- Add new resumes to built artifact in [f5c608b](https://github.com/Multipixelone/resume/commit/f5c608b9c8646bcb0f2dd2ec6c7934dffa3cc105)
+
 ## [1.6.0] - 2026-04-06
 
 ### 🐛 Bug Fixes
