@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.6.0] - 2026-04-06
+
+### 🐛 Bug Fixes
+
+- No profile photo & proper makeMeta in [98f1ab6](https://github.com/Multipixelone/resume/commit/98f1ab638f0b36ef64d3e71eef992bb8bf8fe1c0)
+
+### ✍️ Content
+
+- *(content)* Add Salt & Straw scooper resume variant and cover letter in [b07ee75](https://github.com/Multipixelone/resume/commit/b07ee75f3f59fba255bc5b479a283199229acb65)
+
 ## [1.5.0] - 2026-03-31
 
 ### 🚀 Features
