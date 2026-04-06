@@ -1,5 +1,6 @@
 #import "../src/lib.typ": coverLetter
-#let metadata = toml("../metadata/metadata.toml")
+#import "../src/meta.typ": makeMeta
+#let metadata = makeMeta("saltandstraw-metadata.toml")
 
 // Build date from nix inputs (falls back to today)
 #let version = sys.inputs.at("version", default: none)
@@ -17,7 +18,7 @@
 
 #show: coverLetter.with(
   metadata,
-  profilePhoto: image("../metadata/qr-code.png"),
+  // profilePhoto: image("../metadata/qr-code.png"),
 )
 
 // ── Recipient ────────────────────────────────────────────────────────────────
