@@ -5,7 +5,7 @@ Typst-based multi-variant resume system built with Nix. Produces tailored PDFs f
 ## Build Commands
 
 ```bash
-nix build '.#resume'       # Build all resume PDFs (acting, tech, work, nanny, cover letter, rep sheet)
+nix build '.#resume'       # Build all resume PDFs (acting, tech, work, nanny, saltandstraw, cover letter, rep sheet)
 nix build '.#finn-rutis'   # Build composite headshot PDF (cropped CV + portrait page)
 nix build '.#website'      # Build portfolio website
 
@@ -40,6 +40,7 @@ resumes/<variant>.typ --> imports src/meta.typ::makeMeta("override.toml")
 | `resumes/tech.typ` | `tech-metadata.toml` | tech-skills, education, tech-projects, work-experience | Technology/IT resume |
 | `resumes/work.typ` | `work-metadata.toml` | work-experience, education, skills | Events/operations resume |
 | `resumes/nanny.typ` | `nanny-metadata.toml` | nanny-experience, education, nanny-skills | Childcare resume |
+| `resumes/saltandstraw.typ` | `saltandstraw-metadata.toml` | saltandstraw-experience, education, saltandstraw-skills | Salt & Straw scooper resume |
 | `resumes/cover-letter.typ` | none | (letter body) | Cover letter |
 | `resumes/rep-sheet.typ` | none | (rep-sheet data) | Theatre repertory sheet |
 
@@ -137,7 +138,8 @@ For data-driven modules, put the content in `metadata/<section>.toml` and load i
 
 ### 4. Add to the build
 
-Add the new typst compile command to `packages/resume.nix` in the `buildPhase` and `installPhase`.
+1. Add the new `typst compile` command to `packages/resume.nix` in the `buildPhase` (both PDF and PNG) and `installPhase` (mv both to `$out`).
+2. Add `copy_file` lines for the new variant's PDF and PNG to `.github/workflows/_build.yml` in the "Assemble pages artifact" step.
 
 ## Writing Resume Content
 
@@ -190,6 +192,7 @@ Before finalizing any resume text, verify:
 │   ├── tech.typ                             # Technology/IT resume
 │   ├── work.typ                             # Events/operations resume
 │   ├── nanny.typ                            # Childcare resume
+│   ├── saltandstraw.typ                     # Salt & Straw scooper resume
 │   ├── cover-letter.typ                     # Cover letter
 │   ├── rep-sheet.typ                        # Repertory sheet
 │   └── portrait-page.typ                    # Headshot page (for finn-rutis composite)
@@ -216,6 +219,8 @@ Before finalizing any resume text, verify:
 │   ├── voiceover.typ        # Voiceover work
 │   ├── nanny-experience.typ # Childcare experience (from nanny-experience.toml)
 │   ├── nanny-skills.typ     # Childcare skills
+│   ├── saltandstraw-experience.typ # Salt & Straw experience (from saltandstraw-experience.toml)
+│   ├── saltandstraw-skills.typ     # Salt & Straw skills
 │   ├── _education-content.typ  # Shared education entry (included by education.typ & training.typ)
 │   └── _training-content.typ   # Shared training content
 ├── metadata/
@@ -223,6 +228,8 @@ Before finalizing any resume text, verify:
 │   ├── tech-metadata.toml      # Tech resume overrides
 │   ├── work-metadata.toml      # Work resume overrides
 │   ├── nanny-metadata.toml     # Nanny resume overrides
+│   ├── saltandstraw-metadata.toml  # Salt & Straw resume overrides
+│   ├── saltandstraw-experience.toml # Salt & Straw experience data
 │   ├── work-experience.toml    # Job history data
 │   ├── tech-skills.toml        # Tech skills data
 │   ├── tech-projects.toml      # Tech project entries
