@@ -45,7 +45,10 @@
     } else { _cvFooter(metadata) },
   )
 
-  _cvHeader(metadata, profilePhoto, headerFont, regularColors, awesomeColors)
+  let showHeader = metadata.layout.header.at("display_header", default: true)
+  if showHeader {
+    _cvHeader(metadata, profilePhoto, headerFont, regularColors, awesomeColors)
+  }
   doc
 }
 

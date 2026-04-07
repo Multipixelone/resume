@@ -1,8 +1,9 @@
 #import "../src/lib.typ": cv, cvSection
 #import "../src/utils/merge.typ": mergeDicts
-#let baseMetadata = toml("../metadata/metadata.toml")
+#let base = toml("../metadata/metadata.toml")
 #let repSheetMetadata = toml("../metadata/rep-sheet.toml")
-#let metadata = mergeDicts(baseMetadata, repSheetMetadata)
+#let titlePagesOverride = toml("../metadata/title-pages-metadata.toml")
+#let metadata = mergeDicts(mergeDicts(base, repSheetMetadata), titlePagesOverride)
 #let cvSection = cvSection.with(metadata: metadata)
 
 #show: cv.with(
