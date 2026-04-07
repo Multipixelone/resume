@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.8.0] - 2026-04-07
+
+### 🚀 Features
+
+- Beginning of built title pages in [70ea939](https://github.com/Multipixelone/resume/commit/70ea9398383ea7a5cac466ef9717ba3733163620)
+
+### 🐛 Bug Fixes
+
+- Proper cv footer in [5f0b354](https://github.com/Multipixelone/resume/commit/5f0b35429dfcc30f5688b34dfe4676083a637b35)
+- Don't render cvHeader on title pages in [64423d8](https://github.com/Multipixelone/resume/commit/64423d8e710d32c527a55f034007d9c66aa353ea)
+
+### 🔧 CI
+
+- *(ci)* Copy title pages file to built artifact in [85e158c](https://github.com/Multipixelone/resume/commit/85e158cc52562b6026e969df547a2fd60381c56c)
+
 ## [1.7.1] - 2026-04-07
 
 ### 🚀 Features
