@@ -83,6 +83,7 @@ jobs:
           copy_file "./artifacts/resume/CV_FinnRutis_*.png" "./pages/resume.png"
           copy_file "./artifacts/resume/CV_FinnRutis_*.pdf" "./pages/resume.pdf"
           copy_file "./artifacts/resume/Rep-Sheet_FinnRutis_*.pdf" "./pages/rep.pdf"
+          copy_file "./artifacts/resume/Title-Pages_FinnRutis_*.pdf" "./pages/title-pages.pdf"
           copy_file "./artifacts/resume/Work_CV_FinnRutis_*.pdf" "./pages/work-resume.pdf"
           copy_file "./artifacts/resume/Work_CV_FinnRutis_*.png" "./pages/work-resume.png"
           copy_file "./artifacts/resume/Tech_CV_FinnRutis_*.pdf" "./pages/tech-resume.pdf"
