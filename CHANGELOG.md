@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.7.0] - 2026-04-07
+
+### 🐛 Bug Fixes
+
+- Formatting in [83579f5](https://github.com/Multipixelone/resume/commit/83579f58200b0fa31df5704f6f57826ecded1a3b)
+
+### 📋 Template
+
+- *(template)* Add Salt & Straw Shift Coordinator resume variant in [c0a4d39](https://github.com/Multipixelone/resume/commit/c0a4d390ffaca6bcfe851f5821c88ae0231148fa)
+
 ## [1.6.1] - 2026-04-06
 
 ### 🐛 Bug Fixes
