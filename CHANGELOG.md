@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.7.1] - 2026-04-07
+
+### 🚀 Features
+
+- Scooper -> shift coordinator in [45bf5df](https://github.com/Multipixelone/resume/commit/45bf5dfe2fb1223a453c03b987a747cbc44efb76)
+
 ## [1.7.0] - 2026-04-07
 
 ### 🐛 Bug Fixes
