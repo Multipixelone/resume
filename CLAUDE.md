@@ -20,11 +20,13 @@ All resume PDFs are built by the single `resume` Nix package (`packages/resume.n
 ## How Resume Variants Work
 
 Each variant is a thin entry file in `resumes/` that:
+
 1. Loads base metadata (`metadata/metadata.toml`) merged with a variant-specific override TOML
 2. Selects which modules to include
 3. Passes the merged metadata to the shared `cv` layout from `src/lib.typ`
 
 **Pattern:**
+
 ```
 resumes/<variant>.typ --> imports src/meta.typ::makeMeta("override.toml")
                       --> merges metadata/metadata.toml + metadata/<variant>-metadata.toml
@@ -34,15 +36,15 @@ resumes/<variant>.typ --> imports src/meta.typ::makeMeta("override.toml")
 
 ### Current Variants
 
-| File | Override TOML | Modules | Purpose |
-|------|--------------|---------|---------|
-| `resumes/cv.typ` | none (base only) | professional, educational, film, training, skills | Acting/performance resume |
-| `resumes/tech.typ` | `tech-metadata.toml` | tech-skills, education, tech-projects, work-experience | Technology/IT resume |
-| `resumes/work.typ` | `work-metadata.toml` | work-experience, education, skills | Events/operations resume |
-| `resumes/nanny.typ` | `nanny-metadata.toml` | nanny-experience, education, nanny-skills | Childcare resume |
+| File                       | Override TOML                | Modules                                                 | Purpose                     |
+| -------------------------- | ---------------------------- | ------------------------------------------------------- | --------------------------- |
+| `resumes/cv.typ`           | none (base only)             | professional, educational, film, training, skills       | Acting/performance resume   |
+| `resumes/tech.typ`         | `tech-metadata.toml`         | tech-skills, education, tech-projects, work-experience  | Technology/IT resume        |
+| `resumes/work.typ`         | `work-metadata.toml`         | work-experience, education, skills                      | Events/operations resume    |
+| `resumes/nanny.typ`        | `nanny-metadata.toml`        | nanny-experience, education, nanny-skills               | Childcare resume            |
 | `resumes/saltandstraw.typ` | `saltandstraw-metadata.toml` | saltandstraw-experience, education, saltandstraw-skills | Salt & Straw scooper resume |
-| `resumes/cover-letter.typ` | none | (letter body) | Cover letter |
-| `resumes/rep-sheet.typ` | none | (rep-sheet data) | Theatre repertory sheet |
+| `resumes/cover-letter.typ` | none                         | (letter body)                                           | Cover letter                |
+| `resumes/rep-sheet.typ`    | none                         | (rep-sheet data)                                        | Theatre repertory sheet     |
 
 ## Creating a New Resume Variant
 
@@ -78,6 +80,7 @@ height = ""
 ```
 
 Key override fields:
+
 - `header_quote` - Tagline shown under the name; tailor to the job
 - `cv_footer` - Footer label (e.g. "Technical Resume")
 - `display_profile_photo` - true/false
@@ -156,7 +159,7 @@ When creating or editing job descriptions, summaries, and other resume text, fol
 
 When a variant targets a specific job posting:
 
-- **Echo the posting's language selectively, not systematically.** If the posting says "cross-functional collaboration," you might write "worked across teams" — do NOT parrot "cross-functional collaboration" back verbatim. Mirror the *concepts*, not the exact phrasing.
+- **Echo the posting's language selectively, not systematically.** If the posting says "cross-functional collaboration," you might write "worked across teams" — do NOT parrot "cross-functional collaboration" back verbatim. Mirror the _concepts_, not the exact phrasing.
 - **Foreground relevant experience; don't fabricate it.** Reorder bullet points, emphasize different aspects of the same role, or expand on details that align with the target job. Never invent responsibilities or skills that don't exist in the base data.
 - **One or two keyword echoes per description is enough.** More than that trips ATS-gaming detectors and human suspicion alike. Scatter them across different entries rather than clustering them in one.
 - **Adjust the header quote (`header_quote`) to match the posting's core need**, but phrase it as something the candidate would actually say about themselves — not a rephrased job title.
@@ -171,7 +174,7 @@ These patterns are dead giveaways of machine-generated resume text. Do not produ
 - **Vague impact claims**: "resulting in improved efficiency" or "driving significant growth" with no numbers or specifics. Either include a real metric or leave the claim off entirely.
 - **Thesaurus cycling**: Using a different synonym for "managed" in every single bullet ("oversaw", "directed", "coordinated", "supervised") instead of just repeating "managed" when that's the accurate word.
 - **Gratuitous acronym drops and parenthetical expansions**: "Infrastructure as Code (IaC)" in every mention. Spell it out once or use the acronym — don't do both every time.
-- **Emoji or Unicode dressing**: No bullet-point Unicode symbols, no decorative characters. Plain text only.
+- **Emoji or Unicode dressing**: No bullet-point Unicode symbols, no decorative characters. Plain text only. Important: No em dashes, ever.
 
 ### Practical Checklist
 
@@ -273,18 +276,22 @@ Before finalizing any resume text, verify:
 Use Conventional Commits so `git-cliff` can parse and group changes correctly.
 
 Format:
+
 - `type(scope): short summary`
 - `type(scope)!: short summary` for breaking changes
 
 Supported `type` values include:
+
 - `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`
 
 Preferred scopes for resume/template work:
+
 - `reformat` - Layout/formatting changes
 - `template` - Template/module structure changes
 - `content` - Resume text/content changes
 
 Examples:
+
 - `feat(template): add reusable project entry block`
 - `fix(content): correct work experience date`
 - `style(reformat): tighten section spacing`
