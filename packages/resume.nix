@@ -49,6 +49,8 @@ stdenv.mkDerivation {
     typst compile --root . --input commit="${commit}" --input version="${version}" --format png resumes/nanny.typ
     typst compile --root . --input commit="${commit}" --input version="${version}" resumes/saltandstraw.typ
     typst compile --root . --input commit="${commit}" --input version="${version}" --format png resumes/saltandstraw.typ
+    typst compile --root . --input commit="${commit}" --input version="${version}" resumes/saltandstraw-sc.typ
+    typst compile --root . --input commit="${commit}" --input version="${version}" --format png resumes/saltandstraw-sc.typ
     typst compile --root . --input commit="${commit}" --input version="${version}" resumes/cover-letter.typ
 
     runHook postBuild
@@ -68,6 +70,8 @@ stdenv.mkDerivation {
     mv resumes/nanny.png $out/Nanny_CV_FinnRutis_${version}.png
     mv resumes/saltandstraw.pdf $out/SaltAndStraw_CV_FinnRutis_${version}.pdf
     mv resumes/saltandstraw.png $out/SaltAndStraw_CV_FinnRutis_${version}.png
+    mv resumes/saltandstraw-sc.pdf $out/SaltAndStraw_SC_CV_FinnRutis_${version}.pdf
+    mv resumes/saltandstraw-sc.png $out/SaltAndStraw_SC_CV_FinnRutis_${version}.png
     mv resumes/cover-letter.pdf $out/Cover_Letter_FinnRutis_${version}.pdf
 
     runHook postInstall

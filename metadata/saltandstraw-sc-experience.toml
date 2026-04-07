@@ -1,0 +1,28 @@
+[jobs]
+[jobs.house-and-facilities-manager]
+title = "House & Facilities Manager"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "October 2021 -- September 2022"
+location = "Portland, OR"
+summary = "Ran front-of-house for live shows and managed the building day-to-day. Opened and closed the space, kept it clean and stocked, and handled whatever came up during events. Was the only staff member on shift most of the time, so I got comfortable making calls on my own, staying on top of a task list, and making sure every patron left happy."
+
+[jobs.student-ambassador]
+title = "Student Ambassador"
+company = "Molloy University"
+date = "October 2022 -- May 2026"
+location = "Rockville Centre, NY"
+summary = "Give campus tours to prospective students and families, reading the room and adjusting my approach depending on who I'm talking to. Help run welcome events and open houses, setting up the space, keeping things moving, and stepping in wherever the admissions team needs me."
+
+[jobs.nw-childrens-theatre]
+title = "Performer & Camp Assistant"
+company = "Northwest Children's Theatre"
+date = "2018 -- 2021"
+location = "Portland, OR"
+summary = "Helped lead summer acting camps for kids ages 8-15. Ran warm-ups, supervised breaks, and kept the energy up for groups of 10-15 at a time. Performed alongside young cast members, which meant setting the example, staying patient, and knowing when to step in and redirect."
+
+[jobs.video-editor]
+title = "Video Editor & Sound Engineer"
+company = "Oregon Children's Theatre"
+date = "May 2020 -- July 2020"
+location = "Portland, OR"
+summary = "Small team, tight deadlines. Handled video and audio production for two professional shows, managing the whole workflow from recording day through final delivery."
