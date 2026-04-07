@@ -42,6 +42,7 @@ stdenv.mkDerivation {
     typst compile --root . --input commit="${commit}" --input version="${version}" resumes/cv.typ
     typst compile --root . --input commit="${commit}" --input version="${version}" --format png resumes/cv.typ
     typst compile --root . --input commit="${commit}" --input version="${version}" resumes/rep-sheet.typ
+    typst compile --root . --input commit="${commit}" --input version="${version}" resumes/title-pages.typ
     typst compile --root . --input commit="${commit}" --input version="${version}" resumes/tech.typ
     typst compile --root . --input commit="${commit}" --input version="${version}" resumes/work.typ
     typst compile --root . --input commit="${commit}" --input version="${version}" --format png resumes/work.typ
@@ -63,6 +64,7 @@ stdenv.mkDerivation {
     mv resumes/cv.pdf $out/CV_FinnRutis_${version}.pdf
     mv resumes/cv.png $out/CV_FinnRutis_${version}.png
     mv resumes/rep-sheet.pdf $out/Rep-Sheet_FinnRutis_${version}.pdf
+    mv resumes/title-pages.pdf $out/Title-Pages_FinnRutis_${version}.pdf
     mv resumes/tech.pdf $out/Tech_CV_FinnRutis_${version}.pdf
     mv resumes/work.pdf $out/Work_CV_FinnRutis_${version}.pdf
     mv resumes/work.png $out/Work_CV_FinnRutis_${version}.png
