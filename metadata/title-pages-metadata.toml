@@ -1,0 +1,5 @@
+[lang.en]
+cv_footer = "Title Pages"
+
+[layout.header]
+display_header = false
