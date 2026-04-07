@@ -91,6 +91,8 @@ jobs:
           copy_file "./artifacts/resume/Nanny_CV_FinnRutis_*.png" "./pages/nanny-resume.png"
           copy_file "./artifacts/resume/SaltAndStraw_CV_FinnRutis_*.pdf" "./pages/saltandstraw-resume.pdf"
           copy_file "./artifacts/resume/SaltAndStraw_CV_FinnRutis_*.png" "./pages/saltandstraw-resume.png"
+          copy_file "./artifacts/resume/SaltAndStraw_SC_CV_FinnRutis_*.pdf" "./pages/saltandstraw-sc-resume.pdf"
+          copy_file "./artifacts/resume/SaltAndStraw_SC_CV_FinnRutis_*.png" "./pages/saltandstraw-sc-resume.png"
           cp "./artifacts/finn-rutis/FINN RUTIS.pdf" "./pages/FINN RUTIS.pdf" && succeeded+=("FINN RUTIS.pdf") || failed+=("FINN RUTIS.pdf")
 
           echo "Succeeded: ${succeeded[*]:-none}"
