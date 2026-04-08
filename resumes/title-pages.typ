@@ -35,7 +35,7 @@
 
 #let titlePage(song) = {
   align(center)[
-    songStyle(#song.title) \
+    #songStyle(song.title) \
     #song.source \
     #song.composer \
     #song.type \
