@@ -23,16 +23,13 @@
     ..for (c) in songs {
       let song = c.at(1).title
       let source = c.at(1).source
-      let source_type = c.at(1).source_type
-      let preposition = if source_type == "musical" { "from " } else { "by " }
-      let source_label = if source == "" { "" } else { preposition + source }
       let composer = c.at(1).composer
       let type = c.at(1).type
       // let time = c.at(1).time
       let bars = c.at(1).bars
       (
         songStyle(song),
-        songStyle(source_label),
+        songStyle(source),
         songStyle(composer),
         songStyle(type),
         songStyle(bars),
