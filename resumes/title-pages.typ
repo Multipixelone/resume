@@ -30,7 +30,7 @@
     #text(font: headerFont, size: 36pt, fill: regularColors.darkgray, song.title)
     #if song.source != "" [
       \ #v(4pt)
-      #text(size: 14pt, fill: regularColors.lightgray, style: "italic")[from]
+      #text(size: 14pt, fill: regularColors.lightgray, style: "italic")[#if song.source_type == "musical" [from] else [by]]
       \ #v(2pt)
       #text(font: headerFont, size: 20pt, fill: regularColors.darkgray, song.source)
     ]
