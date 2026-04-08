@@ -24,22 +24,23 @@
   // profilePhoto: image("../metadata/qr-code.png")
 )
 
-#let songStyle(str) = {
-  text(
-    font: headerFont,
-    size: 32pt,
-    fill: regularColors.darkgray,
-    str,
-  )
-}
-
 #let titlePage(song) = {
-  align(center)[
-    #songStyle(song.title) \
-    #song.source \
-    #song.composer \
-    #song.type \
-    #song.bars bars
+  set page(header: none, footer: none)
+  align(center + horizon)[
+    #text(font: headerFont, size: 36pt, fill: regularColors.darkgray, song.title)
+    #if song.source != "" [
+      \ #v(4pt)
+      #text(size: 14pt, fill: regularColors.lightgray, style: "italic")[from]
+      \ #v(2pt)
+      #text(font: headerFont, size: 20pt, fill: regularColors.darkgray, song.source)
+    ]
+    #v(24pt)
+    #line(length: 30%, stroke: 0.5pt + accentColor)
+    #v(12pt)
+    #text(size: 13pt, fill: regularColors.lightgray)[
+      #song.composer \ #v(4pt)
+      #text(size: 11pt)[#song.type #h(6pt) · #h(6pt) #song.bars bars]
+    ]
   ]
   pagebreak()
 }
