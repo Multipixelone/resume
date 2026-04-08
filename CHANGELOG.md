@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.9.1] - 2026-04-08
+
+### 🚜 Refactor
+
+- Measure line to be slightly longer then composer in [583788d](https://github.com/Multipixelone/resume/commit/583788ddbb7bd487655e96daeff7f3169ef4576c)
+
 ## [1.9.0] - 2026-04-08
 
 ### 🚀 Features
