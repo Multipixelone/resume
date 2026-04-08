@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.9.2] - 2026-04-08
+
+### 🐛 Bug Fixes
+
+- Longer line width in [c17990b](https://github.com/Multipixelone/resume/commit/c17990bef2f4a3899e3dc9bc6a569ff2f9ec0ea4)
+
 ## [1.9.1] - 2026-04-08
 
 ### 🚜 Refactor
