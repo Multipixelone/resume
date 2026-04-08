@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.9.0] - 2026-04-08
+
+### 🚀 Features
+
+- Proper preposition depending on musical or artist in [85e0a10](https://github.com/Multipixelone/resume/commit/85e0a10cc61e853d99cd998b2c140e289da04e32)
+- Prepositions correctly on title-pages in [1727d41](https://github.com/Multipixelone/resume/commit/1727d41748eff0a6dd1744be82269e849edde404)
+- Much better centering in [1be850b](https://github.com/Multipixelone/resume/commit/1be850bf37bb274292fa8fc68400c89d23dd74e8)
+
+### 🐛 Bug Fixes
+
+- Remove preposition from rep-sheet in [0cd6261](https://github.com/Multipixelone/resume/commit/0cd6261ac14c7bcf68034d889fbf5dca626b6ee0)
+
+### 🚜 Refactor
+
+- Formatting of title pages nicer & centered in [a97af33](https://github.com/Multipixelone/resume/commit/a97af334cdf814d8e7fc6a1a496800fd59347e37)
+
 ## [1.8.1] - 2026-04-08
 
 ### 🐛 Bug Fixes
