@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.9.3] - 2026-04-08
+
+### 🚀 Features
+
+- Add full musical title field in [64bdd9f](https://github.com/Multipixelone/resume/commit/64bdd9f1490baa155dfcd11d10650e72175eba46)
+
+### 🐛 Bug Fixes
+
+- Closer than ever typo in [e6d9d82](https://github.com/Multipixelone/resume/commit/e6d9d82f6d59ae077f53f5092222efe1b3cd316f)
+
 ## [1.9.2] - 2026-04-08
 
 ### 🐛 Bug Fixes
