@@ -52,7 +52,10 @@
     #pad(bottom: 4em)[
       #text(size: 16pt, fill: regularColors.lightgray)[
         #song.composer \
-        #line(length: 40%, stroke: 0.9pt + accentColor)
+        #context {
+          let composerWidth = measure(text(size: 16pt)[#song.composer]).width
+          line(length: composerWidth + 1.2em, stroke: 0.9pt + accentColor)
+        }
         #text(size: 11pt)[#song.type #h(6pt) · #h(6pt) #song.bars bars]
       ]
     ]
