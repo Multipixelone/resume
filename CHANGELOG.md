@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.8.1] - 2026-04-08
+
+### 🐛 Bug Fixes
+
+- Large text for song title in [085902e](https://github.com/Multipixelone/resume/commit/085902e1a166f30fbc5225862331eec852f8d17f)
+- Function call, not text in [4fddcf1](https://github.com/Multipixelone/resume/commit/4fddcf1673229486fd3d7c4daf7f2d67a71e4275)
+
+### 🔧 CI
+
+- *(ci)* Bump actions/checkout to 6.0.2 in [5355b4c](https://github.com/Multipixelone/resume/commit/5355b4c494130f9729ea6692932482f98e44732a)
+- *(ci)* Bump all remaining actions in [d2d0a6a](https://github.com/Multipixelone/resume/commit/d2d0a6a55771acc9506cfb55ce86f4e3f706b940)
+
 ## [1.8.0] - 2026-04-07
 
 ### 🚀 Features
