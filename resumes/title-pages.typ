@@ -43,7 +43,7 @@
         font: headerFont,
         size: 20pt,
         fill: regularColors.darkgray,
-        song.source,
+        song.at("source_full", default: song.source),
       )
     ]
     // #line(length: 30%, stroke: 0.9pt + accentColor)
