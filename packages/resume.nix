@@ -13,8 +13,20 @@
   src ? null,
 }:
 let
-  # Create typst with the fontawesome package pre-installed
   typstWithPackages = typst.withPackages (ps: [ typstPackages.fontawesome ]);
+  variants = builtins.fromTOML (builtins.readFile ../variants.toml);
+
+  typstFlags = ''--root . --input commit="${commit}" --input version="${version}"'';
+
+  compileVariant = _: v: ''
+    typst compile ${typstFlags} resumes/${v.source}.typ
+    typst compile ${typstFlags} --format png resumes/${v.source}.typ resumes/${v.source}-{p}.png
+  '';
+
+  installVariant = _: v: ''
+    mv resumes/${v.source}.pdf $out/${v.dest}.pdf
+    mv resumes/${v.source}-1.png $out/${v.dest}.png
+  '';
 in
 stdenv.mkDerivation {
   pname = "finn_cv";
@@ -31,51 +43,19 @@ stdenv.mkDerivation {
 
   configurePhase = ''
     runHook preConfigure
-
-
     runHook postConfigure
   '';
 
   buildPhase = ''
     runHook preBuild
-
-    typst compile --root . --input commit="${commit}" --input version="${version}" resumes/cv.typ
-    typst compile --root . --input commit="${commit}" --input version="${version}" --format png resumes/cv.typ
-    typst compile --root . --input commit="${commit}" --input version="${version}" resumes/rep-sheet.typ
-    typst compile --root . --input commit="${commit}" --input version="${version}" resumes/title-pages.typ
-    typst compile --root . --input commit="${commit}" --input version="${version}" resumes/tech.typ
-    typst compile --root . --input commit="${commit}" --input version="${version}" resumes/work.typ
-    typst compile --root . --input commit="${commit}" --input version="${version}" --format png resumes/work.typ
-    typst compile --root . --input commit="${commit}" --input version="${version}" resumes/nanny.typ
-    typst compile --root . --input commit="${commit}" --input version="${version}" --format png resumes/nanny.typ
-    typst compile --root . --input commit="${commit}" --input version="${version}" resumes/saltandstraw.typ
-    typst compile --root . --input commit="${commit}" --input version="${version}" --format png resumes/saltandstraw.typ
-    typst compile --root . --input commit="${commit}" --input version="${version}" resumes/saltandstraw-sc.typ
-    typst compile --root . --input commit="${commit}" --input version="${version}" --format png resumes/saltandstraw-sc.typ
-    typst compile --root . --input commit="${commit}" --input version="${version}" resumes/cover-letter.typ
-
+    ${lib.concatStringsSep "\n" (lib.mapAttrsToList compileVariant variants)}
     runHook postBuild
   '';
 
   installPhase = ''
     runHook preInstall
-
     mkdir -p $out
-    mv resumes/cv.pdf $out/CV_FinnRutis_${version}.pdf
-    mv resumes/cv.png $out/CV_FinnRutis_${version}.png
-    mv resumes/rep-sheet.pdf $out/Rep-Sheet_FinnRutis_${version}.pdf
-    mv resumes/title-pages.pdf $out/Title-Pages_FinnRutis_${version}.pdf
-    mv resumes/tech.pdf $out/Tech_CV_FinnRutis_${version}.pdf
-    mv resumes/work.pdf $out/Work_CV_FinnRutis_${version}.pdf
-    mv resumes/work.png $out/Work_CV_FinnRutis_${version}.png
-    mv resumes/nanny.pdf $out/Nanny_CV_FinnRutis_${version}.pdf
-    mv resumes/nanny.png $out/Nanny_CV_FinnRutis_${version}.png
-    mv resumes/saltandstraw.pdf $out/SaltAndStraw_CV_FinnRutis_${version}.pdf
-    mv resumes/saltandstraw.png $out/SaltAndStraw_CV_FinnRutis_${version}.png
-    mv resumes/saltandstraw-sc.pdf $out/SaltAndStraw_SC_CV_FinnRutis_${version}.pdf
-    mv resumes/saltandstraw-sc.png $out/SaltAndStraw_SC_CV_FinnRutis_${version}.png
-    mv resumes/cover-letter.pdf $out/Cover_Letter_FinnRutis_${version}.pdf
-
+    ${lib.concatStringsSep "\n" (lib.mapAttrsToList installVariant variants)}
     runHook postInstall
   '';
 }

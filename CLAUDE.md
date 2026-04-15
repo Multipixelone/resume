@@ -43,8 +43,10 @@ resumes/<variant>.typ --> imports src/meta.typ::makeMeta("override.toml")
 | `resumes/work.typ`         | `work-metadata.toml`         | work-experience, education, skills                      | Events/operations resume    |
 | `resumes/nanny.typ`        | `nanny-metadata.toml`        | nanny-experience, education, nanny-skills               | Childcare resume            |
 | `resumes/saltandstraw.typ` | `saltandstraw-metadata.toml` | saltandstraw-experience, education, saltandstraw-skills | Salt & Straw scooper resume |
+| `resumes/saltandstraw-sc.typ` | `saltandstraw-sc-metadata.toml` | saltandstraw-experience, education, saltandstraw-skills | Salt & Straw (SC) resume |
 | `resumes/cover-letter.typ` | none                         | (letter body)                                           | Cover letter                |
 | `resumes/rep-sheet.typ`    | none                         | (rep-sheet data)                                        | Theatre repertory sheet     |
+| `resumes/title-pages.typ`  | `title-pages-metadata.toml`  | (title pages)                                           | Audition title pages        |
 
 ## Creating a New Resume Variant
 
@@ -139,16 +141,20 @@ If the job needs a section that doesn't exist yet, create `modules/<section>.typ
 
 For data-driven modules, put the content in `metadata/<section>.toml` and load it with `toml()`.
 
-### 4. Add to the build and checks
+### 4. Register the variant
 
-1. Add the new `typst compile` command to `packages/resume.nix` in the `buildPhase` (both PDF and PNG) and `installPhase` (mv both to `$out`).
-2. Add `copy_file` lines for the new variant's PDF and PNG to `.github/workflows/_build.yml` in the "Assemble pages artifact" step.
-3. In `packages/checks.nix`:
-   - Add the new PDF and PNG glob patterns to `expectedOutputs`
-   - Add a page count entry to `expectedPages` (or to the multi-page list if variable-length)
-   - If the variant has an override TOML, add it to `overrideFilesJSON` and `variantsJSON`
+Add an entry to `variants.toml` at the repo root:
 
-The `no-unchecked-outputs` check will fail CI if you forget step 3.
+```toml
+[my-variant]
+source = "my-variant"                          # stem of resumes/<source>.typ
+dest = "my-variant"                            # output filename stem and GitHub Pages basename
+expected_pages = 1                             # exact page count (0 = multi-page, just checks >= 1)
+check_metadata = true                          # validate merged metadata for completeness
+# override_toml = "my-variant-metadata.toml"   # only if step 1 created an override
+```
+
+That's it. `packages/resume.nix`, `packages/checks.nix`, and `.github/workflows/_build.yml` all read from this file.
 
 ## Writing Resume Content
 
@@ -259,6 +265,7 @@ Before finalizing any resume text, verify:
 │   ├── _build.yml       # Reusable build workflow (matrix over packages)
 │   └── release.yml      # Version bump + changelog + deploy
 ├── flake.nix            # Nix flake (build system entry point)
+├── variants.toml        # Variant registry (single source of truth for build + checks + CI)
 ├── VERSION              # Semantic version (e.g. 1.4.0)
 └── justfile             # just bump <patch|minor|major>
 ```

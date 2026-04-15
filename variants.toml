@@ -1,0 +1,71 @@
+# Resume variant registry — single source of truth.
+# packages/resume.nix, packages/checks.nix, and .github/workflows/_build.yml
+# all read from this file. To add a new variant, add a section here and
+# create the corresponding .typ file (and optional override TOML).
+#
+# Fields:
+#   source          — stem of the .typ file in resumes/ (required)
+#   dest            — output filename stem (without extension) for built artifacts and pages deploy (required)
+#   expected_pages  — exact page count for the PDF check; 0 = multi-page (>= 1) (required)
+#   check_metadata  — whether the variant's merged metadata is checked for completeness (required)
+#   override_toml   — override TOML filename in metadata/ (optional; omit for base-only variants)
+
+[cv]
+source = "cv"
+dest = "resume"
+expected_pages = 1
+check_metadata = true
+
+[tech]
+source = "tech"
+dest = "tech-resume"
+override_toml = "tech-metadata.toml"
+expected_pages = 2
+check_metadata = true
+
+[work]
+source = "work"
+dest = "work-resume"
+override_toml = "work-metadata.toml"
+expected_pages = 1
+check_metadata = true
+
+[nanny]
+source = "nanny"
+dest = "nanny-resume"
+override_toml = "nanny-metadata.toml"
+expected_pages = 1
+check_metadata = true
+
+[saltandstraw]
+source = "saltandstraw"
+dest = "saltandstraw-resume"
+override_toml = "saltandstraw-metadata.toml"
+expected_pages = 1
+check_metadata = true
+
+[saltandstraw-sc]
+source = "saltandstraw-sc"
+dest = "saltandstraw-sc-resume"
+override_toml = "saltandstraw-sc-metadata.toml"
+expected_pages = 1
+check_metadata = true
+
+[cover-letter]
+source = "cover-letter"
+dest = "cover-letter"
+expected_pages = 1
+check_metadata = false
+
+[rep-sheet]
+source = "rep-sheet"
+dest = "rep"
+expected_pages = 0
+check_metadata = false
+
+[title-pages]
+source = "title-pages"
+dest = "title-pages"
+override_toml = "title-pages-metadata.toml"
+expected_pages = 0
+check_metadata = false

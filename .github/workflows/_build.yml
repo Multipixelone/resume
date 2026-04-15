@@ -54,7 +54,9 @@ jobs:
       - uses: actions/checkout@v6.0.2
         with:
           ref: ${{ inputs.ref }}
-          sparse-checkout: site
+          sparse-checkout: |
+            site
+            variants.toml
       - name: Setup Pages
         if: ${{ inputs.deploy }}
         uses: actions/configure-pages@v6
@@ -85,20 +87,19 @@ jobs:
 
           mkdir -p ./pages
           cp ./site/index.html ./pages/index.html
-          copy_file "./artifacts/resume/CV_FinnRutis_*.png" "./pages/resume.png"
-          copy_file "./artifacts/resume/CV_FinnRutis_*.pdf" "./pages/resume.pdf"
-          copy_file "./artifacts/resume/Rep-Sheet_FinnRutis_*.pdf" "./pages/rep.pdf"
-          copy_file "./artifacts/resume/Title-Pages_FinnRutis_*.pdf" "./pages/title-pages.pdf"
-          copy_file "./artifacts/resume/Work_CV_FinnRutis_*.pdf" "./pages/work-resume.pdf"
-          copy_file "./artifacts/resume/Work_CV_FinnRutis_*.png" "./pages/work-resume.png"
-          copy_file "./artifacts/resume/Tech_CV_FinnRutis_*.pdf" "./pages/tech-resume.pdf"
-          copy_file "./artifacts/resume/Cover_Letter_FinnRutis_*.pdf" "./pages/cover-letter.pdf"
-          copy_file "./artifacts/resume/Nanny_CV_FinnRutis_*.pdf" "./pages/nanny-resume.pdf"
-          copy_file "./artifacts/resume/Nanny_CV_FinnRutis_*.png" "./pages/nanny-resume.png"
-          copy_file "./artifacts/resume/SaltAndStraw_CV_FinnRutis_*.pdf" "./pages/saltandstraw-resume.pdf"
-          copy_file "./artifacts/resume/SaltAndStraw_CV_FinnRutis_*.png" "./pages/saltandstraw-resume.png"
-          copy_file "./artifacts/resume/SaltAndStraw_SC_CV_FinnRutis_*.pdf" "./pages/saltandstraw-sc-resume.pdf"
-          copy_file "./artifacts/resume/SaltAndStraw_SC_CV_FinnRutis_*.png" "./pages/saltandstraw-sc-resume.png"
+
+          # Copy each variant's PDF + PNG from variants.toml
+          python3 -c "
+          import tomllib, pathlib
+          variants = tomllib.loads(pathlib.Path('variants.toml').read_text())
+          for v in variants.values():
+              print(v['dest'])
+          " | while read -r dest; do
+            copy_file "./artifacts/resume/${dest}.pdf" "./pages/${dest}.pdf"
+            copy_file "./artifacts/resume/${dest}.png" "./pages/${dest}.png"
+          done
+
+          # Separate package, not in variants.toml
           cp "./artifacts/finn-rutis/FINN RUTIS.pdf" "./pages/FINN RUTIS.pdf" && succeeded+=("FINN RUTIS.pdf") || failed+=("FINN RUTIS.pdf")
 
           echo "Succeeded: ${succeeded[*]:-none}"

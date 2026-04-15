@@ -6,58 +6,29 @@
 }:
 let
   python = pkgs.python3;
+  variants = builtins.fromTOML (builtins.readFile ../variants.toml);
 
-  # Expected page counts per PDF output.
-  # Resumes and cover letter must be exactly 1 page.
-  # Rep-sheet and title-pages are multi-page.
-  expectedPages = {
-    "cv" = 1;
-    "tech" = 2;
-    "work" = 1;
-    "nanny" = 1;
-    "saltandstraw" = 1;
-    "saltandstraw-sc" = 1;
-    "cover-letter" = 1;
-    # rep-sheet and title-pages are variable length; checked as >= 1
-  };
+  # Every variant produces both PDF and PNG
+  expectedOutputs = lib.concatLists (
+    lib.mapAttrsToList (_: v: [
+      "${v.dest}.pdf"
+      "${v.dest}.png"
+    ]) variants
+  );
 
-  # All files the resume package should produce.
-  # When you add a new resume variant, add its outputs here AND to expectedPages.
-  # The no-unchecked-outputs check will fail if you forget.
-  expectedOutputs = [
-    "CV_FinnRutis_*.pdf"
-    "CV_FinnRutis_*.png"
-    "Rep-Sheet_FinnRutis_*.pdf"
-    "Title-Pages_FinnRutis_*.pdf"
-    "Tech_CV_FinnRutis_*.pdf"
-    "Work_CV_FinnRutis_*.pdf"
-    "Work_CV_FinnRutis_*.png"
-    "Nanny_CV_FinnRutis_*.pdf"
-    "Nanny_CV_FinnRutis_*.png"
-    "Cover_Letter_FinnRutis_*.pdf"
-    "SaltAndStraw_CV_FinnRutis_*.pdf"
-    "SaltAndStraw_CV_FinnRutis_*.png"
-    "SaltAndStraw_SC_CV_FinnRutis_*.pdf"
-    "SaltAndStraw_SC_CV_FinnRutis_*.png"
-  ];
+  # Override TOMLs that should be validated for key correctness
+  overrideFilesJSON = builtins.toJSON (
+    lib.filter (f: f != null) (lib.mapAttrsToList (_: v: v.override_toml or null) variants)
+  );
 
-  overrideFilesJSON = builtins.toJSON [
-    "tech-metadata.toml"
-    "work-metadata.toml"
-    "nanny-metadata.toml"
-    "saltandstraw-metadata.toml"
-    "saltandstraw-sc-metadata.toml"
-    "title-pages-metadata.toml"
-  ];
+  # Variants whose merged metadata should be checked for completeness
+  variantsJSON = builtins.toJSON (
+    lib.mapAttrs (_: v: v.override_toml or "") (lib.filterAttrs (_: v: v.check_metadata) variants)
+  );
 
-  variantsJSON = builtins.toJSON {
-    "base" = "";
-    "tech" = "tech-metadata.toml";
-    "work" = "work-metadata.toml";
-    "nanny" = "nanny-metadata.toml";
-    "saltandstraw" = "saltandstraw-metadata.toml";
-    "saltandstraw-sc" = "saltandstraw-sc-metadata.toml";
-  };
+  # Split variants by page-count mode
+  fixedPageVariants = lib.filterAttrs (_: v: v.expected_pages > 0) variants;
+  multiPageVariants = lib.filterAttrs (_: v: v.expected_pages == 0) variants;
 
   expectedOutputsJSON = builtins.toJSON expectedOutputs;
 
@@ -243,23 +214,21 @@ in
       { }
       ''
         failed=0
-        ${lib.concatMapStringsSep "\n" (pattern: ''
-          count=$(ls ${resume}/${pattern} 2>/dev/null | wc -l)
-          if [ "$count" -eq 0 ]; then
-            echo "FAIL: no file matching ${pattern}"
-            failed=1
-          elif [ "$count" -gt 1 ]; then
-            echo "FAIL: multiple files matching ${pattern}"
-            failed=1
-          else
-            file=$(ls ${resume}/${pattern})
-            size=$(stat -c%s "$file")
-            if [ "$size" -eq 0 ]; then
-              echo "FAIL: $file is empty (0 bytes)"
+        ${lib.concatMapStringsSep "\n" (
+          filename: ''
+            file=${resume}/${filename}
+            if [ ! -f "$file" ]; then
+              echo "FAIL: missing ${filename}"
               failed=1
+            else
+              size=$(stat -c%s "$file")
+              if [ "$size" -eq 0 ]; then
+                echo "FAIL: ${filename} is empty (0 bytes)"
+                failed=1
+              fi
             fi
-          fi
-        '') expectedOutputs}
+          ''
+        ) expectedOutputs}
         if [ "$failed" -eq 1 ]; then
           exit 1
         fi
@@ -275,52 +244,42 @@ in
       }
       ''
         failed=0
+
         ${lib.concatStringsSep "\n" (
           lib.mapAttrsToList (
-            stem: expected:
-            let
-              pdfPattern =
-                {
-                  "cv" = "CV_FinnRutis_*.pdf";
-                  "tech" = "Tech_CV_FinnRutis_*.pdf";
-                  "work" = "Work_CV_FinnRutis_*.pdf";
-                  "nanny" = "Nanny_CV_FinnRutis_*.pdf";
-                  "saltandstraw" = "SaltAndStraw_CV_FinnRutis_*.pdf";
-                  "saltandstraw-sc" = "SaltAndStraw_SC_CV_FinnRutis_*.pdf";
-                  "cover-letter" = "Cover_Letter_FinnRutis_*.pdf";
-                }
-                .${stem};
-            in
-            ''
-              pdf=$(ls ${resume}/${pdfPattern} 2>/dev/null | head -1)
-              if [ -n "$pdf" ]; then
+            name: v: ''
+              pdf=${resume}/${v.dest}.pdf
+              if [ -f "$pdf" ]; then
                 pages=$(qpdf --show-npages "$pdf")
-                if [ "$pages" -ne ${toString expected} ]; then
-                  echo "FAIL: ${stem} has $pages page(s), expected ${toString expected}"
+                if [ "$pages" -ne ${toString v.expected_pages} ]; then
+                  echo "FAIL: ${name} has $pages page(s), expected ${toString v.expected_pages}"
                   failed=1
                 else
-                  echo "OK: ${stem} = $pages page(s)"
+                  echo "OK: ${name} = $pages page(s)"
                 fi
               else
-                echo "SKIP: ${stem} PDF not found (caught by output-files check)"
+                echo "SKIP: ${name} PDF not found (caught by output-files check)"
               fi
             ''
-          ) expectedPages
+          ) fixedPageVariants
         )}
 
-        # Multi-page PDFs: just check they have at least 1 page
-        for pattern in "Rep-Sheet_FinnRutis_*.pdf" "Title-Pages_FinnRutis_*.pdf"; do
-          pdf=$(ls ${resume}/$pattern 2>/dev/null | head -1)
-          if [ -n "$pdf" ]; then
-            pages=$(qpdf --show-npages "$pdf")
-            if [ "$pages" -lt 1 ]; then
-              echo "FAIL: $pattern has 0 pages"
-              failed=1
-            else
-              echo "OK: $pattern = $pages page(s)"
-            fi
-          fi
-        done
+        ${lib.concatStringsSep "\n" (
+          lib.mapAttrsToList (
+            name: v: ''
+              pdf=${resume}/${v.dest}.pdf
+              if [ -f "$pdf" ]; then
+                pages=$(qpdf --show-npages "$pdf")
+                if [ "$pages" -lt 1 ]; then
+                  echo "FAIL: ${name} has 0 pages"
+                  failed=1
+                else
+                  echo "OK: ${name} = $pages page(s)"
+                fi
+              fi
+            ''
+          ) multiPageVariants
+        )}
 
         if [ "$failed" -eq 1 ]; then
           exit 1
@@ -331,7 +290,6 @@ in
 
   # ── 6. No unchecked outputs ─────────────────────────────────────────────────
   # Fails if the resume package produces files not listed in expectedOutputs.
-  # This catches new variants added to resume.nix but not to checks.nix.
   no-unchecked-outputs =
     pkgs.runCommandLocal "check-no-unchecked-outputs"
       {
