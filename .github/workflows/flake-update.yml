@@ -25,4 +25,4 @@ jobs:
           commit-msg: "chore(deps): update flake.lock"
           pr-assignees: Multipixelone
           pr-labels: automerge
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
