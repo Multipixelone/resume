@@ -1,0 +1,26 @@
+name: Flake Update
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * 1" # Every Monday at 6:00 UTC
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-flake-lock:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6.0.2
+      - name: Install Nix
+        uses: nixbuild/nix-quick-install-action@v34
+      - name: Update flake.lock
+        uses: DeterminateSystems/update-flake-lock@v24
+        with:
+          pr-title: "chore(deps): update flake.lock"
+          commit-msg: "chore(deps): update flake.lock"
+          pr-assignees: Multipixelone
+          pr-labels: automerge
+          token: ${{ secrets.GITHUB_TOKEN }}
