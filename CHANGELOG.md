@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.9.4] - 2026-04-15
+
+### 🚀 Features
+
+- Nix flake check in CI in [f1be2e2](https://github.com/Multipixelone/resume/commit/f1be2e29d11453888631e4063785f51f0d28aecb)
+- Start of landing page in [ab0bbac](https://github.com/Multipixelone/resume/commit/ab0bbac4ce5e98e8af343bbbc13db8b85cb53c47)
+
+### 🐛 Bug Fixes
+
+- *(deps)* Update dependency astro to v6 (#24) in [350d3fa](https://github.com/Multipixelone/resume/commit/350d3fa570d7f14039b55330b2fdfa42bf4946a2)
+- Persistent-credentials false in [238ccf1](https://github.com/Multipixelone/resume/commit/238ccf16e80009b5fc31c4b384aa6cad2c728d9b)
+
+### ⚙️ Miscellaneous Tasks
+
+- Configure Renovate (#19) in [d2b3e08](https://github.com/Multipixelone/resume/commit/d2b3e08757eb2d3ffaaa9b7e21ca95603853596e)
+- *(deps)* Update actions/upload-pages-artifact action to v5 (#21) in [12c4209](https://github.com/Multipixelone/resume/commit/12c42092848e304f90f31edd408f72c1a64cc365)
+- *(deps)* Update softprops/action-gh-release action to v3 (#23) in [e427a6a](https://github.com/Multipixelone/resume/commit/e427a6a5d0a341a07f81ee955a6e1e3e65c976aa)
+- Auto bump flake lock in [5efd4b2](https://github.com/Multipixelone/resume/commit/5efd4b2dd646f8831713114f542ea269e681d981)
+- *(deps)* Update determinatesystems/update-flake-lock action to v28 (#25) in [0655011](https://github.com/Multipixelone/resume/commit/06550119b63eaaf874011193b57e480df1d662b8)
+
+### 🔧 CI
+
+- *(ci)* Use GH_TOKEN in [608ae8e](https://github.com/Multipixelone/resume/commit/608ae8e12c5889d2e78f4d9709e5b280fdd24972)
+
 ## [1.9.3] - 2026-04-08
 
 ### 🚀 Features
