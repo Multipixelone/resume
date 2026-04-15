@@ -19,7 +19,7 @@ jobs:
       - name: Install Nix
         uses: nixbuild/nix-quick-install-action@v34
       - name: Update flake.lock
-        uses: DeterminateSystems/update-flake-lock@v24
+        uses: DeterminateSystems/update-flake-lock@v28
         with:
           pr-title: "chore(deps): update flake.lock"
           commit-msg: "chore(deps): update flake.lock"
