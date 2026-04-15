@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finn Rutis - Resumes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --concrete: #606060;
+      --darkgray: #212529;
+      --lightgray: #343a40;
+      --subtlegray: #ededee;
+      --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      --card-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.14);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+      color: var(--darkgray);
+      background: #fafafa;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1.5rem 2rem;
+    }
+
+    header h1 {
+      font-family: 'EB Garamond', serif;
+      font-weight: 600;
+      font-size: 2.8rem;
+      letter-spacing: 0.04em;
+      color: var(--darkgray);
+    }
+
+    header .pronouns {
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      color: var(--concrete);
+      margin-top: 0.25rem;
+    }
+
+    header .tagline {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--lightgray);
+      margin-top: 0.75rem;
+      max-width: 36em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .divider {
+      width: 3rem;
+      height: 2px;
+      background: var(--concrete);
+      margin: 1.5rem auto 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      box-shadow: var(--card-shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .card a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .card .preview {
+      background: var(--subtlegray);
+      aspect-ratio: 8.5 / 11;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .card .preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card .preview .placeholder {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.3rem;
+      color: var(--concrete);
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .card .info {
+      padding: 0.9rem 1rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card .info .title {
+      font-family: 'EB Garamond', serif;
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--darkgray);
+    }
+
+    .card .info .subtitle {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--concrete);
+      margin-top: 0.15rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--concrete);
+      border-top: 1px solid var(--subtlegray);
+    }
+
+    footer a {
+      color: var(--lightgray);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 2.2rem; }
+      .grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; padding: 0 1rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Finn Rutis</h1>
+    <div class="pronouns">they / them</div>
+    <p class="tagline">Musical theatre performer &amp; voiceover artist interested in illuminating unconscious parts of the human experience.</p>
+    <div class="divider"></div>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <a href="resume.pdf">
+        <div class="preview"><img src="resume.png" alt="Artistic Resume preview"></div>
+        <div class="info">
+          <div class="title">Artistic Resume</div>
+          <div class="subtitle">Theatre &amp; performance</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="tech-resume.pdf">
+        <div class="preview"><div class="placeholder">PDF</div></div>
+        <div class="info">
+          <div class="title">Technical Resume</div>
+          <div class="subtitle">Technology &amp; IT</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="work-resume.pdf">
+        <div class="preview"><img src="work-resume.png" alt="Work Resume preview"></div>
+        <div class="info">
+          <div class="title">Work Resume</div>
+          <div class="subtitle">Events &amp; operations</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="nanny-resume.pdf">
+        <div class="preview"><img src="nanny-resume.png" alt="Nanny Resume preview"></div>
+        <div class="info">
+          <div class="title">Nanny Resume</div>
+          <div class="subtitle">Childcare</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="saltandstraw-resume.pdf">
+        <div class="preview"><img src="saltandstraw-resume.png" alt="Salt & Straw Resume preview"></div>
+        <div class="info">
+          <div class="title">Salt &amp; Straw Resume</div>
+          <div class="subtitle">Scooper</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="saltandstraw-sc-resume.pdf">
+        <div class="preview"><img src="saltandstraw-sc-resume.png" alt="Salt & Straw SC Resume preview"></div>
+        <div class="info">
+          <div class="title">Salt &amp; Straw SC Resume</div>
+          <div class="subtitle">Shift coordinator</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="cover-letter.pdf">
+        <div class="preview"><div class="placeholder">PDF</div></div>
+        <div class="info">
+          <div class="title">Cover Letter</div>
+          <div class="subtitle">General</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="rep.pdf">
+        <div class="preview"><div class="placeholder">PDF</div></div>
+        <div class="info">
+          <div class="title">Repertory Sheet</div>
+          <div class="subtitle">Song list</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="FINN RUTIS.pdf">
+        <div class="preview"><div class="placeholder">PDF</div></div>
+        <div class="info">
+          <div class="title">Headshot Composite</div>
+          <div class="subtitle">CV &amp; portrait</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <a href="https://github.com/Multipixelone/resume">Source on GitHub</a>
+  </footer>
+</body>
+</html>
