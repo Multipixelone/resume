@@ -222,7 +222,12 @@
   let commitStyle(str) = {
     text(size: 6pt, fill: rgb("#CCCCCC"), font: "PragmataPro Mono Liga", str)
   }
-  (commit: commit, buildDate: buildDate, footerStyle: footerStyle, commitStyle: commitStyle)
+  (
+    commit: commit,
+    buildDate: buildDate,
+    footerStyle: footerStyle,
+    commitStyle: commitStyle,
+  )
 }
 
 /// Insert the footer section of the CV.
@@ -238,7 +243,9 @@
     inset: -5pt,
     stroke: none,
     (f.footerStyle)([#footerText]),
-    [#(f.commitStyle)([#f.commit]) #h(1pt) #(f.footerStyle)([Last Updated #f.buildDate])],
+    [#(f.commitStyle)([#f.commit]) #h(1pt) #(f.footerStyle)(
+        [Last Updated #f.buildDate],
+      )],
   )
 }
 
@@ -255,7 +262,9 @@
     inset: -5pt,
     stroke: none,
     (f.footerStyle)([#footerText]),
-    [#(f.commitStyle)([#f.commit]) #h(1pt) #(f.footerStyle)([Last Updated #f.buildDate])],
+    [#(f.commitStyle)([#f.commit]) #h(1pt) #(f.footerStyle)(
+        [Last Updated #f.buildDate],
+      )],
   )
 }
 

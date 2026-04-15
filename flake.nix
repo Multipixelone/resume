@@ -76,6 +76,10 @@
           website = pkgs.callPackage ./packages/website.nix {
             inherit inputs version websiteRoot;
           };
+          checks = import ./packages/checks.nix {
+            inherit (pkgs) lib;
+            inherit pkgs src resume;
+          };
         in
         {
           devShells.default = pkgs.mkShell {
@@ -94,6 +98,17 @@
             resume = forceLocalBuild resume;
             finn-rutis = forceLocalBuild finnRutis;
             website = forceLocalBuild website;
+          };
+
+          checks = {
+            inherit (checks)
+              typstyle
+              toml-validity
+              metadata-completeness
+              output-files
+              pdf-page-count
+              no-unchecked-outputs
+              ;
           };
         };
     };

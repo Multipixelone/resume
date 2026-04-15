@@ -22,6 +22,9 @@ header_font = "EB Garamond"
 # Optional values: left, center, right
 header_align = "left"
 
+# Decide if you want to display the header at all
+display_header = true
+
 # Decide if you want to display profile photo or not
 display_profile_photo = true
 

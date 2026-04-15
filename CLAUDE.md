@@ -139,10 +139,16 @@ If the job needs a section that doesn't exist yet, create `modules/<section>.typ
 
 For data-driven modules, put the content in `metadata/<section>.toml` and load it with `toml()`.
 
-### 4. Add to the build
+### 4. Add to the build and checks
 
 1. Add the new `typst compile` command to `packages/resume.nix` in the `buildPhase` (both PDF and PNG) and `installPhase` (mv both to `$out`).
 2. Add `copy_file` lines for the new variant's PDF and PNG to `.github/workflows/_build.yml` in the "Assemble pages artifact" step.
+3. In `packages/checks.nix`:
+   - Add the new PDF and PNG glob patterns to `expectedOutputs`
+   - Add a page count entry to `expectedPages` (or to the multi-page list if variable-length)
+   - If the variant has an override TOML, add it to `overrideFilesJSON` and `variantsJSON`
+
+The `no-unchecked-outputs` check will fail CI if you forget step 3.
 
 ## Writing Resume Content
 
