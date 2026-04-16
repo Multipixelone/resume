@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.3] - 2026-04-16
+
+### 🚀 Features
+
+- Pull cards from variants toml in [de75925](https://github.com/Multipixelone/resume/commit/de759259fef13f3be0fa5372e06e8ef42f52fdca)
+
 ## [2.0.2] - 2026-04-16
 
 ### 🐛 Bug Fixes
