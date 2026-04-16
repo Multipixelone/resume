@@ -86,7 +86,40 @@ jobs:
           }
 
           mkdir -p ./pages
-          cp ./site/index.html ./pages/index.html
+
+          # Generate index.html with variant cards from variants.toml
+          python3 -c "
+          import tomllib, pathlib, html, os
+
+          variants = tomllib.loads(pathlib.Path('variants.toml').read_text())
+          template = pathlib.Path('site/index.html').read_text()
+
+          cards = []
+          for v in variants.values():
+              if v.get('site_hidden', False):
+                  continue
+              dest = v['dest']
+              title = html.escape(v.get('title', dest))
+              subtitle = html.escape(v.get('subtitle', ''))
+              png = f'./artifacts/resume/{dest}.png'
+              has_preview = os.path.isfile(png)
+              if has_preview:
+                  preview = f'<img src=\"{dest}.png\" alt=\"{title} preview\">'
+              else:
+                  preview = '<div class=\"placeholder\">PDF</div>'
+              cards.append(f'''    <div class=\"card\">
+                <a href=\"{dest}.pdf\">
+                  <div class=\"preview\">{preview}</div>
+                  <div class=\"info\">
+                    <div class=\"title\">{title}</div>
+                    <div class=\"subtitle\">{subtitle}</div>
+                  </div>
+                </a>
+              </div>''')
+
+          output = template.replace('<!-- VARIANT_CARDS -->', '\n'.join(cards))
+          pathlib.Path('./pages/index.html').write_text(output)
+          "
 
           # Copy each variant's PDF + PNG from variants.toml
           python3 -c "
