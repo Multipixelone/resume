@@ -1,0 +1,75 @@
+name: Post-Release
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  detect:
+    name: detect release commit
+    runs-on: ubuntu-latest
+    outputs:
+      is_release: ${{ steps.check.outputs.is_release }}
+      version: ${{ steps.check.outputs.version }}
+    steps:
+      - name: Check commit message
+        id: check
+        run: |
+          msg=$(echo "${{ github.event.head_commit.message }}" | head -1)
+          if echo "$msg" | grep -qE '^chore\(release\): v[0-9]+\.[0-9]+\.[0-9]+'; then
+            version=$(echo "$msg" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+            echo "is_release=true" >> "$GITHUB_OUTPUT"
+            echo "version=$version" >> "$GITHUB_OUTPUT"
+          else
+            echo "is_release=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  tag-and-release:
+    name: tag and create release
+    needs: detect
+    if: needs.detect.outputs.is_release == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Create and push tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "v${{ needs.detect.outputs.version }}"
+          git push origin "v${{ needs.detect.outputs.version }}"
+
+      - name: Generate release notes
+        uses: orhun/git-cliff-action@v4
+        id: changelog
+        with:
+          args: --verbose --latest --strip header
+        env:
+          GITHUB_REPO: ${{ github.repository }}
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: v${{ needs.detect.outputs.version }}
+          name: v${{ needs.detect.outputs.version }}
+          body: ${{ steps.changelog.outputs.content }}
+          make_latest: true
+
+  build-and-deploy:
+    needs: [detect, tag-and-release]
+    if: needs.detect.outputs.is_release == 'true'
+    uses: ./.github/workflows/_build.yml
+    with:
+      deploy: true
