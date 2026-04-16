@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.0.6] - 2026-04-16
+
+### 🐛 Bug Fixes
+
+- Add title & subtitle to title-page release in [6ae9011](https://github.com/Multipixelone/resume/commit/6ae90118df2c70dc05a9a5c957d8adf1ccc4744e)
+
+### 🚜 Refactor
+
+- Reword subtitle of rep-sheet in [270cc7f](https://github.com/Multipixelone/resume/commit/270cc7f8d85e08d646bc85ebfe2cec51e0939fb0)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update dependency astro to v6.1.7 (#29) in [4939c9c](https://github.com/Multipixelone/resume/commit/4939c9c44bd7586836587982dbc539e970bd0234)
+
 ## [2.0.5] - 2026-04-16
 
 ### 🐛 Bug Fixes
