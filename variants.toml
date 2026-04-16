@@ -87,4 +87,6 @@ source = "title-pages"
 dest = "title-pages"
 override_toml = "title-pages-metadata.toml"
 expected_pages = 0
+title = "Title Pages"
+subtitle = "MT Book title pages"
 check_metadata = false
