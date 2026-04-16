@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.2] - 2026-04-16
+
+### 🐛 Bug Fixes
+
+- Add read support to PR token in [4c47427](https://github.com/Multipixelone/resume/commit/4c47427e387e5c76969bfb6dec829c2ef675c6c0)
+
 ## [2.0.1] - 2026-04-16
 
 ### 🔧 CI
