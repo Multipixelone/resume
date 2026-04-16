@@ -40,10 +40,10 @@ jobs:
 
       - name: Generate release notes
         uses: orhun/git-cliff-action@v4
-        id: changelog
         with:
           args: --verbose --latest --strip header
         env:
+          OUTPUT: RELEASE_NOTES.md
           GITHUB_REPO: ${{ github.repository }}
 
       - name: Create GitHub release
@@ -51,7 +51,7 @@ jobs:
         with:
           tag_name: v${{ steps.version.outputs.version }}
           name: v${{ steps.version.outputs.version }}
-          body: ${{ steps.changelog.outputs.content }}
+          body_path: RELEASE_NOTES.md
           make_latest: true
 
   build-and-deploy:
