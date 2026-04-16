@@ -88,4 +88,3 @@ dest = "title-pages"
 override_toml = "title-pages-metadata.toml"
 expected_pages = 0
 check_metadata = false
-site_hidden = true
