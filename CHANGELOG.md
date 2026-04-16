@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.1] - 2026-04-16
+
+### 🔧 CI
+
+- *(ci)* Properly create GH release in [77c30d9](https://github.com/Multipixelone/resume/commit/77c30d993f496b92628933571c35cfe01ef900e5)
+
 ## [2.0.0] - 2026-04-16
 
 ### 🐛 Bug Fixes
