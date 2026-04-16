@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.5] - 2026-04-16
+
+### 🐛 Bug Fixes
+
+- Don't hide title-pages from site in [87ec10a](https://github.com/Multipixelone/resume/commit/87ec10a2d6e522a51cbd334c82768b964491b352)
+
 ## [2.0.3] - 2026-04-16
 
 ### 🚀 Features
