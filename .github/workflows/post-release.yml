@@ -1,6 +1,7 @@
 name: Post-Release
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - main
 
@@ -14,31 +15,17 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  detect:
-    name: detect release commit
-    runs-on: ubuntu-latest
-    outputs:
-      is_release: ${{ steps.check.outputs.is_release }}
-      version: ${{ steps.check.outputs.version }}
-    steps:
-      - name: Check commit message
-        id: check
-        run: |
-          msg=$(echo "${{ github.event.head_commit.message }}" | head -1)
-          if echo "$msg" | grep -qE '^chore\(release\): v[0-9]+\.[0-9]+\.[0-9]+'; then
-            version=$(echo "$msg" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
-            echo "is_release=true" >> "$GITHUB_OUTPUT"
-            echo "version=$version" >> "$GITHUB_OUTPUT"
-          else
-            echo "is_release=false" >> "$GITHUB_OUTPUT"
-          fi
-
   tag-and-release:
     name: tag and create release
-    needs: detect
-    if: needs.detect.outputs.is_release == 'true'
+    if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'release/v')
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
     steps:
+      - name: Extract version
+        id: version
+        run: echo "version=${GITHUB_HEAD_REF#release/v}" >> "$GITHUB_OUTPUT"
+
       - name: Checkout repository
         uses: actions/checkout@v6.0.2
         with:
@@ -48,8 +35,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag "v${{ needs.detect.outputs.version }}"
-          git push origin "v${{ needs.detect.outputs.version }}"
+          git tag "v${{ steps.version.outputs.version }}"
+          git push origin "v${{ steps.version.outputs.version }}"
 
       - name: Generate release notes
         uses: orhun/git-cliff-action@v4
@@ -62,14 +49,14 @@ jobs:
       - name: Create GitHub release
         uses: softprops/action-gh-release@v3
         with:
-          tag_name: v${{ needs.detect.outputs.version }}
-          name: v${{ needs.detect.outputs.version }}
+          tag_name: v${{ steps.version.outputs.version }}
+          name: v${{ steps.version.outputs.version }}
           body: ${{ steps.changelog.outputs.content }}
           make_latest: true
 
   build-and-deploy:
-    needs: [detect, tag-and-release]
-    if: needs.detect.outputs.is_release == 'true'
+    needs: tag-and-release
+    if: needs.tag-and-release.result == 'success'
     uses: ./.github/workflows/_build.yml
     with:
       deploy: true
