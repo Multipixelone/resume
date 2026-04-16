@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.0.0] - 2026-04-16
+
+### 🐛 Bug Fixes
+
+- Do it a more semantically correct way in [ea6ca6c](https://github.com/Multipixelone/resume/commit/ea6ca6ceaf4ffd12d0911b38259749e5eceb2217)
+
+### 🚜 Refactor
+
+- Main variants toml file in [03eeb75](https://github.com/Multipixelone/resume/commit/03eeb7584f05633f1256b78a9824a20c6b6fbfbe)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update flake.lock (#28) in [6fdc999](https://github.com/Multipixelone/resume/commit/6fdc999ece04632dc2fca6b31795bc2d060436ad)
+
+### 🔧 CI
+
+- *(ci)* Automerge ci step in [05d5f7a](https://github.com/Multipixelone/resume/commit/05d5f7a5527437df46c8971ca872bdbcbed4e87d)
+- *(ci)* Release to PR in [576e461](https://github.com/Multipixelone/resume/commit/576e461290ba4c6a1c50889bcf483ea5cb7a3394)
+
 ## [1.9.4] - 2026-04-15
 
 ### 🚀 Features
