@@ -80,7 +80,7 @@ dest = "rep"
 expected_pages = 0
 check_metadata = false
 title = "Repertory Sheet"
-subtitle = "Song list"
+subtitle = "MT Book song list"
 
 [title-pages]
 source = "title-pages"
