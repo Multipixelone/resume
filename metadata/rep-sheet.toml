@@ -150,7 +150,7 @@ source_type = "artist"
 composer = "Murray Grand"
 type = "Uptempo"
 bars = "32"
-[songs.specialty.noone]
+[songs.speciality.noone]
 title = "No One Has to Know"
 source = "Mrs. Maisel"
 source_full = "The Marvelous Mrs. Maisel"
