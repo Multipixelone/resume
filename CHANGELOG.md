@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.1.1] - 2026-04-17
+
+### 🐛 Bug Fixes
+
+- Typo in speciality in [6f62f32](https://github.com/Multipixelone/resume/commit/6f62f3240209ee81d5fc836426f071706af863dd)
+
 ## [2.1.0] - 2026-04-17
 
 ### 🚀 Features
