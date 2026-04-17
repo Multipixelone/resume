@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.1.0] - 2026-04-17
+
+### 🚀 Features
+
+- Add love me, love me not in [13f0487](https://github.com/Multipixelone/resume/commit/13f0487d42f42f1e729f5e717b40d977417584df)
+
+### 🚜 Refactor
+
+- Move no one has to know to specialty in [067d3a0](https://github.com/Multipixelone/resume/commit/067d3a00348e8914bc768025adc7ddbfe6fce913)
+
 ## [2.0.6] - 2026-04-16
 
 ### 🐛 Bug Fixes
