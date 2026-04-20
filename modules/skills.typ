@@ -6,7 +6,7 @@
 
 #cvSkill(
   type: [Special Skills],
-  info: [Ukulele, Fantastic Whistler, Beatboxing, Drivers License & Passport, Manual Transmission Driving, Home Studio (Scarlett 8i6, Blue Bluebird, Audition)],
+  info: [Ukulele, Fantastic Whistler, Beatboxing, Driver's License & Passport, Manual Transmission Driving, Home Studio (Scarlett 8i6, Blue Bluebird, Adobe Audition), G2-G4 vocal range, falsetto to C5],
 )
 
 #cvSkill(
@@ -23,4 +23,3 @@
   type: [Languages],
   info: [English, Intermediate ASL],
 )
-
