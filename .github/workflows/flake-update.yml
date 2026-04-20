@@ -2,7 +2,7 @@ name: Flake Update
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 6 * * 1" # Every Monday at 6:00 UTC
+    - cron: "0 0 1-31/3 * *" # runs every third day
 
 permissions:
   contents: write
