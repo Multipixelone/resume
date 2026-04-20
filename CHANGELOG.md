@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.1.3] - 2026-04-20
+
+### 🚀 Features
+
+- Add vocal range to special skills in [f76e86d](https://github.com/Multipixelone/resume/commit/f76e86d1f09ef930de9b9d4e17a7a18ccfa02ac3)
+
+### 🐛 Bug Fixes
+
+- Typographical error in samantha in [44fc438](https://github.com/Multipixelone/resume/commit/44fc438238f314436b75e376d204a8480bc60e40)
+
+### 🚜 Refactor
+
+- Don't display nonunion status in [f9c1c2f](https://github.com/Multipixelone/resume/commit/f9c1c2f3528162b71c7ca633f05ae0bc292270ee)
+
+### ⚙️ Miscellaneous Tasks
+
+- Update flake automatically every 3rd day in [3d20307](https://github.com/Multipixelone/resume/commit/3d203071c6d6e2e110c661c0e09311d972458d03)
+
 ## [2.1.2] - 2026-04-20
 
 ### ⚙️ Miscellaneous Tasks
