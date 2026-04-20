@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.1.2] - 2026-04-20
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update flake.lock (#42) in [4a73d2a](https://github.com/Multipixelone/resume/commit/4a73d2af37d3dca68339dea8093db1051983123e)
+- *(deps)* Update dependency astro to v6.1.8 (#39) in [3384424](https://github.com/Multipixelone/resume/commit/338442486ace9c09b4545c3c8ce497aa23453661)
+
+### 🔧 CI
+
+- *(ci)* Enable auto merge on flake lock update in [2fa3aab](https://github.com/Multipixelone/resume/commit/2fa3aab51ac5c9dc6fa034177384de59953c1af3)
+- *(ci)* Squash flake lock update in [11f1809](https://github.com/Multipixelone/resume/commit/11f18096291e771f29cb73b546da3cb2c35c68dd)
+
 ## [2.1.1] - 2026-04-17
 
 ### 🐛 Bug Fixes
