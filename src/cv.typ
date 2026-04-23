@@ -616,8 +616,8 @@
   )
 
   if hasUpcoming {
-    v(-4pt)
-    pad(left: 3.5pt, text(size: 7.5pt, style: "italic")[\*upcoming])
+    v(-8pt)
+    align(right, text(size: 7.5pt, style: "italic")[\*upcoming])
   }
 }
 /// Add a Honor to the CV.
