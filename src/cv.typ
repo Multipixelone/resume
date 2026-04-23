@@ -617,7 +617,7 @@
 
   if hasUpcoming {
     v(-8pt)
-    align(right, text(size: 7.5pt, style: "italic")[\*upcoming])
+    align(right, text(size: 7.5pt, style: "italic")[\* upcoming])
     v(-11pt)
   }
 }
