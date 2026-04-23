@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.2.0] - 2026-04-23
+
+### 🐛 Bug Fixes
+
+- More title space in [5f28002](https://github.com/Multipixelone/resume/commit/5f280020cd2c7b22ba08e7d9206b0d5efeabc72a)
+- Lowercase the in [c451b8f](https://github.com/Multipixelone/resume/commit/c451b8ffaecfff573313be1014571ecbf2932ec3)
+- Pull next section tighter after upcoming in [69c24c9](https://github.com/Multipixelone/resume/commit/69c24c9ae4383f8bba053b08f9ad55832f6c9a4f)
+
+### 🚜 Refactor
+
+- Align upcoming to right in [ef4c99c](https://github.com/Multipixelone/resume/commit/ef4c99c12347798945f0a9c061abcaf81dae3bea)
+
 ## [2.1.4] - 2026-04-23
 
 ### 🚀 Features
