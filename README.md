@@ -1,13 +1,16 @@
-# resume
-
-I maintain several versions of my resume for different kinds of work — acting, tech, childcare, food service, and more. This system lets me keep all the content in one place and generate tailored PDFs from it. It's built with [Typst](https://typst.app/) for typesetting and [Nix flakes](https://nixos.wiki/wiki/Flakes) for reproducible builds, and it deploys to GitHub Pages on every versioned release.
+<h1 align="center">resume</h1>
+<div align="center">
 
 [![Build](https://img.shields.io/github/actions/workflow/status/Multipixelone/resume/ci.yml?style=for-the-badge&logo=github&label=build&color=a6e3a1&labelColor=313244&logoColor=cdd6f4)](https://github.com/Multipixelone/resume/actions)
-[![Version](https://img.shields.io/github/v/tag/Multipixelone/resume?style=for-the-badge&label=version&color=cba6f7&labelColor=313244)](VERSION)
-[![License](https://img.shields.io/github/license/Multipixelone/resume?style=for-the-badge&color=b4befe&labelColor=313244)](LICENSE)
+[![Version](https://img.shields.io/github/v/tag/Multipixelone/resume?style=for-the-badge&logo=semanticrelease&label=version&color=cba6f7&labelColor=313244&logoColor=cdd6f4)](VERSION)
+[![License](https://img.shields.io/github/license/Multipixelone/resume?style=for-the-badge&logo=creativecommons&color=b4befe&labelColor=313244&logoColor=cdd6f4)](LICENSE)
 [![Pages](https://img.shields.io/website?url=https%3A//multipixelone.github.io/resume&style=for-the-badge&logo=githubpages&label=pages&color=fab387&labelColor=313244&logoColor=cdd6f4)](https://multipixelone.github.io/resume)
 ![Typst](https://img.shields.io/badge/typst-typesetting-94e2d5?style=for-the-badge&logo=typst&labelColor=313244&logoColor=cdd6f4)
 ![Nix](https://img.shields.io/badge/nix-flakes-89b4fa?style=for-the-badge&logo=nixos&labelColor=313244&logoColor=cdd6f4)
+
+</div>
+
+I maintain several versions of my resume for different kinds of work — acting, tech, childcare, food service, and more. This system lets me keep all the content in one place and generate tailored PDFs from it. It's built with [Typst](https://typst.app/) for typesetting and [Nix flakes](https://nixos.wiki/wiki/Flakes) for reproducible builds, and it deploys to GitHub Pages on every versioned release.
 
 ## Variants
 
