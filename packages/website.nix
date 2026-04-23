@@ -30,5 +30,5 @@ buildNpmPackage {
 
   installPhase = "cp -pr --reflink=auto dist $out";
 
-  npmDepsHash = "sha256-9VWWnNDRb/PhlZr5KXwHH+y9FhSqqTfVVMQszIOiW3M=";
+  npmDepsHash = "sha256-/FB1Tw4iX87I4nnYXbKPx7v3mGia4hDfJ5VlJ8yxBuU=";
 }
