@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.2.1] - 2026-04-23
+
+### 🐛 Bug Fixes
+
+- Tighter spacing in [e935684](https://github.com/Multipixelone/resume/commit/e935684a8250ce4f17274cef12a17c7d9869d684)
+- Add space after astericks in [a0b71db](https://github.com/Multipixelone/resume/commit/a0b71dbbb696ee294c38c0fc6fd10696525714ea)
+
+### ⚙️ Miscellaneous Tasks
+
+- Set license to GPL-3.0-only in [cb6ad8a](https://github.com/Multipixelone/resume/commit/cb6ad8aa4448b5d6c241bfa0929b8e5272706880)
+
 ## [2.2.0] - 2026-04-23
 
 ### 🐛 Bug Fixes
