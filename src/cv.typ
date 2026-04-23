@@ -581,7 +581,7 @@
 
   table(
     // columns: (1fr,) * 4,
-    columns: (28%, 25%, 30%, 20%),
+    columns: (35%, 18%, 30%, 17%),
     inset: 3pt,
     column-gutter: 0pt,
     stroke: none,
