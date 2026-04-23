@@ -552,6 +552,31 @@
   }
   let shows = metadata.shows
 
+  // Determine build date from version input (e.g. "2026-04-23") or today
+  let versionInput = sys.inputs.at("version", default: none)
+  let buildDate = if versionInput != none and versionInput != "" {
+    let parts = versionInput.split("-")
+    datetime(year: int(parts.at(0)), month: int(parts.at(1)), day: int(parts.at(2)))
+  } else {
+    datetime.today()
+  }
+
+  let hasUpcoming = false
+  for (c) in shows {
+    let until = c.at(1).at("upcoming_until", default: none)
+    if until != none {
+      let untilParts = until.split("-")
+      let untilDate = datetime(
+        year: int(untilParts.at(0)),
+        month: int(untilParts.at(1)),
+        day: int(untilParts.at(2)),
+      )
+      if buildDate < untilDate {
+        hasUpcoming = true
+      }
+    }
+  }
+
   table(
     // columns: (1fr,) * 4,
     columns: (28%, 25%, 30%, 20%),
@@ -563,14 +588,35 @@
       let character = c.at(1).character
       let company = c.at(1).company
       let director = c.at(1).director
+      let until = c.at(1).at("upcoming_until", default: none)
+      let isUpcoming = if until != none {
+        let untilParts = until.split("-")
+        let untilDate = datetime(
+          year: int(untilParts.at(0)),
+          month: int(untilParts.at(1)),
+          day: int(untilParts.at(2)),
+        )
+        buildDate < untilDate
+      } else {
+        false
+      }
       (
-        skillTypeStyle(title),
+        if isUpcoming {
+          skillTypeStyle[#title#super[\*]]
+        } else {
+          skillTypeStyle(title)
+        },
         skillTypeStyle(character),
         skillTypeStyle(company),
         skillTypeStyle(director),
       )
     }
   )
+
+  if hasUpcoming {
+    v(-4pt)
+    pad(left: 3.5pt, text(size: 7.5pt, style: "italic")[\*upcoming])
+  }
 }
 /// Add a Honor to the CV.
 ///
