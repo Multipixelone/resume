@@ -1,4 +1,10 @@
 [shows]
+[shows.joseph]
+title = "Joseph & The Technicolor Dreamcoat"
+character = "Simeon"
+company = "Madison Theatre"
+director = "Maizy Post"
+upcoming_until = "2026-07-09"
 [shows.wedding]
 title = "Wedding Singer"
 character = "Ensemble"
