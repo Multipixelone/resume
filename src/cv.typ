@@ -556,7 +556,9 @@
   let versionInput = sys.inputs.at("version", default: none)
   let buildDate = if versionInput != none and versionInput != "" {
     let parts = versionInput.split("-")
-    datetime(year: int(parts.at(0)), month: int(parts.at(1)), day: int(parts.at(2)))
+    datetime(year: int(parts.at(0)), month: int(parts.at(1)), day: int(
+      parts.at(2),
+    ))
   } else {
     datetime.today()
   }
