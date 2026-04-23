@@ -10,7 +10,7 @@ language = "en"
 awesome_color = "concrete"
 
 # Skips are for controlling the spacing between sections and entries
-before_section_skip = "7pt"
+before_section_skip = "5pt"
 before_entry_skip = "1pt"
 before_entry_description_skip = "1pt"
 

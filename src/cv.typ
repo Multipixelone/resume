@@ -555,7 +555,7 @@
   table(
     // columns: (1fr,) * 4,
     columns: (28%, 25%, 30%, 20%),
-    inset: 3.5pt,
+    inset: 3pt,
     column-gutter: 0pt,
     stroke: none,
     ..for (c) in shows {
