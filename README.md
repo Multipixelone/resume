@@ -10,23 +10,23 @@
 
 </div>
 
-I maintain several versions of my resume for different kinds of work — acting, tech, childcare, food service, and more. This system lets me keep all the content in one place and generate tailored PDFs from it. It's built with [Typst](https://typst.app/) for typesetting and [Nix flakes](https://nixos.wiki/wiki/Flakes) for reproducible builds, and it deploys to GitHub Pages on every versioned release.
+I maintain several versions of my resume for different kinds of work: acting, tech, childcare, food service, etc. This system lets me keep all the content in one place and generate tailored PDFs from it. It's built with [Typst](https://typst.app/) for typesetting and [Nix flakes](https://nixos.wiki/wiki/Flakes) for reproducible builds, and it deploys to GitHub Pages on every versioned release.
 
 ## Variants
 
-Each variant is a thin entry file that merges base metadata with job-specific overrides, picks which content modules to include, and renders through a shared Typst layout. I only override what needs to change — email address, header tagline, which personal details to show or hide, layout tweaks.
+Each variant is a thin entry file that merges base metadata with job-specific overrides, picks which content modules to include, and renders through a shared Typst layout. I only override what needs to change based on the job description: email address, header tagline, which personal details to show or hide, layout tweaks.
 
-| Variant | File | Purpose |
-|---|---|---|
-| Acting CV | `resumes/cv.typ` | Theatre and performance |
-| Tech | `resumes/tech.typ` | Technology and IT positions |
-| Work | `resumes/work.typ` | Events and operations |
-| Nanny | `resumes/nanny.typ` | Childcare |
-| Salt & Straw | `resumes/saltandstraw.typ` | Scooper |
-| Salt & Straw SC | `resumes/saltandstraw-sc.typ` | Shift coordinator |
-| Cover Letter | `resumes/cover-letter.typ` | General cover letter |
-| Rep Sheet | `resumes/rep-sheet.typ` | Musical theatre repertory |
-| Title Pages | `resumes/title-pages.typ` | Audition title pages |
+| Variant         | File                          | Purpose                     |
+| --------------- | ----------------------------- | --------------------------- |
+| Acting CV       | `resumes/cv.typ`              | Theatre and performance     |
+| Tech            | `resumes/tech.typ`            | Technology and IT positions |
+| Work            | `resumes/work.typ`            | Events and operations       |
+| Nanny           | `resumes/nanny.typ`           | Childcare                   |
+| Salt & Straw    | `resumes/saltandstraw.typ`    | Scooper                     |
+| Salt & Straw SC | `resumes/saltandstraw-sc.typ` | Shift coordinator           |
+| Cover Letter    | `resumes/cover-letter.typ`    | General cover letter        |
+| Rep Sheet       | `resumes/rep-sheet.typ`       | Musical theatre repertory   |
+| Title Pages     | `resumes/title-pages.typ`     | Audition title pages        |
 
 ## How It Works
 
