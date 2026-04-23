@@ -1,5 +1,29 @@
 # Changelog
 
+## [2.1.4] - 2026-04-23
+
+### 🚀 Features
+
+- *(cosmetic)* Much nicer README in [ef76380](https://github.com/Multipixelone/resume/commit/ef763807fda1df831c98330541a717914f89514c)
+- Add joseph in [616f561](https://github.com/Multipixelone/resume/commit/616f561cdc81acc1ac6a1b44f119e0f4221af425)
+- Add upcoming show logic in [de50885](https://github.com/Multipixelone/resume/commit/de5088537971dc0a1b07ef5758e8604c24575799)
+
+### 🐛 Bug Fixes
+
+- Center badges in [cad3fd1](https://github.com/Multipixelone/resume/commit/cad3fd174b6085a0e049f7456ad170f791a00762)
+
+### 🚜 Refactor
+
+- Make things tighter in [1befc63](https://github.com/Multipixelone/resume/commit/1befc63922437a4614d9db6912d814d6c82d7ad3)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update dependency astro to v6.1.9 (#45) in [ddcaf67](https://github.com/Multipixelone/resume/commit/ddcaf676ae3072b1c1829524adf09b0a52476842)
+
+### Fet
+
+- *(content)* Add the short end in [8494cc1](https://github.com/Multipixelone/resume/commit/8494cc18a56753576eef55419e829767d7f9e5c3)
+
 ## [2.1.3] - 2026-04-20
 
 ### 🚀 Features
