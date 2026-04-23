@@ -58,4 +58,8 @@ stdenv.mkDerivation {
     ${lib.concatStringsSep "\n" (lib.mapAttrsToList installVariant variants)}
     runHook postInstall
   '';
+
+  meta = {
+    license = lib.licenses.gpl3Only;
+  };
 }

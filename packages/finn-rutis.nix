@@ -64,4 +64,8 @@ stdenv.mkDerivation {
 
     runHook postInstall
   '';
+
+  meta = {
+    license = lib.licenses.gpl3Only;
+  };
 }
