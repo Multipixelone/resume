@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.2.2] - 2026-04-25
+
+### 🐛 Bug Fixes
+
+- Slightly nicer wording on README in [d29d856](https://github.com/Multipixelone/resume/commit/d29d85601f70c69ac44f2019b15a31f1487e2f9a)
+- CLAUDE -> AGENTS in [4df9706](https://github.com/Multipixelone/resume/commit/4df9706c50f629e4d388f73b3de1edebd4906177)
+- Don't use superscript for astericks in [9eae3c1](https://github.com/Multipixelone/resume/commit/9eae3c1ecaf8e2fb1294209bf06635db430b10a7)
+- Make upcoming text slightly larger in [0dd8b1c](https://github.com/Multipixelone/resume/commit/0dd8b1c7778b659ee16b6650e05be256ac131d04)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update flake.lock (#49) in [c953b7f](https://github.com/Multipixelone/resume/commit/c953b7f761cea30a58cdfb931aae9ab0c37a97f5)
+
 ## [2.2.1] - 2026-04-23
 
 ### 🐛 Bug Fixes
