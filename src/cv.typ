@@ -604,7 +604,7 @@
       }
       (
         if isUpcoming {
-          skillTypeStyle[#title#super[\*]]
+          skillTypeStyle[#title\*]
         } else {
           skillTypeStyle(title)
         },
