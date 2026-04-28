@@ -26,12 +26,16 @@
   inset: 0pt,
   stroke: none,
   row-gutter: 1em,
-  align: left,
+  align: right,
   [#image("../src/headshot.jpg", height: 95%)],
-  [#text(font: headerFont, size: 32pt, fill: regularColors.darkgray)[#firstName]
+  [#text(size: 14pt, fill: accentColor)[#pronouns]
     #h(5pt)
-    #text(font: headerFont, size: 32pt)[#lastName]
+    #text(
+      font: headerFont,
+      size: 32pt,
+      fill: regularColors.darkgray,
+    )[#firstName]
     #h(5pt)
-    #text(size: 14pt, fill: accentColor)[#pronouns]],
+    #text(font: headerFont, size: 32pt)[#lastName]],
 ))
 #v(0fr)
