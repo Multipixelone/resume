@@ -1,18 +1,8 @@
 #import "../src/lib.typ": coverLetter
 #import "../src/meta.typ": makeMeta
+#import "../src/utils/date.typ": buildDate
 #let metadata = makeMeta("saltandstraw-metadata.toml")
-
-// Build date from nix inputs (falls back to today)
-#let version = sys.inputs.at("version", default: none)
-#let buildDate = if version != none {
-  let parts = version.split("-")
-  datetime(year: int(parts.at(0)), month: int(parts.at(1)), day: int(
-    parts.at(2),
-  ))
-} else {
-  datetime.today()
-}
-#let displayDate = buildDate.display(
+#let displayDate = buildDate().display(
   "[month repr:long] [day padding:none], [year]",
 )
 

@@ -8,6 +8,7 @@
   setAccentColor,
 )
 #import "./utils/lang.typ": isNonLatin
+#import "./utils/date.typ": buildDate
 
 /// Insert the header section of the CV.
 ///
@@ -203,70 +204,29 @@
   }
 }
 
-/// Shared footer date-parsing and style definitions.
-#let _footerCommon() = {
+/// Build a footer using the given metadata language key for the left-aligned label.
+#let _footer(metadata, langKey) = {
   let commit = sys.inputs.at("commit", default: "unknown")
-  let version = sys.inputs.at("version", default: none)
-  let date = if version != none {
-    let parts = version.split("-")
-    datetime(year: int(parts.at(0)), month: int(parts.at(1)), day: int(
-      parts.at(2),
-    ))
-  } else {
-    datetime.today()
-  }
-  let buildDate = date.display("[month].[day].[year]")
+  let dateStr = buildDate().display("[month].[day].[year]")
   let footerStyle(str) = {
     text(size: 8pt, fill: rgb("#999999"), smallcaps(str))
   }
   let commitStyle(str) = {
     text(size: 6pt, fill: rgb("#CCCCCC"), font: "PragmataPro Mono Liga", str)
   }
-  (
-    commit: commit,
-    buildDate: buildDate,
-    footerStyle: footerStyle,
-    commitStyle: commitStyle,
-  )
-}
-
-/// Insert the footer section of the CV.
-///
-/// - metadata (array): the metadata read from the TOML file.
-/// -> content
-#let _cvFooter(metadata) = {
-  let footerText = metadata.lang.at(metadata.language).cv_footer
-  let f = _footerCommon()
+  let footerText = metadata.lang.at(metadata.language).at(langKey)
 
   return table(
     columns: (1fr, auto),
     inset: -5pt,
     stroke: none,
-    (f.footerStyle)([#footerText]),
-    [#(f.commitStyle)([#f.commit]) #h(1pt) #(f.footerStyle)(
-        [Last Updated #f.buildDate],
-      )],
+    footerStyle([#footerText]),
+    [#commitStyle([#commit]) #h(1pt) #footerStyle([Last Updated #dateStr])],
   )
 }
 
-/// Insert the footer section of a cover letter.
-///
-/// - metadata (array): the metadata read from the TOML file.
-/// -> content
-#let _coverLetterFooter(metadata) = {
-  let footerText = metadata.lang.at(metadata.language).letter_footer
-  let f = _footerCommon()
-
-  return table(
-    columns: (1fr, auto),
-    inset: -5pt,
-    stroke: none,
-    (f.footerStyle)([#footerText]),
-    [#(f.commitStyle)([#f.commit]) #h(1pt) #(f.footerStyle)(
-        [Last Updated #f.buildDate],
-      )],
-  )
-}
+#let _cvFooter(metadata) = _footer(metadata, "cv_footer")
+#let _coverLetterFooter(metadata) = _footer(metadata, "letter_footer")
 
 /// Add the title of a section.
 ///
@@ -520,48 +480,12 @@
   v(-6pt)
 }
 
-#let cvPerformanceOld(
-  title: "Title",
-  character: "Character",
-  company: "Company",
-  director: "Director",
-) = {
-  let skillTypeStyle(str) = {
-    align(left, text(size: 10pt, str))
-  }
-  let skillInfoStyle(str) = {
-    text(str)
-  }
-
-  table(
-    columns: (0.25fr, 0.1fr, 0.3fr, 0.15fr),
-    inset: 0pt,
-    column-gutter: 10pt,
-    stroke: none,
-    skillTypeStyle(title),
-    skillInfoStyle(character),
-    skillInfoStyle(company),
-    skillInfoStyle(director),
-  )
-  v(-7pt)
-}
-
 #let cvPerformance(metadata) = {
   let skillTypeStyle(str) = {
     align(left, text(size: 10pt, str))
   }
   let shows = metadata.shows
-
-  // Determine build date from version input (e.g. "2026-04-23") or today
-  let versionInput = sys.inputs.at("version", default: none)
-  let buildDate = if versionInput != none and versionInput != "" {
-    let parts = versionInput.split("-")
-    datetime(year: int(parts.at(0)), month: int(parts.at(1)), day: int(
-      parts.at(2),
-    ))
-  } else {
-    datetime.today()
-  }
+  let today = buildDate()
 
   let hasUpcoming = false
   for (c) in shows {
@@ -573,7 +497,7 @@
         month: int(untilParts.at(1)),
         day: int(untilParts.at(2)),
       )
-      if buildDate < untilDate {
+      if today < untilDate {
         hasUpcoming = true
       }
     }
@@ -598,7 +522,7 @@
           month: int(untilParts.at(1)),
           day: int(untilParts.at(2)),
         )
-        buildDate < untilDate
+        today < untilDate
       } else {
         false
       }

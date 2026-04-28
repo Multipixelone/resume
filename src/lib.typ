@@ -6,7 +6,22 @@
 #import "./cv.typ": *
 #import "./letter.typ": *
 #import "./utils/lang.typ": isNonLatin
-#import "./utils/styles.typ": overwriteFonts
+#import "./utils/styles.typ": latinFontList, latinHeaderFont, overwriteFonts
+
+/// Resolve the (regularFonts, headerFont) pair for a given metadata.
+/// Applies the metadata's [layout.fonts] override if present, then injects
+/// a non-Latin font into both lists when the language requires it.
+#let _resolveFonts(metadata) = {
+  let resolved = overwriteFonts(metadata, latinFontList, latinHeaderFont)
+  let regularFonts = resolved.regularFonts
+  let headerFont = resolved.headerFont
+  if isNonLatin(metadata.language) {
+    let nl = metadata.lang.non_latin.font
+    regularFonts.insert(2, nl)
+    headerFont = nl
+  }
+  (regularFonts: regularFonts, headerFont: headerFont)
+}
 
 /* Layout */
 #let cv(
@@ -14,28 +29,9 @@
   profilePhoto: image("./avatar.png"),
   doc,
 ) = {
-  // Non Latin Logic
-  let lang = metadata.language
-  let fontList = latinFontList
-  let headerFont = latinHeaderFont
-  fontList = overwriteFonts(
-    metadata,
-    latinFontList,
-    latinHeaderFont,
-  ).regularFonts
-  headerFont = overwriteFonts(
-    metadata,
-    latinFontList,
-    latinHeaderFont,
-  ).headerFont
-  if isNonLatin(lang) {
-    let nonLatinFont = metadata.lang.non_latin.font
-    fontList.insert(2, nonLatinFont)
-    headerFont = nonLatinFont
-  }
+  let fonts = _resolveFonts(metadata)
 
-  // Page layout
-  set text(font: fontList, weight: "regular", size: 10pt)
+  set text(font: fonts.regularFonts, weight: "regular", size: 10pt)
   set align(left)
   set page(
     paper: "us-letter",
@@ -47,7 +43,13 @@
 
   let showHeader = metadata.layout.header.at("display_header", default: true)
   if showHeader {
-    _cvHeader(metadata, profilePhoto, headerFont, regularColors, awesomeColors)
+    _cvHeader(
+      metadata,
+      profilePhoto,
+      fonts.headerFont,
+      regularColors,
+      awesomeColors,
+    )
   }
   doc
 }
@@ -57,26 +59,9 @@
   profilePhoto: image("./avatar.png"),
   doc,
 ) = {
-  let lang = metadata.language
-  let fontList = latinFontList
-  let headerFont = latinHeaderFont
-  fontList = overwriteFonts(
-    metadata,
-    latinFontList,
-    latinHeaderFont,
-  ).regularFonts
-  headerFont = overwriteFonts(
-    metadata,
-    latinFontList,
-    latinHeaderFont,
-  ).headerFont
-  if isNonLatin(lang) {
-    let nonLatinFont = metadata.lang.non_latin.font
-    fontList.insert(2, nonLatinFont)
-    headerFont = nonLatinFont
-  }
+  let fonts = _resolveFonts(metadata)
 
-  set text(font: fontList, weight: "regular", size: 11pt)
+  set text(font: fonts.regularFonts, weight: "regular", size: 11pt)
   set align(left)
   set page(
     paper: "us-letter",
@@ -85,7 +70,13 @@
   )
   set par(leading: 0.75em, spacing: 1.4em)
 
-  _cvHeader(metadata, profilePhoto, headerFont, regularColors, awesomeColors)
+  _cvHeader(
+    metadata,
+    profilePhoto,
+    fonts.headerFont,
+    regularColors,
+    awesomeColors,
+  )
   doc
 }
 
@@ -99,21 +90,9 @@
   subject: "Subject: Hey!",
   signature: "",
 ) = {
-  // Non Latin Logic
-  let lang = metadata.language
-  let fontList = latinFontList
-  fontList = overwriteFonts(
-    metadata,
-    latinFontList,
-    latinHeaderFont,
-  ).regularFonts
-  if isNonLatin(lang) {
-    let nonLatinFont = metadata.lang.non_latin.font
-    fontList.insert(2, nonLatinFont)
-  }
+  let fonts = _resolveFonts(metadata)
 
-  // Page layout
-  set text(font: fontList, weight: "regular", size: 9pt)
+  set text(font: fonts.regularFonts, weight: "regular", size: 9pt)
   set align(left)
   set page(
     paper: "us-letter",
