@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.2.3] - 2026-04-28
+
+### 🚀 Features
+
+- Resume reference db in [f32e710](https://github.com/Multipixelone/resume/commit/f32e710dd81f1b0224f4afd6c46bb13ac329603b)
+
+### 🐛 Bug Fixes
+
+- Bump flake every day in [1b0dbf9](https://github.com/Multipixelone/resume/commit/1b0dbf93a6f495b755e7f479c55d9c543036c84f)
+
+### 🚜 Refactor
+
+- Right justify text in [5a1c1fe](https://github.com/Multipixelone/resume/commit/5a1c1feb140f67bb2effcde12305a5536c203249)
+
 ## [2.2.2] - 2026-04-25
 
 ### 🐛 Bug Fixes
