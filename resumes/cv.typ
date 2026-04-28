@@ -1,5 +1,6 @@
 #import "../src/lib.typ": cv
 #import "../src/meta.typ": importModules, makeMeta
+#import "../modules/skills.typ": skills
 
 #let metadata = makeMeta(none)
 
@@ -13,5 +14,5 @@
   "educational",
   "film",
   "training",
-  "skills",
 ))
+#skills(metadata)

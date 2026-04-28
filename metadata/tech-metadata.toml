@@ -5,6 +5,7 @@
 [modules]
 experience_file = "work-experience.toml"
 projects_file = "tech-projects.toml"
+skills_file = "tech-skills.toml"
 
 [lang.en]
 header_quote = "IT enthusiast with hands-on experience in Linux administration, virtualization, networking, and AI/LLM automation."

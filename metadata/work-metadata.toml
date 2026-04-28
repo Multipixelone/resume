@@ -4,6 +4,7 @@
 
 [modules]
 experience_file = "work-experience.toml"
+skills_file = "skills.toml"
 
 [lang.en]
 header_quote = "Theatre professional and A/V editor who brings a performer’s empathy and a technician’s eye to live events, front-of-house operations, and digital production."

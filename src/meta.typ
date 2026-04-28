@@ -15,9 +15,9 @@
   }
 }
 
-/// Include each `modules/<name>.typ` in order. Used for include-style
-/// modules; function-style modules like experience/projects are imported
-/// and called directly.
+/// Include each `modules/<name>.typ` in order. Used for legacy include-style
+/// modules (the function-style ones — experience, projects, skills — are
+/// imported and called directly).
 #let importModules(modules) = {
   for module in modules {
     include {

@@ -3,6 +3,7 @@
 
 [modules]
 experience_file = "saltandstraw-sc-experience.toml"
+skills_file = "saltandstraw-sc-skills.toml"
 
 [lang.en]
 header_quote = "Portland-raised hospitality worker with a knack for keeping a team on track and making every guest feel like they picked the right spot."

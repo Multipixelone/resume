@@ -3,6 +3,7 @@
 
 [modules]
 experience_file = "saltandstraw-experience.toml"
+skills_file = "saltandstraw-skills.toml"
 
 [lang.en]
 header_quote = "Portland-raised hospitality worker and performer relocating the energy of a packed house to a packed scoop shop."

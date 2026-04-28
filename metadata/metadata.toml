@@ -4,11 +4,12 @@
 # INFO: value must matches folder suffix; i.e "zh" -> "./modules_zh"
 language = "en"
 
-# Per-variant data files for the generic experience/projects modules.
+# Per-variant data files for the generic experience/projects/skills modules.
 # Override these in each <variant>-metadata.toml to point at the right TOML.
 [modules]
 experience_file = ""
 projects_file = ""
+skills_file = "skills.toml"
 
 [layout]
 # Optional values: skyblue, red, nephritis, concrete, darknight

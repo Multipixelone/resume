@@ -4,6 +4,7 @@
 
 [modules]
 experience_file = "nanny-experience.toml"
+skills_file = "nanny-skills.toml"
 
 [lang.en]
 header_quote = "BFA musical theatre student in NYC with several years of hands-on experience working with children through theatre — performing, assisting with camps, and managing facilities."

@@ -1,0 +1,22 @@
+section_title = "Skills & Qualifications"
+
+[skills]
+[skills.creative]
+type = "Creative Arts"
+info = "Ukulele, Singing, Beatboxing, Whistling, Storytelling, Make-Believe & Pretend Play, Improv"
+
+[skills.communication]
+type = "Communication"
+info = "Intermediate ASL, English (Native), Comfortable talking to kids and adults alike"
+
+[skills.engagement]
+type = "Child Engagement"
+info = "Art projects, Theatre games, Music activities, Making up games on the spot"
+
+[skills.safety]
+type = "Safety & Logistics"
+info = "American Red Cross Certified (2022), Driver's License & Valid Passport, Can drive stick, Facility & event safety experience"
+
+[skills.technical]
+type = "Technical"
+info = "Home Studio Recording, Video Editing, Audio Production, General A/V setup & fixing"

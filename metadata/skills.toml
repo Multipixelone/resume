@@ -1,0 +1,18 @@
+section_title = "Skills"
+
+[skills]
+[skills.special]
+type = "Special Skills"
+info = "Ukulele, Fantastic Whistler, Beatboxing, Driver's License & Passport, Manual Transmission Driving, Home Studio (Scarlett 8i6, Blue Bluebird, Adobe Audition), G2-G4 vocal range, falsetto to C5"
+
+[skills.tech-theatre]
+type = "Technical Theatre"
+info = "Audio Production, Video Editing, Programming, Website Design"
+
+[skills.dialects]
+type = "Dialects"
+info = "PNW, Australian, Generic British"
+
+[skills.languages]
+type = "Languages"
+info = "English, Intermediate ASL"

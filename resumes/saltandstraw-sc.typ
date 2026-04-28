@@ -1,6 +1,7 @@
 #import "../src/lib.typ": cv
 #import "../src/meta.typ": importModules, makeMeta
 #import "../modules/experience.typ": experience
+#import "../modules/skills.typ": skills
 
 #let saltandstraw-sc-metadata = makeMeta("saltandstraw-sc-metadata.toml")
 
@@ -10,4 +11,5 @@
 )
 
 #experience(saltandstraw-sc-metadata)
-#importModules(("education", "saltandstraw-sc-skills"))
+#importModules(("education",))
+#skills(saltandstraw-sc-metadata)
