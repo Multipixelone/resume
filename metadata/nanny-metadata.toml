@@ -2,6 +2,9 @@
 # Merged on top of metadata.toml via src/meta.typ::makeMeta().
 # Only keys that differ from the base acting resume live here.
 
+[modules]
+experience_file = "nanny-experience.toml"
+
 [lang.en]
 header_quote = "BFA musical theatre student in NYC with several years of hands-on experience working with children through theatre — performing, assisting with camps, and managing facilities."
 cv_footer = "Childcare Resume"

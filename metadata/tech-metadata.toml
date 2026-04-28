@@ -2,6 +2,10 @@
 # This file is merged on top of metadata.toml via src/meta.typ::makeMeta().
 # Only add keys here that differ from the base resume.
 
+[modules]
+experience_file = "work-experience.toml"
+projects_file = "tech-projects.toml"
+
 [lang.en]
 header_quote = "IT enthusiast with hands-on experience in Linux administration, virtualization, networking, and AI/LLM automation."
 cv_footer = "Technical Resume"

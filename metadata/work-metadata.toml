@@ -2,6 +2,9 @@
 # This file is merged on top of metadata.toml via src/meta.typ::makeMeta().
 # Only add keys here that differ from the acting resume.
 
+[modules]
+experience_file = "work-experience.toml"
+
 [lang.en]
 header_quote = "Theatre professional and A/V editor who brings a performer’s empathy and a technician’s eye to live events, front-of-house operations, and digital production."
 cv_footer = "Work Resume"

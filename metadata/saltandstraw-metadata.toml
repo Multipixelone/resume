@@ -1,6 +1,9 @@
 # Salt & Straw scooper resume overrides
 # Merged on top of metadata.toml via src/meta.typ::makeMeta().
 
+[modules]
+experience_file = "saltandstraw-experience.toml"
+
 [lang.en]
 header_quote = "Portland-raised hospitality worker and performer relocating the energy of a packed house to a packed scoop shop."
 cv_footer = "Hospitality Resume"

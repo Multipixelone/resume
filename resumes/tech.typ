@@ -1,23 +1,15 @@
 #import "../src/lib.typ": cv
-#import "../src/meta.typ": makeMeta
-#let tech-metadata = makeMeta("tech-metadata.toml")
+#import "../src/meta.typ": importModules, makeMeta
+#import "../modules/experience.typ": experience
+#import "../modules/projects.typ": projects
 
-#let importModules(modules) = {
-  for module in modules {
-    include {
-      "../modules/" + module + ".typ"
-    }
-  }
-}
+#let tech-metadata = makeMeta("tech-metadata.toml")
 
 #show: cv.with(
   tech-metadata,
   profilePhoto: image("../metadata/qr-code.png"),
 )
 
-#importModules((
-  "tech-skills",
-  "education",
-  "tech-projects",
-  "work-experience",
-))
+#importModules(("tech-skills", "education"))
+#projects(tech-metadata)
+#experience(tech-metadata)

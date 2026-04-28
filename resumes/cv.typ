@@ -1,24 +1,17 @@
 #import "../src/lib.typ": cv
-#let metadata = toml("../metadata/metadata.toml")
-#let importModules(modules) = {
-  for module in modules {
-    include {
-      "../modules/" + module + ".typ"
-    }
-  }
-}
+#import "../src/meta.typ": importModules, makeMeta
+
+#let metadata = makeMeta(none)
 
 #show: cv.with(
   metadata,
   profilePhoto: image("../metadata/qr-code.png"),
 )
+
 #importModules((
   "professional",
-  // "technical",
   "educational",
-  // "voiceover",
   "film",
-  // "commercial",
   "training",
   "skills",
 ))

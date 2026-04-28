@@ -1,22 +1,13 @@
 #import "../src/lib.typ": cv
-#import "../src/meta.typ": makeMeta
-#let saltandstraw-sc-metadata = makeMeta("saltandstraw-sc-metadata.toml")
+#import "../src/meta.typ": importModules, makeMeta
+#import "../modules/experience.typ": experience
 
-#let importModules(modules) = {
-  for module in modules {
-    include {
-      "../modules/" + module + ".typ"
-    }
-  }
-}
+#let saltandstraw-sc-metadata = makeMeta("saltandstraw-sc-metadata.toml")
 
 #show: cv.with(
   saltandstraw-sc-metadata,
   profilePhoto: image("../metadata/qr-code.png"),
 )
 
-#importModules((
-  "saltandstraw-sc-experience",
-  "education",
-  "saltandstraw-sc-skills",
-))
+#experience(saltandstraw-sc-metadata)
+#importModules(("education", "saltandstraw-sc-skills"))

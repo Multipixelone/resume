@@ -1,6 +1,9 @@
 # Salt & Straw Shift Coordinator resume overrides
 # Merged on top of metadata.toml via src/meta.typ::makeMeta().
 
+[modules]
+experience_file = "saltandstraw-sc-experience.toml"
+
 [lang.en]
 header_quote = "Portland-raised hospitality worker with a knack for keeping a team on track and making every guest feel like they picked the right spot."
 cv_footer = "Hospitality Resume"
