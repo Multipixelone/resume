@@ -90,58 +90,66 @@ Key override fields:
 - `email` - Which contact email to show
 - Set any `personal.info` field to `""` to hide it
 
-### 2. Create the entry .typ file
+### 2. Add data file pointers to the override TOML
+
+The generic `experience`, `projects`, and `skills` modules read which data file to load from `[modules]` keys in the merged metadata. Add the ones you need:
+
+```toml
+[modules]
+experience_file = "<variant>-experience.toml"   # required if including experience module
+projects_file = "<variant>-projects.toml"        # required if including projects module
+skills_file = "<variant>-skills.toml"            # required if including skills module
+```
+
+### 3. Create the data files
+
+Each module reads its own TOML. Examples:
+
+- `metadata/<variant>-experience.toml` with a `[jobs]` table whose entries have `title`, `company`, `date`, `location`, optional `summary`.
+- `metadata/<variant>-skills.toml` with a top-level `section_title` and a `[skills]` table whose entries have `type` and `info`.
+- `metadata/<variant>-projects.toml` with a `[projects]` table.
+
+### 4. Create the entry .typ file
 
 Create `resumes/<variant>.typ`:
 
 ```typst
 #import "../src/lib.typ": cv
-#import "../src/meta.typ": makeMeta
-#let variant-metadata = makeMeta("<variant>-metadata.toml")
+#import "../src/meta.typ": importModules, makeMeta
+#import "../modules/experience.typ": experience
+#import "../modules/skills.typ": skills
 
-#let importModules(modules) = {
-  for module in modules {
-    include {
-      "../modules/" + module + ".typ"
-    }
-  }
-}
+#let variant-metadata = makeMeta("<variant>-metadata.toml")
 
 #show: cv.with(
   variant-metadata,
   profilePhoto: image("../metadata/qr-code.png"),
 )
 
-#importModules((
-  // Pick relevant modules from the list below
-  "work-experience",
-  "education",
-  "skills",
-))
+#experience(variant-metadata)
+#importModules(("education",))
+#skills(variant-metadata)
 ```
 
-### 3. Create new modules if needed
+The function-style modules (`experience`, `projects`, `skills`) take metadata explicitly. Legacy include-style modules (`education`, `professional`, `film`, `training`, `educational`) get loaded via `importModules`.
 
-If the job needs a section that doesn't exist yet, create `modules/<section>.typ`:
+### 5. Adding a new module
+
+If the job needs a section that doesn't exist yet, prefer the function-style pattern in `modules/<section>.typ`:
 
 ```typst
-#import "../src/lib.typ": cvSection, cvEntry
-#let metadata = toml("../metadata/metadata.toml")
+#import "../src/lib.typ": cvEntry, cvSection
 
-#cvSection("Section Title")
-
-#cvEntry(
-  title: [Role or Item],
-  society: [Organization],
-  date: [Date Range],
-  location: [Location],
-  description: [Optional description text.],
-)
+#let mySection(metadata) = {
+  let data = toml("../metadata/" + metadata.modules.my_section_file)
+  cvSection("Section Title", metadata: metadata)
+  // render entries from `data`
+}
 ```
 
-For data-driven modules, put the content in `metadata/<section>.toml` and load it with `toml()`.
+Then add `my_section_file = "..."` to the variant override TOML and import + call `mySection(metadata)` from the entry file.
 
-### 4. Register the variant
+### 6. Register the variant
 
 Add an entry to `variants.toml` at the repo root:
 
@@ -221,41 +229,41 @@ Before finalizing any resume text, verify:
 │       ├── merge.typ        # mergeDicts() - recursive dictionary merge
 │       └── lang.typ         # Language/non-Latin font detection
 ├── modules/                 # Reusable resume sections
+│   ├── experience.typ       # Generic Experience section (function-style; reads metadata.modules.experience_file)
+│   ├── projects.typ         # Generic Projects section (reads metadata.modules.projects_file)
+│   ├── skills.typ           # Generic Skills section (reads metadata.modules.skills_file)
+│   ├── education.typ        # Education (legacy include-style)
+│   ├── educational.typ      # Concerts/Workshops table (from educational.toml)
 │   ├── professional.typ     # Theatre performances (from theatre.toml)
-│   ├── work-experience.typ  # Job history (from work-experience.toml)
-│   ├── education.typ        # Education (role-first layout)
-│   ├── educational.typ      # Education (society-first layout, with logo)
-│   ├── skills.typ           # General skills
-│   ├── tech-skills.typ      # Technical skills (from tech-skills.toml)
-│   ├── tech-projects.typ    # Tech projects (from tech-projects.toml)
 │   ├── training.typ         # Training/workshops (from training.toml)
 │   ├── film.typ             # Film/video work (from film.toml)
 │   ├── commercial.typ       # Commercial work (from commercial.toml)
 │   ├── voiceover.typ        # Voiceover work
-│   ├── nanny-experience.typ # Childcare experience (from nanny-experience.toml)
-│   ├── nanny-skills.typ     # Childcare skills
-│   ├── saltandstraw-experience.typ # Salt & Straw experience (from saltandstraw-experience.toml)
-│   ├── saltandstraw-skills.typ     # Salt & Straw skills
 │   ├── _education-content.typ  # Shared education entry (included by education.typ & training.typ)
 │   └── _training-content.typ   # Shared training content
 ├── metadata/
-│   ├── metadata.toml           # Base metadata (personal info, layout, colors, fonts)
-│   ├── tech-metadata.toml      # Tech resume overrides
-│   ├── work-metadata.toml      # Work resume overrides
-│   ├── nanny-metadata.toml     # Nanny resume overrides
+│   ├── metadata.toml               # Base metadata (personal info, layout, colors, fonts, default modules.skills_file)
+│   ├── tech-metadata.toml          # Tech resume overrides
+│   ├── work-metadata.toml          # Work resume overrides
+│   ├── nanny-metadata.toml         # Nanny resume overrides
 │   ├── saltandstraw-metadata.toml  # Salt & Straw resume overrides
+│   ├── saltandstraw-sc-metadata.toml # Salt & Straw SC overrides
+│   ├── work-experience.toml        # Job history data (used by tech + work)
+│   ├── nanny-experience.toml       # Childcare experience data
 │   ├── saltandstraw-experience.toml # Salt & Straw experience data
-│   ├── work-experience.toml    # Job history data
-│   ├── tech-skills.toml        # Tech skills data
-│   ├── tech-projects.toml      # Tech project entries
-│   ├── theatre.toml            # Theatre performance data
-│   ├── professional.toml       # Professional work data
-│   ├── training.toml           # Training/workshop data
-│   ├── film.toml               # Film project data
-│   ├── commercial.toml         # Commercial work data
-│   ├── educational.toml        # Education data
-│   ├── nanny-experience.toml   # Childcare experience data
-│   └── rep-sheet.toml          # Repertory song data
+│   ├── saltandstraw-sc-experience.toml # Salt & Straw SC experience data
+│   ├── skills.toml                 # Acting/general skills (default)
+│   ├── tech-skills.toml            # Tech skills data
+│   ├── nanny-skills.toml           # Childcare skills data
+│   ├── saltandstraw-skills.toml    # Salt & Straw skills data
+│   ├── saltandstraw-sc-skills.toml # Salt & Straw SC skills data
+│   ├── tech-projects.toml          # Tech project entries
+│   ├── theatre.toml                # Theatre performance data
+│   ├── training.toml               # Training/workshop data
+│   ├── film.toml                   # Film project data
+│   ├── commercial.toml             # Commercial work data
+│   ├── educational.toml            # Concerts/workshops data
+│   └── rep-sheet.toml              # Repertory song data
 ├── packages/
 │   ├── resume.nix       # Builds ALL resume PDFs in one derivation
 │   ├── finn-rutis.nix   # Composite headshot PDF (needs ghostscript)
@@ -280,9 +288,14 @@ Before finalizing any resume text, verify:
 - `src/cv.typ::cvTraining(type, info, instructors)` - Training row
 - `src/cv.typ::cvPerformance(metadata)` - Performance table from shows data
 - `src/cv.typ::cvHonor(date, title, issuer, url, location)` - Honor/award entry
-- `src/meta.typ::makeMeta(overrideFile)` - Merge base metadata with override TOML
+- `src/meta.typ::makeMeta(overrideFile)` - Merge base metadata with override TOML (pass `none` for base only)
+- `src/meta.typ::importModules(list)` - `#include` each named module from `modules/`
 - `src/utils/merge.typ::mergeDicts(base, override)` - Recursive dictionary merge
+- `src/utils/date.typ::buildDate()` - Date from `--input version=YYYY-MM-DD`, falls back to today
 - `src/utils/styles.typ::hBar()` - Vertical separator bar for inline lists
+- `modules/experience.typ::experience(metadata)` - Generic Experience section
+- `modules/projects.typ::projects(metadata)` - Generic Projects section
+- `modules/skills.typ::skills(metadata)` - Generic Skills section
 
 ## Commit Conventions
 
