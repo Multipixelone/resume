@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.2.4] - 2026-04-29
+
+### 📚 Documentation
+
+- Update CLAUDE.md and AGENTS.md for new module layout in [c9f97c7](https://github.com/Multipixelone/resume/commit/c9f97c73a4493e3a35324ffded85afefc625705e)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update flake.lock (#53) in [34faecf](https://github.com/Multipixelone/resume/commit/34faecf6da3f2c480566dd1eb8ec4440a52fff20)
+- *(deps)* Update dependency astro to v6.1.10 (#52) in [d4d3305](https://github.com/Multipixelone/resume/commit/d4d330584ed908ef22737da40a8276ccab194019)
+
+### 📋 Template
+
+- *(template)* Extract shared font/date/footer helpers in [1302d37](https://github.com/Multipixelone/resume/commit/1302d37b72e2eb20227480d800e853c6cc6d58ed)
+- *(template)* Collapse experience and projects modules in [91c0cbf](https://github.com/Multipixelone/resume/commit/91c0cbf1276d9ca76782a4ef562389332db6bd44)
+- *(template)* Make skills module data-driven in [d902dff](https://github.com/Multipixelone/resume/commit/d902dff7e5bd00572a3b130e0745456a3d1fa986)
+
 ## [2.2.3] - 2026-04-28
 
 ### 🚀 Features
