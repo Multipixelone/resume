@@ -16,7 +16,7 @@ jobs:
     name: flake checks
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v6.0.3
       - uses: nixbuild/nix-quick-install-action@v34
       - name: Run nix flake check
         run: nix flake check --print-build-logs
