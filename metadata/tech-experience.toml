@@ -1,0 +1,49 @@
+[jobs]
+[jobs.salt-and-straw]
+title = "Shift Coordinator"
+company = "Salt & Straw"
+date = "April 2026 – Present"
+location = "New York, NY"
+summary = "Lead a team of scoopers through the dinner rush at the West Village shop, assigning stations and reworking the plan on the fly when the line runs out the door. Train new hires, defuse the occasional guest issue on the spot, and keep cash handling, prep, and service all moving at once. The whole shift is face to face, and most of the job is deciding what happens next before it has to."
+
+[jobs.student-ambassador]
+title = "Student Ambassador"
+company = "Molloy University"
+date = "October 2022 – May 2026"
+location = "Rockville Centre, NY"
+summary = "Guide prospective students and their families around campus, sharing genuine insights into student life and academic programs. Support the admissions team with daily outreach and help run welcome events."
+
+[jobs.house-and-facilities-manager]
+title = "House & Facilities Manager"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "October 2021 – September 2022"
+location = "Portland, OR"
+summary = "Ran front-of-house logistics for live shows and managed daily facility operations. Handled everything from keeping the theatre and rehearsal spaces in top shape to acting as the main point of contact for patrons, renters, and building management."
+
+[jobs.portland-spirit]
+title = "Mastering Engineer"
+company = "Portland Spirit"
+date = "November 2021"
+location = "Portland, OR"
+summary = "Produced and mixed the official theme song for the Portland Spirit river cruise. Managed the audio workflow from the initial recording to the final polish, delivering a crisp, broadcast-ready track."
+
+[jobs.rosetta-project]
+title = "Lighting Designer"
+company = "The Rosetta Project"
+date = "July 2021"
+location = "Portland, OR"
+summary = "Designed and ran the lighting for a live stage production. Handled the full technical process from hanging and focusing fixtures to programming and executing cues during the run."
+
+[jobs.video-editor]
+title = "Video Editor & Sound Engineer"
+company = "Oregon Children's Theatre"
+date = "May 2020 – July 2020"
+location = "Portland, OR"
+summary = "Ran on-site video and audio recording for two professional theatre productions. Managed the technical setup on recording days and edited the final footage for the theatre's digital distribution."
+
+[jobs.virtual-choir]
+title = "Video Editor – Virtual Choir"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "April 2020"
+location = "Portland, OR"
+summary = "Edited and synced remote audio and video from 20 isolated performers to build a full virtual concert during the pandemic lockdowns. Worked directly with the cast and director to troubleshoot tech issues and deliver a polished video on a tight deadline."

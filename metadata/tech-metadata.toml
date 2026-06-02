@@ -3,12 +3,12 @@
 # Only add keys here that differ from the base resume.
 
 [modules]
-experience_file = "work-experience.toml"
+experience_file = "tech-experience.toml"
 projects_file = "tech-projects.toml"
 skills_file = "tech-skills.toml"
 
 [lang.en]
-header_quote = "IT enthusiast with hands-on experience in Linux administration, virtualization, networking, and AI/LLM automation."
+header_quote = "I run a homelab of self-hosted services on NixOS and wire LLMs into private, reproducible automation. Happiest where infrastructure, security, and AI overlap."
 cv_footer = "Technical Resume"
 
 [layout]

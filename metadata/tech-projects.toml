@@ -1,35 +1,35 @@
 [projects]
+[projects.llm-automation]
+title = "AI-Driven Automation Pipelines"
+company = "Personal Project"
+date = "Jan 2023 – Present"
+location = ""
+summary = "Wrote Python tooling that wires LLMs into everyday work. Most of the effort went into the unglamorous part: tight system prompts and strict JSON schemas that make the output reliable enough to parse and act on without checking it by hand. Use it for data wrangling and one-off script generation."
+
 [projects.declarative-homelab]
 title = "Declarative Infrastructure & Self-Hosting Environment"
 company = "Personal Project"
 date = "Nov 2016 – Present"
 location = ""
-summary = "Architected a production-grade homelab utilizing VMware ESXi, KVM, and Docker. Leveraged NixOS and Flakes for Infrastructure as Code (IaC) to declaratively provision and manage dozens of internet-facing services, ensuring fully reproducible builds and zero-downtime deployments."
-
-[projects.building-resume]
-title = "Typst-Generated Resume System"
-company = "Personal Project"
-date = "Oct 2024 – Present"
-location = ""
-summary = "Developed an automated resume builder using the Typst typesetting system. Set up a continuous integration pipeline with GitHub Actions to automatically compile and publish three distinct resumes tailored for different job profiles, ensuring consistent formatting, little repetition, and making content updates effortless."
+summary = "Run a homelab that hosts dozens of my own internet-facing services on VMware ESXi, KVM, and Docker. The whole thing is defined in NixOS and Flakes, so the setup is reproducible and I can rebuild a machine from scratch and get exactly what I had before."
 
 [projects.network-security]
 title = "Enterprise-Grade Network Architecture & Security"
 company = "Personal Project"
 date = "Aug 2019 – Present"
 location = ""
-summary = "Designed and administered a secure, highly segmented network topology using a FortiGate firewall. Implemented multiple DMZs, isolated VLANs, and MetalLB load balancing to protect internet-facing applications while adhering to zero-trust network access (ZTNA) principles."
-
-[projects.llm-automation]
-title = "AI-Driven Automation Pipelines"
-company = "Personal Project"
-date = "Jan 2023 – Present"
-location = ""
-summary = "Developed custom Python automation tooling to integrate Large Language Model (LLM) workflows into daily operations. Engineered complex system prompts and structured output requirements (JSON) to guarantee reliable, repeatable AI responses for data parsing and script generation."
+summary = "Built and run the network behind all of this on a FortiGate firewall: separate DMZs, isolated VLANs, and MetalLB load balancing in front of the public-facing services. Nothing trusts anything by default, which keeps a problem in one corner from spreading to the rest."
 
 [projects.systems-management]
 title = "Cross-Platform Systems Management (Nix)"
 company = "Personal Project"
 date = "Jun 2023 – Present"
 location = ""
-summary = "Engineered a version-controlled dotfiles and systems management repository utilizing Home Manager and nix-darwin. Automated the provisioning of identical, customized development environments across macOS and Linux machines through CI/CD pipelines and GitHub."
+summary = "Keep my macOS and Linux machines in sync from one version-controlled repo using Home Manager and nix-darwin. New machine, one command, and it comes up with the same environment as everything else. CI checks the config before it lands."
+
+[projects.building-resume]
+title = "Typst-Generated Resume System"
+company = "Personal Project"
+date = "Oct 2024 – Present"
+location = ""
+summary = "Built the system that generates this resume. It's written in Typst, and a GitHub Actions pipeline compiles and publishes several tailored variants from shared metadata, so updating a fact in one place fans out to every resume that needs it."

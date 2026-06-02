@@ -5,6 +5,10 @@ section_title = "Technical Skills"
 type = "Programming"
 info = "Python, Nix, Bash / Shell Scripting"
 
+[skills.ai]
+type = "AI / LLM"
+info = "LLM integration, Prompt engineering, Structured output (JSON), Python automation"
+
 [skills.infrastructure]
 type = "Virtualization"
 info = "Docker, VMware ESXi, KVM, VirtualBox"

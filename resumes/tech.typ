@@ -14,4 +14,5 @@
 #skills(tech-metadata)
 #importModules(("education",))
 #projects(tech-metadata)
+#pagebreak(weak: true)
 #experience(tech-metadata)
