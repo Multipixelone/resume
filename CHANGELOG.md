@@ -1,5 +1,34 @@
 # Changelog
 
+## [2.3.0] - 2026-06-02
+
+### 🚀 Features
+
+- Premai.io specifics in [b8db2ae](https://github.com/Multipixelone/resume/commit/b8db2aee47e6cf29ca9ef2e25c215491fd198c67)
+
+### 🐛 Bug Fixes
+
+- Bump every third day in [0be1853](https://github.com/Multipixelone/resume/commit/0be18533fbc1e56543aa240b269b8974a7ff1b13)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update flake.lock (#55) in [385cf75](https://github.com/Multipixelone/resume/commit/385cf751d0380ffe99cfcc8168a45ba9b050bacc)
+- *(deps)* Update flake.lock (#57) in [8903a79](https://github.com/Multipixelone/resume/commit/8903a79e84258d2f79a84c0f812d215ffbe86a5b)
+- *(deps)* Update flake.lock (#58) in [9376a3f](https://github.com/Multipixelone/resume/commit/9376a3f8996241855ec8f2de942dd5c4dbc2c09e)
+- *(deps)* Update flake.lock (#59) in [6cf7706](https://github.com/Multipixelone/resume/commit/6cf77069bbc23b6791aff8a0b33c1e27fc76ab7e)
+- *(deps)* Update flake.lock (#60) in [6f6b1d8](https://github.com/Multipixelone/resume/commit/6f6b1d8b16c62b24dfc72e52d1df21189066dd8c)
+- *(deps)* Update flake.lock (#61) in [c4eeb99](https://github.com/Multipixelone/resume/commit/c4eeb99a1f59dda98303a3c577bd6d5d6b8bdd45)
+- *(deps)* Update flake.lock (#62) in [2397264](https://github.com/Multipixelone/resume/commit/2397264c342f2a98231ebaa8121365d861094b76)
+- *(deps)* Update flake.lock (#63) in [afbec00](https://github.com/Multipixelone/resume/commit/afbec00aad14d08b83ac0dcd130a8b29381df4ed)
+- *(deps)* Update flake.lock (#64) in [85e0c21](https://github.com/Multipixelone/resume/commit/85e0c216e4877607b45f78aa42886076b86ea38e)
+- *(deps)* Update flake.lock (#65) in [e07879d](https://github.com/Multipixelone/resume/commit/e07879dcd87c061afdb5503170f30d9034fc6c1a)
+- *(deps)* Update flake.lock (#66) in [8bd733c](https://github.com/Multipixelone/resume/commit/8bd733c6c4be24e676acee8194939cf531c6e31e)
+- *(deps)* Update flake.lock (#67) in [3ef713c](https://github.com/Multipixelone/resume/commit/3ef713cfa6e96a401caa2da24c1b04f125220724)
+- *(deps)* Update flake.lock (#68) in [f9f1915](https://github.com/Multipixelone/resume/commit/f9f1915a0197920d9ecf532324fbbbdd626d3d80)
+- *(deps)* Update flake.lock (#70) in [f2af3c9](https://github.com/Multipixelone/resume/commit/f2af3c9736cb304257fc3bda2f74a754a54a87e3)
+- *(deps)* Update flake.lock (#71) in [64358da](https://github.com/Multipixelone/resume/commit/64358dadc579c3f9a4f62ba18255e86bc5e9490b)
+- *(deps)* Update flake.lock (#72) in [f6dc8b5](https://github.com/Multipixelone/resume/commit/f6dc8b59ec973faea9c6ce9bde13f4b592609527)
+
 ## [2.2.4] - 2026-04-29
 
 ### 📚 Documentation
