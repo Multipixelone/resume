@@ -13,9 +13,15 @@ body = """
     ## [Unreleased]
 {% endif -%}
 
+{% set_global latest_flake = "" -%}
+{% for commit in commits %}
+  {%- if "flake.lock" in commit.message %}{% set_global latest_flake = commit.id %}{% endif -%}
+{% endfor -%}
+
 {% for group, commits in commits | group_by(attribute="group") %}
     ### {{ group | striptags | trim | upper_first }}
     {% for commit in commits %}
+        {%- if "flake.lock" in commit.message and commit.id != latest_flake %}{% continue %}{% endif -%}
         - {% if commit.scope %}*({{ commit.scope }})* {% endif %}\
           {% if commit.breaking %}[**breaking**] {% endif %}\
           {{ commit.message | upper_first }} \
