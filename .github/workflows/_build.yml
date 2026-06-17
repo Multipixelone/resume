@@ -8,6 +8,9 @@ on:
       deploy:
         type: boolean
         default: false
+      export_pdfs:
+        type: boolean
+        default: false
 
 jobs:
   get-package-names:
@@ -142,6 +145,13 @@ jobs:
             echo "Error: No files were copied successfully"
             exit 1
           fi
+      - name: Upload release PDFs
+        if: ${{ inputs.export_pdfs }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: release-pdfs
+          path: ./pages/*.pdf
+
       - name: Upload pages artifact
         if: ${{ inputs.deploy }}
         uses: actions/upload-pages-artifact@v5

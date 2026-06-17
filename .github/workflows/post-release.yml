@@ -16,8 +16,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  tag-and-release:
-    name: tag and create release
+  tag:
+    name: tag release
     if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'release/v')
     runs-on: ubuntu-latest
     outputs:
@@ -39,6 +39,25 @@ jobs:
           git tag "v${{ steps.version.outputs.version }}"
           git push origin "v${{ steps.version.outputs.version }}"
 
+  build:
+    needs: tag
+    if: needs.tag.result == 'success'
+    uses: ./.github/workflows/_build.yml
+    with:
+      deploy: true
+      export_pdfs: true
+
+  release:
+    name: create release
+    needs: [tag, build]
+    if: needs.build.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6.0.2
+        with:
+          fetch-depth: 0
+
       - name: Generate release notes
         uses: orhun/git-cliff-action@v4
         with:
@@ -47,17 +66,17 @@ jobs:
           OUTPUT: RELEASE_NOTES.md
           GITHUB_REPO: ${{ github.repository }}
 
+      - name: Download release PDFs
+        uses: actions/download-artifact@v8
+        with:
+          name: release-pdfs
+          path: ./release-pdfs
+
       - name: Create GitHub release
         uses: softprops/action-gh-release@v3
         with:
-          tag_name: v${{ steps.version.outputs.version }}
-          name: v${{ steps.version.outputs.version }}
+          tag_name: v${{ needs.tag.outputs.version }}
+          name: v${{ needs.tag.outputs.version }}
           body_path: RELEASE_NOTES.md
           make_latest: true
-
-  build-and-deploy:
-    needs: tag-and-release
-    if: needs.tag-and-release.result == 'success'
-    uses: ./.github/workflows/_build.yml
-    with:
-      deploy: true
+          files: ./release-pdfs/*.pdf
