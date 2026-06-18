@@ -18,7 +18,7 @@ jobs:
     outputs:
       packages: ${{ steps.get-package-names.outputs.packages }}
     steps:
-      - uses: actions/checkout@v6.0.3
+      - uses: actions/checkout@v7.0.0
         with:
           ref: ${{ inputs.ref }}
       - uses: nixbuild/nix-quick-install-action@v35
@@ -36,7 +36,7 @@ jobs:
       matrix:
         package: ${{ fromJson(needs.get-package-names.outputs.packages) }}
     steps:
-      - uses: actions/checkout@v6.0.3
+      - uses: actions/checkout@v7.0.0
         with:
           ref: ${{ inputs.ref }}
       - uses: nixbuild/nix-quick-install-action@v35
@@ -54,7 +54,7 @@ jobs:
     needs: build-package
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.3
+      - uses: actions/checkout@v7.0.0
         with:
           ref: ${{ inputs.ref }}
           sparse-checkout: |
