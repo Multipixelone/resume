@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.3.3] - 2026-06-23
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update nixbuild/nix-quick-install-action action to v35 (#84) in [77bdd9e](https://github.com/Multipixelone/resume/commit/77bdd9eb73072f6a0eef0886cd3d2942663b2bda)
+- *(deps)* Update actions/checkout action to v7 (#85) in [9005e08](https://github.com/Multipixelone/resume/commit/9005e08f0effadae2e299a54db8731093bde7a38)
+- *(deps)* Update flake.lock (#86) in [871917a](https://github.com/Multipixelone/resume/commit/871917a6a146835da1137ed76012b8a616841951)
+
+### Content
+
+- *(saltandstraw)* List NYC Food Protection Certificate in skills (#83) in [93a9a98](https://github.com/Multipixelone/resume/commit/93a9a984f2330e26abb3313a72b5c75cc12a7e3d)
+
 ## [2.3.2] - 2026-06-17
 
 ### ⚙️ Miscellaneous Tasks
