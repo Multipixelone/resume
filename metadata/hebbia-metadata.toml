@@ -1,0 +1,30 @@
+# Hebbia — Backend Engineer, Agents (NYC) — high-paying, engineering-only
+# Merged on top of metadata.toml via src/meta.typ::makeMeta().
+
+[modules]
+experience_file = "tech-experience.toml"
+projects_file = "tech-projects.toml"
+skills_file = "tech-skills.toml"
+
+[lang.en]
+header_quote = "I run a homelab of self-hosted services on NixOS and wire LLMs into private, reproducible automation. Happiest deep in systems, application-layer software, and the data models underneath them."
+cv_footer = "Backend Engineering Resume"
+
+[layout]
+before_entry_description_skip = "-4pt"
+
+[layout.header]
+display_profile_photo = false
+
+[layout.entry]
+display_entry_society_first = false
+display_logo = false
+
+[personal.info]
+email = "tech@finnrut.is"
+github = "Multipixelone"
+location = "NYC"
+height = ""
+instagram = ""
+vocal-part = ""
+union = ""

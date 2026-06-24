@@ -1,0 +1,22 @@
+section_title = "Skills"
+
+[skills]
+[skills.languages]
+type = "Engineering"
+info = "Python, Nix, Bash / Shell Scripting, Linux (NixOS, Ubuntu), Docker"
+
+[skills.ai]
+type = "AI / LLM"
+info = "LLM integration, Prompt engineering, Structured output (JSON), Agent tooling, Python automation"
+
+[skills.communication]
+type = "Speaking & Performance"
+info = "Public speaking, Improv and live performance, Workshop and demo facilitation, On-camera and on-mic presenting"
+
+[skills.content]
+type = "Content & Video"
+info = "Video editing and production, Audio engineering, Script writing, Community engagement (Discord, Reddit)"
+
+[skills.tools]
+type = "Docs & Tooling"
+info = "Git, GitHub, CI/CD pipelines, Technical writing, Markdown, Typst"

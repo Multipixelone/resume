@@ -66,6 +66,60 @@ check_metadata = true
 title = "Salt & Straw SC Resume"
 subtitle = "Shift coordinator"
 
+[writer]
+source = "writer"
+dest = "writer-resume"
+override_toml = "writer-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "Writer Resume"
+subtitle = "Developer advocacy, events & social"
+
+[sierra]
+source = "sierra"
+dest = "sierra-resume"
+override_toml = "sierra-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "Sierra Resume"
+subtitle = "Developer relations engineer"
+
+[logrocket]
+source = "logrocket"
+dest = "logrocket-resume"
+override_toml = "logrocket-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "LogRocket Resume"
+subtitle = "Developer relations / PodRocket"
+
+[notion]
+source = "notion"
+dest = "notion-resume"
+override_toml = "notion-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "Notion Resume"
+subtitle = "Developer advocate"
+
+[mistral]
+source = "mistral"
+dest = "mistral-resume"
+override_toml = "mistral-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "Mistral Resume"
+subtitle = "AI developer relations"
+
+[hebbia]
+source = "hebbia"
+dest = "hebbia-resume"
+override_toml = "hebbia-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "Hebbia Resume"
+subtitle = "Backend engineer, agents"
+
 [cover-letter]
 source = "cover-letter"
 dest = "cover-letter"

@@ -1,0 +1,30 @@
+# Sierra — Developer Relations Engineer (NYC)
+# Merged on top of metadata.toml via src/meta.typ::makeMeta().
+
+[modules]
+experience_file = "devrel-experience.toml"
+projects_file = "devrel-projects.toml"
+skills_file = "devrel-skills.toml"
+
+[lang.en]
+header_quote = "Engineer who builds with LLMs and agents and likes turning that into things other developers can actually use: docs, sample repos, the occasional educational video. NixOS homelab by night, performer by training, happiest explaining hard things clearly."
+cv_footer = "Developer Relations Resume"
+
+[layout]
+before_entry_description_skip = "-4pt"
+
+[layout.header]
+display_profile_photo = false
+
+[layout.entry]
+display_entry_society_first = false
+display_logo = false
+
+[personal.info]
+email = "tech@finnrut.is"
+github = "Multipixelone"
+location = "NYC"
+height = ""
+instagram = ""
+vocal-part = ""
+union = ""
