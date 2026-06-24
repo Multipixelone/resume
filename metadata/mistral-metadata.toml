@@ -1,0 +1,30 @@
+# Mistral AI — AI Developer Advocate / Developer Relations (NYC)
+# Merged on top of metadata.toml via src/meta.typ::makeMeta().
+
+[modules]
+experience_file = "devrel-experience.toml"
+projects_file = "devrel-projects.toml"
+skills_file = "devrel-skills.toml"
+
+[lang.en]
+header_quote = "Linux and backend engineer who runs open models in a self-hosted homelab and wires LLMs into real automation. I came up through performance, so developer education, live demos, and community are where I do my best work."
+cv_footer = "Developer Relations Resume"
+
+[layout]
+before_entry_description_skip = "-4pt"
+
+[layout.header]
+display_profile_photo = false
+
+[layout.entry]
+display_entry_society_first = false
+display_logo = false
+
+[personal.info]
+email = "tech@finnrut.is"
+github = "Multipixelone"
+location = "NYC"
+height = ""
+instagram = ""
+vocal-part = ""
+union = ""

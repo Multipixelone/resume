@@ -1,0 +1,28 @@
+[projects]
+[projects.llm-automation]
+title = "AI-Driven Automation Pipelines"
+company = "Personal Project"
+date = "Jan 2023 – Present"
+location = ""
+summary = "Wrote Python tooling that wires LLMs into everyday work. Most of the effort went into the unglamorous part: tight system prompts and strict JSON schemas that make the output reliable enough to parse and act on without checking it by hand. The kind of hands-on agent and SDK work that's a lot easier to explain to other developers once you've actually shipped it."
+
+[projects.declarative-homelab]
+title = "Declarative Infrastructure & Self-Hosting Environment"
+company = "Personal Project"
+date = "Nov 2016 – Present"
+location = ""
+summary = "Run a homelab that hosts dozens of my own internet-facing services on VMware ESXi, KVM, and Docker. The whole thing is defined in NixOS and Flakes, so the setup is reproducible and I can rebuild a machine from scratch and get exactly what I had before. It's also where every demo and sample I write gets tested before anyone else sees it."
+
+[projects.building-resume]
+title = "Typst-Generated Content Pipeline"
+company = "Personal Project"
+date = "Oct 2024 – Present"
+location = ""
+summary = "Built the system that generates this resume. It's written in Typst, and a GitHub Actions pipeline compiles and publishes several tailored variants from shared metadata, so a fact updated in one place fans out everywhere it's used. A small, real example of treating docs and content like code: version controlled, reviewed, and shipped on every push."
+
+[projects.network-security]
+title = "Enterprise-Grade Network Architecture & Security"
+company = "Personal Project"
+date = "Aug 2019 – Present"
+location = ""
+summary = "Built and run the network behind all of this on a FortiGate firewall: separate DMZs, isolated VLANs, and MetalLB load balancing in front of the public-facing services. Nothing trusts anything by default, which keeps a problem in one corner from spreading to the rest."

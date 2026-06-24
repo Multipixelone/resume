@@ -1,0 +1,35 @@
+[jobs]
+[jobs.salt-and-straw]
+title = "Shift Coordinator"
+company = "Salt & Straw"
+date = "April 2026 – Present"
+location = "New York, NY"
+summary = "Lead a team of scoopers through the dinner rush at the West Village shop, assigning stations and reworking the plan on the fly when the line runs out the door. Train new hires, read a room full of strangers, and keep the whole shift moving while staying the calm person people look to. Most of the job is deciding what happens next before it has to, out loud, in front of an audience."
+
+[jobs.student-ambassador]
+title = "Student Ambassador"
+company = "Molloy University"
+date = "October 2022 – May 2026"
+location = "Rockville Centre, NY"
+summary = "The public face of the university for prospective students and their families. Ran campus tours and welcome events, fielded every question on the spot, and turned a script into a real conversation that landed differently for a nervous parent than it did for a teenager. Worked with admissions on daily outreach."
+
+[jobs.video-editor]
+title = "Video Editor & Sound Engineer"
+company = "Oregon Children's Theatre"
+date = "May 2020 – July 2020"
+location = "Portland, OR"
+summary = "Ran on-site video and audio recording for two professional theatre productions, then cut the footage for the theatre's digital channels. Owned the technical setup on recording days and turned raw takes into something people would actually watch through."
+
+[jobs.virtual-choir]
+title = "Video Editor – Virtual Choir"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "April 2020"
+location = "Portland, OR"
+summary = "Built a full virtual concert out of remote audio and video from 20 isolated performers during lockdown. Walked non-technical cast members through recording their parts, troubleshot their setups one at a time, and synced everything into a polished video on a tight deadline."
+
+[jobs.house-and-facilities-manager]
+title = "House & Facilities Manager"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "October 2021 – September 2022"
+location = "Portland, OR"
+summary = "Ran front-of-house logistics for live shows and managed daily facility operations. Was the main point of contact for patrons, renters, and building management, which mostly meant being the person who could explain anything to anyone and keep the night on track."

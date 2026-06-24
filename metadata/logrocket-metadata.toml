@@ -1,0 +1,30 @@
+# LogRocket — Developer Relations / PodRocket (NYC)
+# Merged on top of metadata.toml via src/meta.typ::makeMeta().
+
+[modules]
+experience_file = "devrel-experience.toml"
+projects_file = "devrel-projects.toml"
+skills_file = "devrel-skills.toml"
+
+[lang.en]
+header_quote = "Backend and Linux person with an A/V editing background and years on a mic and on stage. I self-host an LLM-driven homelab, and I can write the script, run the recording, and cut the video, which turns out to be a useful combination for developer relations."
+cv_footer = "Developer Relations Resume"
+
+[layout]
+before_entry_description_skip = "-4pt"
+
+[layout.header]
+display_profile_photo = false
+
+[layout.entry]
+display_entry_society_first = false
+display_logo = false
+
+[personal.info]
+email = "tech@finnrut.is"
+github = "Multipixelone"
+location = "NYC"
+height = ""
+instagram = ""
+vocal-part = ""
+union = ""
