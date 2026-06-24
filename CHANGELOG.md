@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.4.0] - 2026-06-24
+
+### 📋 Template
+
+- *(template)* Add six NYC startup resume variants (#89) in [87a4e36](https://github.com/Multipixelone/resume/commit/87a4e36642c2fdbde73e4e2f375bfd77911a2322)
+
 ## [2.3.3] - 2026-06-23
 
 ### ⚙️ Miscellaneous Tasks
