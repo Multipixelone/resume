@@ -1,0 +1,31 @@
+# Anthropic — Communications Specialist, Product (NYC / SF / Seattle)
+# Merged on top of metadata.toml via src/meta.typ::makeMeta().
+
+[modules]
+experience_file = "creative-experience.toml"
+projects_file = "tech-projects.toml"
+skills_file = "comms-skills.toml"
+
+[lang.en]
+header_quote = "I actually use this stuff: I wire LLMs into my own automation and run a homelab of self-hosted services, so I can read a model's real strengths and gaps and write about them plainly. Performer by training, so I'm comfortable coaching someone to sound like themselves on the record. I live where the technical conversations happen and like turning a launch into a clear story."
+cv_footer = "Product Communications Resume"
+
+[layout]
+before_entry_description_skip = "-4pt"
+
+[layout.header]
+display_profile_photo = false
+
+[layout.entry]
+display_entry_society_first = false
+display_logo = false
+
+[personal.info]
+email = "tech@finnrut.is"
+github = "Multipixelone"
+linkedin = "finn-rutis-44a951304"
+location = "NYC"
+height = ""
+instagram = ""
+vocal-part = ""
+union = ""

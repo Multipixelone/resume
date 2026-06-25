@@ -149,10 +149,8 @@ Build all with `nix build '.#resume'`; outputs land as `<dest>-resume.pdf`.
 - Perplexity — video / creative-technologist work; "video is one of Perplexity's
   important channels." 32 NYC openings. Confirm the specific role is live before
   applying. Source: perplexity.ai/hub/careers/new-york-city
-- Anthropic — Developer Relations, Claude Developer Platform (NYC, hybrid;
-  ~$290k–$365k). Preferred quals explicitly list video-tutorial creation and public
-  speaking. The exact req fetched was removed Dec 2025; check for the current
-  equivalent or the Founding DevRel Lead. Source: anthropic.com/careers
+- Anthropic — see the dedicated "Anthropic — Comms & Events" section below for the
+  three roles being targeted (NYC, all on greenhouse.io/anthropic).
 - Synthesia — $4B AI-video-for-business platform with an NYC office; watch the
   careers page for content/production roles. Source: synthesia.io/careers
 - Cassidy — Founding Content Producer (NYC; full video lifecycle, on camera) closed
@@ -171,3 +169,48 @@ To make these variants stronger and replace anything generic, confirm and add:
    currently none, so it is deliberately left off.
 4. On-camera framing: the improv/performance background reads directly as
    "comfortable on camera," which several of these roles ask for explicitly.
+
+# Anthropic — Comms & Events Targets
+
+Researched June 2026. Three Anthropic roles (NYC, also SF/Seattle on some),
+all listed on job-boards.greenhouse.io/anthropic. Important caveat: all three ask
+for senior years-of-experience (5–8+) that an early-career profile does not have,
+so these lean entirely on the unusual combination of technical credibility, live
+performance, and production. Ranked by genuine fit.
+
+## A. Marketing Events Content Manager (NYC / SF; $200k–$255k) _(best fit)_
+
+- Owns end-to-end content for marketing events: keynote narratives, session
+  descriptions, speaker talking points, prep/briefing docs, run-of-show.
+- Sources and preps external speakers; builds scalable event content toolkits;
+  distills complex technical concepts for diverse audiences.
+- Why it fits: the live-events + performance + content-production + technical-
+  translation overlap is real (front-of-house, lighting/cues, virtual-concert
+  production under deadline, years on stage). Gap is the 8+ yrs of B2B event-
+  content marketing and an external speaker/journalist network.
+- Resume: `resumes/anthropic-events.typ` → `anthropic-events-resume.pdf`
+- Source: job-boards.greenhouse.io/anthropic/jobs/5100613008
+
+## B. Communications Specialist, Product (NYC / SF / Seattle; $265k) _(runner-up)_
+
+- Owns comms for feature/model launches; messaging, press materials, blog posts,
+  FAQs; coaches product/research leaders as spokespeople; lives in dev forums (X, HN).
+- Requires being an active Claude user with a real read on product strengths/gaps,
+  plus established relationships with AI reporters and creators.
+- Why it fits: uniquely satisfies "active Claude user / lives where technical
+  conversations happen" via the LLM-automation + homelab work, and the seniority
+  bar (5–8 yrs) is the lowest of the three. Blocker: no existing AI-press network,
+  and the core of the role is media relations.
+- Resume: `resumes/anthropic-comms.typ` → `anthropic-comms-resume.pdf`
+- Source: job-boards.greenhouse.io/anthropic/jobs/5239403008
+
+## C. Head of Social Communications (NYC / SF; $345k–$460k) _(clear stretch)_
+
+- Senior leadership: owns social strategy across brand channels, leads reactive
+  comms during breaking news/incidents, builds communities at scale, manages
+  agencies and reports. Video editing/multimedia is only a nice-to-have here.
+- Why it's a stretch: 8+ yrs leading social for brands under scrutiny, crisis
+  comms, and social analytics are all required and none are in the profile. The
+  only real hooks are internet/AI-culture fluency and multimedia ability.
+- Resume: `resumes/anthropic-social.typ` → `anthropic-social-resume.pdf`
+- Source: job-boards.greenhouse.io/anthropic/jobs/5263529008

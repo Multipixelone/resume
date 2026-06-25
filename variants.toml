@@ -165,6 +165,33 @@ check_metadata = true
 title = "ElevenLabs Resume"
 subtitle = "Developer relations"
 
+[anthropic-events]
+source = "anthropic-events"
+dest = "anthropic-events-resume"
+override_toml = "anthropic-events-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "Anthropic Events Resume"
+subtitle = "Marketing events content manager"
+
+[anthropic-comms]
+source = "anthropic-comms"
+dest = "anthropic-comms-resume"
+override_toml = "anthropic-comms-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "Anthropic Comms Resume"
+subtitle = "Communications specialist, product"
+
+[anthropic-social]
+source = "anthropic-social"
+dest = "anthropic-social-resume"
+override_toml = "anthropic-social-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "Anthropic Social Resume"
+subtitle = "Head of social communications"
+
 [cover-letter]
 source = "cover-letter"
 dest = "cover-letter"

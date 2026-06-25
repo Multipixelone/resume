@@ -1,0 +1,46 @@
+# Events-content ordering of the real experience entries: live-event operations
+# and audience-facing roles first, then production and content work.
+# Used by resumes/anthropic-events.typ via modules.experience_file.
+
+[jobs]
+[jobs.house-and-facilities-manager]
+title = "House & Facilities Manager"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "October 2021 – September 2022"
+location = "Portland, OR"
+summary = "Ran front-of-house for live shows and kept the building and rehearsal spaces show-ready. Owned the run-of-house on performance nights and was the main point of contact for patrons, renters, and building management."
+
+[jobs.student-ambassador]
+title = "Student Ambassador"
+company = "Molloy University"
+date = "October 2022 – May 2026"
+location = "Rockville Centre, NY"
+summary = "Lead campus tours and help run welcome events for prospective students and their families. Daily practice presenting to a live audience, fielding questions on the spot, and turning a schedule of sessions into a day that flows."
+
+[jobs.virtual-choir]
+title = "Video Editor – Virtual Choir"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "April 2020"
+location = "Portland, OR"
+summary = "Produced a full virtual concert from 20 performers recording alone at home during lockdown. Coordinated the cast and director, synced and mixed every isolated take, and delivered the finished piece on a tight, immovable deadline."
+
+[jobs.video-editor]
+title = "Video Editor & Sound Engineer"
+company = "Oregon Children's Theatre"
+date = "May 2020 – July 2020"
+location = "Portland, OR"
+summary = "Ran on-site video and audio recording for two professional theatre productions, then cut the footage and mixed the audio for the theatre's digital release."
+
+[jobs.rosetta-project]
+title = "Lighting Designer"
+company = "The Rosetta Project"
+date = "July 2021"
+location = "Portland, OR"
+summary = "Designed and ran lighting for a live stage production: hung and focused the rig, programmed the cues, and called the show during its run."
+
+[jobs.portland-spirit]
+title = "Mastering Engineer"
+company = "Portland Spirit"
+date = "November 2021"
+location = "Portland, OR"
+summary = "Produced and mixed the official theme song for the Portland Spirit river cruise, from raw tracking through a clean, broadcast-ready master."

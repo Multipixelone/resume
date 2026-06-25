@@ -1,0 +1,22 @@
+section_title = "Skills"
+
+[skills]
+[skills.writing]
+type = "Writing & Content"
+info = "Scripts, show programs, copy, and clear explainers for technical and general audiences"
+
+[skills.events]
+type = "Events & Live Production"
+info = "Front-of-house operations, run-of-show, lighting design and cue calling, A/V setup"
+
+[skills.speaking]
+type = "Speaking & Performance"
+info = "Stage and improv background, on-camera comfort, presenting to live audiences"
+
+[skills.multimedia]
+type = "Multimedia"
+info = "Video editing (Final Cut, DaVinci, Premiere); audio mixing and mastering (Logic, Reaper)"
+
+[skills.technical]
+type = "Technical"
+info = "Python automation, LLM tooling, Linux / NixOS, Git"
