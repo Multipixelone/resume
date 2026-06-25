@@ -1,0 +1,11 @@
+[tool.mypy]
+[[tool.mypy.overrides]]
+module = ["patchright.*", "playwright.*", "roomieorder.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+addopts = ["-q"]
+testpaths = ["tests"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/fetch_job.py" = ["E701", "E702"]

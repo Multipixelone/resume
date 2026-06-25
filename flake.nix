@@ -57,6 +57,16 @@
               '';
             };
 
+          patchright = pkgs.python3Packages.callPackage (inputs.roomieorder.outPath + "/nix/patchright.nix") { };
+
+          pythonEnv = pkgs.python3.withPackages (p: [
+            patchright
+            p.playwright
+            p.mypy
+            p.pytest
+            p.ruff
+          ]);
+
           resume = pkgs.callPackage ./packages/resume.nix {
             inherit
               inputs
@@ -90,7 +100,13 @@
               pkgs.nodejs
               pkgs.git-cliff
               pkgs.just
+              pythonEnv
             ];
+
+            shellHook = ''
+              export PLAYWRIGHT_BROWSERS_PATH="${pkgs.playwright-driver.browsers}"
+              export PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS="true"
+            '';
           };
 
           packages = {
@@ -128,6 +144,11 @@
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    roomieorder = {
+      url = "github:Multipixelone/roomieorder";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }
