@@ -1,7 +1,7 @@
 #import "../src/lib.typ": coverLetter
 #import "../src/meta.typ": makeMeta
 #import "../src/utils/date.typ": buildDate
-#let metadata = makeMeta("viam-metadata.toml")
+#let metadata = makeMeta("nyt-tech-specialist-metadata.toml")
 #let displayDate = buildDate().display(
   "[month repr:long] [day padding:none], [year]",
 )
@@ -14,7 +14,7 @@
 // ── Recipient ────────────────────────────────────────────────────────────────
 #let recipientName = "Hiring Manager"
 #let recipientTitle = ""
-#let recipientCompany = "Viam"
+#let recipientCompany = "The New York Times"
 #let recipientAddress = "New York, NY"
 
 #displayDate
@@ -26,17 +26,17 @@
 #v(0.5em)
 Dear #recipientName,
 
-I'm applying for the video production role on Viam's Education team. The line in the posting that got me was "no inherited toolchain, no prior workflow to maintain. You'll build it." That's the work I've already done, and it's the work I want more of.
+I'm applying for the News Technology Specialist role on the Video team. What I want is the work behind the journalism, keeping the cameras, the edit systems, and the feeds running so smoothly, nobody is even sure I've done anything at all. Things break at the worst moment and they have to be fixed now. That's the work I've already been doing, on a smaller stage.
 
-The clearest version of it: in April 2020, I edited a virtual choir for Bridgetown Conservatory of Musical Theatre. COVID so all twenty performers were recording alone at home on whatever equipment they had. There was no workflow for this because nobody had needed one before. I built the remote capture process, synced twenty isolated video tracks, mixed the separate audio stems into one clean concert, and delivered it on a tight deadline working directly with the cast and the director. That's the muscle I'd be flexing. Figure out the production function, then run it.
+In April 2020 I cut a virtual choir for Bridgetown Conservatory. Twenty performers, all recording alone at home on whatever they had, lockdown deadline. There was no workflow because nobody had needed one. I built the remote capture process, then handled dropped files, sync drift, out-of-spec recordings as they came in. Synced twenty isolated tracks. Delivered on schedule. Ingest, fix, produce, export. That's the discipline this role runs on.
 
-Before that, I ran on-site video and audio capture for two professional theatre productions at Oregon Children's Theatre. Camera and sound rigs on shoot days, then the full edit and mix for the theatre's digital release. End-to-end from rig to final cut. I've also designed and run lighting for a live stage production, hanging and focusing the rig myself and programming the cues, so I can light a shoot, not just operate a camera. And I've produced and mixed audio for broadcast delivery. Clean capture in a room I didn't control is a problem I've already solved. When clean capture on the day isn't possible, I have a lot of experience mastering audio in post as a voiceover artist.
+A few months later I ran on-site video and audio capture for two productions at Oregon Children's Theatre. Camera positions, mics, a recording setup I could trust, then the full cut in Premiere with motion graphics in After Effects, handoff for digital release. I also designed and ran lighting for The Rosetta Project, hanging and focusing the rig and programming the cues, and mixed audio to broadcast delivery for the Portland Spirit. All live work, no second takes. Live theatre teaches you that everything breaks at showtime, so you build it to be fixable fast and you stay calm when it does. A Wednesday-to-Sunday news cycle with a Monday studio reset is a rhythm I already know.
 
-The part that makes this role specifically right for me, though, is the audience. Viam is a robotics engineering platform, and the Education team makes content for developers. I run a homelab of self-hosted services on NixOS, I wire LLMs into private automation, and I write Python. I can sit with an engineering team and actually follow what they're building, which means I can make tutorials that don't dumb the material down or get the technical details wrong. That combination, production skills plus engineering fluency, is rare, and it's the reason I'm writing this letter.
+On the facilities side, I ran front-of-house for a year at Bridgetown, keeping the theatre and rehearsal spaces show-ready and acting as the main contact for patrons, renters, and building management. Resetting the room and having the gear ready for the next thing is work I've done for a living. Weekend calls, rooms to reset, someone who needs gear at a weird hour. I've been that person.
 
-The storyteller instinct the posting asks for is the other half. I came up in theatre. I think about why a viewer keeps watching, not just whether the footage is clean. Pacing, hook structure, where to cut and where to let a beat breathe, that's the same problem as staging a scene. I'd rather make a tutorial that holds a developer for ten minutes than one that's technically perfect and loses them in the first thirty seconds.
+The IT and networking side is another reason I'm writing. I run a homelab of dozens of internet-facing services on NixOS, built on a FortiGate firewall with separate DMZs and isolated VLANs. I understand ingest and transcode pipelines as a systems problem, not just a media one, because I've built infrastructure that follows the same ingest-process-export shape. Most of my stack is self-hosted, but the thinking is declarative and reproducible, which is the same muscle cloud work asks for. When a feed won't push or a transcode fails, I can read the network and the system, not just the editing app. Real production experience plus real IT depth in one person is rare.
 
-I'm in New York and can be in-office three days a week. I'd be happy to discuss more of what I'm able to bring to your team.
+I'm in New York and the Wednesday-to-Sunday hybrid schedule works great for me. Happy to talk through more of what I'd bring to the team.
 
 Sincerely,
 
