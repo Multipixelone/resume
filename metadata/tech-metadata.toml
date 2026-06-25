@@ -25,6 +25,7 @@ display_logo = false
 [personal.info]
 email = "tech@finnrut.is"
 github = "Multipixelone"
+linkedin = "finn-rutis-44a951304"
 location = "NYC"
 # don't show things that aren't relevant here
 height = ""

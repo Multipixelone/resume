@@ -122,7 +122,7 @@
           if k == "email" {
             link("mailto:" + v)[#v]
           } else if k == "linkedin" {
-            link("https://www.linkedin.com/in/" + v)[#v]
+            link("https://www.linkedin.com/in/" + v)[#firstName #lastName]
           } else if k == "github" {
             link("https://github.com/" + v)[#v]
           } else if k == "gitlab" {
