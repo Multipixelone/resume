@@ -14,4 +14,5 @@
 #experience(tavily-metadata)
 #skills(tavily-metadata)
 #importModules(("education",))
+#pagebreak()
 #projects(tavily-metadata)
