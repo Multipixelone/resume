@@ -1,3 +1,5 @@
+<!-- Last scouted: 2026-06-25 -->
+
 # NYC Tech-Startup Job Targets
 
 Researched June 2026. These are NYC (or NYC-office) startup roles that fit a
@@ -93,7 +95,7 @@ Audacity. No AI-video-tool experience yet, so none is claimed.
 
 Build all with `nix build '.#resume'`; outputs land as `<dest>-resume.pdf`.
 
-## 7. Ramp — Video Producer/Editor (NYC; relocation offered) _(strongest fit)_
+## 7. Ramp — Video Producer/Editor (NYC; relocation offered) _(strongest fit — No longer accepting)_
 
 - Customer films are "cinematic, character-led, entertainment-first" — not
   testimonials shot at a desk. Owns camera, lighting, on-set direction, and the cut.
@@ -104,7 +106,7 @@ Build all with `nix build '.#resume'`; outputs land as `<dest>-resume.pdf`.
   production experience map almost one-to-one onto this posting.
 - Resume: `resumes/ramp.typ` → `ramp-resume.pdf`
 - Source: jobs.ashbyhq.com/ramp/c70978a6-f452-4c8d-acb1-673ec90afbec;
-  jobs.technyc.org/companies/ramp-2
+  jobs.technyc.org/companies/ramp-2 _(confirmed closed 2026-06-25 — absent from live Ashby board)_
 
 ## 8. Runway — Creative Producer / DevRel Lead (NYC; Runway Studios)
 
@@ -135,14 +137,14 @@ Build all with `nix build '.#resume'`; outputs land as `<dest>-resume.pdf`.
 - Resume: `resumes/agentio.typ` → `agentio-resume.pdf`
 - Source: jobs.ashbyhq.com/agentio/5687b2ec-3b2b-4f85-b9e6-afb9e3cc1367 (posted May 2026)
 
-## 11. ElevenLabs — Developer Relations Engineer (NYC hub; remote-ok)
+## 11. ElevenLabs — Developer Relations Engineer (NYC hub; remote-ok) _(No longer accepting)_
 
 - Audio-AI company. Role creates and presents engaging content online and in person
   at developer meetups and conferences; improves docs and example projects.
 - Why it fits: the rare hook is the mixing/mastering/sound-engineering background —
   genuine audio credibility at an audio company, plus video and devrel ability.
 - Resume: `resumes/elevenlabs.typ` → `elevenlabs-resume.pdf`
-- Source: elevenlabs.io/careers; jobs.ashbyhq.com/elevenlabs
+- Source: elevenlabs.io/careers; jobs.ashbyhq.com/elevenlabs _(confirmed closed 2026-06-25 — no Developer Relations role on live board)_
 
 ## Additional Video & Performance Targets (June 2026 research)
 
@@ -229,7 +231,7 @@ fit. Same build pattern: `nix build '.#resume'` → `<dest>-resume.pdf`.
 - Resume: `resumes/orveon.typ` → `orveon-resume.pdf`
 - Source: builtinnyc.com/job/video-editor/9883596
 
-## 17. NBC News — Producer, Audio, Here's the Scoop Podcast (NYC; hybrid 4×/wk)
+## 17. NBC News — Producer, Audio, Here's the Scoop Podcast (NYC; hybrid 4×/wk) _(No longer accepting)_
 
 - ~12-month term, $93k–$110k. Produce daily episodes of an audio and video
   podcast from conception through publication.
@@ -242,7 +244,7 @@ fit. Same build pattern: `nix build '.#resume'` → `<dest>-resume.pdf`.
   video editing background carries over.
 - Gap: daily newsroom experience preferred; short-term nature is a consideration.
 - Resume: `resumes/nbc-heres-the-scoop.typ` → `nbc-heres-the-scoop-resume.pdf`
-- Source: jobs.smartrecruiters.com/NBCUniversal3/744000127881459
+- Source: jobs.smartrecruiters.com/NBCUniversal3/744000127881459 _(confirmed closed 2026-06-25 — absent from live SmartRecruiters board)_
 
 ## 18. The New York Times — Studio Video Producer, NYT Cooking (NYC; in-office 4×/wk)
 
@@ -322,6 +324,155 @@ fit. Same build pattern: `nix build '.#resume'` → `<dest>-resume.pdf`.
 - Resume: `resumes/mkg.typ` → `mkg-resume.pdf`
 - Source: thisismkg.com/connect
 
+## 23. Truffle Security — Developer Relations Lead (Remote US; $180k–$200k)
+
+- Open-source security company built on TruffleHog (secrets scanning, 800+ credential
+  types). Grow the open source community across GitHub, Slack, and Discord; create
+  technical content (blogs, demos, tutorials, videos, workshops, webinars); run
+  community programs (office hours, demos, sessions); speak at conferences, meetups,
+  and security events. Python, Bash, GitHub Actions, Docker familiarity a plus.
+  Explicitly invites applicants who don't check every box.
+- Why it fits: the network-security homelab (`tech-projects.toml
+  [projects.network-security]` — FortiGate firewall, separate DMZs, isolated VLANs,
+  MetalLB) is genuine security and DevSecOps credibility. The declarative-infra
+  homelab (`tech-projects.toml [projects.declarative-homelab]` — Docker, ESXi, KVM,
+  reproducible NixOS setup) covers the CI/CD and container tooling the posting lists
+  as a plus. The LLM-automation work in Python (`tech-projects.toml
+  [projects.llm-automation]`) maps onto the technical-content and demo side. The
+  Student Ambassador role (`work-experience.toml [jobs.student-ambassador]` — guided
+  tours, ran welcome events, daily outreach) is real community-engagement and
+  event-hosting experience that lines up with community programs and conference
+  speaking.
+- Gap: "Lead" title implies seniority, though no hard years are stated and the post
+  explicitly says to apply even without matching the job description to a tee. No
+  professional DevRel, AppSec, or open-source-community employment history; the
+  security and infra credibility is homelab-based, not production-team. Honest
+  stretch on employed DevRel tenure.
+- Resume: `resumes/truffle.typ` → `truffle-resume.pdf` _(variant not yet created)_
+- Source: job-boards.greenhouse.io/trufflesecurity/jobs/4705116005 _(verified live 2026-06-25)_
+
+## 24. Modal — Developer Relations Engineer, Sandboxes (NYC; $130k–$250k) _(stale — >90 days)_
+
+- AI infrastructure company ($4.65B Series C, $300M+ ARR). First DevRel hire focused
+  on Modal Sandboxes — safe execution of AI-generated code at scale. Ship technical
+  content (videos, cookbooks, integrations, creative mini-apps), distill AI
+  advancements, give demos and talks at developer events, engage with users online
+  (X, LinkedIn, Slack) and in person. 3+ years as a software engineer and at least 1
+  year using ML/LLMs/agentic systems. In-person NYC, SF, or Stockholm.
+- Why it fits: the LLM-automation project (`tech-projects.toml [projects.llm-automation]`
+  — Python tooling wiring LLMs into reliable parse-and-act workflows with tight prompts
+  and strict JSON schemas) directly satisfies the "1 year using ML/LLMs/agentic
+  systems" ask and the "built something that rhymes with hosted background agents"
+  framing. The declarative-infra homelab (`tech-projects.toml [projects.declarative-homelab]`
+  — containerized, reproducible internet-facing services) gives credibility on the
+  sandbox and isolated-execution infrastructure angle. The Student Ambassador role
+  (`work-experience.toml [jobs.student-ambassador]` — presenting to groups, running
+  events) covers the demos, talks, and in-person engagement.
+- Gap: 3+ years as a software engineer is a real gap — Finn is early-career and the
+  engineering experience is homelab and personal-project, not employed SWE. No
+  developer following on social media (listed as bonus, not required). Posting is
+  roughly 12 months old (likely an evergreen pipeline role for a hard-to-fill
+  specialty). In-person NYC.
+- Resume: `resumes/modal.typ` → `modal-resume.pdf` _(variant not yet created)_
+- Source: jobs.ashbyhq.com/modal/5113f35e-988d-41bc-a899-3261a9454e40 _(verified live 2026-06-25)_
+
+## 25. Baseten — Content Engineer (NYC or remote US; $95k–$115k, contract-to-hire)
+
+- AI inference infrastructure company ($1.5B Series F; powers Cursor, Notion, Writer,
+  OpenEvidence). 3-month contract-to-hire. Ship high-visibility technical content;
+  design and create automated research and content-production workflows using
+  agentic AI tools; build SEO and AEO pipelines. Python, JavaScript, or SQL required.
+  AI/ML infrastructure and open-source tooling nice to have. NYC office (215 Park Ave
+  S) or remote US.
+- Why it fits: the posting literally asks for "automated research and content
+  production workflows using agentic AI tools," which is the LLM-automation project
+  (`tech-projects.toml [projects.llm-automation]` — Python tooling with tight system
+  prompts and strict JSON schemas for reliable parse-and-act). Python is confirmed
+  (`tech-skills.toml [skills.languages]`). The Typst resume system (`tech-projects.toml
+  [projects.building-resume]` — a version-controlled, CI-compiled content pipeline
+  that fans one metadata change across many outputs) is real docs-as-code and
+  content-tooling experience. The declarative-infra homelab (`tech-projects.toml
+  [projects.declarative-homelab]`) gives AI-infra credibility for the nice-to-have.
+- Gap: 3-month contract-to-hire (flagged as contract; conversion is not guaranteed).
+  No employed technical-writing or content-engineering history; the content and
+  pipeline work is personal-project. No SEO or AEO experience. Early-career-appropriate
+  on years (none stated).
+- Resume: `resumes/baseten.typ` → `baseten-resume.pdf` _(variant not yet created)_
+- Source: jobs.ashbyhq.com/baseten/a0fd4d94-dfd7-4165-9cdd-25e3d31e25c4 _(verified live 2026-06-25)_
+
+## 26. LangChain — Technical Docs Writer (NYC; ~$150k–$195k)
+
+- The LLM/agent-tooling company (LangChain, LangGraph, LangSmith; 90M+ monthly
+  downloads; $125M Series B). Write and maintain user guides, API documentation,
+  technical specifications. Partner with engineers and product managers; improve
+  documentation standards and docs-as-code processes. 5+ years technical writing;
+  Markdown, Confluence, GitHub. NYC, in-office. Posted 2026-06-24.
+- Why it fits: LangChain is the canonical LLM/agent-tooling company, and the
+  LLM-automation project (`tech-projects.toml [projects.llm-automation]`) is real
+  hands-on experience with the exact problem space the docs describe. The Typst
+  resume system (`tech-projects.toml [projects.building-resume]`) is genuine
+  docs-as-code — a version-controlled, CI-compiled content pipeline (`tech-skills.toml
+  [skills.tools]` — Git, GitHub, CI/CD, Typst). The declarative-infra homelab
+  (`tech-projects.toml [projects.declarative-homelab]`) gives open-source-community
+  credibility for the OSS side of LangChain's docs.
+- Gap: 5+ years technical writing is a reach — Finn is early-career and the
+  docs-as-code work is personal-project (the resume system), not employed tech
+  writing. No professional API-documentation portfolio. Apply on the LLM-tooling
+  fluency and the docs-as-code demonstration, not on years.
+- Resume: `resumes/langchain.typ` → `langchain-resume.pdf` _(variant not yet created)_
+- Source: jobs.ashbyhq.com/langchain/3d1ed774-f5cb-48de-8659-b1e2e5c8cc9c _(verified live 2026-06-25)_
+
+## 27. Vox Media — Podcast Social Video Editor (NYC; in-office) _(stretch)_
+
+- Lead the video and motion production team for social-first clips, motion-graphic
+  promos, and still/motion assets across the Vox Media podcast slate. Build content
+  calendars, define creative standards, oversee producers and editors, establish
+  editing pipelines and asset versioning. Adobe Premiere Pro, After Effects, Final
+  Cut Pro. 5+ years creating social-first video for media brands, plus
+  leadership/management experience.
+- Why it fits: the Oregon Children's Theatre work (`work-experience.toml
+  [jobs.video-editor]` — ran on-site video and audio recording for two professional
+  productions, managed technical setup, edited final footage for digital
+  distribution) and the virtual-choir compositing (`work-experience.toml
+  [jobs.virtual-choir]` — synced remote audio and video from 20 isolated performers
+  into one concert) are direct video-editing and multi-track assembly experience. The
+  Portland Spirit mastering work (`work-experience.toml [jobs.portland-spirit]` —
+  produced and mixed a broadcast-ready track) covers the sound-design and
+  audio-leveling side of the motion-design ask.
+- Gap: 5+ years creating social-first video for media brands is a stretch, and the
+  role requires leadership experience (managing and mentoring producers and editors)
+  that Finn does not have. This is a senior lead position, not an
+  individual-contributor editor. Treat as a long-shot; apply on portfolio quality,
+  not on years or management tenure.
+- Resume: `resumes/vox-podcast-video-editor.typ` → `vox-podcast-video-editor-resume.pdf` _(variant not yet created)_
+- Source: job-boards.greenhouse.io/voxmedia/jobs/7405676 _(verified live 2026-06-25)_
+
+## 28. ElevenLabs — Creator Community Growth (Remote US, NYC preferred)
+
+- Audio-AI company ($11B valuation; voice, music, image, and video creative suite).
+  Build scalable community and ambassador programs; develop relationships with
+  creators, studios, agencies, and community leaders; host and lead creator workshops
+  across the ElevenLabs creative suite; represent ElevenLabs at IRL meetups, AI
+  events, and conferences; plan owned events from creator dinners to community
+  meetups. Remote US, preference for NYC or SF.
+- Why it fits: the Student Ambassador role (`work-experience.toml [jobs.student-ambassador]`
+  — guided prospective students and families, ran welcome events, daily outreach) is
+  direct community-engagement and event-hosting experience that maps onto ambassador
+  programs and owned events. The Portland Spirit mastering work (`work-experience.toml
+  [jobs.portland-spirit]` — produced and mixed a broadcast-ready theme song) gives
+  genuine audio credibility at an audio-AI company whose creative suite centers on
+  voice and music. The Oregon Children's Theatre recording work (`work-experience.toml
+  [jobs.video-editor]`) covers the video side of the creative suite. The
+  event-hosting and group-presentation experience (`work-experience.toml
+  [jobs.student-ambassador]`) reads onto hosting creator workshops and representing
+  the company at gatherings.
+- Gap: no existing audience, following, or community presence (listed as bonus, not
+  required). No employed creator-program or community-management history. No hard
+  years stated. The DevRel Engineer role (#11, now closed) was a different angle;
+  this is a creator-community rather than developer-community role.
+- Resume: `resumes/elevenlabs-creator.typ` → `elevenlabs-creator-resume.pdf` _(variant not yet created)_
+- Source: jobs.ashbyhq.com/elevenlabs/02c054a0-ef9d-4f38-b44b-ad943955aab6 _(verified live 2026-06-25)_
+
 ## Honorable mentions (June 2026 research)
 
 - Audacy — Digital Video Content Producer/Editor (NYC). Audio-media company;
@@ -331,6 +482,11 @@ fit. Same build pattern: `nix build '.#resume'` → `<dest>-resume.pdf`.
   video library management. Jersey City, not NYC proper.
 - NYT — Senior Video Journalist, Podcast Video, Popcast (temp, 12 months). Strong
   audio+video fit but requires 8+ years and is explicitly senior/temporary.
+- Vox Media — Social Media Producer, A Touch More & Bird's Eye View (NYC; in-office).
+  Short-form social video across two podcast shows; audio editing a plus. Strong
+  familiarity with collegiate and professional women's sports leagues (WNBA/NWSL)
+  preferred — specific fandom appreciated but not required. Live on Greenhouse.
+  Source: job-boards.greenhouse.io/voxmedia/jobs/7587119 _(verified live 2026-06-25)_
 
 ## Also monitor (no dedicated variant yet)
 
@@ -402,3 +558,34 @@ performance, and production. Ranked by genuine fit.
   only real hooks are internet/AI-culture fluency and multimedia ability.
 - Resume: `resumes/anthropic-social.typ` → `anthropic-social-resume.pdf`
 - Source: job-boards.greenhouse.io/anthropic/jobs/5263529008
+
+## D. Marketing Events Producer (NYC / SF) _(best production-stage fit)_
+
+- Owns end-to-end production of Anthropic's core events portfolio — conferences,
+  keynotes, summits, tentpole moments — from pre-production through on-site
+  execution. Develops run-of-show, cue sheets, production schedules, stage plots,
+  and technical riders. Leads the creative and technical vision for stage design,
+  lighting, audio, video, and scenic. Directs rehearsals and serves as the primary
+  show caller on-site, coordinating all technical cues in real time. Sources and
+  manages AV, staging, and lighting vendors.
+- Why it fits: the lighting-design and live-cue background maps directly onto the
+  show-calling and stage-production mandate — `work-experience.toml
+  [jobs.rosetta-project]` (hung, focused, programmed, and ran cues live for a stage
+  production). The front-of-house and live-show operations experience
+  (`work-experience.toml [jobs.house-and-facilities-manager]` — ran front-of-house
+  logistics for live shows, main point of contact for patrons and renters) covers
+  the on-site execution and vendor-coordination side. The virtual-choir work
+  (`work-experience.toml [jobs.virtual-choir]` — synced 20 isolated performers into
+  one concert on a tight deadline, worked directly with the cast and director) shows
+  calm real-time production decisions under pressure and the rehearsal-direction
+  angle. The Oregon Children's Theatre recording work (`work-experience.toml
+  [jobs.video-editor]` — on-site video and audio recording, technical setup,
+  edited final footage) covers the AV-production disciplines the role asks for.
+- Gap: preferred 10+ years in live event production for technology conferences and
+  corporate keynotes (the minimum is portfolio-based, not years-hardened). No
+  large-scale corporate keynote or conference production portfolio, and no
+  vendor-management or production-budget experience at scale. Anthropic explicitly
+  invites applicants who don't check every box, which keeps this live despite the
+  seniority gap. Strongest pure production-stage fit in the file.
+- Resume: `resumes/anthropic-events-producer.typ` → `anthropic-events-producer-resume.pdf` _(variant not yet created)_
+- Source: job-boards.greenhouse.io/anthropic/jobs/5251832008 _(verified live 2026-06-25)_
