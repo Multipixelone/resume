@@ -1,14 +1,14 @@
-# Writer — Developer Advocate, Events & Social (NYC)
+# Writer — Software Quality Engineer (NYC)
 # Merged on top of metadata.toml via src/meta.typ::makeMeta().
 
 [modules]
-experience_file = "devrel-experience.toml"
-projects_file = "devrel-projects.toml"
-skills_file = "devrel-skills.toml"
+experience_file = "writer-experience.toml"
+projects_file = "writer-projects.toml"
+skills_file = "writer-skills.toml"
 
 [lang.en]
-header_quote = "Backend and Linux engineer who's as comfortable on a stage as in a terminal. I run a NixOS homelab and wire LLMs into real automation, and after years in front of audiences, technical storytelling at events and online is the part I actually want to do."
-cv_footer = "Developer Advocacy Resume"
+header_quote = "Python engineer who treats AI reliability as a testing problem. I build CI/CD quality gates with GitHub Actions, validate LLM outputs in my own automation projects, and run a NixOS homelab where every service has to prove it works before it ships."
+cv_footer = "Software Quality Engineer Resume"
 
 [layout]
 before_entry_description_skip = "-4pt"

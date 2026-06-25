@@ -14,9 +14,7 @@ selectively (one or two echoes, never parroted). Build them with
 > ZipRecruiter, Ashby, Lever). Re-check each live posting before applying in
 > case a role has closed or changed.
 
-## 1. Writer — Developer Advocate, Events & Social (NYC) _(No longer accepting applications)_
-
-> Developer advocate is no longer accepting applications: can probably apply to another job, grab only the ashbyhq site, this is there primary site
+## 1. Writer — Developer Advocate, Events & Social (NYC) _(No longer accepting applications for this job, applied for Software Quality Engineer instead https://jobs.ashbyhq.com/writer/74a6d06e-3f38-44d0-9cb3-ee64fa857d12/application?locationId=b24cb0d7-d4e0-494a-9ed8-11162d8f557b)_
 
 - Wants an "accomplished storyteller with a strong technical background"
 - Represent Writer at engineering/research events, on social, and in AI

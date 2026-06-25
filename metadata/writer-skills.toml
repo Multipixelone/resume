@@ -1,0 +1,22 @@
+section_title = "Technical Skills"
+
+[skills]
+[skills.quality]
+type = "Test Automation & Quality"
+info = "GitHub Actions, CI/CD pipelines, structured output validation, prompt testing, automated quality gates"
+
+[skills.ai]
+type = "AI / LLM"
+info = "LLM integration, Prompt engineering, Structured output (JSON), Python automation, Agent tooling"
+
+[skills.infrastructure]
+type = "Infrastructure & DevOps"
+info = "Docker, Nix Ecosystem (Flakes, Nixpkgs, Home Manager), Declarative Infrastructure (NixOS), Reproducible Builds, Reproducible Test Environments, Git, GitHub, Homelab Self-Hosting, TCP/IP, VLANs, DMZs, DNS / DDNS, NAT, Load Balancing (MetalLB), Firewall Administration (FortiGate)"
+
+[skills.languages]
+type = "Programming"
+info = "Python, Nix, Bash"
+
+[skills.operating-systems]
+type = "Operating Systems"
+info = "Linux (Ubuntu, NixOS), Windows, macOS, iOS"
