@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.1] - 2026-06-25
+
+### 🚀 Features
+
+- Cover letter for nyt in [afdcffa](https://github.com/Multipixelone/resume/commit/afdcffa37fcc479e30df5d92e8d370640844ab4b)
+- Linkdin about in [b865ba1](https://github.com/Multipixelone/resume/commit/b865ba1604dce4bc3567a508d71d475476148d91)
+
 ## [2.6.0] - 2026-06-25
 
 ### 🚀 Features
