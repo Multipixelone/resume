@@ -144,6 +144,194 @@ Build all with `nix build '.#resume'`; outputs land as `<dest>-resume.pdf`.
 - Resume: `resumes/elevenlabs.typ` → `elevenlabs-resume.pdf`
 - Source: elevenlabs.io/careers; jobs.ashbyhq.com/elevenlabs
 
+## Additional Video & Performance Targets (June 2026 research)
+
+Fresh batch researched June 25 2026. NYC video production, podcast/audio, and
+live-event roles that lean on the A/V + performance profile. Ranked by genuine
+fit. Same build pattern: `nix build '.#resume'` → `<dest>-resume.pdf`.
+
+## 12. Vox Media — Senior Video Producer, Unexplainable (NYC; in-office) _(best new fit)_
+
+- One-year WGA-E contract, $90k–$113k. Lead the full video and audio editing
+  workflow for each episode: structure, pacing, clarity, visual presentation.
+- Multi-track/multi-camera assembly, layout, sync, and cleanup in
+  Premiere/After Effects; record and remotely direct host video (Riverside-style).
+- 3–5 years producing longform, interview-driven, idea-focused shows.
+- Why it fits: the Bridgetown virtual-choir work (remote audio/video sync from 20
+  isolated performers, tight deadline) and Oregon Children's Theatre video+audio
+  production map directly onto this. Audio+video dual background is the differentiator.
+- Gap: science/narrative journalism preferred, not required; cover letter should
+  show curiosity about science storytelling.
+- Resume: `resumes/vox-unexplainable.typ` → `vox-unexplainable-resume.pdf`
+- Source: builtinnyc.com/job/senior-video-producer-unexplainable/8588696
+
+## 13. Vox Media — Senior Video Producer, Podcast Network (NYC; in-office)
+
+- Permanent, full-time; WGA-E union. Drive multiplatform production across the
+  podcast network; launch new video-first shows.
+- Edit longform YouTube episodes and cut platform-native shortform for TikTok,
+  Reels, Shorts; develop formats, write/edit scripts, coach host talent.
+- Design motion graphics, captions, lower-thirds; manage freelance editors.
+- 6–8+ years in digital video production (editorial or creator-driven).
+- Why it fits: strongest pure video + performance fit. Theatre/improv background
+  reads directly onto coaching hosts and shaping talk-driven formats. Posting
+  explicitly invites non-exact-match applicants.
+- Gap: 6–8 years is a stretch; apply on portfolio quality and the host-performance
+  angle rather than years-of-service.
+- Resume: `resumes/vox-podcast-network.typ` → `vox-podcast-network-resume.pdf`
+- Source: job-boards.greenhouse.io/voxmedia/jobs/7405691
+
+## 14. The New Yorker (Condé Nast) — Video Producer (NYC; in-office) _(stretch)_
+
+- Full-time guild position, $84.7k–$110k. Edit original short- and long-form
+  video on news, investigative journalism, culture, and humor.
+- Archival research, animation, sound design, motion graphics; shepherd videos
+  through editorial closing (fact check, copy edit, legal review).
+- Independently produce and shoot; Sony cameras, lighting, high-quality sound.
+- 5+ years in digital video with emphasis on journalism or documentary.
+- Why it fits: documentary/journalistic editing and sound-design pieces line up
+  with Oregon Children's Theatre editing and the Portland Spirit / virtual-choir
+  audio work. Rosetta Project lighting shows on-set visual craft.
+- Gap: 5+ years journalism/documentary is a reach unless there's a strong news/doc
+  portfolio to point at.
+- Resume: `resumes/newyorker.typ` → `newyorker-resume.pdf`
+- Source: builtinnyc.com/job/video-producer-new-yorker/7169622
+
+## 15. The New York Times — News Technology Specialist, Video (NYC; hybrid) _(best video+tech blend)_
+
+- Full-time NewsGuild, $112k–$113k, Wed–Sun schedule. Troubleshoot technical
+  issues with video production/post-production software, cameras, lenses, audio.
+- Execute technical work with live video; assist in live/pre-recorded shoots and
+  live streams. Support ingesting, transcoding, exporting, uploading, archiving.
+- Advanced Adobe CC (Premiere, After Effects) and general IT including networking
+  and cloud systems. 4+ years relevant experience.
+- Why it fits: the best video + tech blend target. Linux/homelab/declarative-infra
+  spine plus A/V production is exactly the profile — someone who can translate
+  production problems into technical solutions. Oregon Children's Theatre work
+  included on-site technical setup for recordings.
+- Gap: no explicit newsroom experience, but the role is technical operations, not
+  journalism, so production-tech is the main sell.
+- Resume: `resumes/nyt-tech-specialist.typ` → `nyt-tech-specialist-resume.pdf`
+- Source: job-boards.greenhouse.io/thenewyorktimes/jobs/4687544005
+
+## 16. Orveon Global — Video Editor (NYC; hybrid 3×/wk)
+
+- Full-time, $70k–$95k. Shape video across platforms; import, transcode, sync,
+  organize raw footage.
+- Edit, color correction/grading, titles/motion graphics; audio leveling; VFX/
+  compositing under senior editors. Export/deliver in multiple aspect ratios.
+- 2–5 years hands-on editing/post-production/motion design (internships/freelance
+  welcome).
+- Why it fits: good junior/mid-level fit. Toolset maps well (Premiere, Final Cut,
+  DaVinci, Logic Pro/Reaper). Portland Spirit mastering-engineer work is a real
+  differentiator for the audio-leveling requirement.
+- Gap: no beauty-brand experience (listed as nice-to-have, not required).
+- Resume: `resumes/orveon.typ` → `orveon-resume.pdf`
+- Source: builtinnyc.com/job/video-editor/9883596
+
+## 17. NBC News — Producer, Audio, Here's the Scoop Podcast (NYC; hybrid 4×/wk)
+
+- ~12-month term, $93k–$110k. Produce daily episodes of an audio and video
+  podcast from conception through publication.
+- Pitch/develop stories, book guests, cut tape and assemble segments, write/edit
+  scripts and host copy. Gather video elements. Tight daily deadlines.
+- 3+ years in audio journalism, podcasting, or digital news production.
+- Why it fits: direct match for audio storytelling + tight-deadline production
+  muscle. Virtual Choir and Portland Spirit both show polished audio under
+  deadline while collaborating with cast/director. Show is audio+video, so the
+  video editing background carries over.
+- Gap: daily newsroom experience preferred; short-term nature is a consideration.
+- Resume: `resumes/nbc-heres-the-scoop.typ` → `nbc-heres-the-scoop-resume.pdf`
+- Source: jobs.smartrecruiters.com/NBCUniversal3/744000127881459
+
+## 18. The New York Times — Studio Video Producer, NYT Cooking (NYC; in-office 4×/wk)
+
+- Full-time NewsGuild, $113k–$132k. Produce, direct, and edit multi-camera video
+  shoots in the NYT Studio Kitchen.
+- Act as video point-of-contact for recipe creators, guiding their on-camera
+  delivery and ensuring personality shines through. Coordinate studio/field
+  logistics, write scripts and shot lists, publish to YouTube.
+- 4+ years producing/directing digital video in food, lifestyle, or
+  personality-driven media.
+- Why it fits: excellent fit for the performance/on-camera comfort and live-stage
+  direction background. Directing external on-camera talent and making them
+  confident is a theatrical skill. Multi-cam studio + post align with OCT and
+  Bridgetown experience.
+- Gap: no food-media background; reach unless strong personality-driven directing
+  /edit samples exist.
+- Resume: `resumes/nyt-cooking.typ` → `nyt-cooking-resume.pdf`
+- Source: job-boards.greenhouse.io/thenewyorktimes/jobs/4688786005
+
+## 19. Vox Media — Podcast Social Media Producer (NYC; in-office)
+
+- Permanent, full-time; WGA-E union. Develop and produce short-form video clips,
+  motion-graphic promos, still assets, and platform-tailored content across
+  podcast shows.
+- Identify compelling moments and craft the storytelling arc for each social
+  clip. Optimize for TikTok, Reels, YouTube Shorts, LinkedIn; track and iterate.
+- Solid skills in Adobe Premiere Pro, Final Cut Pro, After Effects; audio
+  editing/podcast workflows a plus.
+- Why it fits: lower barrier to entry than the Senior Video Producer roles. Direct
+  experience cutting performance/media content into shareable formats. Explicit
+  Final Cut Pro mention matches the confirmed toolset.
+- Gap: high-volume social optimization emphasis over longform craft; show
+  fast-turnaround short-form samples.
+- Resume: `resumes/vox-podcast-social.typ` → `vox-podcast-social-resume.pdf`
+- Source: job-boards.greenhouse.io/voxmedia/jobs/7405659
+
+## 20. Lawhive — TikTok Video Producer & Editor (NYC; in-office)
+
+- Full-time, $75k–$120k. Shape complex legal, business, and cultural insights
+  into sharp, high-impact stories for TikTok, Instagram, YouTube, Facebook.
+- Design and execute repeatable, engaging formats; iterate based on platform
+  performance. Work with charismatic talent and significant distribution.
+- Why it fits: startup/legal-content creator role where on-camera energy and
+  performance instincts are an advantage. Student Ambassador/event-hosting and
+  improv comfort map onto "charismatic talent" and repeatable format creation.
+- Gap: no legal-content background; must show ability to make dense topics
+  entertaining.
+- Resume: `resumes/lawhive.typ` → `lawhive-resume.pdf`
+- Source: linkedin.com/jobs/view/tiktok-video-producer-editor-at-lawhive-4413859117
+
+## 21. Madison Square Garden Entertainment — Stage Manager, Radio City (NYC; on-site, part-time) _(stretch)_
+
+- Part-time, AGVA union required, $65.53/hr. Verbally execute lighting, scenic,
+  fly, and talent moves; operate four stage elevators safely.
+- Work with visiting PSMs, tour managers, and talent to execute concerts, live
+  TV, award shows, corporate events, and the Christmas Spectacular.
+- 5+ years stage management in a theater environment. Nights/weekends/holidays.
+- Why it fits: most direct live theatre/stage-adjacent target. Rosetta Project
+  lighting design and Bridgetown front-of-house/stage-adjacent management show
+  live-show operational experience. Performance background helps with cueing and
+  performer communication.
+- Gap: 5+ years credited stage management is a stretch, and it's part-time/AGVA.
+  Treat as a long-shot or portfolio-building application.
+- Resume: `resumes/msg-radiocity.typ` → `msg-radiocity-resume.pdf`
+- Source: msgentertainment.com/jobs/stage-manager-radio-city-new-york-city-ny
+
+## 22. MKG — Content Creator (NYC or LA) _(soft lead — details unverified)_
+
+- Full-time, experiential marketing agency. Limited public detail on the posting;
+  listed only as "Content Creator, Full Time, NY or LA."
+- Why it could fit: experiential/content agencies often need creators who can
+  shoot, edit, and appear on camera at events. Event/stage background plus
+  video/audio skills is a plausible match.
+- Gap: cannot verify responsibilities, seniority, or exact location from the
+  public posting. Follow up via careers@thisismkg.com for a full job description
+  before building a variant.
+- Resume: `resumes/mkg.typ` → `mkg-resume.pdf`
+- Source: thisismkg.com/connect
+
+## Honorable mentions (June 2026 research)
+
+- Audacy — Digital Video Content Producer/Editor (NYC). Audio-media company;
+  public posting did not expose full responsibilities. Likely worth a direct
+  application. Source: careers-audacy.icims.com/jobs/8128
+- Forbes — Associate Video Producer (Jersey City, hybrid; $66.3k). Short-form +
+  video library management. Jersey City, not NYC proper.
+- NYT — Senior Video Journalist, Podcast Video, Popcast (temp, 12 months). Strong
+  audio+video fit but requires 8+ years and is explicitly senior/temporary.
+
 ## Also monitor (no dedicated variant yet)
 
 - Perplexity — video / creative-technologist work; "video is one of Perplexity's
