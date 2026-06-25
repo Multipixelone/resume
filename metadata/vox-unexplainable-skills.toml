@@ -1,0 +1,19 @@
+section_title = "Skills"
+
+[skills]
+[skills.video]
+type = "Video Editing"
+info = "Final Cut Pro, DaVinci Resolve, Premiere Pro; multi-camera capture, sync, color, delivery"
+
+[skills.audio]
+type = "Audio"
+info = "Logic Pro, Reaper, Audacity; recording, mixing, mastering"
+
+[skills.live]
+type = "Live Production"
+info = "Lighting design and programming, cue calling, front-of-house operations"
+
+[skills.workflow]
+type = "Production"
+info = "Pre-production planning, on-set direction, remote and distributed recording workflows"
+

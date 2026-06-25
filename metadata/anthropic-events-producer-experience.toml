@@ -1,0 +1,39 @@
+# Anthropic Marketing Events Producer experience.
+# Reordered and re-angled toward live production, show-calling, and on-site
+# execution. Facts are drawn from work-experience.toml.
+
+[jobs]
+[jobs.rosetta-project]
+title = "Lighting Designer"
+company = "The Rosetta Project"
+date = "July 2021"
+location = "Portland, OR"
+summary = "Ran the lighting for a live stage production. Hung and focused the rig, built the cue sheet against the show flow, and called the cues live during the run. Handled the full technical process from load-in through final performance."
+
+[jobs.house-and-facilities-manager]
+title = "House & Facilities Manager"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "October 2021 – September 2022"
+location = "Portland, OR"
+summary = "Ran front-of-house logistics for live shows and handled daily facility operations. Acted as the main point of contact for patrons, renters, and building management during events. Kept the theatre and rehearsal spaces ready, and fixed whatever broke before the house opened."
+
+[jobs.virtual-choir]
+title = "Video Editor – Virtual Choir"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "April 2020"
+location = "Portland, OR"
+summary = "Edited and synced remote audio and video from 20 isolated performers to build a full virtual concert. Worked directly with the cast and director to troubleshoot problems and deliver a polished video on a tight deadline."
+
+[jobs.video-editor]
+title = "Video Editor & Sound Engineer"
+company = "Oregon Children's Theatre"
+date = "May 2020 – July 2020"
+location = "Portland, OR"
+summary = "Ran on-site video and audio recording for two professional theatre productions. Handled the technical setup on recording days and edited the final footage for the theatre's digital distribution."
+
+[jobs.portland-spirit]
+title = "Mastering Engineer"
+company = "Portland Spirit"
+date = "November 2021"
+location = "Portland, OR"
+summary = "Produced and mixed the official theme song for the Portland Spirit river cruise. Managed the audio workflow from the initial recording through final polish, delivering a crisp, broadcast-ready track."

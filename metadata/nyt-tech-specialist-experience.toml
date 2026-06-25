@@ -1,0 +1,36 @@
+[jobs]
+
+[jobs.video-editor]
+title = "Video Editor & Sound Engineer"
+company = "Oregon Children's Theatre"
+date = "May 2020 – July 2020"
+location = "Portland, OR"
+summary = "Ran on-site video and audio recording for two productions. Handled the technical setup on recording days: camera positions, microphones, and a reliable recording setup. Edited the footage and delivered the final cuts for the theatre's digital distribution. Ingest, produce, export. Same discipline every time."
+
+[jobs.virtual-choir]
+title = "Video Editor – Virtual Choir"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "April 2020"
+location = "Portland, OR"
+summary = "Edited and synced remote audio and video from 20 isolated performers to build a full virtual concert under lockdown deadline. Worked directly with performers and the director to troubleshoot dropped files, sync drift, and out-of-spec recordings. Delivered a polished final video on schedule."
+
+[jobs.rosetta-project]
+title = "Lighting Designer"
+company = "The Rosetta Project"
+date = "July 2021"
+location = "Portland, OR"
+summary = "Designed and ran lighting for a live stage production. Hung and focused fixtures, programmed cues, and called the show during the run. Built the setup to be fixed fast if something went wrong, because live events break at showtime."
+
+[jobs.house-and-facilities-manager]
+title = "House & Facilities Manager"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "October 2021 – September 2022"
+location = "Portland, OR"
+summary = "Ran front-of-house logistics for live shows and kept the facility running day to day. Acted as the main point of contact for patrons, renters, and building management, and made sure showtime happened on schedule."
+
+[jobs.portland-spirit]
+title = "Mastering Engineer"
+company = "Portland Spirit"
+date = "November 2021"
+location = "Portland, OR"
+summary = "Produced and mixed the official theme song for the Portland Spirit river cruise. Managed the audio workflow from recording through the final polish, handing off a broadcast-ready track."

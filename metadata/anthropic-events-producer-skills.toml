@@ -1,0 +1,18 @@
+section_title = "Skills"
+
+[skills]
+[skills.live-production]
+type = "Live Production"
+info = "Lighting console operation, cue-sheet construction, rigging and focusing fixtures, show calling, front-of-house operations"
+
+[skills.audio]
+type = "Audio"
+info = "Recording, mixing, mastering, broadcast delivery"
+
+[skills.video]
+type = "Video"
+info = "On-set recording, multi-track editing and sync, digital distribution"
+
+[skills.logistics]
+type = "On-Site Logistics"
+info = "Vendor, renter, and patron coordination; facility operations; real-time troubleshooting"

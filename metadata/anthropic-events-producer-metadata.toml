@@ -1,0 +1,30 @@
+# Anthropic Marketing Events Producer resume overrides
+# Merged on top of metadata.toml via src/meta.typ::makeMeta().
+
+[modules]
+experience_file = "anthropic-events-producer-experience.toml"
+skills_file = "anthropic-events-producer-skills.toml"
+
+[lang.en]
+header_quote = "I design lighting, call cues, and keep the show running, from tech table to loading dock."
+cv_footer = "Events Production Resume"
+
+[layout]
+before_entry_description_skip = "-4pt"
+
+[layout.header]
+display_profile_photo = false
+
+[layout.entry]
+display_entry_society_first = false
+display_logo = false
+
+[personal.info]
+email = "work@finnrut.is"
+linkedin = "finn-rutis-44a951304"
+references = "Available upon request"
+# hide fields that aren't relevant here
+instagram = ""
+vocal-part = ""
+union = ""
+height = ""

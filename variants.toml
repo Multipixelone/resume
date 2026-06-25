@@ -210,6 +210,24 @@ check_metadata = true
 title = "Anthropic Social Resume"
 subtitle = "Head of social communications"
 
+[anthropic-events-producer]
+source = "anthropic-events-producer"
+dest = "anthropic-events-producer-resume"
+override_toml = "anthropic-events-producer-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "Anthropic Events Producer Resume"
+subtitle = "Marketing events producer"
+
+[nyt-tech-specialist]
+source = "nyt-tech-specialist"
+dest = "nyt-tech-specialist-resume"
+override_toml = "nyt-tech-specialist-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "NYT Video Tech Resume"
+subtitle = "News technology specialist, video"
+
 [cover-letter]
 source = "cover-letter"
 dest = "cover-letter"
@@ -234,3 +252,12 @@ expected_pages = 0
 title = "Title Pages"
 subtitle = "MT Book title pages"
 check_metadata = false
+
+[vox-unexplainable]
+source = "vox-unexplainable"
+dest = "vox-unexplainable-resume"
+override_toml = "vox-unexplainable-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "Vox Unexplainable Resume"
+subtitle = "Senior video producer"

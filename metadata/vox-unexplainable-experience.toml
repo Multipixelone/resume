@@ -1,0 +1,39 @@
+# Vox Media -- Senior Video Producer, Unexplainable experience.
+# Real entries from work-experience.toml, reordered and re-angled to foreground
+# remote multi-source production, audio mixing, and on-set logistics.
+
+[jobs]
+[jobs.virtual-choir]
+title = "Video Editor – Virtual Choir"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "April 2020"
+location = "Portland, OR"
+summary = "Built a full virtual concert from 20 performers recording alone at home during lockdown. Each recording was its own isolated source, so synced and aligned the video, mixed the separate audio stems into one track, and troubleshot tech problems directly with cast and director. Cut for pacing and delivered a polished final video on a tight deadline."
+
+[jobs.video-editor]
+title = "Video Editor & Sound Engineer"
+company = "Oregon Children's Theatre"
+date = "May 2020 – July 2020"
+location = "Portland, OR"
+summary = "Ran on-site video and audio recording for two professional theatre productions. Managed the full technical setup on recording days, from camera and mics to monitoring, then cut the footage and mixed the audio for the theatre's digital release."
+
+[jobs.portland-spirit]
+title = "Mastering Engineer"
+company = "Portland Spirit"
+date = "November 2021"
+location = "Portland, OR"
+summary = "Produced and mixed the official theme song for the Portland Spirit river cruise. Took it from raw tracking through the final master and delivered a clean, broadcast-ready cut."
+
+[jobs.rosetta-project]
+title = "Lighting Designer"
+company = "The Rosetta Project"
+date = "July 2021"
+location = "Portland, OR"
+summary = "Designed and ran lighting for a live stage production. Hung and focused the rig, programmed the cues, and called the show during its run."
+
+[jobs.house-and-facilities-manager]
+title = "House & Facilities Manager"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "October 2021 – September 2022"
+location = "Portland, OR"
+summary = "Ran front-of-house logistics for live shows and served as the main point of contact for patrons, renters, and building management. Kept the theatre and rehearsal spaces running so productions could focus on the work."

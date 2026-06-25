@@ -1,0 +1,29 @@
+[projects]
+
+[projects.declarative-homelab]
+title = "Declarative Infrastructure & Self-Hosting Environment"
+company = "Personal Project"
+date = "Nov 2016 – Present"
+location = ""
+summary = "Run a homelab that hosts dozens of internet-facing services on VMware ESXi, KVM, and Docker. The whole environment is defined in NixOS and Flakes, so the setup is reproducible and I can rebuild a machine from scratch and get exactly what I had before."
+
+[projects.network-security]
+title = "Enterprise-Grade Network Architecture & Security"
+company = "Personal Project"
+date = "Aug 2019 – Present"
+location = ""
+summary = "Built and run the network behind all of this on a FortiGate firewall: separate DMZs, isolated VLANs, and MetalLB load balancing in front of public-facing services. Nothing trusts anything by default, which keeps a problem in one corner from spreading to the rest."
+
+[projects.building-resume]
+title = "Typst-Generated Resume System"
+company = "Personal Project"
+date = "Oct 2024 – Present"
+location = ""
+summary = "Built a version-controlled content pipeline in Typst. A GitHub Actions workflow compiles several tailored outputs from shared metadata, so one change to a fact fans out to every variant that needs it. Same ingest-process-export thinking as a media pipeline."
+
+[projects.systems-management]
+title = "Cross-Platform Systems Management (Nix)"
+company = "Personal Project"
+date = "Jun 2023 – Present"
+location = ""
+summary = "Keep macOS and Linux machines in sync from one version-controlled repo using Home Manager and nix-darwin. New machine, one command, and it comes up with the same environment as everything else. CI checks the config before it lands."
