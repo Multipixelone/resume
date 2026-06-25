@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.4.3] - 2026-06-25
+
+### ✍️ Content
+
+- *(content)* Add missing LinkedIn to Sierra resume in [d77b6e4](https://github.com/Multipixelone/resume/commit/d77b6e48610c654c954a2ab490a6e51fbbea2346)
+
 ## [2.4.1] - 2026-06-25
 
 ### ✍️ Content
