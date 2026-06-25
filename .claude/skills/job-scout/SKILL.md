@@ -25,49 +25,103 @@ resume copy, building PDFs, or fetching a single already-known URL (that's plain
 3. Read `../../../nyc-job-targets.md` — the existing targets, for dedupe and numbering.
    (Skill dir is `.claude/skills/job-scout/`; the file is at the repo root.)
 
+Confirm before proceeding: you have read `profile.md` (queries + differentiators),
+`boards.md` (ATS endpoints + discovery sources), and `nyc-job-targets.md` (existing
+entries + numbering). If any are missing, stop and read them now.
+
 ## The loop
 
-1. **Search** with `tavily-search` (the project's preferred web search,
-   `mcp__…websearch__tavily-search`) and `WebSearch`, using the query strings from
-   `profile.md`. Bias hard to recency: last 30–45 days, "actively hiring", "open roles".
-   Run the four role-family queries; add the infra fallback set only if asked for
-   straight-engineering targets.
+1. **Search** with `tavily_search` (available via MCP; check your tool list for the
+   exact name, typically `mcp__websearch__tavily_search`) and `WebSearch`, using the
+   query strings from `profile.md`. Other MCP search tools available: `tavily_extract`,
+   `tavily_map`, `tavily_crawl`, `tavily_research`. Bias hard to recency: last 30–45
+   days, "actively hiring", "open roles". Run the four role-family queries; add the
+   infra fallback set only if asked for straight-engineering targets.
 2. **Confirm live** before trusting any hit. Hit the public ATS JSON endpoint for the
    company (see `boards.md`) and check the role is actually present and open. A posting
    that 404s, is closed, or is absent from the board's live JSON is a dead lead — drop it,
    do not append it. For companies already in the targets file, the ATS slug is in their
    `Source:` line.
+2b. **Find the ATS slug** if the company isn't already in the targets file. Extract
+    it from the careers URL: Greenhouse follows `job-boards.greenhouse.io/<slug>/`,
+    Ashby follows `jobs.ashbyhq.com/<slug>`, Lever follows `jobs.lever.co/<slug>`,
+    SmartRecruiters follows `jobs.smartrecruiters.com/<slug>`. If the company uses
+    none of these ATSes, fall back to WebFetch or `render-job-url` and mark the entry
+    `_(soft lead — unverified)_`.
 3. **Fetch detail** for survivors with `WebFetch`. On empty body / Cloudflare challenge /
    403 / 429 / login wall, hand the URL to the **`render-job-url`** skill. Never reimplement
    fetching here, and never scrape LinkedIn/Indeed/Workday directly — discover via search,
    then render-job-url.
-4. **Dedupe** against `nyc-job-targets.md` by company + role + source URL. Skip anything
-   already listed, including entries marked `APPLIED`, `No longer accepting`, or in the
-   honorable-mentions / "also monitor" tails.
+4. **Dedupe** against `nyc-job-targets.md`:
+   - Match on internal requisition ID first (Greenhouse: `id`, Lever: `id`,
+     Ashby: `id`, SmartRecruiters: `id`) — the most reliable key.
+   - Fall back: company + normalized role title + source domain.
+   - Normalize titles by lowercasing and stripping parentheticals before comparison
+     (e.g., "Developer Advocate, Events & Social (NYC)" → "developer advocate events social").
+   - Skip anything already listed, including `APPLIED`, `No longer accepting`,
+     honorable-mentions, and "also monitor" entries.
+   - If an existing entry's status is not marked `APPLIED`, `REJECTED`, or
+     `No longer accepting`, and it's >60 days old, re-verify it against the ATS
+     endpoint before treating it as a dedupe match. Stale open entries may be closed.
 5. **Rank** each new role with the rubric in `profile.md`: count genuine differentiator
    matches, reward postings that invite non-exact-match applicants, and be honest about
    seniority gaps. Drop anything that would need fabricated experience to fit.
+
+   Before writing any "Why it fits" line, re-read the relevant sections of
+   `metadata/work-experience.toml`, `metadata/tech-projects.toml`,
+   `metadata/tech-skills.toml`, and any variant-specific TOML you plan to
+   reference. Each claimed differentiator must map to a concrete entry in
+   these files. If you cannot point to a specific entry, do not make the claim.
+
+   Before finalizing any entry for an AI-video or creative-production role, verify
+   no AI-video tool experience is claimed (Runway, Pika, CapCut AI — per `profile.md`).
+   If the posting asks for these, flag it as a Gap, don't fabricate.
+
+   After writing the entry, re-check each "Why it fits" claim against the TOML files
+   one more time. If a claim doesn't correspond to a concrete entry, remove it.
 6. **Append** each surviving role to `nyc-job-targets.md` (see format below).
+6b. **Validate the Resume pointer.** Read `variants.toml`. If the slug you chose is
+    already registered as a variant, write the `Resume:` line normally. If not, append
+    `_(variant not yet created)_` to the Resume line so the user knows the `.typ` file
+    needs to be built before `nix build` will include it.
 
 ## Append format (match the existing file exactly)
 
-Continue the existing numbering. Add new finds under the most fitting existing section, or
-open a new dated batch header like `## Additional … Targets (<Month YYYY> research)` when
-adding a fresh batch — mirror how the file already groups batches. Each entry:
+**Numbering rules by section type:**
+- **Main numbered section** (1–22): continue with `## 23.`, `## 24.`, etc.
+- **Lettered sub-sections** (e.g. Anthropic A–C): continue with the next letter for
+  that company. A new company gets its own `# <Company> — <Theme> Targets` header
+  and fresh `## A.` numbering.
+- **"Additional … Targets" batches**: use the existing batch header convention
+  (`## Additional … Targets (<Month YYYY> research)`) with sequential numbering
+  continuing from the highest existing number.
+- **Honorable mentions / Also monitor**: append bullets, not numbers or letters.
+
+Each entry:
 
 ```
 ## N. <Company> — <Role> (<location>; <comp if known>) _(status if any)_
 
 - <what the role is, in the posting's own framing — 1-2 bullets>
 - Why it fits: <which real differentiators map on; selective keyword echo, never parroted>
-- Gap: <honest seniority/experience gap, if any>
+- Gap: <always include; write "None — early-career-appropriate" when the role is
+  genuinely junior/mid-level. Otherwise describe the honest gap.>
 - Resume: `resumes/<slug>.typ` → `<slug>-resume.pdf`
-- Source: <verified live URL; ATS slug if useful>
+- Source: <verified live URL; ATS slug if useful> _(verified live YYYY-MM-DD)_
 ```
 
 Pick `<slug>` as a short company stem (e.g. `vercel`, `descript`), matching the file's
 convention. The `Resume:` line is a pointer for the documented variant workflow — this
 skill does NOT create the `.typ` file or touch `variants.toml`.
+
+Slug convention: use the company stem alone (e.g. `vercel`, `descript`) when the
+company has only one target role. Use `<company>-<role>` (e.g. `vox-unexplainable`,
+`nyt-tech-specialist`) when the company has multiple distinct targets. Match the
+existing file's pattern.
+
+**Em-dash scope:** CLAUDE.md's "No em dashes, ever" rule applies to resume copy
+(.typ files, TOML descriptions, header quotes). Em dashes are allowed and expected
+in `nyc-job-targets.md` headings and entry body text to match existing file style.
 
 ## Hard rules
 

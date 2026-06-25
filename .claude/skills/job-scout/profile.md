@@ -47,6 +47,11 @@ CapCut AI) — never claim it.
 Keep: NYC, "New York", Brooklyn, NYC office/hub, hybrid-NYC, remote roles open to US/NYC.
 Drop: roles requiring relocation away from NYC with no remote option, non-US-only.
 
+For remote-US roles: verify the company allows NY-based employment (some remote roles
+exclude NY due to tax-withholding complexity). If the posting says "remote US" but the
+ATS JSON's location field excludes NY, drop it. Also check timezone expectations;
+Pacific Time roles requiring 9am PT synchronous work are a stretch from ET.
+
 ## Per-family search queries
 
 Run these through `tavily-search` and `WebSearch`. Echo the posting's *concepts*, not its
@@ -75,6 +80,14 @@ tech+production blend)
 ("stage manager" OR "technical producer" OR "show caller" OR "event content manager" OR "experiential producer") (NYC OR "New York")
 ```
 
+**Additional titles to search** (scatter across relevant families; surface roles that
+match the profile but use titles not covered by the primary queries):
+```
+("technical writer" OR "solutions engineer" OR "community manager") (NYC OR "New York" OR remote)
+("event producer" OR "production coordinator" OR "technical director") (NYC OR "New York")
+("AV technician" OR "broadcast technician" OR "media technician") (NYC OR "New York")
+```
+
 **Infra fallback** (use only when straight-engineering high-pay targets are wanted — the
 Hebbia/Runway-backend pattern):
 ```
@@ -89,9 +102,13 @@ Score and order new finds by:
    real matches = strong. One = worth a variant. Zero = skip.
 2. **Invites non-exact-match applicants** — postings that say "you don't need to check every
    box" rank up; Finn's profile is unconventional by design.
-3. **Seniority honesty** — if the role wants 5–8+ years, it's a stretch; keep it only if a
-   unique hook (audio at an audio co, infra+production blend) carries it, and flag the gap
-   in the entry. Never paper over years-of-experience with fabrication.
+3. **Seniority honesty** — mechanical thresholds:
+   - 0–4 yrs required: no guardrail (early-career-appropriate).
+   - 5–7 yrs required: keep only if ≥2 genuine differentiators match AND the Gap
+     field is non-empty with an honest assessment. Drop otherwise.
+   - 8+ yrs required: keep only if ≥3 genuine differentiators match AND the Gap
+     field is non-empty. Otherwise relegate to Honorable Mentions.
+   Never paper over years-of-experience with fabrication.
 4. **Performance is a real asset, not decoration** — prefer roles where on-camera / on-stage
    / talent-coaching is in the job description, not just nice-to-have.
 5. **Tie-break** toward NYC-in-person > NYC-hybrid > remote-OK, and toward AI / dev-tool /
@@ -101,5 +118,9 @@ Score and order new finds by:
 
 When you later write the entry's "why it fits" line, follow CLAUDE.md "Writing Resume
 Content": plain verbs, no "leveraged/spearheaded/orchestrated", no stacked buzzwords, no em
-dashes, one or two keyword echoes max, concrete detail over abstraction. Foreground real
+dashes in resume copy, one or two keyword echoes max, concrete detail over abstraction. Foreground real
 experience; never invent a responsibility, a tool, or a year of seniority that isn't above.
+
+Before writing a "Why it fits" line, re-read the source TOML files. Cite the
+specific entry (e.g., "work-experience.toml `[jobs.virtual-choir]`") that maps
+to each differentiator. If no entry maps, don't claim the fit.

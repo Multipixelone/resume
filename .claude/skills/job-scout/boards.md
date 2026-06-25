@@ -37,6 +37,26 @@ How to use them:
 - Greenhouse `?content=true` and Ashby include the full description, so you often don't need a
   separate `WebFetch` for detail.
 
+**Pagination:** Greenhouse paginates at 100 results per page; append `?page=2&content=true`,
+etc. until an empty page. SmartRecruiters uses `?offset=100&limit=100`. Lever and Ashby
+return all postings in one response (no pagination needed).
+
+**Rate limits:** The ATS public APIs are generous but can 429. Fetch sequentially
+(never parallel). On 429, wait 5 seconds and retry once. Cache each board's JSON for
+the session to avoid re-fetching.
+
+**Schema drift:** If the JSON structure doesn't match the expected fields (e.g.
+Greenhouse changes `jobs[]` to `postings[]`), don't guess. Fall back to WebFetch on
+the listing page or hand individual URLs to `render-job-url`.
+
+**Stale postings:** If a live posting was first listed >90 days ago (check the
+`created_at` or `updated_at` field in the ATS JSON), append `_(stale — >90 days)_`
+after the status tag in the entry.
+
+**ATS migration:** If a company's known-slug endpoint returns 404 or empty, check the
+company's careers page for a new ATS URL before dropping the lead. Companies
+occasionally migrate between Greenhouse/Lever/Ashby.
+
 Known slugs already in the targets file: `anthropic`, `voxmedia`, `thenewyorktimes`
 (Greenhouse); `mistral`, `logrocket` (Lever); `notion`, `ramp`, `sierra`, `writer`,
 `agentio`, `elevenlabs` (Ashby); `NBCUniversal3` (SmartRecruiters).
@@ -69,6 +89,11 @@ verify each via the ATS endpoint above:
 - Runway — `runwayml.com/careers` (Studios creative + DevRel)
 - Anthropic — `job-boards.greenhouse.io/anthropic` (comms/events, all in the file)
 - Mistral — `jobs.lever.co/mistral`
+- Tavily (Nebius) — `tavily.com/careers` (DevRel / developer content, remote US)
+- Viam — `viam.com/careers` (video production / education, NYC robotics platform)
+- Spotify — `spotifyjobs.com` (audio pipeline, podcast production, NYC office)
+- Netflix — `jobs.netflix.com` (production, post-production, NYC hub)
+- Bloomberg — `bloomberg.com/careers` (media production, tech, strong NYC presence)
 
 ## Discovery: niche performance / AV / production boards
 
