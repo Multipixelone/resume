@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.6.0] - 2026-06-25
+
+### 🚀 Features
+
+- Tavily resume in [150fd98](https://github.com/Multipixelone/resume/commit/150fd98ba62cc39e4a62d02c3b17bc961a7c88d3)
+- Viam resume in [23aaa74](https://github.com/Multipixelone/resume/commit/23aaa74fcb29e12c4370644081ce8860155d289d)
+- First draft of job scout skill in [a15102a](https://github.com/Multipixelone/resume/commit/a15102ac419be824b09902b35494066ccac70b12)
+- Additional job postings in [f56a570](https://github.com/Multipixelone/resume/commit/f56a570f5c295b0bcc5e848bd8d03ba85dc0b691)
+- Audit skill with ocd in [8ea9ecc](https://github.com/Multipixelone/resume/commit/8ea9ecce0e8266efdff9ab4bb615273bff498db3)
+- First run of job-scout in [9d9f287](https://github.com/Multipixelone/resume/commit/9d9f287bc6f5b3d6d45fc3060503f988389b9589)
+- Event producer, vox, nyt tech specialist in [550a9b1](https://github.com/Multipixelone/resume/commit/550a9b1d73e26caff6dc9d49e3f8e2bc2858b61c)
+
+### 🐛 Bug Fixes
+
+- *(update)* Rejected from Notion in [9eaea83](https://github.com/Multipixelone/resume/commit/9eaea832b0ea8b4bd79a0d249351c50bc3e5c1bb)
+- Third audit pass in [00aad17](https://github.com/Multipixelone/resume/commit/00aad174ce37f9a5ec1e10c89a47c7fd72f02651)
+
 ## [2.5.1] - 2026-06-25
 
 ### 🐛 Bug Fixes
