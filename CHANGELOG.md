@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.1] - 2026-06-25
+
+### 🐛 Bug Fixes
+
+- First pass with ocd in [561928e](https://github.com/Multipixelone/resume/commit/561928ef6680486327e4c0c132698913c3d5f543)
+- Claude pass in [ed799cb](https://github.com/Multipixelone/resume/commit/ed799cbede7af257fae9a2ded66f0cc01a9a2fc2)
+
 ## [2.5.0] - 2026-06-25
 
 ### 🚀 Features
