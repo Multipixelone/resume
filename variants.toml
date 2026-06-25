@@ -183,6 +183,13 @@ check_metadata = true
 title = "Tavily Resume"
 subtitle = "Developer relations"
 
+[tavily-cover-letter]
+source = "tavily-cover-letter"
+dest = "tavily-cover-letter"
+expected_pages = 1
+check_metadata = false
+override_toml = "tavily-metadata.toml"
+
 [anthropic-events]
 source = "anthropic-events"
 dest = "anthropic-events-resume"
