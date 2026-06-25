@@ -46,7 +46,7 @@ selectively (one or two echoes, never parroted). Build them with
 - Resume: `resumes/logrocket.typ` → `logrocket-resume.pdf`
 - Source: jobs.lever.co/logrocket; builtin.com/company/logrocket/jobs
 
-## 4. Notion — Developer Advocate (NYC; ~$190k–$220k base) _(APPLIED)_
+## 4. Notion — Developer Advocate (NYC; ~$190k–$220k base) _(APPLIED - REJECTED)_
 
 - Their "first Developer Advocate"; the "critical bridge between Notion's teams
   and the developer community"
