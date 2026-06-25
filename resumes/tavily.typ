@@ -11,8 +11,7 @@
   profilePhoto: image("../metadata/qr-code.png"),
 )
 
+#experience(tavily-metadata)
 #skills(tavily-metadata)
 #importModules(("education",))
 #projects(tavily-metadata)
-#pagebreak(weak: true)
-#experience(tavily-metadata)

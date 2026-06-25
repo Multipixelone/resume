@@ -1,0 +1,34 @@
+# Tavily (Nebius) DevRel Manager — skills angled toward content production,
+# community, and authentic LLM/agent credibility for a search API built for AI agents.
+# Used by the tavily resume variant via modules.skills_file.
+
+section_title = "Skills"
+
+[skills]
+[skills.podcast-audio]
+type = "Podcast & Audio"
+info = "Recording, mixing, mastering, and distribution-ready delivery; Logic Pro, Reaper, Audacity"
+
+[skills.video]
+type = "Video Production"
+info = "Multi-camera capture, sync, color, and short-form social cuts; Final Cut Pro, DaVinci Resolve, Premiere Pro"
+
+[skills.distribution]
+type = "Distribution"
+info = "Familiar with creator tools and distribution workflows for YouTube, Spotify, LinkedIn, and X"
+
+[skills.content]
+type = "Technical Content"
+info = "Technical writing and documentation; how-to and tutorial formats; script writing; Markdown, Typst"
+
+[skills.speaking]
+type = "Speaking & On-Camera"
+info = "Live performance and improv, on-mic and on-camera presenting, interview and demo hosting"
+
+[skills.community]
+type = "Developer Community"
+info = "In-person community events, audience adaptation across technical and non-technical audiences, public-facing brand representation"
+
+[skills.ai-engineering]
+type = "AI / LLM & Engineering"
+info = "LLM integration, RAG, prompt engineering, structured output (JSON), agent tooling; Python, Nix, Bash, Linux, Docker, Git, CI/CD"

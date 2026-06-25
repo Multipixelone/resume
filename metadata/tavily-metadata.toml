@@ -1,13 +1,13 @@
-# Tavily (Nebius) — Developer Relations (Remote, US)
+# Tavily (Nebius) — DevRel Manager, content & community (Remote, US)
 # Merged on top of metadata.toml via src/meta.typ::makeMeta().
 
 [modules]
-experience_file = "devrel-experience.toml"
-projects_file = "devrel-projects.toml"
-skills_file = "devrel-skills.toml"
+experience_file = "tavily-experience.toml"
+projects_file = "tavily-projects.toml"
+skills_file = "tavily-skills.toml"
 
 [lang.en]
-header_quote = "Linux and backend engineer who wires LLMs into real automation and runs the whole stack from a self-hosted homelab. I came up through live performance, so developer education, hands-on demos, and community are where I'm strongest. Hooking models up to live web content is exactly the kind of plumbing I like making easy for other developers to pick up."
+header_quote = "Content producer who can host the podcast, cut the video, and write the how-to, with a homelab full of LLMs to back it up."
 cv_footer = "Developer Relations Resume"
 
 [layout]

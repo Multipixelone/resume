@@ -1,0 +1,41 @@
+# Tavily (Nebius) DevRel Manager — experience reordered to lead with A/V and
+# content-production roles, then community and current leadership.
+# Real entries drawn from devrel-experience.toml and creative-experience.toml,
+# lightly re-angled toward end-to-end content production and community building.
+# Used by the tavily resume variant via modules.experience_file.
+
+[jobs]
+[jobs.video-editor]
+title = "Video Editor & Sound Engineer"
+company = "Oregon Children's Theatre"
+date = "May 2020 – July 2020"
+location = "Portland, OR"
+summary = "Ran on-site video and audio recording for two professional productions, then cut the footage and mixed the audio for the theatre's digital release. Owned the full pipeline from shoot-day setup through final delivery, taking raw material and turning it into a finished cut that held attention from start to finish."
+
+[jobs.virtual-choir]
+title = "Video Editor – Virtual Choir"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "April 2020"
+location = "Portland, OR"
+summary = "Built a full virtual concert out of 20 performers recording alone at home during lockdown. Walked non-technical cast members through recording their parts one at a time, troubleshot their setups, then synced the video and mixed the separate audio stems into one track on a tight deadline."
+
+[jobs.portland-spirit]
+title = "Mastering Engineer"
+company = "Portland Spirit"
+date = "November 2021"
+location = "Portland, OR"
+summary = "Mixed and mastered the official theme song for the Portland Spirit river cruise, from raw tracking through the final broadcast-ready master."
+
+[jobs.student-ambassador]
+title = "Student Ambassador"
+company = "Molloy University"
+date = "October 2022 – May 2026"
+location = "Rockville Centre, NY"
+summary = "The public face of the university for prospective students and their families. Ran campus tours and welcome events, fielded every question on the spot, and turned a script into a real conversation that landed differently for a nervous parent than for a teenager. Worked alongside admissions staff to translate program updates into tour scripts and talking points that worked for different audiences."
+
+[jobs.salt-and-straw]
+title = "Shift Coordinator"
+company = "Salt & Straw"
+date = "April 2026 – Present"
+location = "New York, NY"
+summary = "Lead a team through high-volume service shifts, training new hires and managing operations in real time."
