@@ -37,17 +37,12 @@ entries + numbering). If any are missing, stop and read them now.
    `tavily_map`, `tavily_crawl`, `tavily_research`. Bias hard to recency: last 30–45
    days, "actively hiring", "open roles". Run the four role-family queries; add the
    infra fallback set only if asked for straight-engineering targets.
-2. **Confirm live** before trusting any hit. Hit the public ATS JSON endpoint for the
+2. **Identify the ATS platform** for each hit. Extract the slug from the careers URL: Greenhouse follows `job-boards.greenhouse.io/<slug>/`, Ashby follows `jobs.ashbyhq.com/<slug>`, Lever follows `jobs.lever.co/<slug>`, SmartRecruiters follows `jobs.smartrecruiters.com/<slug>`. If the company uses Workday, iCIMS, Taleo, or a custom form (no public JSON API), skip live-JSON verification and go straight to step 3 with a soft-lead marker.
+2b. **Confirm live** for supported-ATS hits only. Hit the public ATS JSON endpoint for the
    company (see `boards.md`) and check the role is actually present and open. A posting
    that 404s, is closed, or is absent from the board's live JSON is a dead lead — drop it,
    do not append it. For companies already in the targets file, the ATS slug is in their
    `Source:` line.
-2b. **Find the ATS slug** if the company isn't already in the targets file. Extract
-    it from the careers URL: Greenhouse follows `job-boards.greenhouse.io/<slug>/`,
-    Ashby follows `jobs.ashbyhq.com/<slug>`, Lever follows `jobs.lever.co/<slug>`,
-    SmartRecruiters follows `jobs.smartrecruiters.com/<slug>`. If the company uses
-    none of these ATSes, fall back to WebFetch or `render-job-url` and mark the entry
-    `_(soft lead — unverified)_`.
 3. **Fetch detail** for survivors with `WebFetch`. On empty body / Cloudflare challenge /
    403 / 429 / login wall, hand the URL to the **`render-job-url`** skill. Never reimplement
    fetching here, and never scrape LinkedIn/Indeed/Workday directly — discover via search,
@@ -63,6 +58,7 @@ entries + numbering). If any are missing, stop and read them now.
    - If an existing entry's status is not marked `APPLIED`, `REJECTED`, or
      `No longer accepting`, and it's >60 days old, re-verify it against the ATS
      endpoint before treating it as a dedupe match. Stale open entries may be closed.
+   - When a scout run re-verifies an existing entry, append a status note to that entry's `Source:` line: `_(verified still open YYYY-MM-DD)_` or `_(confirmed closed YYYY-MM-DD)_`. Do not delete closed entries — mark them `No longer accepting` and add the confirmation date. This keeps the file's staleness visible without rewriting history.
 5. **Rank** each new role with the rubric in `profile.md`: count genuine differentiator
    matches, reward postings that invite non-exact-match applicants, and be honest about
    seniority gaps. Drop anything that would need fabricated experience to fit.
@@ -79,7 +75,9 @@ entries + numbering). If any are missing, stop and read them now.
 
    After writing the entry, re-check each "Why it fits" claim against the TOML files
    one more time. If a claim doesn't correspond to a concrete entry, remove it.
+5b. **Verify citations before append.** Re-read each "Why it fits" bullet and confirm it contains at least one TOML key citation in the form `file.toml [section.key]`. If any claimed differentiator lacks a citation, either add the citation (if a concrete TOML entry maps) or remove the claim (if none maps). Do not append an entry with uncited fit claims. This is the post-write check that enforces the pre-write re-read in step 5.
 6. **Append** each surviving role to `nyc-job-targets.md` (see format below).
+   6a. **Stamp the run.** Update or insert a `<!-- Last scouted: YYYY-MM-DD -->` HTML comment at the very top of `nyc-job-targets.md` (above the first heading). If one already exists, replace the date. This is the only edit to an existing line allowed outside the append-only rule, because it is metadata about the run itself.
 6b. **Validate the Resume pointer.** Read `variants.toml`. If the slug you chose is
     already registered as a variant, write the `Resume:` line normally. If not, append
     `_(variant not yet created)_` to the Resume line so the user knows the `.typ` file
@@ -103,7 +101,7 @@ Each entry:
 ## N. <Company> — <Role> (<location>; <comp if known>) _(status if any)_
 
 - <what the role is, in the posting's own framing — 1-2 bullets>
-- Why it fits: <which real differentiators map on; selective keyword echo, never parroted>
+- Why it fits: <which real differentiators map on; selective keyword echo, never parroted. Each claimed differentiator MUST cite a concrete TOML entry in the form `file.toml [section.key]` — e.g., `work-experience.toml [jobs.virtual-choir]`. If you cannot cite a specific entry, do not make the claim.>
 - Gap: <always include; write "None — early-career-appropriate" when the role is
   genuinely junior/mid-level. Otherwise describe the honest gap.>
 - Resume: `resumes/<slug>.typ` → `<slug>-resume.pdf`

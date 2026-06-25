@@ -78,6 +78,10 @@ Known slugs already in the targets file: `anthropic`, `voxmedia`, `thenewyorktim
 - **Index Ventures startup-jobs** — `indexventures.com/startup-jobs` (already a source in the
   file for Hebbia). Good for funded-startup engineering roles.
 - **Key Values** — `keyvalues.com` for eng-culture-forward startups.
+- **YC Work at a Startup** — `workatastartup.com`. YC-backed startups, often DevRel/early-hire
+  roles. Search at https://www.workatastartup.com/ ; no public JSON API, use WebFetch.
+- **NixOS Discourse Jobs** — `discourse.nixos.org/c/jobs`. Highest-signal source for Finn's
+  NixOS homelab differentiator. Manual check only, no API. URL: https://discourse.nixos.org/c/jobs
 
 ## Discovery: company career pages (batch via tavily-map/crawl)
 
@@ -107,8 +111,5 @@ For the live-events/stage and video-production families:
 
 ## Blocked boards (do NOT scrape here)
 
-LinkedIn, Indeed, Workday, Glassdoor front their pages with Cloudflare/Akamai. Use them only
-as *discovery* signals: find the canonical posting URL via search, then either (a) verify
-through the company's ATS endpoint, or (b) hand the URL to the **`render-job-url`** skill.
-Never `curl`/`WebFetch` these directly, and never run two fetches in parallel against the
+LinkedIn, Indeed, Workday, Glassdoor, iCIMS, Taleo, and custom application forms front their pages with Cloudflare/Akamai or lack public JSON APIs. Use them only as *discovery* signals: find the canonical posting URL via search, then either (a) verify through the company's ATS endpoint if it is a supported platform, or (b) hand the URL to the **`render-job-url`** skill. Roles at companies using iCIMS, Taleo, or custom forms must go through WebFetch/render-job-url and be marked `_(soft lead — unverified)_`. Never `curl`/`WebFetch` these directly, and never run two fetches in parallel against the
 same domain (per render-job-url's rules).

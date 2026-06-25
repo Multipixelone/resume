@@ -58,40 +58,51 @@ Run these through `tavily-search` and `WebSearch`. Echo the posting's *concepts*
 exact phrasing, when you later write the entry (see CLAUDE.md). Append a recency nudge like
 `posted 2026` or `actively hiring` to bias fresh.
 
+**Seniority exclusion:** Add `-"senior" -"principal" -"staff" -"director of"` to every query below to suppress genuinely senior-only titles. **Recovery rule:** if a hit's title contains Senior/Principal/Staff/Director but the posting's years-required is ≤4, retain it — in creative and DevRel families "Senior" often means 3–5 years, not 8+. The ranking rubric (below) does the final filtering by years-required, not by title.
+
 **1. DevRel / Developer Advocate** (strongest overlap)
 ```
-("developer advocate" OR "developer relations" OR devrel OR "developer experience") (NYC OR "New York" OR remote) (AI OR LLM OR "developer tools" OR "developer platform")
+("developer advocate" OR "developer relations" OR devrel OR "developer experience") (NYC OR "New York" OR remote) (AI OR LLM OR "developer tools" OR "developer platform") -"senior" -"principal" -"staff" -"director of"
+```
+
+**1b. DevRel / Developer Advocate (infrastructure & security angle)** — run alongside #1; do not dedupe #1 and #1b against each other.
+```
+("developer advocate" OR "developer relations" OR devrel) (NYC OR "New York" OR remote) (infrastructure OR observability OR networking OR security OR "open source" OR API) -"senior" -"principal" -"staff" -"director of"
 ```
 
 **2. AI video / creative production**
 ```
-("video producer" OR "content producer" OR "video editor" OR "creative producer") (AI OR startup OR "media company") (NYC OR "New York" OR Brooklyn)
+("video producer" OR "content producer" OR "video editor" OR "creative producer") (AI OR startup OR "media company") (NYC OR "New York" OR Brooklyn) -"senior" -"principal" -"staff" -"director of"
 ```
-Audio variant: `("podcast producer" OR "audio producer" OR "audio engineer") (NYC OR "New York")`
+Audio variant: `("podcast producer" OR "audio producer" OR "audio engineer") (NYC OR "New York") -"senior" -"principal" -"staff" -"director of"`
 
 **3. Production-tech / AV-tech** (the NYT News Technology Specialist pattern — best
 tech+production blend)
 ```
-("technology specialist" OR "broadcast engineer" OR "production technology" OR "media systems engineer" OR "AV engineer" OR "production engineer") video (NYC OR "New York")
+("technology specialist" OR "broadcast engineer" OR "production technology" OR "media systems engineer" OR "AV engineer" OR "production engineer") video (NYC OR "New York") -"senior" -"principal" -"staff" -"director of"
 ```
 
-**4. Live events / stage**
+**4. Live events / stage** (corporate/tech-adjacent events only — exclude union-only theatre stage management)
 ```
-("stage manager" OR "technical producer" OR "show caller" OR "event content manager" OR "experiential producer") (NYC OR "New York")
+("stage manager" OR "technical producer" OR "show caller" OR "event content manager" OR "experiential producer" OR "event producer" OR "production coordinator" OR "technical director") (NYC OR "New York") ("corporate events" OR "experiential" OR "tech conference" OR "corporate" OR "brand event") -"IATSE" -"AEA" -"AGVA" -"senior" -"principal" -"staff" -"director of"
 ```
 
 **Additional titles to search** (scatter across relevant families; surface roles that
 match the profile but use titles not covered by the primary queries):
 ```
-("technical writer" OR "solutions engineer" OR "community manager") (NYC OR "New York" OR remote)
-("event producer" OR "production coordinator" OR "technical director") (NYC OR "New York")
-("AV technician" OR "broadcast technician" OR "media technician") (NYC OR "New York")
+("technical writer" OR "solutions engineer" OR "community manager") (NYC OR "New York" OR remote) -"senior" -"principal" -"staff" -"director of"
+("AV technician" OR "broadcast technician" OR "media technician") (NYC OR "New York") -"senior" -"principal" -"staff" -"director of"
 ```
 
 **Infra fallback** (use only when straight-engineering high-pay targets are wanted — the
 Hebbia/Runway-backend pattern):
 ```
-("backend engineer" OR "platform engineer" OR "infrastructure engineer") (NYC OR "New York") (startup OR AI) (Python OR Linux OR Nix)
+("backend engineer" OR "platform engineer" OR "infrastructure engineer") (NYC OR "New York") (startup OR AI) (Python OR Linux OR Nix) -"senior" -"principal" -"staff" -"director of"
+```
+
+**5. Technical Content & Education (Infra/Security/Nix)** — Finn's homelab + communication skills fit technical writing / developer education at infra companies.
+```
+("technical writer" OR "developer educator" OR "content engineer" OR "documentation engineer" OR "developer content") (NYC OR "New York" OR remote) (infrastructure OR security OR Nix OR Linux OR DevOps OR "open source") -"senior" -"principal" -"staff" -"director of"
 ```
 
 ## Ranking rubric (apply per candidate role)
@@ -109,6 +120,16 @@ Score and order new finds by:
    - 8+ yrs required: keep only if ≥3 genuine differentiators match AND the Gap
      field is non-empty. Otherwise relegate to Honorable Mentions.
    Never paper over years-of-experience with fabrication.
+
+3b. **Missing-must-haves gate** — if the role has a hard requirement (CS degree, production-team employment, on-call rotation, union membership, specific years in a named function) that Finn demonstrably lacks per the TOML files, cap the fit at "stretch" regardless of differentiator count, and name the blocker in the Gap field. Differentiator count alone never overrides a missing must-have.
+
+3c. **Core-match vs bonus differentiators** — distinguish "has done X in any context" (bonus) from "has done X in a team/production/employment context" (core). The homelab differentiator demonstrates capability but not production-team employment. For backend/platform/SRE roles, require at least one *core* match (employed team experience) before ranking above "stretch," even if multiple bonus differentiators match.
+
+3d. **Per-family minimums** — differentiator thresholds are not universal. In video production, one genuine match (e.g., Oregon Children's Theatre editing) can be a real fit. In backend engineering, three bonus differentiators may still be weak. Apply family context: creative/A/V families accept 1 genuine match as "worth a variant"; engineering families require 2+ with at least one core match.
+
+3e. **Contract/temp/freelance detection** — scan the JD for contract/temp/freelance/term-limited language ("12-month term", "WGA-E contract", "temp", "fixed-term", "contract role"). Flag duration in the Gap field. Contract roles are NOT downgraded (often good early-career entry points) but the duration must be surfaced.
+
+3f. **Salary band** — extract salary band from ATS JSON when available (Ashby supports `includeCompensation=true`). Flag roles below NYC living wage (~$50k) with `_(below NYC living wage)_` in the entry. Use transparent, competitive comp as a positive tiebreaker in item #5 below.
 4. **Performance is a real asset, not decoration** — prefer roles where on-camera / on-stage
    / talent-coaching is in the job description, not just nice-to-have.
 5. **Tie-break** toward NYC-in-person > NYC-hybrid > remote-OK, and toward AI / dev-tool /
