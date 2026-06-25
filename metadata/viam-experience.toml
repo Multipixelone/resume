@@ -1,0 +1,48 @@
+# Viam-tailored video-production experience.
+# Real entries from work-experience.toml, reordered to lead with the A/V and
+# live-production roles and re-angled toward educational content for a
+# technical audience and building the production function from scratch.
+# Used by the Viam resume variant via modules.experience_file.
+
+[jobs]
+[jobs.video-editor]
+title = "Video Editor & Sound Engineer"
+company = "Oregon Children's Theatre"
+date = "May 2020 – July 2020"
+location = "Portland, OR"
+summary = "Ran on-site video and audio capture for two professional theatre productions. Set up and operated the camera and sound rigs on shoot days, then cut the footage and mixed the audio for the theatre's digital release. End-to-end from rig to final cut."
+
+[jobs.virtual-choir]
+title = "Video Editor – Virtual Choir"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "April 2020"
+location = "Portland, OR"
+summary = "Built a full virtual concert from 20 performers recording alone at home during lockdown. Synced the isolated video, mixed the separate audio stems into one track, and worked with the cast and director to troubleshoot tech problems and hit a tight deadline. No existing workflow to follow. Figured out the remote capture and assembly process from scratch."
+
+[jobs.portland-spirit]
+title = "Mastering Engineer"
+company = "Portland Spirit"
+date = "November 2021"
+location = "Portland, OR"
+summary = "Produced and mixed the official theme song for the Portland Spirit river cruise. Took it from raw tracking through the final master and delivered a clean, broadcast-ready cut."
+
+[jobs.rosetta-project]
+title = "Lighting Designer"
+company = "The Rosetta Project"
+date = "July 2021"
+location = "Portland, OR"
+summary = "Designed and ran the lighting for a live stage production. Hung and focused the rig, programmed the cues, and called the show during its run. Hands-on with the gear, not just the plot."
+
+[jobs.house-and-facilities-manager]
+title = "House & Facilities Manager"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "October 2021 – September 2022"
+location = "Portland, OR"
+summary = "Ran front-of-house for live shows and handled day-to-day operations of the theatre and rehearsal spaces. Main point of contact for patrons, renters, and building management. Kept the venue running through a full season of events."
+
+[jobs.student-ambassador]
+title = "Student Ambassador"
+company = "Molloy University"
+date = "October 2022 – May 2026"
+location = "Rockville Centre, NY"
+summary = "Guide prospective students and families around campus and help run welcome events. Daily practice at reading a room and explaining things clearly to people who are new to them. Same instinct that decides whether a tutorial lands or loses someone in the first thirty seconds."

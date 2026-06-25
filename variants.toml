@@ -156,6 +156,15 @@ check_metadata = true
 title = "Agentio Resume"
 subtitle = "Video content producer"
 
+[viam]
+source = "viam"
+dest = "viam-resume"
+override_toml = "viam-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "Viam Resume"
+subtitle = "Video production / education"
+
 [elevenlabs]
 source = "elevenlabs"
 dest = "elevenlabs-resume"

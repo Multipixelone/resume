@@ -1,0 +1,31 @@
+# Viam — Video Production / Education (NYC, robotics engineering platform)
+# Merged on top of metadata.toml via src/meta.typ::makeMeta().
+
+[modules]
+experience_file = "viam-experience.toml"
+projects_file = "tech-projects.toml"
+skills_file = "viam-skills.toml"
+
+[lang.en]
+header_quote = "I build the video function from scratch: the workflow, the rig, the edit room. I cut educational and live-production video that holds a technical audience, and I have enough engineering fluency to sit with a robotics team and not get lost."
+cv_footer = "Video Production Resume"
+
+[layout]
+before_entry_description_skip = "-4pt"
+
+[layout.header]
+display_profile_photo = false
+
+[layout.entry]
+display_entry_society_first = false
+display_logo = false
+
+[personal.info]
+email = "tech@finnrut.is"
+github = "Multipixelone"
+linkedin = "finn-rutis-44a951304"
+location = "NYC"
+height = ""
+instagram = ""
+vocal-part = ""
+union = ""

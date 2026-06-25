@@ -1,0 +1,26 @@
+section_title = "Skills"
+
+[skills]
+[skills.video]
+type = "Video Editing"
+info = "Final Cut Pro, DaVinci Resolve, Premiere Pro; multi-camera capture, sync, color, delivery"
+
+[skills.camera]
+type = "Camera & Lighting"
+info = "Camera operation, lighting design and setup, multi-camera capture; studio and on-location shoots"
+
+[skills.audio]
+type = "Audio"
+info = "Logic Pro, Reaper, Audacity; recording, mixing, mastering; clean capture in uncontrolled rooms"
+
+[skills.production]
+type = "Production"
+info = "Pre-production through final delivery; on-set direction, remote and distributed recording workflows, format development"
+
+[skills.editorial]
+type = "Editorial"
+info = "Story structure, pacing, hook writing, title and thumbnail decisions, chapter breaks"
+
+[skills.technical]
+type = "Technical"
+info = "Python automation, LLM tooling, Linux / NixOS, Git, CI/CD"

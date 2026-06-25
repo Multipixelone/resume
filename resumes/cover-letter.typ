@@ -1,7 +1,7 @@
 #import "../src/lib.typ": coverLetter
 #import "../src/meta.typ": makeMeta
 #import "../src/utils/date.typ": buildDate
-#let metadata = makeMeta("saltandstraw-metadata.toml")
+#let metadata = makeMeta("viam-metadata.toml")
 #let displayDate = buildDate().display(
   "[month repr:long] [day padding:none], [year]",
 )
@@ -14,8 +14,8 @@
 // ── Recipient ────────────────────────────────────────────────────────────────
 #let recipientName = "Hiring Manager"
 #let recipientTitle = ""
-#let recipientCompany = "Salt & Straw"
-#let recipientAddress = "Hudson, New York City, NY 10014"
+#let recipientCompany = "Viam"
+#let recipientAddress = "New York, NY"
 
 #displayDate
 
@@ -26,17 +26,17 @@
 #v(0.5em)
 Dear #recipientName,
 
-I am writing to express my interest in the Shift Coordinator position at Salt & Straw's new New York City location. My connection to your brand is personal, and I think that history, combined with real experience keeping teams and guests on track, makes me a good fit for this role.
+I'm applying for the video production role on Viam's Education team. The line in the posting that got me was "no inherited toolchain, no prior workflow to maintain. You'll build it." That's the work I've already done, and it's the work I want more of.
 
-One of the fondest memories I have as a child was my mother surprising me and two of my friends in elementary school with a trip into the city. Growing up in Portland, that meant a hike through Forest Park, with our reward being a trip to the "hip new ice cream parlor" everyone was talking about. The line at that first, solitary shop was already legendary, stretching clear around the block. When we got to the front, my mind was immediately blown by all the eclectic flavors. The first cup I ever got was a scoop of the olive oil ice cream, and I fell in love with every flavor combination Salt & Straw was creating.
+The clearest version of it: in April 2020, I edited a virtual choir for Bridgetown Conservatory of Musical Theatre. COVID so all twenty performers were recording alone at home on whatever equipment they had. There was no workflow for this because nobody had needed one before. I built the remote capture process, synced twenty isolated video tracks, mixed the separate audio stems into one clean concert, and delivered it on a tight deadline working directly with the cast and the director. That's the muscle I'd be flexing. Figure out the production function, then run it.
 
-That day, I learned that Salt & Straw isn't just about ice cream. It's about the adventure to get there, the joy of discovery in every flavor, and the community you build while waiting in line. That experience shaped how I think about hospitality: the product matters, but the people running the room matter just as much.
+Before that, I ran on-site video and audio capture for two professional theatre productions at Oregon Children's Theatre. Camera and sound rigs on shoot days, then the full edit and mix for the theatre's digital release. End-to-end from rig to final cut. I've also designed and run lighting for a live stage production, hanging and focusing the rig myself and programming the cues, so I can light a shoot, not just operate a camera. And I've produced and mixed audio for broadcast delivery. Clean capture in a room I didn't control is a problem I've already solved. When clean capture on the day isn't possible, I have a lot of experience mastering audio in post as a voiceover artist.
 
-I've spent the last few years doing exactly that. At Bridgetown Conservatory of Musical Theatre, I ran front-of-house solo for live shows: opening and closing the space, managing whatever came up mid-event, and making sure every patron left satisfied. That meant staying calm when things went sideways, making decisions on the fly, and keeping the whole operation moving without anyone else to hand problems off to. At Molloy University, I give campus tours and help run open houses, which means reading a room quickly and adjusting on the spot.
+The part that makes this role specifically right for me, though, is the audience. Viam is a robotics engineering platform, and the Education team makes content for developers. I run a homelab of self-hosted services on NixOS, I wire LLMs into private automation, and I write Python. I can sit with an engineering team and actually follow what they're building, which means I can make tutorials that don't dumb the material down or get the technical details wrong. That combination, production skills plus engineering fluency, is rare, and it's the reason I'm writing this letter.
 
-New York is my home now. Hearing Salt & Straw was coming here felt personal, a piece of where I'm from showing up in the place I've built my life. I want to be part of the team that opens this location right. Not just on the floor, but helping make sure the shift runs well and the people working it feel supported.
+The storyteller instinct the posting asks for is the other half. I came up in theatre. I think about why a viewer keeps watching, not just whether the footage is clean. Pacing, hook structure, where to cut and where to let a beat breathe, that's the same problem as staging a scene. I'd rather make a tutorial that holds a developer for ten minutes than one that's technically perfect and loses them in the first thirty seconds.
 
-Thank you for your time. I'd love to talk about how I can contribute to your New York team.
+I'm in New York and can be in-office three days a week. I'd be happy to discuss more of what I'm able to bring to your team.
 
 Sincerely,
 
