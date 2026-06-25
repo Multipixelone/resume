@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.5.0] - 2026-06-25
+
+### 🚀 Features
+
+- *(update)* Applied to jobs, update job status to reflect application status in [bd5ae24](https://github.com/Multipixelone/resume/commit/bd5ae24ff6a8272698b2f19246bde407e515d3e8)
+- *(writer)* Resume for software quality engineer in [100e383](https://github.com/Multipixelone/resume/commit/100e3837e524b2e91152d0585ae20c7a80b48a69)
+- Website scraper with playwright in [e9342f7](https://github.com/Multipixelone/resume/commit/e9342f7c9b2c15c6e1b4c4bab320c06ce4180976)
+- *(anthropic)* Lots of anthropic specific resumes in [716a4fd](https://github.com/Multipixelone/resume/commit/716a4fdf77b3496f87ea0ca67356be63719504c3)
+
+### 📚 Documentation
+
+- Remove unnecessicary line in [637cd7f](https://github.com/Multipixelone/resume/commit/637cd7fc441b2e04f78236d4e994e5d14f7dd4e0)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update flake.lock (#96) in [9bd7fb5](https://github.com/Multipixelone/resume/commit/9bd7fb5e52c3cead0b8c72d9b1b1e151dacdf36f)
+
+### ✍️ Content
+
+- *(content)* Video creative resume variants for NYC AI companies in [0e86a4e](https://github.com/Multipixelone/resume/commit/0e86a4ef9970ec0b981cfbde0e8084fb5d319864)
+
 ## [2.4.3] - 2026-06-25
 
 ### ✍️ Content
