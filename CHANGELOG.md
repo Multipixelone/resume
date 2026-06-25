@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.6.3] - 2026-06-25
+
+### 🐛 Bug Fixes
+
+- Add page break in [b6cfb0c](https://github.com/Multipixelone/resume/commit/b6cfb0c58cd13a53c6c07b745459ce38c5746f05)
+
 ## [2.6.2] - 2026-06-25
 
 ### 🚀 Features
