@@ -79,3 +79,95 @@ selectively (one or two echoes, never parroted). Build them with
 - Alt high-pay backend option: Runway, "MTS Backend Engineer, API" (NYC office).
 - Resume: `resumes/hebbia.typ` → `hebbia-resume.pdf`
 - Source: indexventures.com/startup-jobs/hebbia; HN "Who is hiring?" June 2026
+
+# Video & Creative Targets
+
+Researched June 2026. NYC (or NYC-office) AI companies hiring for video
+production and adjacent creative/devrel work. These lean on the under-marketed
+A/V side of the profile: on-site video and audio recording (Oregon Children's
+Theatre), virtual-choir compositing of 20 isolated performers, theme-song
+mastering (Portland Spirit), lighting design (Rosetta Project), plus the tech
+spine and on-camera comfort from a performance background. Tooling confirmed with
+the candidate: Final Cut Pro, DaVinci Resolve, Premiere Pro; Logic Pro, Reaper,
+Audacity. No AI-video-tool experience yet, so none is claimed.
+
+Build all with `nix build '.#resume'`; outputs land as `<dest>-resume.pdf`.
+
+## 7. Ramp — Video Producer/Editor (NYC; relocation offered) _(strongest fit)_
+
+- Customer films are "cinematic, character-led, entertainment-first" — not
+  testimonials shot at a desk. Owns camera, lighting, on-set direction, and the cut.
+- Pre-production (scouting, shot lists, pre-interviews) through post (rough cut to
+  final delivery); also building out Ramp's NYC equipment kit.
+- Explicitly prefers indie film / documentary / student / arts-org backgrounds.
+- Why it fits: the theatre A/V + lighting history and resourceful, fast, do-it-all
+  production experience map almost one-to-one onto this posting.
+- Resume: `resumes/ramp.typ` → `ramp-resume.pdf`
+- Source: jobs.ashbyhq.com/ramp/c70978a6-f452-4c8d-acb1-673ec90afbec;
+  jobs.technyc.org/companies/ramp-2
+
+## 8. Runway — Creative Producer / DevRel Lead (NYC; Runway Studios)
+
+- AI-video company born at NYU, NYC hub. Runway Studios is hiring Creative
+  Producer, Animator, VFX Artist, and Screenwriter (NYC); Engineering is hiring a
+  remote Member of Technical Staff, Developer Relations Lead.
+- Why it fits: produce a piece end to end and also write the Python tooling around
+  it — the video + technical blend Runway is built around.
+- Resume: `resumes/runway.typ` → `runway-resume.pdf`
+- Source: runwayml.com/careers (Studios roles apply via Google Form)
+
+## 9. Captions — Video Editor / Captions Academy (NYC, Soho; in-person)
+
+- AI creative studio for video. Open contract Video Editor role; the Captions
+  Academy role owns customer learning: short-form video tutorials, product
+  walkthroughs, and cohort-based training.
+- Why it fits: editing plus on-camera teaching plus product education — the
+  tutorial-and-walkthrough side sits right on the performance + edit overlap.
+- Resume: `resumes/captions.typ` → `captions-resume.pdf`
+- Source: linkedin.com/jobs (Captions, Video Editor); builtinnyc.com/company/captions
+
+## 10. Agentio — Video Content Producer (Brooklyn → Union Square; in-person)
+
+- AI-native creator-ad platform for YouTube and Instagram. Create, direct, and edit
+  multi-platform video; collaborate with creators and the marketing team.
+- Why it fits: directs and cuts social-first video with an eye for pacing; ships
+  fast and tunes to what lands.
+- Resume: `resumes/agentio.typ` → `agentio-resume.pdf`
+- Source: jobs.ashbyhq.com/agentio/5687b2ec-3b2b-4f85-b9e6-afb9e3cc1367 (posted May 2026)
+
+## 11. ElevenLabs — Developer Relations Engineer (NYC hub; remote-ok)
+
+- Audio-AI company. Role creates and presents engaging content online and in person
+  at developer meetups and conferences; improves docs and example projects.
+- Why it fits: the rare hook is the mixing/mastering/sound-engineering background —
+  genuine audio credibility at an audio company, plus video and devrel ability.
+- Resume: `resumes/elevenlabs.typ` → `elevenlabs-resume.pdf`
+- Source: elevenlabs.io/careers; jobs.ashbyhq.com/elevenlabs
+
+## Also monitor (no dedicated variant yet)
+
+- Perplexity — video / creative-technologist work; "video is one of Perplexity's
+  important channels." 32 NYC openings. Confirm the specific role is live before
+  applying. Source: perplexity.ai/hub/careers/new-york-city
+- Anthropic — Developer Relations, Claude Developer Platform (NYC, hybrid;
+  ~$290k–$365k). Preferred quals explicitly list video-tutorial creation and public
+  speaking. The exact req fetched was removed Dec 2025; check for the current
+  equivalent or the Founding DevRel Lead. Source: anthropic.com/careers
+- Synthesia — $4B AI-video-for-business platform with an NYC office; watch the
+  careers page for content/production roles. Source: synthesia.io/careers
+- Cassidy — Founding Content Producer (NYC; full video lifecycle, on camera) closed
+  Feb 2026, but a good template for the kind of founder-channel role to watch for.
+
+## Resume info still worth gathering
+
+To make these variants stronger and replace anything generic, confirm and add:
+
+1. Camera bodies / lighting console / gear owned or operated (Ramp wants on-set
+   fluency and kit-building).
+2. A reel or portfolio link — the virtual-choir concert and the Oregon Children's
+   Theatre recordings are showable; a 60–90s reel on www.finnrut.is would carry more
+   than any bullet. The site already builds via `packages/website.nix`.
+3. Any AI-video / generative tool use if/when it happens (Runway, Pika, CapCut AI) —
+   currently none, so it is deliberately left off.
+4. On-camera framing: the improv/performance background reads directly as
+   "comfortable on camera," which several of these roles ask for explicitly.

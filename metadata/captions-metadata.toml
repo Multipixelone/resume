@@ -1,0 +1,30 @@
+# Captions — Video Editor / Captions Academy (NYC, Soho)
+# Merged on top of metadata.toml via src/meta.typ::makeMeta().
+
+[modules]
+experience_file = "creative-experience.toml"
+skills_file = "creative-skills.toml"
+
+[lang.en]
+header_quote = "I make short videos that teach: tight tutorials and walkthroughs that get someone to the point without losing them. Comfortable on camera from years of performing, comfortable in an edit from years of cutting, and I like turning a confusing product into something a creator can just pick up."
+cv_footer = "Video / Education Resume"
+
+[layout]
+before_entry_description_skip = "-4pt"
+
+[layout.header]
+display_profile_photo = false
+
+[layout.entry]
+display_entry_society_first = false
+display_logo = false
+
+[personal.info]
+email = "tech@finnrut.is"
+github = "Multipixelone"
+linkedin = "finn-rutis-44a951304"
+location = "NYC"
+height = ""
+instagram = ""
+vocal-part = ""
+union = ""

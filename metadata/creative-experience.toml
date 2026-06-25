@@ -1,0 +1,47 @@
+# Creative / video-production experience.
+# Real entries from work-experience.toml, reordered to lead with the A/V and
+# live-production roles and lightly re-angled toward production craft.
+# Used by the video/creative resume variants via modules.experience_file.
+
+[jobs]
+[jobs.video-editor]
+title = "Video Editor & Sound Engineer"
+company = "Oregon Children's Theatre"
+date = "May 2020 – July 2020"
+location = "Portland, OR"
+summary = "Ran on-site video and audio recording for two professional theatre productions. Set up and operated the camera and sound rigs on shoot days, then cut the footage and mixed the audio for the theatre's digital release."
+
+[jobs.virtual-choir]
+title = "Video Editor – Virtual Choir"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "April 2020"
+location = "Portland, OR"
+summary = "Built a full virtual concert out of 20 performers recording alone at home during lockdown. Synced and matched the isolated video, mixed the separate audio stems into one track, and worked with the cast and director to fix tech problems and hit a tight deadline."
+
+[jobs.portland-spirit]
+title = "Mastering Engineer"
+company = "Portland Spirit"
+date = "November 2021"
+location = "Portland, OR"
+summary = "Produced and mixed the official theme song for the Portland Spirit river cruise. Took it from raw tracking through the final master and delivered a clean, broadcast-ready cut."
+
+[jobs.rosetta-project]
+title = "Lighting Designer"
+company = "The Rosetta Project"
+date = "July 2021"
+location = "Portland, OR"
+summary = "Designed and ran lighting for a live stage production. Hung and focused the rig, programmed the cues, and called the show during its run."
+
+[jobs.house-and-facilities-manager]
+title = "House & Facilities Manager"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "October 2021 – September 2022"
+location = "Portland, OR"
+summary = "Ran front-of-house for live shows and handled day-to-day operations of the theatre and rehearsal spaces. Main point of contact for patrons, renters, and building management."
+
+[jobs.student-ambassador]
+title = "Student Ambassador"
+company = "Molloy University"
+date = "October 2022 – May 2026"
+location = "Rockville Centre, NY"
+summary = "Guide prospective students and families around campus and help run welcome events. Daily practice at reading a room and explaining things clearly to people who are new to them."

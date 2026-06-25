@@ -120,6 +120,51 @@ check_metadata = true
 title = "Hebbia Resume"
 subtitle = "Backend engineer, agents"
 
+[ramp]
+source = "ramp"
+dest = "ramp-resume"
+override_toml = "ramp-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "Ramp Resume"
+subtitle = "Video producer / editor"
+
+[runway]
+source = "runway"
+dest = "runway-resume"
+override_toml = "runway-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "Runway Resume"
+subtitle = "Creative producer"
+
+[captions]
+source = "captions"
+dest = "captions-resume"
+override_toml = "captions-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "Captions Resume"
+subtitle = "Video / education"
+
+[agentio]
+source = "agentio"
+dest = "agentio-resume"
+override_toml = "agentio-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "Agentio Resume"
+subtitle = "Video content producer"
+
+[elevenlabs]
+source = "elevenlabs"
+dest = "elevenlabs-resume"
+override_toml = "elevenlabs-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "ElevenLabs Resume"
+subtitle = "Developer relations"
+
 [cover-letter]
 source = "cover-letter"
 dest = "cover-letter"
