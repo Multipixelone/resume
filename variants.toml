@@ -165,6 +165,15 @@ check_metadata = true
 title = "ElevenLabs Resume"
 subtitle = "Developer relations"
 
+[tavily]
+source = "tavily"
+dest = "tavily-resume"
+override_toml = "tavily-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "Tavily Resume"
+subtitle = "Developer relations"
+
 [anthropic-events]
 source = "anthropic-events"
 dest = "anthropic-events-resume"
