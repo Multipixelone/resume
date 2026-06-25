@@ -3,7 +3,7 @@ section_title = "Skills"
 [skills]
 [skills.writing]
 type = "Writing & Content"
-info = "Scripts, show programs, copy, and clear explainers for technical and general audiences"
+info = "Clear explainers and technical writing for general audiences"
 
 [skills.events]
 type = "Events & Live Production"

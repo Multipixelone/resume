@@ -3,11 +3,11 @@
 
 [modules]
 experience_file = "anthropic-events-experience.toml"
-projects_file = "tech-projects.toml"
+projects_file = "anthropic-events-projects.toml"
 skills_file = "comms-skills.toml"
 
 [lang.en]
-header_quote = "I come from live events and the stage: running front-of-house, designing lighting and calling cues, and performing often enough to know what makes a room lean in. I also write, cut video, and can take a tangled technical idea and make it land for a general audience. I like building the story and the run-of-show behind a moment, then helping the people on stage feel ready."
+header_quote = "I come from live events: running front-of-house, designing lighting, and building the story and run-of-show behind a moment. I write, cut video, and can take a technical idea and make it land for a general audience."
 cv_footer = "Events Content Resume"
 
 [layout]
