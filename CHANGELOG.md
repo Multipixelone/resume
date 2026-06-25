@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.6.2] - 2026-06-25
+
+### 🚀 Features
+
+- Tavily cover letter in [85f67fe](https://github.com/Multipixelone/resume/commit/85f67fe1c1631e4874de2b358eb63c443c14c0fe)
+
+### ✍️ Content
+
+- *(content)* Tavily to devrel application in [ce18cd2](https://github.com/Multipixelone/resume/commit/ce18cd2790bf234cec98338970d5ba8ac9a722e5)
+
 ## [2.6.1] - 2026-06-25
 
 ### 🚀 Features
