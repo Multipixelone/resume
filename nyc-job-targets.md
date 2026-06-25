@@ -14,7 +14,9 @@ selectively (one or two echoes, never parroted). Build them with
 > ZipRecruiter, Ashby, Lever). Re-check each live posting before applying in
 > case a role has closed or changed.
 
-## 1. Writer — Developer Advocate, Events & Social (NYC)
+## 1. Writer — Developer Advocate, Events & Social (NYC) _(No longer accepting applications)_
+
+> Developer advocate is no longer accepting applications: can probably apply to another job, grab only the ashbyhq site, this is there primary site
 
 - Wants an "accomplished storyteller with a strong technical background"
 - Represent Writer at engineering/research events, on social, and in AI
@@ -28,7 +30,7 @@ selectively (one or two echoes, never parroted). Build them with
 - Resume: `resumes/writer.typ` → `writer-resume.pdf`
 - Source: LinkedIn 4217712122 / jobs.ashbyhq.com/writer
 
-## 2. Sierra — Developer Relations Engineer (NYC office)
+## 2. Sierra — Developer Relations Engineer (NYC office) _(APPLIED)_
 
 - Build "content that scales — technical documentation, educational videos,
   onboarding paths, and sample repositories"
@@ -41,7 +43,7 @@ selectively (one or two echoes, never parroted). Build them with
 - Resume: `resumes/sierra.typ` → `sierra-resume.pdf`
 - Source: jobs.ashbyhq.com/Sierra (06453dd1)
 
-## 3. LogRocket — Developer Relations / PodRocket (NYC)
+## 3. LogRocket — Developer Relations / PodRocket (NYC) _(APPLIED)_
 
 - Inherit PodRocket, a top-ranked developer podcast (State of JS / State of CSS)
 - Content-marketing scope: "comfort writing video scripts, managing video
@@ -51,7 +53,7 @@ selectively (one or two echoes, never parroted). Build them with
 - Resume: `resumes/logrocket.typ` → `logrocket-resume.pdf`
 - Source: jobs.lever.co/logrocket; builtin.com/company/logrocket/jobs
 
-## 4. Notion — Developer Advocate (NYC; ~$190k–$220k base)
+## 4. Notion — Developer Advocate (NYC; ~$190k–$220k base) _(APPLIED)_
 
 - Their "first Developer Advocate"; the "critical bridge between Notion's teams
   and the developer community"
@@ -63,7 +65,7 @@ selectively (one or two echoes, never parroted). Build them with
 - Resume: `resumes/notion.typ` → `notion-resume.pdf`
 - Source: jobs.ashbyhq.com/notion (0cc39c60)
 
-## 5. Mistral AI — AI Developer Advocate / Developer Relations (NYC)
+## 5. Mistral AI — AI Developer Advocate / Developer Relations (NYC) _(APPLIED - Paris Location)_
 
 - Drive "content around enterprise AI use cases," "developer education and
   adoption," and active community contribution; open-source models
@@ -74,7 +76,7 @@ selectively (one or two echoes, never parroted). Build them with
 - Resume: `resumes/mistral.typ` → `mistral-resume.pdf`
 - Source: jobs.lever.co/mistral
 
-## 6. Hebbia — Backend Engineer, Agents (NYC; $160k–$300k)
+## 6. Hebbia — Backend Engineer, Agents (NYC; $160k–$300k) _(NOT ACCEPTING NYC APPLICATIONS ANYMORE)_
 
 - The high-paying, pure-backend target. A backend engineer here "blends
   expertise in systems, application layer software, and data modeling."
