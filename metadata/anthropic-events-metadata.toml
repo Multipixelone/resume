@@ -4,10 +4,10 @@
 [modules]
 experience_file = "anthropic-events-experience.toml"
 projects_file = "anthropic-events-projects.toml"
-skills_file = "comms-skills.toml"
+skills_file = "anthropic-events-skills.toml"
 
 [lang.en]
-header_quote = "I come from live events: running front-of-house, designing lighting, and building the story and run-of-show behind a moment. I write, cut video, and can take a technical idea and make it land for a general audience."
+header_quote = "I'm a theatrical performer who works on the story behind a live moment: the run-of-show, the narrative, and the copy that gets people in the room. I write and deliver talks too, including a session at BSides PDX, and I'm at my best taking a technical idea and making it land for a general audience."
 cv_footer = "Events Content Resume"
 
 [layout]

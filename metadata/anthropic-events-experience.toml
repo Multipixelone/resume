@@ -8,21 +8,28 @@ title = "House & Facilities Manager"
 company = "Bridgetown Conservatory of Musical Theatre"
 date = "October 2021 – September 2022"
 location = "Portland, OR"
-summary = "Ran front-of-house for live shows and kept the building and rehearsal spaces show-ready. On performance nights, handled everything from house logistics to being the main point of contact for patrons, renters, and building management."
+summary = "Ran front-of-house and the run-of-show for live performances, and kept the building and rehearsal spaces show-ready. On performance nights I owned house logistics end to end and was the main point of contact for patrons, renters, and building management when something needed a decision."
 
 [jobs.student-ambassador]
 title = "Student Ambassador"
 company = "Molloy University"
 date = "October 2022 – May 2026"
 location = "Rockville Centre, NY"
-summary = "Led campus tours and helped run welcome events for prospective students and their families — the front line of the university's admissions outreach. Daily practice reading a room, adapting the message on the fly, and turning a schedule of tours and sessions into a day that flows."
+summary = "Led campus tours and helped run welcome events for prospective students and their families, the front line of the university's admissions outreach. This was daily practice at reading a room, adapting the message for the audience in front of me, and turning a packed schedule of tours and sessions into a day that actually flowed."
+
+[jobs.salt-and-straw]
+title = "Shift Coordinator"
+company = "Salt & Straw"
+date = "April 2026 – Present"
+location = "New York, NY"
+summary = "Run the flow of a busy West Village scoop shop from open to close. Lead a team of 5+ scoopers through the dinner rush, assign stations, and rework the plan in real time when the line hits the door. Train every new hire on shop standards and rhythm, and stay the calm person the team looks to when the pressure is on."
 
 [jobs.virtual-choir]
 title = "Video Editor – Virtual Choir"
 company = "Bridgetown Conservatory of Musical Theatre"
 date = "April 2020"
 location = "Portland, OR"
-summary = "Produced a full virtual concert from 20 performers who recorded alone at home during lockdown. Coordinated with the cast and director, synced and mixed every isolated take, and delivered the finished piece on a tight deadline."
+summary = "Produced a full virtual concert from 20 performers who recorded alone at home during lockdown. Coordinated the cast and director, kept everyone to a tight delivery schedule, synced and mixed every isolated take, and shipped the finished piece on deadline."
 
 [jobs.video-editor]
 title = "Video Editor & Sound Engineer"
@@ -44,3 +51,10 @@ company = "Portland Spirit"
 date = "November 2021"
 location = "Portland, OR"
 summary = "Produced and mixed the official theme song for the Portland Spirit river cruise, from raw tracking through a clean, broadcast-ready master."
+
+[jobs.bsides-pdx]
+title = "Speaker"
+company = "BSides PDX (Security BSides Portland)"
+date = ""
+location = "Portland, OR"
+summary = "Gave a conference talk on pulling laptops out of my school district's e-waste pile and bringing them back to life with Linux. Took a hands-on technical project and shaped it into a story a mixed room could follow, from the people who'd already wiped a drive to the ones who just liked the idea of saving hardware from the bin."

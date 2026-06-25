@@ -8,11 +8,11 @@ title = "Typst Content Publishing Pipeline"
 company = "Personal Project"
 date = "Oct 2024 – Present"
 location = ""
-summary = "Built a publishing pipeline that generates tailored content variants from shared source material. A GitHub Actions workflow compiles and publishes multiple versions from one metadata source, so a single update fans out everywhere it's needed — the same pattern you'd use for event landing pages, program books, or speaker one-sheets."
+summary = "Built a publishing pipeline that generates tailored content variants from shared source material. A GitHub Actions workflow compiles and publishes multiple versions from one metadata source, so a single update fans out everywhere it's needed. It's the same templates-and-toolkit pattern you'd use to keep event landing pages, program books, and speaker one-sheets consistent at scale."
 
 [projects.llm-content-tooling]
 title = "LLM Content & Prompt Tooling"
 company = "Personal Project"
 date = "Jan 2023 – Present"
 location = ""
-summary = "Wrote Python tooling that uses LLMs to turn technical material into audience-ready drafts. The real work was prompt design and structured output: tight system prompts and strict JSON schemas that make the result reliable enough to act on without hand-checking every response."
+summary = "Wrote Python tooling that uses LLMs to turn technical material into audience-ready drafts. The real work was prompt design and structured output: tight system prompts and strict JSON schemas that make the result reliable enough to act on without hand-checking every response. It's the day-to-day of translating dense source material into copy a general audience can follow."
