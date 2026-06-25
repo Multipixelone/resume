@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.4.1] - 2026-06-25
+
+### ✍️ Content
+
+- *(content)* Add LinkedIn to non-theatre resume variants (#91) in [07de98e](https://github.com/Multipixelone/resume/commit/07de98e533e89d7cabb068c0cb38a64dff24f591)
+
 ## [2.4.0] - 2026-06-24
 
 ### 📋 Template
