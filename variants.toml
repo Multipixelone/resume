@@ -268,3 +268,12 @@ expected_pages = 0
 check_metadata = true
 title = "Vox Unexplainable Resume"
 subtitle = "Senior video producer"
+
+[sofi]
+source = "sofi"
+dest = "sofi-content"
+override_toml = "sofi-metadata.toml"
+expected_pages = 2
+check_metadata = true
+title = "Content Strategist Resume"
+subtitle = "Podcasts & Video"

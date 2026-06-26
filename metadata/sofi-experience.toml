@@ -1,0 +1,42 @@
+[jobs]
+[jobs.video-editor]
+title = "Video Editor & Sound Engineer"
+company = "Oregon Children's Theatre"
+date = "May 2020 – Jul 2020"
+location = "Portland, OR"
+summary = "Ran on-site recording and directed talent during shoot days for two professional theatre productions. In post, cut for clarity and pacing and mixed the audio, iterating based on director notes to land a final cut that held up on digital distribution. Handled everything from setup through final delivery, hitting every deadline on a production calendar with no slack."
+
+[jobs.virtual-choir]
+title = "Video Editor"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "Apr 2020"
+location = "Portland, OR"
+summary = "Coordinated 20 performers recording remotely during lockdown, each delivering separate audio and video tracks to spec. Synced and aligned it all, mixed the stems into one track, and troubleshot problems directly with cast and director. Shipped a polished final piece on a hard deadline with no room to reshoot."
+
+[jobs.house-and-facilities-manager]
+title = "House & Facilities Manager"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "Oct 2021 – Sep 2022"
+location = "Portland, OR"
+summary = "Ran front-of-house operations and the run-of-show for live performances. On show nights, was the single point of contact when something went sideways, flagging issues, making calls, and keeping things moving so the production stayed on schedule. Managed the calendar of renters and building use, routed requests to the right people and followed up through to close-out, and kept the facility show-ready."
+
+[jobs.shift-coordinator]
+title = "Shift Coordinator"
+company = "Salt & Straw"
+date = "Apr 2026 – Present"
+location = "New York, NY"
+summary = "Run daily operations for a high-volume West Village shop. Lead a team of 5+ through peak hours, reassigning stations and reworking the plan in real time as conditions shift. Train new hires, own the open-to-close checklist, and act as the calm point of escalation when something needs deciding."
+
+[jobs.student-ambassador]
+title = "Student Ambassador"
+company = "Molloy University"
+date = "Oct 2022 – May 2026"
+location = "Rockville Centre, NY"
+summary = "Led campus tours and helped run welcome events as the front line of university admissions. Adapted the pitch on the fly depending on who was in front of me, anxious parents, excited seniors, skeptical siblings, and kept a packed schedule of tours moving on time. Practiced taking institutional talking points and making them sound like a real person said them."
+
+[jobs.speaker]
+title = "Speaker"
+company = "BSides PDX"
+date = ""
+location = "Portland, OR"
+summary = "Gave a conference talk on pulling laptops out of my school district's e-waste pile and bringing them back to life with Linux. Took a hands-on technical project and shaped it into a story a mixed room could follow, from the people who'd already wiped a drive to the ones who just liked the idea of saving hardware from the bin."

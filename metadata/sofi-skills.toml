@@ -1,0 +1,22 @@
+section_title = "Skills"
+
+[skills]
+[skills.editorial]
+type = "Editorial & Writing"
+info = "Script review and editing, writing for non-expert audiences, adapting institutional voice to sound like a real person"
+
+[skills.production]
+type = "Production & Post-Production"
+info = "Video editing (multi-camera, remote multi-source, short-form), audio mixing and mastering, multi-track audio and remote recording coordination, QA on cuts, on-set direction"
+
+[skills.ai]
+type = "AI & Automation"
+info = "LLM integration with structured output, Python automation, prompt engineering, CI/CD pipelines, AI-augmented content workflows"
+
+[skills.operations]
+type = "Project Management & Operations"
+info = "Calendar and deadline management, spec tracking, routing requests and following up to close-out, live production logistics, escalation and risk flagging"
+
+[skills.tools]
+type = "Tools"
+info = "Final Cut Pro, DaVinci Resolve, Premiere Pro, Logic Pro, Reaper, Audacity, Adobe Audition, Python, Git, GitHub Actions"

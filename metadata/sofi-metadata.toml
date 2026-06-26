@@ -1,0 +1,34 @@
+# SoFi Content Strategist, Podcasts & Video resume overrides
+# Merged on top of metadata.toml via src/meta.typ::makeMeta().
+
+[modules]
+experience_file = "sofi-experience.toml"
+projects_file = "sofi-projects.toml"
+skills_file = "sofi-skills.toml"
+
+[lang.en]
+header_quote = "I edit scripts, cut video, mix audio, and keep productions on schedule. Then I write the Python to make the repetitive parts run themselves."
+cv_footer = "Content Resume"
+
+[layout]
+before_entry_description_skip = "-4pt"
+
+[layout.header]
+display_profile_photo = false
+
+[layout.entry]
+display_entry_society_first = false
+display_logo = false
+
+[inject]
+inject_keywords = false
+
+[personal.info]
+email = "tech@finnrut.is"
+github = "Multipixelone"
+linkedin = "finn-rutis-44a951304"
+location = "NYC"
+height = ""
+instagram = ""
+vocal-part = ""
+union = ""

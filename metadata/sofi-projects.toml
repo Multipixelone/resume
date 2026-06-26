@@ -1,0 +1,14 @@
+[projects]
+[projects.llm-automation]
+title = "AI-Driven Automation Pipelines"
+company = "Personal Project"
+date = "Jan 2023 – Present"
+location = ""
+summary = "Built Python tooling that integrates LLMs into production-grade content workflows. Focused on making the output reliable enough for automated QA: tight system prompts, strict JSON schemas, and guardrails that catch hallucinations before they hit a deliverable. Applied to data wrangling, script generation, and copy drafting."
+
+[projects.multi-variant-content]
+title = "Multi-Variant Content Pipeline"
+company = "Personal Project"
+date = "Oct 2024 – Present"
+location = ""
+summary = "Built a publishing system that generates multiple tailored variants from a single source of truth. A CI pipeline compiles and publishes every output on change, so editing a fact in one place fans out to every variant. Treats content like code: versioned, checked, and reproducible."
