@@ -120,6 +120,15 @@ check_metadata = true
 title = "Hebbia Resume"
 subtitle = "Backend engineer, agents"
 
+[baseten]
+source = "baseten"
+dest = "baseten-resume"
+override_toml = "baseten-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "Baseten Resume"
+subtitle = "Content Engineer"
+
 [ramp]
 source = "ramp"
 dest = "ramp-resume"

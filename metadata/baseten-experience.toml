@@ -1,0 +1,35 @@
+[jobs]
+[jobs.video-editor]
+title = "Video Editor & Sound Engineer"
+company = "Oregon Children's Theatre"
+date = "May 2020 – Jul 2020"
+location = "Portland, OR"
+summary = "Ran on-site recording and directed talent during shoot days for two professional theatre productions. In post, cut for clarity and pacing and mixed the audio, iterating based on director notes to land a final cut that held up on digital distribution. Handled everything from setup through final delivery, hitting every deadline on a production calendar with no slack."
+
+[jobs.virtual-choir]
+title = "Video Editor – Virtual Choir"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "Apr 2020"
+location = "Portland, OR"
+summary = "Built a full virtual concert out of 20 performers recording alone at home during lockdown. Synced and aligned the isolated tracks, mixed the stems into one piece, and troubleshot problems directly with cast and director. Shipped a polished final video on a hard deadline with no room to reshoot."
+
+[jobs.portland-spirit]
+title = "Mastering Engineer"
+company = "Portland Spirit"
+date = "Nov 2021"
+location = "Portland, OR"
+summary = "Produced and mixed the official theme song for the Portland Spirit river cruise. Took it from raw tracking through the final master and delivered a clean, broadcast-ready cut."
+
+[jobs.shift-coordinator]
+title = "Shift Coordinator"
+company = "Salt & Straw"
+date = "Apr 2026 – Present"
+location = "New York, NY"
+summary = "Run daily operations for a high-volume West Village shop. Lead a team of 5+ through peak hours, reassigning stations and reworking the plan in real time as conditions shift. Train new hires, own the open-to-close checklist, and act as the calm point of escalation when something needs deciding."
+
+[jobs.student-ambassador]
+title = "Student Ambassador"
+company = "Molloy University"
+date = "Oct 2022 – May 2026"
+location = "Rockville Centre, NY"
+summary = "Led campus tours and helped run welcome events as the front line of university admissions. Adapted the pitch on the fly depending on who was in front of them, anxious parents, excited seniors, skeptical siblings, and kept a packed schedule of tours moving on time. Practiced taking institutional talking points and making them sound like a real person said them."

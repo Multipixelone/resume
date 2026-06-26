@@ -1,0 +1,22 @@
+section_title = "Skills"
+
+[skills]
+[skills.content]
+type = "Content & Writing"
+info = "Clear explainers and writing for general audiences; script review and editing; adapting institutional voice to sound like a real person"
+
+[skills.ai]
+type = "AI & Automation"
+info = "LLM integration with structured output, Python automation, prompt engineering, AI-augmented content workflows"
+
+[skills.pipelines]
+type = "Content Tooling & Pipelines"
+info = "Git, GitHub Actions, Typst, CI/CD for docs and content, version-controlled publishing, reproducible builds"
+
+[skills.production]
+type = "Production & Post-Production"
+info = "Video editing (multi-camera, remote multi-source), audio mixing and mastering, multi-track audio, on-set direction, QA on cuts"
+
+[skills.technical]
+type = "Technical"
+info = "Python, Nix / NixOS, Linux, Bash scripting"

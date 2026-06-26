@@ -199,7 +199,7 @@ fit. Same build pattern: `nix build '.#resume'` → `<dest>-resume.pdf`.
 - Resume: `resumes/newyorker.typ` → `newyorker-resume.pdf`
 - Source: builtinnyc.com/job/video-producer-new-yorker/7169622
 
-## 15. The New York Times — News Technology Specialist, Video (NYC; hybrid) _(best video+tech blend)_
+## 15. The New York Times — News Technology Specialist, Video (NYC; hybrid) _(APPLIED 6/25/26)_
 
 - Full-time NewsGuild, $112k–$113k, Wed–Sun schedule. Troubleshoot technical
   issues with video production/post-production software, cameras, lenses, audio.
@@ -333,12 +333,12 @@ fit. Same build pattern: `nix build '.#resume'` → `<dest>-resume.pdf`.
   and security events. Python, Bash, GitHub Actions, Docker familiarity a plus.
   Explicitly invites applicants who don't check every box.
 - Why it fits: the network-security homelab (`tech-projects.toml
-  [projects.network-security]` — FortiGate firewall, separate DMZs, isolated VLANs,
+[projects.network-security]` — FortiGate firewall, separate DMZs, isolated VLANs,
   MetalLB) is genuine security and DevSecOps credibility. The declarative-infra
   homelab (`tech-projects.toml [projects.declarative-homelab]` — Docker, ESXi, KVM,
   reproducible NixOS setup) covers the CI/CD and container tooling the posting lists
   as a plus. The LLM-automation work in Python (`tech-projects.toml
-  [projects.llm-automation]`) maps onto the technical-content and demo side. The
+[projects.llm-automation]`) maps onto the technical-content and demo side. The
   Student Ambassador role (`work-experience.toml [jobs.student-ambassador]` — guided
   tours, ran welcome events, daily outreach) is real community-engagement and
   event-hosting experience that lines up with community programs and conference
@@ -389,10 +389,10 @@ fit. Same build pattern: `nix build '.#resume'` → `<dest>-resume.pdf`.
   (`tech-projects.toml [projects.llm-automation]` — Python tooling with tight system
   prompts and strict JSON schemas for reliable parse-and-act). Python is confirmed
   (`tech-skills.toml [skills.languages]`). The Typst resume system (`tech-projects.toml
-  [projects.building-resume]` — a version-controlled, CI-compiled content pipeline
+[projects.building-resume]` — a version-controlled, CI-compiled content pipeline
   that fans one metadata change across many outputs) is real docs-as-code and
   content-tooling experience. The declarative-infra homelab (`tech-projects.toml
-  [projects.declarative-homelab]`) gives AI-infra credibility for the nice-to-have.
+[projects.declarative-homelab]`) gives AI-infra credibility for the nice-to-have.
 - Gap: 3-month contract-to-hire (flagged as contract; conversion is not guaranteed).
   No employed technical-writing or content-engineering history; the content and
   pipeline work is personal-project. No SEO or AEO experience. Early-career-appropriate
@@ -412,7 +412,7 @@ fit. Same build pattern: `nix build '.#resume'` → `<dest>-resume.pdf`.
   hands-on experience with the exact problem space the docs describe. The Typst
   resume system (`tech-projects.toml [projects.building-resume]`) is genuine
   docs-as-code — a version-controlled, CI-compiled content pipeline (`tech-skills.toml
-  [skills.tools]` — Git, GitHub, CI/CD, Typst). The declarative-infra homelab
+[skills.tools]` — Git, GitHub, CI/CD, Typst). The declarative-infra homelab
   (`tech-projects.toml [projects.declarative-homelab]`) gives open-source-community
   credibility for the OSS side of LangChain's docs.
 - Gap: 5+ years technical writing is a reach — Finn is early-career and the
@@ -431,10 +431,10 @@ fit. Same build pattern: `nix build '.#resume'` → `<dest>-resume.pdf`.
   Cut Pro. 5+ years creating social-first video for media brands, plus
   leadership/management experience.
 - Why it fits: the Oregon Children's Theatre work (`work-experience.toml
-  [jobs.video-editor]` — ran on-site video and audio recording for two professional
+[jobs.video-editor]` — ran on-site video and audio recording for two professional
   productions, managed technical setup, edited final footage for digital
   distribution) and the virtual-choir compositing (`work-experience.toml
-  [jobs.virtual-choir]` — synced remote audio and video from 20 isolated performers
+[jobs.virtual-choir]` — synced remote audio and video from 20 isolated performers
   into one concert) are direct video-editing and multi-track assembly experience. The
   Portland Spirit mastering work (`work-experience.toml [jobs.portland-spirit]` —
   produced and mixed a broadcast-ready track) covers the sound-design and
@@ -459,12 +459,12 @@ fit. Same build pattern: `nix build '.#resume'` → `<dest>-resume.pdf`.
   — guided prospective students and families, ran welcome events, daily outreach) is
   direct community-engagement and event-hosting experience that maps onto ambassador
   programs and owned events. The Portland Spirit mastering work (`work-experience.toml
-  [jobs.portland-spirit]` — produced and mixed a broadcast-ready theme song) gives
+[jobs.portland-spirit]` — produced and mixed a broadcast-ready theme song) gives
   genuine audio credibility at an audio-AI company whose creative suite centers on
   voice and music. The Oregon Children's Theatre recording work (`work-experience.toml
-  [jobs.video-editor]`) covers the video side of the creative suite. The
+[jobs.video-editor]`) covers the video side of the creative suite. The
   event-hosting and group-presentation experience (`work-experience.toml
-  [jobs.student-ambassador]`) reads onto hosting creator workshops and representing
+[jobs.student-ambassador]`) reads onto hosting creator workshops and representing
   the company at gatherings.
 - Gap: no existing audience, following, or community presence (listed as bonus, not
   required). No employed creator-program or community-management history. No hard
@@ -570,7 +570,7 @@ performance, and production. Ranked by genuine fit.
   manages AV, staging, and lighting vendors.
 - Why it fits: the lighting-design and live-cue background maps directly onto the
   show-calling and stage-production mandate — `work-experience.toml
-  [jobs.rosetta-project]` (hung, focused, programmed, and ran cues live for a stage
+[jobs.rosetta-project]` (hung, focused, programmed, and ran cues live for a stage
   production). The front-of-house and live-show operations experience
   (`work-experience.toml [jobs.house-and-facilities-manager]` — ran front-of-house
   logistics for live shows, main point of contact for patrons and renters) covers
@@ -579,7 +579,7 @@ performance, and production. Ranked by genuine fit.
   one concert on a tight deadline, worked directly with the cast and director) shows
   calm real-time production decisions under pressure and the rehearsal-direction
   angle. The Oregon Children's Theatre recording work (`work-experience.toml
-  [jobs.video-editor]` — on-site video and audio recording, technical setup,
+[jobs.video-editor]` — on-site video and audio recording, technical setup,
   edited final footage) covers the AV-production disciplines the role asks for.
 - Gap: preferred 10+ years in live event production for technology conferences and
   corporate keynotes (the minimum is portfolio-based, not years-hardened). No
