@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.6.5] - 2026-06-26
+
+### 🚀 Features
+
+- Baseten resume in [cd0119c](https://github.com/Multipixelone/resume/commit/cd0119c94171818029bbc34771cf6290e421b06e)
+
 ## [2.6.4] - 2026-06-26
 
 ### 🚀 Features
