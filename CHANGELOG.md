@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.6.4] - 2026-06-26
+
+### 🚀 Features
+
+- SoFi resume in [e1c9c57](https://github.com/Multipixelone/resume/commit/e1c9c579dc2a283ce2db2555adaee5b8a05b1546)
+
 ## [2.6.3] - 2026-06-25
 
 ### 🐛 Bug Fixes
