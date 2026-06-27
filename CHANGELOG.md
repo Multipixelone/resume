@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.6.6] - 2026-06-27
+
+### 🚀 Features
+
+- Nicer page breaking in [c51b479](https://github.com/Multipixelone/resume/commit/c51b479e3937bf50a13cb0a4262d9d61a0438964)
+- Match blog formatting in [d2605fd](https://github.com/Multipixelone/resume/commit/d2605fd46cf4378a1fcc79c732f85d458ac5e493)
+
+### 🐛 Bug Fixes
+
+- Typstyle in [f14813d](https://github.com/Multipixelone/resume/commit/f14813d2f86b2b19a126561f6d8741c1a9e1316d)
+
 ## [2.6.5] - 2026-06-26
 
 ### 🚀 Features
