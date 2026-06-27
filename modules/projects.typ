@@ -4,9 +4,10 @@
 /// The TOML at that path must define a [projects] table.
 #let projects(metadata) = {
   let projects = toml("../metadata/" + metadata.modules.projects_file)
-  cvSection("Projects", metadata: metadata)
+  let heading = cvSection("Projects", metadata: metadata)
+  let first = true
   for (_, project) in projects.projects {
-    cvEntry(
+    let entry = cvEntry(
       metadata: metadata,
       title: project.title,
       society: project.company,
@@ -14,6 +15,12 @@
       location: project.at("location", default: ""),
       description: project.at("summary", default: ""),
     )
+    if first {
+      block(breakable: false, heading + entry)
+      first = false
+    } else {
+      entry
+    }
     v(8pt)
   }
 }

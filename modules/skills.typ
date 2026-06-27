@@ -5,8 +5,15 @@
 /// whose entries each have `type` and `info` fields.
 #let skills(metadata) = {
   let data = toml("../metadata/" + metadata.modules.skills_file)
-  cvSection(data.section_title, metadata: metadata)
+  let heading = cvSection(data.section_title, metadata: metadata)
+  let first = true
   for (_, skill) in data.skills {
-    cvSkill(type: skill.type, info: skill.info)
+    let entry = cvSkill(type: skill.type, info: skill.info)
+    if first {
+      block(breakable: false, heading + entry)
+      first = false
+    } else {
+      entry
+    }
   }
 }

@@ -257,19 +257,21 @@
     text(size: 16pt, weight: "regular", fill: color, upper(str))
   }
 
-  v(beforeSectionSkip)
-  if nonLatin {
-    sectionTitleStyle(title, color: accentColor)
-  } else {
-    if highlighted {
-      sectionTitleStyle(highlightText, color: accentColor)
-      sectionTitleStyle(normalText, color: black)
+  block(breakable: false, {
+    v(beforeSectionSkip)
+    if nonLatin {
+      sectionTitleStyle(title, color: accentColor)
     } else {
-      sectionTitleStyle(title, color: black)
+      if highlighted {
+        sectionTitleStyle(highlightText, color: accentColor)
+        sectionTitleStyle(normalText, color: black)
+      } else {
+        sectionTitleStyle(title, color: black)
+      }
     }
-  }
-  h(2pt)
-  box(width: 1fr, line(stroke: 0.9pt, length: 100%))
+    h(2pt)
+    box(width: 1fr, line(stroke: 0.9pt, length: 100%))
+  })
 }
 
 /// Add an entry to the CV.
@@ -378,8 +380,9 @@
     }
   }
 
-  v(beforeEntrySkip)
-  table(
+  block(breakable: false, {
+    v(beforeEntrySkip)
+    table(
     columns: (ifLogo(logo, 3.5%, 0%), 1fr),
     inset: 0pt,
     stroke: none,
@@ -432,6 +435,7 @@
     ),
   )
   if description != "" { entryDescriptionStyle(description) }
+  })
 }
 
 /// Add a skill to the CV.
