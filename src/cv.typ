@@ -383,58 +383,58 @@
   block(breakable: false, {
     v(beforeEntrySkip)
     table(
-    columns: (ifLogo(logo, 3.5%, 0%), 1fr),
-    inset: 0pt,
-    stroke: none,
-    align: horizon,
-    column-gutter: ifLogo(logo, 6pt, 0pt),
-    setLogoContent(logo),
-    table(
-      columns: (1fr, auto),
+      columns: (ifLogo(logo, 3.5%, 0%), 1fr),
       inset: 0pt,
       stroke: none,
-      row-gutter: 6pt,
-      align: auto,
-      {
-        entryA1Style(
-          ifSocietyFirst(
-            metadata.layout.entry.display_entry_society_first,
-            society,
-            title,
-          ),
-        )
-      },
-      {
-        entryA2Style(
-          ifSocietyFirst(
-            metadata.layout.entry.display_entry_society_first,
-            location,
-            date,
-          ),
-        )
-      },
+      align: horizon,
+      column-gutter: ifLogo(logo, 6pt, 0pt),
+      setLogoContent(logo),
+      table(
+        columns: (1fr, auto),
+        inset: 0pt,
+        stroke: none,
+        row-gutter: 6pt,
+        align: auto,
+        {
+          entryA1Style(
+            ifSocietyFirst(
+              metadata.layout.entry.display_entry_society_first,
+              society,
+              title,
+            ),
+          )
+        },
+        {
+          entryA2Style(
+            ifSocietyFirst(
+              metadata.layout.entry.display_entry_society_first,
+              location,
+              date,
+            ),
+          )
+        },
 
-      {
-        entryB1Style(
-          ifSocietyFirst(
-            metadata.layout.entry.display_entry_society_first,
-            title,
-            society,
-          ),
-        )
-      },
-      {
-        entryB2Style(
-          ifSocietyFirst(
-            metadata.layout.entry.display_entry_society_first,
-            date,
-            location,
-          ),
-        )
-      },
-    ),
-  )
-  if description != "" { entryDescriptionStyle(description) }
+        {
+          entryB1Style(
+            ifSocietyFirst(
+              metadata.layout.entry.display_entry_society_first,
+              title,
+              society,
+            ),
+          )
+        },
+        {
+          entryB2Style(
+            ifSocietyFirst(
+              metadata.layout.entry.display_entry_society_first,
+              date,
+              location,
+            ),
+          )
+        },
+      ),
+    )
+    if description != "" { entryDescriptionStyle(description) }
   })
 }
 
