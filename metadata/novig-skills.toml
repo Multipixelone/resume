@@ -1,0 +1,36 @@
+# Novig — Developer Relations Engineer. Skills limited to what REFERENCE.md
+# substantiates. Deliberately claims no prediction-market, exchange, or
+# trading experience; do not add order-type or market-making lines here
+# unless real experience backs them.
+# Used by the novig resume variant via modules.skills_file.
+
+section_title = "Skills"
+
+[skills]
+[skills.languages]
+type = "Languages"
+info = "Python, Nix, Bash / Shell Scripting, TypeScript / React"
+
+[skills.apis]
+type = "APIs & Integration"
+info = "REST and JSON-RPC, X API v2, MCP, Telegram Bot API, token auth, rate-limit and retry handling, strict JSON schemas, SQLite"
+
+[skills.ai]
+type = "AI / LLM"
+info = "LLM integration, Structured-output prompt engineering (JSON), Agent tooling, Human-in-the-loop approval systems, LLM output review and calibration"
+
+[skills.infrastructure]
+type = "Systems"
+info = "Docker, VMware ESXi, KVM, Linux (NixOS, Ubuntu), Nix Ecosystem (Flakes, Home Manager), Declarative infrastructure, Reproducible builds"
+
+[skills.networking]
+type = "Networking"
+info = "TCP/IP, VLANs, DMZs, DNS / DDNS, NAT, Load Balancing (MetalLB), Firewall Administration (FortiGate)"
+
+[skills.engineering-practice]
+type = "Tooling & Docs"
+info = "Git, GitHub Actions, pre-commit, pytest, JSON Schema validators, CI/CD pipelines, Technical writing, Markdown, Typst"
+
+[skills.communication]
+type = "Communication"
+info = "Explaining technical work to non-technical stakeholders, Public speaking, Live performance and improv, Client-facing support and follow-through"

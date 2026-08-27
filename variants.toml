@@ -199,6 +199,22 @@ expected_pages = 1
 check_metadata = false
 override_toml = "tavily-metadata.toml"
 
+[novig]
+source = "novig"
+dest = "novig-resume"
+override_toml = "novig-metadata.toml"
+expected_pages = 0
+check_metadata = true
+title = "Novig Resume"
+subtitle = "Developer relations engineer"
+
+[novig-cover-letter]
+source = "novig-cover-letter"
+dest = "novig-cover-letter"
+expected_pages = 1
+check_metadata = false
+override_toml = "novig-metadata.toml"
+
 [anthropic-events]
 source = "anthropic-events"
 dest = "anthropic-events-resume"

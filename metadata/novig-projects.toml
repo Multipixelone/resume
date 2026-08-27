@@ -1,0 +1,32 @@
+# Novig — Developer Relations Engineer. Projects angled toward operating real
+# systems, debugging across the stack, and shipping tooling and docs.
+# Used by the novig resume variant via modules.projects_file.
+
+[projects]
+[projects.declarative-homelab]
+title = "Declarative Infrastructure & Self-Hosting Environment"
+company = "Personal Project"
+date = "Nov 2016 – Present"
+location = ""
+summary = "Run a homelab hosting dozens of my own internet-facing services on VMware ESXi, KVM, and Docker, all declared in NixOS and Flakes so a machine rebuilds identically from scratch. It's also where anything I'd tell someone else to do gets tried first."
+
+[projects.network-security]
+title = "Enterprise-Grade Network Architecture & Security"
+company = "Personal Project"
+date = "Aug 2019 – Present"
+location = ""
+summary = "Built and run the network behind all of it on a FortiGate firewall: separate DMZs, isolated VLANs, and MetalLB load balancing in front of the public services. When something stops responding, I'm used to working out whether it's the app, the host, or the network before I go asking anyone else."
+
+[projects.llm-automation]
+title = "AI-Driven Automation Pipelines"
+company = "Personal Project"
+date = "Jan 2023 – Present"
+location = ""
+summary = "Python tooling that wires LLMs into everyday work. Most of the effort went into the unglamorous part: tight system prompts and strict JSON schemas that make the output reliable enough to parse and act on without checking it by hand."
+
+[projects.building-resume]
+title = "Typst-Generated Resume System"
+company = "Personal Project"
+date = "Oct 2024 – Present"
+location = ""
+summary = "Built the system that generates this resume. It's written in Typst, and a GitHub Actions pipeline compiles and validates every tailored variant from shared metadata on each push, so a broken fact gets caught before it reaches a PDF. A small real example of treating docs like code."
