@@ -1,0 +1,43 @@
+# Novig — Developer Relations Engineer. Experience angled toward partner-facing
+# technical support: API work, hands-on verification, and being the person
+# external people bring problems to.
+# First variant to use the Prem AI entry from REFERENCE.md, so it writes the
+# first summary for it. Claims are limited to the "concrete tasks performed"
+# list there; see that file's "Do not claim" section before editing.
+# Used by the novig resume variant via modules.experience_file.
+
+[jobs]
+[jobs.prem-ai]
+title = "Developer Relations Manager (Contract)"
+company = "Prem AI"
+date = "June 2026 – Present"
+location = "New York, NY"
+summary = "Contract DevRel for Fluso, Prem's private AI workspace. Designed and operated a long-lived Python service running against the X API v2, with a Telegram control surface, SQLite state, Nix packaging, CI on every push, and a human-approval gate nothing could post around. Verified API claims by hand instead of trusting the docs: probed five public MCP endpoints with real JSON-RPC calls before recommending any of them, and killed a planned demo whose premise collapsed on a two-minute check against live product docs. Two skills merged into Prem's public repo, along with the Actions workflow, JSON schema, and validator that gate it."
+
+[jobs.salt-and-straw]
+title = "Shift Coordinator"
+company = "Salt & Straw"
+date = "April 2026 – Present"
+location = "New York, NY"
+summary = "Lead a team of scoopers through the dinner rush at the West Village shop, assigning stations and reworking the plan on the fly when the line runs out the door. Train new hires and stay the calm person people look to when the night goes sideways."
+
+[jobs.student-ambassador]
+title = "Student Ambassador"
+company = "Molloy University"
+date = "October 2022 – May 2026"
+location = "Rockville Centre, NY"
+summary = "The public face of the university for prospective students and their families. Ran campus tours and welcome events and fielded every question on the spot, pitching the same material differently for a nervous parent than for a seventeen-year-old without changing any of the facts."
+
+[jobs.voiceover]
+title = "Freelance Voiceover Artist"
+company = "Fiverr"
+date = "2013 – Present"
+location = "Remote"
+summary = "Ran a solo voiceover business for over a decade, now past 1,000 five-star reviews. Handled every part of it myself: client communication, quoting, scheduling, revisions, and delivery, almost all of it async and with clients in other time zones."
+
+[jobs.house-and-facilities-manager]
+title = "House & Facilities Manager"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "October 2021 – September 2022"
+location = "Portland, OR"
+summary = "Ran front-of-house for live shows and the building day to day, usually as the only staff member on shift. Primary point of contact for patrons, renters, and building management, and the person who triaged whatever broke in the middle of an event."
