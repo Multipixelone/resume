@@ -48,6 +48,66 @@ When writing a new variant, lift facts from this file rather than re-deriving th
 
 Each entry includes the canonical facts, every summary variant that's been written, and a bulleted list of concrete things actually done in the role. When tailoring a new variant, pull from the concrete bullets rather than rephrasing the summaries.
 
+### Developer Relations Manager (Contract) - Prem AI
+
+- **Dates:** June 2026 - September 2026
+- **Display as:** "June 2026 - Present" until 2026-09-29, then switch to "June 2026 - September 2026". Independent contractor engagement, not salaried.
+- **Location:** New York, NY (remote; company HQ Lugano, Switzerland)
+- **Product:** Fluso, Prem's private AI workspace. Runs on open-weight models, keeps data inside the customer's boundary. Safe public framings only: "open-weight" (never "open source"), "50+ connectors" (never a larger number), "Swiss-hosted" (never "EU-based").
+- **Repos:** prem-research/fluso-skills is PUBLIC and linkable. The brand-kit and tweet-engine repos are private; describe the work, never link or name a URL.
+
+**Existing summary variants:**
+
+- *(none yet. First variant to use this entry writes the first summary.)*
+
+**Concrete tasks performed:**
+
+- Ran a claims check on Fluso's messaging against Prem's own public sources and killed a false "EU-based servers" line sitting in the executive tier. Prem's public posture is Swiss, and Switzerland is not in the EU. The fix landed in the fact sheet and the messaging ladder before either went team-facing.
+- Corrected a connector count from "115+" to the verified "50+" and "open-source" to "open-weight", then wrote those exact framings into a fact sheet that every script and post had to clear before it shipped.
+- Pulled live product docs before building a demo and found the ticket's premise was wrong: the integration was already a managed app, so the custom-server story did not hold. Three of five gates died on a two-minute docs check. The false framing never made it to camera and a verified story shipped that night instead.
+- Probed five public MCP endpoints with real unauthenticated JSON-RPC calls before recommending any of them, then wrote the shoot card off what actually responded, including the argument shape that made one search fail. All five returned 200 without auth.
+- Designed and operated a long-lived Python daemon that handled drafting, review, scheduling and logging for two X accounts. Telegram control surface, SQLite state, X API v2, ~26k lines of Python against ~20k lines of tests, packaged with Nix and checked in CI on every push. The code was written by AI coding agents working against specs, architecture docs and reviews I wrote.
+- Built a hard human-approval gate into it: nothing posts without an explicit Telegram tap, and the poster only ever sends the text frozen at approval, with tests asserting the reply and graph modules have no import path to the poster at all. Reviewed 307 AI drafts over about six weeks, approved 115 and rejected 188, and logged 101 before/after edit diffs, about two thirds of which were distilled into durable voice rules the drafter reads back.
+- Built an engagement-graph crawler on X recent-search that ranked accounts by PageRank personalised on an approved seed list, then exported ranked outreach briefs. 4,914 nodes, 16,960 edges, 7,021 crawled posts.
+- Built a reply desk that swept five topical lanes, filtered candidates, drafted reply cards, and rendered a self-contained HTML page that kept a full ledger of what was rejected and why, so the discards stayed auditable.
+- Built the static-graphics half of the brand kit: 25 HTML layout archetypes, a headless-Chrome renderer, and an 815-line auditor that checks about 30 brand rules against both the DOM and the rendered pixels and fails the build on a violation. Nine investor and social graphics shipped through it, each with a manifest recording what was checked. The copy linter runs as a required CI job.
+- Built the motion system as code: a Remotion renderer in React and TypeScript that takes a beats.json definition and emits an on-brand MP4. Fifteen film and template definitions, a JSON schema with a validator, and a token generator driven off a single brand canon file.
+- Sole author of Prem's internal brand-kit repo. Split the verbal canon (voice, register, banned language) from the machine-readable design canon and the generated assets, and shipped it back into the org repo through reviewed pull requests. Automated releases off commit history, replacing hand-bumped versions.
+- Shipped two skills to Prem's public skills repo at github.com/prem-research/fluso-skills: a security-questionnaire skill and an ai-mark-scrubber skill, both merged. Also added that repo's quality infrastructure: a GitHub Actions workflow, a pre-commit suite (JSON/YAML/TOML checks, typos, gitleaks, markdownlint), a JSON schema for the marketplace file, and a 179-line validator that checks marketplace, directory and frontmatter consistency on every pull request and push to main.
+- Directed agent runs against the official X API to pull complete 60-day timelines for 11 accounts, seven competitor brands plus three founders and one auxiliary account, and turned the output into seven dated per-competitor calendars, a merged cross-competitor calendar and a messaging matrix. Built a re-runnable skill so the pull could be repeated rather than redone.
+- Directed the research that established where the target developer community actually lives, down to each venue's self-promotion rules and moderation precedent, then ran a seven-agent fact-check against live sources before any of it was used. The check resized two venues by 4x, killed a competitor community that turned out not to exist, and narrowed the headline claim to one that holds.
+- Planned, shot, edited and published four videos on my own X account, retweeted by the brand account: a mobile app demo, a skill drop, a model announcement and a security-scan demo.
+- Defined a repeatable skill-drop video format built around a real work artifact rather than a feature tour, briefed a six-episode script slate against it, and shipped the first drop alongside its free skill file in the public repo.
+- Wrote the script, a 29-beat Figma storyboard package and an editor brief with rights-clearance and claim-verification gates for a company intro film, and briefed an external editor against it.
+- Worked release and content coordination in Linear across marketing and engineering, and built the release-media kits behind the bi-weekly release-notes protocol: shot lists, staging datasets and rendered frame cards.
+
+**Strongest five for a technical or DevRel variant:**
+
+1. The approval gate and the 307/115/188/101 review record (human-in-the-loop AI system, with numbers).
+2. The brand auditor (~30 automated checks, DOM plus pixel analysis, CI-gated).
+3. The claims-verification cluster (Swiss/EU catch, the docs-check demo kill, the MCP probe).
+4. Two merged skills plus the CI and validator in a public repo.
+5. The engagement-graph crawler, or the four published videos if the role is content-facing.
+
+**Transferable angles:** human-in-the-loop AI systems and the guardrails that make them safe to ship; API integration and hands-on verification (X API v2, MCP JSON-RPC, live docs checks); CI and automated quality gates; technical accuracy review and claim verification; competitive and community research; content and video production end to end; working across marketing, engineering and leadership on a remote, distributed team.
+
+**Do not claim:**
+
+- **No growth or audience metrics of any kind.** The brand account went from ~55 followers with no later measurement. Lifetime engagement across 258 posts was about 50k impressions and 4 bookmarks. Citing any of this makes the record worse, not better.
+- **No "five-video launch series."** A five-episode plan was written and promoted to Notion. Zero of the five were made. The plan is the deliverable, not the series.
+- **No "eight skill drops."** Six were scripted, one shipped.
+- **No micro-drop cadence claim.** Zero shipped against an every-other-day commitment.
+- **No delivery-to-marketing claims.** No handoff receipt exists for any artifact, including the finished App Store clip, which was never sent.
+- **No composer release clips** (four clips and two shorts, none captured), and no HubSpot demo video (never shot).
+- **No developer support, partner engineering, or customer-facing integration work.** Every brand-account reply was AI-drafted, and no thread shows a developer question being answered.
+- **No PRs or hotfixes to Prem product code.** None exist.
+- **Never claim the finished intro film.** The script, storyboard and editor brief are the work; no editor delivery is evidenced.
+- **Never claim sole authorship of the tweet engine's code.** Claim the design, the specs, the review and the operation of it.
+- **Never link or name the private repos.** Only fluso-skills is public.
+- **No internal ticket numbers, targets, or quotas** in any outward-facing document.
+
+---
+
 ### Student Ambassador - Molloy University
 
 - **Dates:** October 2022 - May 2026
@@ -233,12 +293,13 @@ Each entry includes the canonical facts, every summary variant that's been writt
 
 ### Programming & Tech (deepest expertise)
 
-- **Languages:** Python, Nix, Bash / Shell scripting
+- **Languages:** Python, Nix, Bash / Shell scripting, TypeScript / React (Remotion)
 - **Virtualization:** Docker, VMware ESXi, KVM, VirtualBox
 - **Networking:** TCP/IP, VLANs, DNS / DDNS, NAT, Load balancing (MetalLB), Firewall administration (FortiGate)
-- **DevOps & Tools:** Nix ecosystem (Flakes, Nixpkgs, Home Manager), Declarative infrastructure / IaC, Reproducible builds, CI/CD pipelines, Git, GitHub Actions, Typst
+- **DevOps & Tools:** Nix ecosystem (Flakes, Nixpkgs, Home Manager), Declarative infrastructure / IaC, Reproducible builds, CI/CD pipelines, Git, GitHub Actions, pre-commit, pytest, Typst
+- **APIs & Data:** X API v2, MCP / JSON-RPC, Telegram Bot API, SQLite, Puppeteer / headless Chrome
 - **Operating Systems:** Linux (Ubuntu, NixOS), Windows, macOS, iOS
-- **AI / Automation:** LLM workflow integration, structured-output prompt engineering (JSON), Python automation tooling
+- **AI / Automation:** LLM workflow integration, structured-output prompt engineering (JSON), Python automation tooling, agent-directed research, human-in-the-loop approval systems, LLM output review and calibration
 
 ### Audio / Video / Technical Theatre
 
@@ -247,6 +308,8 @@ Each entry includes the canonical facts, every summary variant that's been writt
 - Lighting design and board operation
 - Live sound
 - Multi-cam recording / editing
+- Programmatic motion graphics (Remotion, React)
+- Automated brand-compliance checking
 - Programming (in the technical-theatre sense and the software sense)
 - Website design
 
