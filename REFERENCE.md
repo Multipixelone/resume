@@ -65,7 +65,7 @@ Each entry includes the canonical facts, every summary variant that's been writt
 - Ran a claims check on Fluso's messaging against Prem's own public sources and killed a false "EU-based servers" line sitting in the executive tier. Prem's public posture is Swiss, and Switzerland is not in the EU. The fix landed in the fact sheet and the messaging ladder before either went team-facing.
 - Corrected a connector count from "115+" to the verified "50+" and "open-source" to "open-weight", then wrote those exact framings into a fact sheet that every script and post had to clear before it shipped.
 - Pulled live product docs before building a demo and found the ticket's premise was wrong: the integration was already a managed app, so the custom-server story did not hold. Three of five gates died on a two-minute docs check. The false framing never made it to camera and a verified story shipped that night instead.
-- Probed five public MCP endpoints with real unauthenticated JSON-RPC calls before recommending any of them, then wrote the shoot card off what actually responded, including the argument shape that made one search fail. All five returned 200 without auth.
+- Recorded a custom MCP connector demo based on live validation of five public endpoints. LinkedIn long-form and X short-form cuts were planned; publication is unconfirmed.
 - Designed and operated a long-lived Python daemon that handled drafting, review, scheduling and logging for two X accounts. Telegram control surface, SQLite state, X API v2, ~26k lines of Python against ~20k lines of tests, packaged with Nix and checked in CI on every push. The code was written by AI coding agents working against specs, architecture docs and reviews I wrote.
 - Built a hard human-approval gate into it: nothing posts without an explicit Telegram tap, and the poster only ever sends the text frozen at approval, with tests asserting the reply and graph modules have no import path to the poster at all. Reviewed 307 AI drafts over about six weeks, approved 115 and rejected 188, and logged 101 before/after edit diffs, about two thirds of which were distilled into durable voice rules the drafter reads back.
 - Built an engagement-graph crawler on X recent-search that ranked accounts by PageRank personalised on an approved seed list, then exported ranked outreach briefs. 4,914 nodes, 16,960 edges, 7,021 crawled posts.
@@ -85,11 +85,11 @@ Each entry includes the canonical facts, every summary variant that's been writt
 
 1. The approval gate and the 307/115/188/101 review record (human-in-the-loop AI system, with numbers).
 2. The brand auditor (~30 automated checks, DOM plus pixel analysis, CI-gated).
-3. The claims-verification cluster (Swiss/EU catch, the docs-check demo kill, the MCP probe).
+3. The claims-verification cluster (Swiss/EU catch, the docs-check demo kill, the MCP demo recording).
 4. Two merged skills plus the CI and validator in a public repo.
 5. The engagement-graph crawler, or the four published videos if the role is content-facing.
 
-**Transferable angles:** human-in-the-loop AI systems and the guardrails that make them safe to ship; API integration and hands-on verification (X API v2, MCP JSON-RPC, live docs checks); CI and automated quality gates; technical accuracy review and claim verification; competitive and community research; content and video production end to end; working across marketing, engineering and leadership on a remote, distributed team.
+**Transferable angles:** human-in-the-loop AI systems and the guardrails that make them safe to ship; API integration and hands-on verification (X API v2, live docs checks); CI and automated quality gates; technical accuracy review and claim verification; competitive and community research; content and video production end to end; working across marketing, engineering and leadership on a remote, distributed team.
 
 **Do not claim:**
 
