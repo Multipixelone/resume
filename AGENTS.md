@@ -2,12 +2,19 @@
 
 Typst-based multi-variant resume system built with Nix. Produces tailored PDFs for different job types from shared metadata and modular sections.
 
+## Source-of-truth files
+
+Read these before writing; they hold what the code cannot tell you.
+
+- `REFERENCE.md` is the biographical source of truth: real jobs, dates, skills, theatre credits, tech projects, and a voice/tone section with sample copy. Every claim in any resume traces back to a line in here. If it is not in `REFERENCE.md`, it does not go on a resume.
+- `variants.toml` is the variant registry. `packages/resume.nix`, `packages/checks.nix`, and `.github/workflows/_build.yml` all read it. It lists every variant; do not maintain a second list anywhere.
+
 ## Build Commands
 
 ```bash
-nix build '.#resume'       # Build all resume PDFs (acting, tech, work, nanny, saltandstraw, cover letter, rep sheet)
-nix build '.#finn-rutis'   # Build composite headshot PDF (cropped CV + portrait page)
-nix build '.#website'      # Build portfolio website
+nix build '.#resume'       # All resume PDFs
+nix build '.#finn-rutis'   # Composite headshot PDF (cropped CV + portrait page)
+nix build '.#website'      # Portfolio website
 
 # Local dev (requires nix develop shell)
 typst compile resumes/cv.typ                  # Quick single-file compile
@@ -15,17 +22,13 @@ typst compile --input commit="dev" --input version="2025-01-01" resumes/tech.typ
 typst watch resumes/cv.typ                    # Live preview
 ```
 
-All resume PDFs are built by the single `resume` Nix package (`packages/resume.nix`). The `finn-rutis` package stays separate because it needs ghostscript and pdfunite for PDF cropping/merging.
+Every resume PDF comes out of the single `resume` package (`packages/resume.nix`). `finn-rutis` stays separate because it needs ghostscript and pdfunite for cropping and merging.
+
+The `--input commit=` and `--input version=` flags are supplied by Nix during a real build. Pass them by hand when compiling directly, or `src/utils/date.typ::buildDate()` falls back to today.
 
 ## How Resume Variants Work
 
-Each variant is a thin entry file in `resumes/` that:
-
-1. Loads base metadata (`metadata/metadata.toml`) merged with a variant-specific override TOML
-2. Selects which modules to include
-3. Passes the merged metadata to the shared `cv` layout from `src/lib.typ`
-
-**Pattern:**
+Each variant is a thin entry file in `resumes/` that loads base metadata merged with a variant override, selects modules, and hands the result to the shared `cv` layout.
 
 ```
 resumes/<variant>.typ --> imports src/meta.typ::makeMeta("override.toml")
@@ -34,30 +37,15 @@ resumes/<variant>.typ --> imports src/meta.typ::makeMeta("override.toml")
                       --> includes selected modules/ sections
 ```
 
-### Current Variants
-
-| File                       | Override TOML                | Modules                                                 | Purpose                     |
-| -------------------------- | ---------------------------- | ------------------------------------------------------- | --------------------------- |
-| `resumes/cv.typ`           | none (base only)             | professional, educational, film, training, skills       | Acting/performance resume   |
-| `resumes/tech.typ`         | `tech-metadata.toml`         | tech-skills, education, tech-projects, work-experience  | Technology/IT resume        |
-| `resumes/work.typ`         | `work-metadata.toml`         | work-experience, education, skills                      | Events/operations resume    |
-| `resumes/nanny.typ`        | `nanny-metadata.toml`        | nanny-experience, education, nanny-skills               | Childcare resume            |
-| `resumes/saltandstraw.typ` | `saltandstraw-metadata.toml` | saltandstraw-experience, education, saltandstraw-skills | Salt & Straw scooper resume |
-| `resumes/saltandstraw-sc.typ` | `saltandstraw-sc-metadata.toml` | saltandstraw-experience, education, saltandstraw-skills | Salt & Straw (SC) resume |
-| `resumes/cover-letter.typ` | none                         | (letter body)                                           | Cover letter                |
-| `resumes/rep-sheet.typ`    | none                         | (rep-sheet data)                                        | Theatre repertory sheet     |
-| `resumes/title-pages.typ`  | `title-pages-metadata.toml`  | (title pages)                                           | Audition title pages        |
+Function-style modules (`experience`, `projects`, `skills`) take metadata explicitly. Legacy include-style modules (`education`, `professional`, `film`, `training`, `educational`) load via `importModules`.
 
 ## Creating a New Resume Variant
 
-To create a resume tailored for a specific job posting:
-
 ### 1. Create the metadata override TOML
 
-Create `metadata/<variant>-metadata.toml`. Only include fields that differ from the base `metadata/metadata.toml`:
+Create `metadata/<variant>-metadata.toml` holding only the fields that differ from base `metadata/metadata.toml`:
 
 ```toml
-# metadata/example-metadata.toml
 [lang.en]
 header_quote = "One-line summary tailored to the job."
 cv_footer = "Example Resume"
@@ -74,8 +62,7 @@ display_logo = false
 
 [personal.info]
 email = "relevant@finnrut.is"
-# Set irrelevant fields to empty string to hide them
-instagram = ""
+instagram = ""      # empty string hides a field
 vocal-part = ""
 union = ""
 height = ""
@@ -83,35 +70,31 @@ height = ""
 
 Key override fields:
 
-- `header_quote` - Tagline shown under the name; tailor to the job
-- `cv_footer` - Footer label (e.g. "Technical Resume")
-- `display_profile_photo` - true/false
-- `display_entry_society_first` - true = company bold first, false = role bold first
-- `email` - Which contact email to show
-- Set any `personal.info` field to `""` to hide it
+- `header_quote` sets the tagline under the name; tailor it to the job
+- `cv_footer` sets the footer label (e.g. "Technical Resume")
+- `display_profile_photo` takes true/false
+- `display_entry_society_first` true bolds the company first, false bolds the role first
+- `email` picks which contact address shows
+- Any `personal.info` field set to `""` is hidden
 
-### 2. Add data file pointers to the override TOML
+### 2. Point at data files
 
-The generic `experience`, `projects`, and `skills` modules read which data file to load from `[modules]` keys in the merged metadata. Add the ones you need:
+The generic `experience`, `projects`, and `skills` modules read their data file from `[modules]` keys in the merged metadata:
 
 ```toml
 [modules]
-experience_file = "<variant>-experience.toml"   # required if including experience module
-projects_file = "<variant>-projects.toml"        # required if including projects module
-skills_file = "<variant>-skills.toml"            # required if including skills module
+experience_file = "<variant>-experience.toml"
+projects_file = "<variant>-projects.toml"
+skills_file = "<variant>-skills.toml"
 ```
 
 ### 3. Create the data files
 
-Each module reads its own TOML. Examples:
-
-- `metadata/<variant>-experience.toml` with a `[jobs]` table whose entries have `title`, `company`, `date`, `location`, optional `summary`.
-- `metadata/<variant>-skills.toml` with a top-level `section_title` and a `[skills]` table whose entries have `type` and `info`.
-- `metadata/<variant>-projects.toml` with a `[projects]` table.
+- `metadata/<variant>-experience.toml`: a `[jobs]` table whose entries have `title`, `company`, `date`, `location`, optional `summary`.
+- `metadata/<variant>-skills.toml`: a top-level `section_title` plus a `[skills]` table whose entries have `type` and `info`.
+- `metadata/<variant>-projects.toml`: a `[projects]` table.
 
 ### 4. Create the entry .typ file
-
-Create `resumes/<variant>.typ`:
 
 ```typst
 #import "../src/lib.typ": cv
@@ -131,11 +114,9 @@ Create `resumes/<variant>.typ`:
 #skills(variant-metadata)
 ```
 
-The function-style modules (`experience`, `projects`, `skills`) take metadata explicitly. Legacy include-style modules (`education`, `professional`, `film`, `training`, `educational`) get loaded via `importModules`.
+### 5. Add a new module, if the job needs a section that does not exist
 
-### 5. Adding a new module
-
-If the job needs a section that doesn't exist yet, prefer the function-style pattern in `modules/<section>.typ`:
+Prefer the function-style pattern in `modules/<section>.typ`:
 
 ```typst
 #import "../src/lib.typ": cvEntry, cvSection
@@ -147,179 +128,77 @@ If the job needs a section that doesn't exist yet, prefer the function-style pat
 }
 ```
 
-Then add `my_section_file = "..."` to the variant override TOML and import + call `mySection(metadata)` from the entry file.
+Then add `my_section_file = "..."` to the override TOML and import and call `mySection(metadata)` from the entry file.
 
 ### 6. Register the variant
 
-Add an entry to `variants.toml` at the repo root:
+Add a section to `variants.toml`:
 
 ```toml
 [my-variant]
 source = "my-variant"                          # stem of resumes/<source>.typ
-dest = "my-variant"                            # output filename stem and GitHub Pages basename
-expected_pages = 1                             # exact page count (0 = multi-page, just checks >= 1)
+dest = "my-variant"                            # output filename stem and Pages basename
+expected_pages = 1                             # exact page count (0 = multi-page, checks >= 1)
 check_metadata = true                          # validate merged metadata for completeness
 # override_toml = "my-variant-metadata.toml"   # only if step 1 created an override
 ```
 
-That's it. `packages/resume.nix`, `packages/checks.nix`, and `.github/workflows/_build.yml` all read from this file.
+Build and confirm the page count matches `expected_pages`; the check fails the build otherwise.
 
 ## Writing Resume Content
 
-When creating or editing job descriptions, summaries, and other resume text, follow these principles strictly. The goal is copy that reads like a capable person wrote it at midnight with a glass of wine — not like it was extruded from a language model.
+Applies to job descriptions, summaries, header quotes, and cover letter body text. The goal is copy that reads like a capable person wrote it at midnight with a glass of wine, not like it was extruded from a language model.
 
-### Voice & Tone
+### Voice and tone
 
-- **Write like a human, not a hiring-advice blog.** Vary sentence length. Start some sentences with "and" or "but" if it sounds natural. Use contractions. Let the occasional short fragment stand on its own.
-- **Match formality to the audience, not to some universal "resume voice."** A nanny resume should sound warm and grounded. A tech resume can be more direct and precise. An events resume should feel energetic and competent. None of them should sound like a LinkedIn post.
-- **Default register: confident and specific, slightly casual.** The sweet spot is someone explaining what they did to a friend who works in the field — not a cover letter, not a text message. Think the existing `work-experience.toml` voice.
-- **First person is acceptable in informal variants** (nanny, cover letters). Third-person implied subject ("Ran the front desk", "Designed lighting for...") is standard for professional variants. Never mix the two in a single variant.
+- **Write like a human, not a hiring-advice blog.** Vary sentence length. Start a sentence with "and" or "but" where it sounds natural. Use contractions. Let the occasional short fragment stand on its own.
+- **Match formality to the audience, not to a universal "resume voice."** A nanny resume sounds warm and grounded. A tech resume is direct and precise. An events resume feels energetic and competent. None of them sound like a LinkedIn post.
+- **Default register: confident and specific, slightly casual.** Aim for someone explaining what they did to a friend who works in the field. Not a cover letter, not a text message. `metadata/work-experience.toml` is the reference voice.
+- **Pick one grammatical person per variant and hold it.** Third-person implied subject ("Ran the front desk", "Designed lighting for...") is standard for professional variants. First person is fine in nanny and cover-letter variants.
 
-### Tailoring to a Job Posting
+### Tailoring to a job posting
 
-When a variant targets a specific job posting:
+- **Echo the posting's concepts, not its exact phrases.** Where a posting says "cross-functional collaboration," write "worked across teams." Mirror the idea; use your own words.
+- **Foreground relevant experience, and keep it true.** Reorder bullets, emphasize different aspects of the same role, expand details that align with the target. Every responsibility and skill traces back to `REFERENCE.md`.
+- **Cap keyword echoes at one or two per description.** More trips ATS-gaming detectors and human suspicion alike. Scatter them across entries rather than clustering.
+- **Adjust `header_quote` to the posting's core need**, phrased as something the candidate would actually say about themselves rather than a rephrased job title.
 
-- **Echo the posting's language selectively, not systematically.** If the posting says "cross-functional collaboration," you might write "worked across teams" — do NOT parrot "cross-functional collaboration" back verbatim. Mirror the _concepts_, not the exact phrasing.
-- **Foreground relevant experience; don't fabricate it.** Reorder bullet points, emphasize different aspects of the same role, or expand on details that align with the target job. Never invent responsibilities or skills that don't exist in the base data.
-- **One or two keyword echoes per description is enough.** More than that trips ATS-gaming detectors and human suspicion alike. Scatter them across different entries rather than clustering them in one.
-- **Adjust the header quote (`header_quote`) to match the posting's core need**, but phrase it as something the candidate would actually say about themselves — not a rephrased job title.
+### AI tells to rewrite
 
-### What to Avoid (AI Tells)
+Each entry names the tell, then the replacement. Apply the replacement.
 
-These patterns are dead giveaways of machine-generated resume text. Do not produce them:
+- **Hollow intensifiers** ("leveraged", "utilized", "spearheaded", "orchestrated", "facilitated", "architected" as a verb) become plain verbs: ran, built, designed, set up, handled, wrote, fixed, managed.
+- **Stacked buzzwords** ("Engineered scalable cloud-native microservice architecture") become a statement of what was built and what it does.
+- **Symmetrical structure**, where every bullet runs `[past-tense verb] [object] [prepositional phrase] [result clause]`, becomes varied structure: some bullets two sentences, some ending without a result.
+- **Vague impact claims** ("resulting in improved efficiency", "driving significant growth") become a real number, or the claim comes off entirely.
+- **Thesaurus cycling** across "oversaw", "directed", "coordinated", "supervised" becomes repeating "managed" wherever "managed" is the accurate word.
+- **Acronym drops with parenthetical expansion on every mention** ("Infrastructure as Code (IaC)") become one spelled-out first use, then the bare acronym.
+- **Punctuation and dressing**: use plain ASCII text, commas, colons, and parentheses. Hard guardrail: this repo ships no em dashes, in resume copy or in this file. Use a comma, a colon, parentheses, or a full stop instead.
 
-- **Hollow intensifiers**: "leveraged", "utilized", "spearheaded", "orchestrated", "facilitated", "architected" (as a verb). Use plain verbs: ran, built, designed, set up, handled, wrote, fixed, managed.
-- **Stacked buzzwords**: "Engineered scalable cloud-native microservice architecture" — nobody talks like this. Say what was actually built and what it does.
-- **Symmetrical sentence structure**: When every bullet follows the exact same `[Past-tense verb] [object] [prepositional phrase] [result clause]` template, it reads as generated. Vary the structure. Some bullets can be two sentences. Some can omit the result.
-- **Vague impact claims**: "resulting in improved efficiency" or "driving significant growth" with no numbers or specifics. Either include a real metric or leave the claim off entirely.
-- **Thesaurus cycling**: Using a different synonym for "managed" in every single bullet ("oversaw", "directed", "coordinated", "supervised") instead of just repeating "managed" when that's the accurate word.
-- **Gratuitous acronym drops and parenthetical expansions**: "Infrastructure as Code (IaC)" in every mention. Spell it out once or use the acronym — don't do both every time.
-- **Emoji or Unicode dressing**: No bullet-point Unicode symbols, no decorative characters. Plain text only. Important: No em dashes, ever.
-
-### Practical Checklist
-
-Before finalizing any resume text, verify:
+### Before finalizing
 
 1. **Read it aloud.** If it sounds like a press release, rewrite it.
-2. **Could you picture the person saying this in an interview?** If not, it's too stiff.
-3. **Does every sentence contain at least one concrete detail** (a tool name, a number, a specific task)? If it's all abstract, it's filler.
-4. **Are there more than two adjectives in any single sentence?** Cut some.
-5. **Would a recruiter who reads 200 resumes a day notice anything unusual?** That's the bar — invisible competence, not performance.
+2. **Could you picture the person saying this in an interview?** If not, it is too stiff.
+3. **Does every sentence carry a concrete detail** (a tool name, a number, a specific task)? If it is all abstract, it is filler.
+4. **More than two adjectives in a sentence?** Cut some.
+5. **Would a recruiter reading 200 resumes a day notice anything unusual?** That is the bar: invisible competence, not performance.
 
-## Directory Structure
+## Layout and Components
 
-```
-.
-├── resumes/                                 # Resume entry files
-│   ├── cv.typ                               # Acting/performance resume
-│   ├── tech.typ                             # Technology/IT resume
-│   ├── work.typ                             # Events/operations resume
-│   ├── nanny.typ                            # Childcare resume
-│   ├── saltandstraw.typ                     # Salt & Straw scooper resume
-│   ├── cover-letter.typ                     # Cover letter
-│   ├── rep-sheet.typ                        # Repertory sheet
-│   └── portrait-page.typ                    # Headshot page (for finn-rutis composite)
-├── src/
-│   ├── lib.typ              # Main layout templates (cv, coverLetter, letter)
-│   ├── cv.typ               # CV component functions (cvSection, cvEntry, cvSkill, etc.)
-│   ├── letter.typ           # Letter component functions
-│   ├── meta.typ             # makeMeta() - merges base + override metadata
-│   └── utils/
-│       ├── styles.typ       # Colors, fonts, layout helpers (hBar, setAccentColor)
-│       ├── merge.typ        # mergeDicts() - recursive dictionary merge
-│       └── lang.typ         # Language/non-Latin font detection
-├── modules/                 # Reusable resume sections
-│   ├── experience.typ       # Generic Experience section (function-style; reads metadata.modules.experience_file)
-│   ├── projects.typ         # Generic Projects section (reads metadata.modules.projects_file)
-│   ├── skills.typ           # Generic Skills section (reads metadata.modules.skills_file)
-│   ├── education.typ        # Education (legacy include-style)
-│   ├── educational.typ      # Concerts/Workshops table (from educational.toml)
-│   ├── professional.typ     # Theatre performances (from theatre.toml)
-│   ├── training.typ         # Training/workshops (from training.toml)
-│   ├── film.typ             # Film/video work (from film.toml)
-│   ├── commercial.typ       # Commercial work (from commercial.toml)
-│   ├── voiceover.typ        # Voiceover work
-│   ├── _education-content.typ  # Shared education entry (included by education.typ & training.typ)
-│   └── _training-content.typ   # Shared training content
-├── metadata/
-│   ├── metadata.toml               # Base metadata (personal info, layout, colors, fonts, default modules.skills_file)
-│   ├── tech-metadata.toml          # Tech resume overrides
-│   ├── work-metadata.toml          # Work resume overrides
-│   ├── nanny-metadata.toml         # Nanny resume overrides
-│   ├── saltandstraw-metadata.toml  # Salt & Straw resume overrides
-│   ├── saltandstraw-sc-metadata.toml # Salt & Straw SC overrides
-│   ├── work-experience.toml        # Job history data (used by tech + work)
-│   ├── nanny-experience.toml       # Childcare experience data
-│   ├── saltandstraw-experience.toml # Salt & Straw experience data
-│   ├── saltandstraw-sc-experience.toml # Salt & Straw SC experience data
-│   ├── skills.toml                 # Acting/general skills (default)
-│   ├── tech-skills.toml            # Tech skills data
-│   ├── nanny-skills.toml           # Childcare skills data
-│   ├── saltandstraw-skills.toml    # Salt & Straw skills data
-│   ├── saltandstraw-sc-skills.toml # Salt & Straw SC skills data
-│   ├── tech-projects.toml          # Tech project entries
-│   ├── theatre.toml                # Theatre performance data
-│   ├── training.toml               # Training/workshop data
-│   ├── film.toml                   # Film project data
-│   ├── commercial.toml             # Commercial work data
-│   ├── educational.toml            # Concerts/workshops data
-│   └── rep-sheet.toml              # Repertory song data
-├── packages/
-│   ├── resume.nix       # Builds ALL resume PDFs in one derivation
-│   ├── finn-rutis.nix   # Composite headshot PDF (needs ghostscript)
-│   └── website.nix      # Astro portfolio site
-├── .github/workflows/
-│   ├── ci.yml           # CI on push/PR
-│   ├── _build.yml       # Reusable build workflow (matrix over packages)
-│   └── release.yml      # Version bump + changelog + deploy
-├── flake.nix            # Nix flake (build system entry point)
-├── variants.toml        # Variant registry (single source of truth for build + checks + CI)
-├── VERSION              # Semantic version (e.g. 1.4.0)
-└── justfile             # just bump <patch|minor|major>
-```
-
-## Key Functions Reference
-
-- `src/lib.typ::cv(metadata, profilePhoto, doc)` - Main CV page layout
-- `src/lib.typ::coverLetter(metadata, profilePhoto, doc)` - Cover letter layout
-- `src/cv.typ::cvSection(title)` - Section heading with accent line
-- `src/cv.typ::cvEntry(title, society, date, location, description, logo, tags)` - Standard entry
-- `src/cv.typ::cvSkill(type, info)` - Skill row (type label + info)
-- `src/cv.typ::cvTraining(type, info, instructors)` - Training row
-- `src/cv.typ::cvPerformance(metadata)` - Performance table from shows data
-- `src/cv.typ::cvHonor(date, title, issuer, url, location)` - Honor/award entry
-- `src/meta.typ::makeMeta(overrideFile)` - Merge base metadata with override TOML (pass `none` for base only)
-- `src/meta.typ::importModules(list)` - `#include` each named module from `modules/`
-- `src/utils/merge.typ::mergeDicts(base, override)` - Recursive dictionary merge
-- `src/utils/date.typ::buildDate()` - Date from `--input version=YYYY-MM-DD`, falls back to today
-- `src/utils/styles.typ::hBar()` - Vertical separator bar for inline lists
-- `modules/experience.typ::experience(metadata)` - Generic Experience section
-- `modules/projects.typ::projects(metadata)` - Generic Projects section
-- `modules/skills.typ::skills(metadata)` - Generic Skills section
+Layouts live in `src/lib.typ` (`cv`, `coverLetter`, `letter`); entry and row components in `src/cv.typ` (`cvSection`, `cvEntry`, `cvSkill`, `cvTraining`, `cvPerformance`, `cvHonor`); metadata merging in `src/meta.typ` (`makeMeta`, `importModules`) over `src/utils/merge.typ::mergeDicts`. Grep for a name to get its current signature.
 
 ## Commit Conventions
 
-Use Conventional Commits so `git-cliff` can parse and group changes correctly.
+Conventional Commits, so `git-cliff` can group changes.
 
-Format:
+- `type(scope): short summary`, or `type(scope)!:` for breaking changes
+- Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`
+- Preferred scopes: `reformat` (layout/formatting), `template` (template/module structure), `content` (resume text)
 
-- `type(scope): short summary`
-- `type(scope)!: short summary` for breaking changes
-
-Supported `type` values include:
-
-- `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`
-
-Preferred scopes for resume/template work:
-
-- `reformat` - Layout/formatting changes
-- `template` - Template/module structure changes
-- `content` - Resume text/content changes
-
-Examples:
-
-- `feat(template): add reusable project entry block`
-- `fix(content): correct work experience date`
-- `style(reformat): tighten section spacing`
+```
+feat(template): add reusable project entry block
+fix(content): correct work experience date
+style(reformat): tighten section spacing
+```
 
 Release: `just bump <patch|minor|major>` triggers the GitHub Actions release workflow.
