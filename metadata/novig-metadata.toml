@@ -15,10 +15,6 @@ letter_footer = "Novig Application"
 [layout]
 before_entry_description_skip = "-4pt"
 
-[layout.fonts]
-regular_fonts = ["EB Garamond 12", "Source Sans Pro"]
-header_font = "EB Garamond 12"
-
 [layout.header]
 display_profile_photo = false
 
