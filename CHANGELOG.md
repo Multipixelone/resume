@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.7.1] - 2026-09-09
+
+### 🚀 Features
+
+- Communications resume in [4a73f65](https://github.com/Multipixelone/resume/commit/4a73f65c364044a8bd96704b6c339eef980e37ff)
+
 ## [2.7.0] - 2026-09-09
 
 ### 🚀 Features
