@@ -1,5 +1,40 @@
 # Changelog
 
+## [2.7.0] - 2026-09-09
+
+### 🚀 Features
+
+- Grill skills in [65e3ffc](https://github.com/Multipixelone/resume/commit/65e3ffc4796494c5932b07e9a762d9bbcc0eed0a)
+- Prem reference in [8570579](https://github.com/Multipixelone/resume/commit/8570579168a7e9b6906bdcb63b1f2592ab2950d6)
+- More skills in [6909d09](https://github.com/Multipixelone/resume/commit/6909d0992104e58943744d233c2dbe55e6152f6f)
+- Novig variant in [7d6a262](https://github.com/Multipixelone/resume/commit/7d6a262baa4763dc72d784ee2de046992489ceee)
+
+### 🐛 Bug Fixes
+
+- Wiring better in [3b51e70](https://github.com/Multipixelone/resume/commit/3b51e70f3528e464094a682608c6a0c1270c07c7)
+- *(build)* Support Apple Silicon flake outputs in [3b3ff3b](https://github.com/Multipixelone/resume/commit/3b3ff3b84b8828b6fbea52ab7139f8cc890ca7cb)
+- *(docs)* Update references in [ee026c8](https://github.com/Multipixelone/resume/commit/ee026c8d12b0a9b8f05c95f3d75200236aa6dede)
+- Specify Libertinus serif font in [8217d52](https://github.com/Multipixelone/resume/commit/8217d52dd646732fb1df4fee5b7ab663e411b32f)
+- *(rewrite)* Better cover letter in [030ede9](https://github.com/Multipixelone/resume/commit/030ede9a498403156f1706178be0ce43ac9e722e)
+
+### 🚜 Refactor
+
+- Novig variant resume breakout in [3710161](https://github.com/Multipixelone/resume/commit/3710161686b9cce4aa190428daac6ba1acf5f372)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update flake.lock (#110) in [e342761](https://github.com/Multipixelone/resume/commit/e34276103d8db11902ca6d18223107fec394bd6b)
+- *(deps)* Update actions/checkout action to v7.0.1 (#112) in [4658687](https://github.com/Multipixelone/resume/commit/46586879c46ccd93205e3b687501408c6aaf3a79)
+- *(deps)* Update dependency python to 3.14 (#113) in [f395b47](https://github.com/Multipixelone/resume/commit/f395b4789603b8946d27b1b2af3a04cc48de4f26)
+- *(deps)* Update actions/setup-node action to v7 (#115) in [dc09508](https://github.com/Multipixelone/resume/commit/dc0950805df4978c5083a6ac7b7336864348afe6)
+- *(deps)* Update actions/setup-python action to v7 (#116) in [d2435f9](https://github.com/Multipixelone/resume/commit/d2435f951048b126ef988d48511ae200257566c2)
+- *(deps)* Update dependency node to v24 (#117) in [3dfcfe0](https://github.com/Multipixelone/resume/commit/3dfcfe07177fd9936cef2caad3618fc188e6e9d8)
+- *(deps)* Update determinatesystems/update-flake-lock action to v29 (#118) in [8cdaf6c](https://github.com/Multipixelone/resume/commit/8cdaf6c2cc5a198abf61a05889857068f5a017b4)
+
+### ✍️ Content
+
+- *(content)* Correct MCP evidence attribution in [642a077](https://github.com/Multipixelone/resume/commit/642a077ebcb0022c62ddc7a4018dafc26218250f)
+
 ## [2.6.6] - 2026-06-27
 
 ### 🚀 Features
