@@ -11,8 +11,21 @@
   profilePhoto: image("../metadata/qr-code.png"),
 )
 
-#skills(novig-metadata)
-#experience(novig-metadata)
-#pagebreak(weak: true)
+#set par(leading: 0.6em, spacing: 0.9em)
+
+#experience(novig-metadata, only: ("prem-ai",), title: "Technical Experience")
 #projects(novig-metadata)
+#text(size: 8pt)[
+  Additional code & documentation:
+  #link(
+    "https://github.com/Multipixelone/blog",
+  )[#underline[Personal technical blog (Zola, Python, Mastodon API)]]
+]
+#skills(novig-metadata)
+#v(6pt)
+#experience(
+  novig-metadata,
+  only: ("voiceover", "salt-and-straw"),
+  title: "Additional Experience",
+)
 #importModules(("education",))

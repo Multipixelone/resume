@@ -1,9 +1,5 @@
-# Novig — Developer Relations Engineer. Experience angled toward partner-facing
-# technical support: API work, hands-on verification, and being the person
-# external people bring problems to.
-# First variant to use the Prem AI entry from REFERENCE.md, so it writes the
-# first summary for it. Claims are limited to the "concrete tasks performed"
-# list there; see that file's "Do not claim" section before editing.
+# Novig experience: internal API tooling and validation, followed by transferable
+# client service and operations. Preserve the scope boundaries in REFERENCE.md.
 # Used by the novig resume variant via modules.experience_file.
 
 [jobs]
@@ -12,32 +8,41 @@ title = "Developer Relations Manager (Contract)"
 company = "Prem AI"
 date = "June 2026 – Present"
 location = "New York, NY"
-summary = "Contract DevRel for Fluso, Prem's private AI workspace. Designed and operated a long-lived Python service running against the X API v2, with a Telegram control surface, SQLite state, Nix packaging, CI on every push, and a human-approval gate nothing could post around. Verified API claims by hand instead of trusting the docs: probed five public MCP endpoints with real JSON-RPC calls before recommending any of them, and killed a planned demo whose premise collapsed on a two-minute check against live product docs. Two skills merged into Prem's public repo, along with the Actions workflow, JSON schema, and validator that gate it."
+highlights = [
+  "Specified and operated a Python publishing service with SQLite state, Telegram approvals, and a direct X API v2 client using OAuth2 user-context authentication. Reviewed the agent-written implementation; posts used text frozen at approval.",
+  "Triaged 33 findings from an agent-driven audit, prioritizing approval and duplicate-post risks. Reviewed and shipped fixes for compare-and-swap state transitions, crash reconciliation, and serialized token refresh with atomic persistence. CI gated changes on lint, type checks, and tests.",
+  "Contributed two merged skills, including a Python CSV/XLSX questionnaire helper, to Prem's public Fluso repository. Added GitHub Actions, pre-commit checks, JSON Schema validation, and a Python validator for marketplace and package consistency.",
+  "Coordinated release and content work across marketing and engineering in Linear; corrected inaccurate product claims before the internal messaging was distributed.",
+]
+links = [
+  { label = "Questionnaire helper: PR #1", url = "https://github.com/prem-research/fluso-skills/pull/1" },
+  { label = "Schema & validator: commit", url = "https://github.com/prem-research/fluso-skills/commit/3175fed418475872afac4f8aeba12379567a5cce" },
+]
 
 [jobs.salt-and-straw]
 title = "Shift Coordinator"
 company = "Salt & Straw"
 date = "April 2026 – Present"
 location = "New York, NY"
-summary = "Lead a team of scoopers through the dinner rush at the West Village shop, assigning stations and reworking the plan on the fly when the line runs out the door. Train new hires and stay the calm person people look to when the night goes sideways."
+summary = "Coordinate West Village service shifts, assign stations, train new hires, and adjust the plan during peak demand."
 
 [jobs.student-ambassador]
 title = "Student Ambassador"
 company = "Molloy University"
 date = "October 2022 – May 2026"
 location = "Rockville Centre, NY"
-summary = "The public face of the university for prospective students and their families. Ran campus tours and welcome events and fielded every question on the spot, pitching the same material differently for a nervous parent than for a seventeen-year-old without changing any of the facts."
+summary = "Led campus tours and welcome events, answering prospective students' and families' questions and supporting admissions outreach."
 
 [jobs.voiceover]
 title = "Freelance Voiceover Artist"
-company = "Fiverr"
+company = "Self-employed / Fiverr"
 date = "2013 – Present"
 location = "Remote"
-summary = "Ran a solo voiceover business for over a decade, now past 1,000 five-star reviews. Handled every part of it myself: client communication, quoting, scheduling, revisions, and delivery, almost all of it async and with clients in other time zones."
+summary = "Run a freelance voiceover business with 1,000+ five-star reviews, managing client communication, quotes, schedules, revisions, and delivery."
 
 [jobs.house-and-facilities-manager]
 title = "House & Facilities Manager"
 company = "Bridgetown Conservatory of Musical Theatre"
 date = "October 2021 – September 2022"
 location = "Portland, OR"
-summary = "Ran front-of-house for live shows and the building day to day, usually as the only staff member on shift. Primary point of contact for patrons, renters, and building management, and the person who triaged whatever broke in the middle of an event."
+summary = "Managed front-of-house and facility operations, often on solo shifts; handled equipment issues and served as the contact for patrons, renters, and building management."

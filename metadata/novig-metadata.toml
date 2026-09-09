@@ -8,12 +8,16 @@ projects_file = "novig-projects.toml"
 skills_file = "novig-skills.toml"
 
 [lang.en]
-header_quote = "Engineer who builds API-driven tools and likes being on the other end of a partner's integration ticket: reproduce it, find the field that's actually wrong, ship the fix and the doc line that stops it happening twice. Python and Nix by night, performer by training, calm when it's live."
+header_quote = "Developer Relations Manager with experience in API tooling, technical specifications, code review, and operating Python services."
 cv_footer = "Developer Relations Resume"
 letter_footer = "Novig Application"
 
 [layout]
 before_entry_description_skip = "-4pt"
+
+[layout.fonts]
+regular_fonts = ["EB Garamond 12", "Source Sans Pro"]
+header_font = "EB Garamond 12"
 
 [layout.header]
 display_profile_photo = false
