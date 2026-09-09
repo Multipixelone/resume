@@ -12,7 +12,7 @@
 )
 
 // ── Recipient ────────────────────────────────────────────────────────────────
-#let recipientName = "Hiring Manager"
+#let recipientName = "Novig Team"
 #let recipientTitle = ""
 #let recipientCompany = "Novig"
 #let recipientAddress = "Union Square, New York, NY"
@@ -26,19 +26,15 @@
 #v(0.5em)
 Dear #recipientName,
 
-I met Victoria Ordeman at the Salt & Straw in the West Village, where I coordinate shifts. We got talking, I went and read what Novig was actually building, and the Developer Relations Engineer posting is the one I want. So here I am.
+At Prem AI, I've contributed to public developer tooling and helped coordinate work between marketing and engineering. That includes two merged skills in Prem's public Fluso repository, including a questionnaire helper with Python tooling for CSV and XLSX files, plus a Python validator and CI checks for package consistency.
 
-Most of this year I've been a contract DevRel manager at Prem AI, and the parts that map cleanest are the unglamorous ones. Before recommending five public MCP endpoints to anyone, I hit each one with real unauthenticated JSON-RPC calls instead of trusting the docs, and wrote up the exact argument shape that made one of them fail. I designed and ran a long-lived Python service against the X API v2, with a Telegram control surface and SQLite state, packaged in Nix and tested in CI, so I know what rate limits, expiring auth, and retries do to somebody in production. Two of my pull requests are merged into Prem's public skills repo, along with the JSON schema and validator that gate it.
+But the thing I enjoy the most is being a liaison between people who approach a problem differently. Working in theatre has taught me to understand when an explanation isn't landing, ask questions, and adjust my communication style. I like working through that confusion with someone until we both understand what needs to happen next.
 
-I read your docs before writing this. The thing I'd expect to eat a partner's first week is that a 201 on place-order means queued, not filled, so you have to consume the tape to actually confirm execution. That is the class of ticket I like: reproduce it, find the real cause, ship the fix and the doc line that keeps it from recurring.
+I also specified and operated a Python publishing service using the X API. It helped me seed drafts for tweets to post on Twitter, and would send five to me each morning. I'd revise them in my own words and it would store concrete learnings about how I like to tweet. Over time, I had more and more drafts able to be posted without any revision at all.
 
-Translating between rooms is the other half of the job. At Prem I sat between engineering, marketing, and leadership, and caught a false claim about where our servers live before it shipped. Years of campus tours and a dinner rush at Salt & Straw taught me the same skill in real time.
+I'd bring that combination of technical review and communication to Novig's Developer Relations Engineer role, staying involved from a partner's question through the engineering work needed to resolve it.
 
-What I don't have: prediction-market APIs, LP relationships, an RFQ pricer. I know limit orders and time-in-force from reading, not from running a book. That's a few weeks against your QA endpoint, not a career change.
-
-Live sports means nights and weekends. I came up in live theatre.
-
-I'd like to talk about how I could support your partners and your engineering team.
+I haven't worked with prediction-market APIs or market makers, so I'd have a lot to learn about that part of the role. I'd welcome a conversation about how my experience in developer tooling, code review, and working across teams could contribute. I prefer working in person and am comfortable with at least four NYC office days and occasional nights and weekends.
 
 Sincerely,
 
