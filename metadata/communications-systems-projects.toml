@@ -1,0 +1,16 @@
+# Personal systems work, preserving the technical scope of the Novig variant.
+
+[projects]
+[projects.declarative-homelab]
+title = "Personal Infrastructure & Networking"
+company = "Personal Project"
+date = "Nov 2016 - Present"
+location = ""
+summary = "Run dozens of personal services on the internet using VMware ESXi, KVM, and Docker, with NixOS for reproducible configuration. Manage networking with FortiGate, VLANs, DMZs, and MetalLB (since August 2019), and trace connection problems through the application, server, and network."
+
+[projects.building-resume]
+title = "Typst-Generated Resume System"
+company = "Personal Project"
+date = "Oct 2024 - Present"
+location = ""
+summary = "Built a Typst resume generator using shared TOML metadata, with GitHub Actions checks for required fields, configuration errors, missing outputs, and PDF page counts."

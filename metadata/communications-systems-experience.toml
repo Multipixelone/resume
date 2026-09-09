@@ -1,0 +1,33 @@
+# Claims follow REFERENCE.md, including the September 9 Prem corrections.
+
+[jobs]
+
+[jobs.prem-ai]
+title = "Developer Relations Manager (Contract)"
+company = "Prem AI"
+date = "June 2026 - Present"
+location = "New York, NY"
+highlights = [
+  "Coordinated releases and content with marketing and engineering in Linear. Corrected product claims before publication. Planned, shot, edited, and published four product videos on a personal X account, which the brand account shared.",
+  "Wrote requirements for a Python publishing service and reviewed the code written by AI agents. Ran it with SQLite to track posts, Telegram for approvals, and X API v2 with OAuth2 to publish them. Approval locked the text of each post.",
+  "Reviewed 33 findings from an audit run by coding agents, prioritizing risks around approvals and duplicate posts. Reviewed and shipped fixes for conflicting updates, recovery after crashes, and how the service renews and saves access tokens. Changes had to pass lint, type checks, and tests in CI.",
+  "Contributed two merged skills to Prem's public Fluso repository, including a Python helper for CSV and Excel questionnaires. Added GitHub Actions, pre-commit, JSON Schema, and Python checks to catch errors in skill packages and their listings."
+]
+links = [
+  {label = "Questionnaire helper: PR #1", url = "https://github.com/prem-research/fluso-skills/pull/1"},
+  {label = "Schema & validator: commit", url = "https://github.com/prem-research/fluso-skills/commit/3175fed418475872afac4f8aeba12379567a5cce"}
+]
+
+[jobs.salt-and-straw]
+title = "Shift Coordinator"
+company = "Salt & Straw"
+date = "April 2026 - Present"
+location = "New York, NY"
+summary = "Run shifts at the West Village shop, assign stations, and train new hires. Adjust the plan during rushes, talk with customers, resolve problems, and upsell where appropriate."
+
+[jobs.voiceover]
+title = "Freelance Voiceover Artist"
+company = "Self-employed / Fiverr"
+date = "2013 - Present"
+location = "Remote"
+summary = "Run a freelance voiceover business with 1,000+ five-star reviews, managing client communication, quotes, schedules, revisions, and delivery."

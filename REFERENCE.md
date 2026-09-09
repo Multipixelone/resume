@@ -127,6 +127,23 @@ Each entry includes the canonical facts, every summary variant that's been writt
 
 ---
 
+### Shift Coordinator - Salt & Straw
+
+- **Dates:** April 2026 - Present
+- **Location:** New York, NY (West Village)
+- **Source:** Title, dates, location and shift responsibilities retained from `metadata/novig-experience.toml`; guest issue resolution is also recorded in `metadata/tech-experience.toml`. Finn confirmed current employment and customer upselling in the 2026-09-09 request for a broad communications and systems resume.
+
+**Concrete tasks performed:**
+
+- Coordinate service shifts, assign stations, and train new hires
+- Adjust the plan during peak demand
+- Resolve guest issues during service
+- Customer communication and customer upselling
+
+**Scope:** Customer upselling is Finn's only stated sales experience. Do not turn it into enterprise sales, account management, or business development experience. Team coaching, task delegation, and conflict resolution are also recorded under Leadership / Coordination below.
+
+---
+
 ### Student Ambassador - Molloy University
 
 - **Dates:** October 2022 - May 2026

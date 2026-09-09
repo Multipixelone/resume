@@ -215,6 +215,15 @@ expected_pages = 1
 check_metadata = false
 override_toml = "novig-metadata.toml"
 
+[communications-systems]
+source = "communications-systems"
+dest = "communications-systems-resume"
+override_toml = "communications-systems-metadata.toml"
+expected_pages = 1
+check_metadata = true
+title = "Communications & Systems Resume"
+subtitle = "Technical communication, automation & service"
+
 [anthropic-events]
 source = "anthropic-events"
 dest = "anthropic-events-resume"

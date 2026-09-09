@@ -1,0 +1,14 @@
+section_title = "Skills"
+
+[skills]
+[skills.languages]
+type = "Programming"
+info = "Python, Nix, shell scripting; TypeScript and React for Remotion"
+
+[skills.apis]
+type = "APIs & Integration"
+info = "REST APIs, X API v2, OAuth2 authentication and token refresh, Telegram Bot API, SQLite"
+
+[skills.engineering-practice]
+type = "Tooling & Docs"
+info = "Git, GitHub Actions, pre-commit, pytest, JSON Schema, technical writing, Markdown, Typst"
