@@ -1,0 +1,18 @@
+# Novig — Developer Relations Engineer. Projects angled toward operating real
+# systems, debugging across the stack, and shipping tooling and docs.
+# Used by the novig resume variant via modules.projects_file.
+
+[projects]
+[projects.declarative-homelab]
+title = "Personal Infrastructure & Networking"
+company = "Personal Project"
+date = "Nov 2016 – Present"
+location = ""
+summary = "Operate dozens of personal internet-facing services using VMware ESXi, KVM, and Docker, with reproducible NixOS configuration. Network work since August 2019 includes FortiGate, VLANs, DMZs, and MetalLB; troubleshoot connectivity across application, host, and network layers."
+
+[projects.building-resume]
+title = "Typst-Generated Resume System"
+company = "Personal Project"
+date = "Oct 2024 – Present"
+location = ""
+summary = "Built a Typst resume generator using shared TOML metadata, with GitHub Actions checks for required fields, configuration errors, missing outputs, and PDF page counts."

@@ -1,0 +1,49 @@
+# Novig experience: internal API tooling and validation, followed by transferable
+# client service and operations. Preserve the scope boundaries in REFERENCE.md.
+# Used by the novig resume variant via modules.experience_file.
+
+[jobs]
+
+[jobs.house-and-facilities-manager]
+title = "House & Facilities Manager"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "October 2021 – September 2022"
+location = "Portland, OR"
+summary = "Managed front-of-house and facility operations, often on solo shifts; handled equipment issues and served as the contact for patrons, renters, and building management."
+
+[jobs.prem-ai]
+title = "Developer Relations Manager (Contract)"
+company = "Prem AI"
+date = "June 2026 – Present"
+location = "New York, NY"
+highlights = [
+  "Specified and operated a Python publishing service with SQLite state, Telegram approvals, and a direct X API v2 client using OAuth2 user-context authentication. Reviewed the agent-written implementation; posts used text frozen at approval.",
+  "Triaged 33 findings from an agent-driven audit, prioritizing approval and duplicate-post risks. Reviewed and shipped fixes for compare-and-swap state transitions, crash reconciliation, and serialized token refresh with atomic persistence. CI gated changes on lint, type checks, and tests.",
+  "Contributed two merged skills, including a Python CSV/XLSX questionnaire helper, to Prem's public Fluso repository. Added GitHub Actions, pre-commit checks, JSON Schema validation, and a Python validator for marketplace and package consistency.",
+  "Coordinated release and content work across marketing and engineering in Linear; corrected inaccurate product claims before the external messaging was distributed."
+]
+links = [
+  {label = "Questionnaire helper: PR #1", url = "https://github.com/prem-research/fluso-skills/pull/1"},
+  {label = "Schema & validator: commit", url = "https://github.com/prem-research/fluso-skills/commit/3175fed418475872afac4f8aeba12379567a5cce"}
+]
+
+[jobs.salt-and-straw]
+title = "Shift Coordinator"
+company = "Salt & Straw"
+date = "April 2026 – Present"
+location = "New York, NY"
+summary = "Coordinate West Village service shifts, assign stations, train new hires, and adjust the plan during peak demand."
+
+[jobs.student-ambassador]
+title = "Student Ambassador"
+company = "Molloy University"
+date = "October 2022 – May 2026"
+location = "Rockville Centre, NY"
+summary = "Led campus tours and welcome events, answering prospective students' and families' questions and supporting admissions outreach."
+
+[jobs.voiceover]
+title = "Freelance Voiceover Artist"
+company = "Self-employed / Fiverr"
+date = "2013 – Present"
+location = "Remote"
+summary = "Run a freelance voiceover business with 1,000+ five-star reviews, managing client communication, quotes, schedules, revisions, and delivery."

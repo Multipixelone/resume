@@ -31,7 +31,7 @@ When writing a new variant, lift facts from this file rather than re-deriving th
 - **Institution:** CAP21 / Molloy University
 - **Location:** NYC
 - **Dates:** 2022 - 2026
-- **Status:** In progress, graduating May 2026
+- **Status:** Completed in 2026; confirmed by Finn on 2026-09-06. Exact conferral date is not recorded here.
 
 ---
 
@@ -58,22 +58,24 @@ Each entry includes the canonical facts, every summary variant that's been writt
 
 **Existing summary variants:**
 
-- *(none yet. First variant to use this entry writes the first summary.)*
+- *Novig:* service specifications and operation, review of agent-written implementation, audit triage and CI checks, public skills contributions, and cross-team release coordination. See `metadata/novig-experience.toml`; the 2026-09-09 corrections below govern its scope.
 
 **Concrete tasks performed:**
 
 - Ran a claims check on Fluso's messaging against Prem's own public sources and killed a false "EU-based servers" line sitting in the executive tier. Prem's public posture is Swiss, and Switzerland is not in the EU. The fix landed in the fact sheet and the messaging ladder before either went team-facing.
 - Corrected a connector count from "115+" to the verified "50+" and "open-source" to "open-weight", then wrote those exact framings into a fact sheet that every script and post had to clear before it shipped.
 - Pulled live product docs before building a demo and found the ticket's premise was wrong: the integration was already a managed app, so the custom-server story did not hold. Three of five gates died on a two-minute docs check. The false framing never made it to camera and a verified story shipped that night instead.
-- Recorded a custom MCP connector demo based on live validation of five public endpoints. LinkedIn long-form and X short-form cuts were planned; publication is unconfirmed.
-- Designed and operated a long-lived Python daemon that handled drafting, review, scheduling and logging for two X accounts. Telegram control surface, SQLite state, X API v2, ~26k lines of Python against ~20k lines of tests, packaged with Nix and checked in CI on every push. The code was written by AI coding agents working against specs, architecture docs and reviews I wrote.
-- Built a hard human-approval gate into it: nothing posts without an explicit Telegram tap, and the poster only ever sends the text frozen at approval, with tests asserting the reply and graph modules have no import path to the poster at all. Reviewed 307 AI drafts over about six weeks, approved 115 and rejected 188, and logged 101 before/after edit diffs, about two thirds of which were distilled into durable voice rules the drafter reads back.
-- Built an engagement-graph crawler on X recent-search that ranked accounts by PageRank personalised on an approved seed list, then exported ranked outreach briefs. 4,914 nodes, 16,960 edges, 7,021 crawled posts.
-- Built a reply desk that swept five topical lanes, filtered candidates, drafted reply cards, and rendered a self-contained HTML page that kept a full ledger of what was rejected and why, so the discards stayed auditable.
+- Earlier materials recorded a custom MCP connector demo based on validation of five public endpoints, with publication unconfirmed. The 2026-09-09 follow-up characterizes the troubleshooting work as thin and withdraws that application framing. Do not promote demo validation into API issue reproduction or developer support.
+- Specified, reviewed and operated a Python publishing service with SQLite state, Telegram approvals, Claude Agent SDK drafting, and a direct X API v2 client with OAuth2 user-context authentication. Coding agents wrote the implementation under Finn's specifications and review. Two account identities were supported, but only the personal account had a working API posting grant; brand posts used a manual copy-paste path. Active publishing was July-August 2026; the service remained running but was not actively posting at the September 9 audit.
+- Specified and reviewed the human-approval gate: an explicit Telegram tap froze the approved text for either publishing path. Earlier records describe 307 reviewed drafts, 115 approvals, 188 rejections and 101 edit diffs; these are review-workflow counts, not API publishing counts or engagement results.
+- Ran an agent-driven audit with 33 findings, prioritized approval and duplicate-post risks, dispatched fixes to coding agents, and reviewed and shipped fixes through lint, type-check and test gates in CI. Implemented mechanisms included compare-and-swap state transitions, crash reconciliation, and serialized OAuth2 refresh with atomic owner-only token persistence. Do not equate 33 findings with 33 completed fixes or complete elimination of risks.
+- Specified and reviewed an agent-built engagement-graph crawler on X recent-search that ranked accounts by PageRank personalised on an approved seed list, then exported ranked outreach briefs. Earlier records count 4,914 nodes, 16,960 edges and 7,021 crawled posts; these are dataset counts, not outreach results.
+- Specified and reviewed an agent-built reply desk that swept five topical lanes, filtered candidates, drafted reply cards, and rendered a self-contained HTML page with a ledger of rejections.
 - Built the static-graphics half of the brand kit: 25 HTML layout archetypes, a headless-Chrome renderer, and an 815-line auditor that checks about 30 brand rules against both the DOM and the rendered pixels and fails the build on a violation. Nine investor and social graphics shipped through it, each with a manifest recording what was checked. The copy linter runs as a required CI job.
 - Built the motion system as code: a Remotion renderer in React and TypeScript that takes a beats.json definition and emits an on-brand MP4. Fifteen film and template definitions, a JSON schema with a validator, and a token generator driven off a single brand canon file.
 - Sole author of Prem's internal brand-kit repo. Split the verbal canon (voice, register, banned language) from the machine-readable design canon and the generated assets, and shipped it back into the org repo through reviewed pull requests. Automated releases off commit history, replacing hand-bumped versions.
 - Shipped two skills to Prem's public skills repo at github.com/prem-research/fluso-skills: a security-questionnaire skill and an ai-mark-scrubber skill, both merged. Also added that repo's quality infrastructure: a GitHub Actions workflow, a pre-commit suite (JSON/YAML/TOML checks, typos, gitleaks, markdownlint), a JSON schema for the marketplace file, and a 179-line validator that checks marketplace, directory and frontmatter consistency on every pull request and push to main.
+- Public evidence verified September 6, 2026: [security-questionnaire PR #1](https://github.com/prem-research/fluso-skills/pull/1) includes a Python CSV/XLSX helper; [ai-mark-scrubber PR #3](https://github.com/prem-research/fluso-skills/pull/3) supplies the second merged skill. Both were authored and self-merged by Multipixelone, without recorded human reviews. [Commit 3e62447](https://github.com/prem-research/fluso-skills/commit/3e6244709899f440222499001f24d28f8f2cf88c) adds the CI workflow; [commit 3175fed](https://github.com/prem-research/fluso-skills/commit/3175fed418475872afac4f8aeba12379567a5cce) adds pre-commit, the schema, and the Python validator. Do not imply independent review or infer manual code authorship from Git attribution alone.
 - Directed agent runs against the official X API to pull complete 60-day timelines for 11 accounts, seven competitor brands plus three founders and one auxiliary account, and turned the output into seven dated per-competitor calendars, a merged cross-competitor calendar and a messaging matrix. Built a re-runnable skill so the pull could be repeated rather than redone.
 - Directed the research that established where the target developer community actually lives, down to each venue's self-promotion rules and moderation precedent, then ran a seven-agent fact-check against live sources before any of it was used. The check resized two venues by 4x, killed a competitor community that turned out not to exist, and narrowed the headline claim to one that holds.
 - Planned, shot, edited and published four videos on my own X account, retweeted by the brand account: a mobile app demo, a skill drop, a model announcement and a security-scan demo.
@@ -83,13 +85,23 @@ Each entry includes the canonical facts, every summary variant that's been writt
 
 **Strongest five for a technical or DevRel variant:**
 
-1. The approval gate and the 307/115/188/101 review record (human-in-the-loop AI system, with numbers).
+1. The approval-gated API service and 33-finding audit: specifications, operation, review of agent-written fixes and CI validation, with explicit ownership boundaries.
 2. The brand auditor (~30 automated checks, DOM plus pixel analysis, CI-gated).
-3. The claims-verification cluster (Swiss/EU catch, the docs-check demo kill, the MCP demo recording).
+3. The claims-verification cluster (Swiss/EU catch and the docs-check demo correction).
 4. Two merged skills plus the CI and validator in a public repo.
 5. The engagement-graph crawler, or the four published videos if the role is content-facing.
 
 **Transferable angles:** human-in-the-loop AI systems and the guardrails that make them safe to ship; API integration and hands-on verification (X API v2, live docs checks); CI and automated quality gates; technical accuracy review and claim verification; competitive and community research; content and video production end to end; working across marketing, engineering and leadership on a remote, distributed team.
+
+**Corrections supplied by Finn on 2026-09-09, superseding the September 6 account:**
+
+- Source: the user-supplied repository audit and follow-up discussion, sections 1-2. This resume review relied on that supplied evidence; it did not independently inspect or run the private service. Do not copy the separate private interview-preparation section into this repository or application materials.
+- There was no unofficial-to-official X API migration. The prior workflow read X through a tool server and used manual posting. The new work added a direct API posting client.
+- Finn specified and reviewed the token lifecycle; coding agents wrote every line of its implementation. Withdraw the earlier claim that Finn wrote the token-rotation function. Manual implementation is not established by commit attribution.
+- Only one live API posting grant existed. Two supported account identities do not establish two API-connected accounts, and seeded history records do not prove API delivery. A prior snapshot's delivery summary was explicitly corrected by this audit.
+- Duplicate-post protection is supported as design and tested behavior, not as an observed successful recovery under failure. Keep failure-handling claims bounded; do not claim exactly-once posting.
+- The audit reports approximately 28k lines of service code, 20k lines of tests and 1,380 tests as of September 9. These describe the agent-written codebase, not Finn's personal output, coverage percentage or runtime reliability; omit them from the Novig resume.
+- Remove MCP troubleshooting from the Novig summary, skills and experience. The confirmed stronger evidence is specifications, code review, operation, audit triage and delivery through CI.
 
 **Do not claim:**
 
@@ -102,9 +114,16 @@ Each entry includes the canonical facts, every summary variant that's been writt
 - **No developer support, partner engineering, or customer-facing integration work.** Every brand-account reply was AI-drafted, and no thread shows a developer question being answered.
 - **No PRs or hotfixes to Prem product code.** None exist.
 - **Never claim the finished intro film.** The script, storyboard and editor brief are the work; no editor delivery is evidenced.
-- **Never claim sole authorship of the tweet engine's code.** Claim the design, the specs, the review and the operation of it.
+- **Never claim manual authorship of the publishing service's implementation, including token rotation.** Claim the design, the specifications, the review and the operation of it.
+- **No unofficial API migration, two live API posting grants, present-tense active publishing, or all-risks-resolved claim.** These contradict the September 9 corrections.
 - **Never link or name the private repos.** Only fluso-skills is public.
 - **No internal ticket numbers, targets, or quotas** in any outward-facing document.
+
+**Novig application context, confirmed or clarified on 2026-09-06:**
+
+- Finn reports no sports engagement and no participation in relevant sports or prediction-market communities. Do not claim sports interest or domain-community involvement.
+- Hands-on prediction-market API work, liquidity-provider or market-maker relationships, RFQ pricing and trading-system operations remain unsupported. Reading about limit orders or time-in-force does not establish practical trading experience.
+- Finn prefers working in person and confirmed willingness to meet the four-day NYC office schedule and occasional nights/weekends. The exact full-time start date is still unconfirmed.
 
 ---
 
@@ -395,7 +414,7 @@ Each entry includes the canonical facts, every summary variant that's been writt
 ### Concerts / Workshops / Programs
 
 - Private Voice Lessons - Julia Kershetsky (CAP21 / Molloy)
-- BFA Musical Theatre, Graduation 2026 - In progress (CAP21 / Molloy)
+- BFA Musical Theatre, completed 2026 (CAP21 / Molloy)
 - Career Path Training - Del Lewis (Bridgetown Conservatory)
 - Young Professionals - Dani Baldwin (Oregon Children's Theatre)
 - Mainstage Company - Sarah Jane Hardy (NW Children's Theatre)
@@ -470,6 +489,20 @@ Each entry includes the canonical facts, every summary variant that's been writt
 - GitHub Actions CI for compile + publish
 - Currently produces seven distinct tailored variants from shared metadata
 - This repository is the system
+
+### Personal Technical Blog
+
+- **Site:** https://blog.finnrut.is/
+- **Public source:** https://github.com/Multipixelone/blog
+- **Ownership:** Finn identified this as an additional personal artifact on 2026-09-08. Repository creation and dated posts establish that it existed in June 2026; the exact project start date and personal implementation versus agent assistance are unconfirmed.
+- **Reviewed public revision:** `36ce65753f99d39a025f4ebed9893b10000b86f8`. The local blog checkout was older, so use this public revision for the evidence below. Live site availability and API responses were not verified.
+- **Documentation evidence:** [README](https://github.com/Multipixelone/blog/blob/36ce65753f99d39a025f4ebed9893b10000b86f8/README.md) explains Zola/Nix build commands, deployment, feed checks, build provenance, search indexing, and the Mastodon comments integration. This is a concrete technical documentation sample, transferable to explaining integrations.
+- **API code evidence:** [templates/page.html](https://github.com/Multipixelone/blog/blob/36ce65753f99d39a025f4ebed9893b10000b86f8/templates/page.html#L233) retains a link to the original Mastodon thread; lines 251-255 construct the status endpoint and lines 347-355 fetch the status and context concurrently. Non-success HTTP responses, fetch errors, and JSON parsing errors become null. Reply markup is rebuilt from an element allowlist at lines 260-291. The resume-generator post configures this feature in its front matter.
+- **Validation code evidence:** [scripts/check_feeds.py](https://github.com/Multipixelone/blog/blob/36ce65753f99d39a025f4ebed9893b10000b86f8/scripts/check_feeds.py) checks XML declarations, parsing, selected required elements, and feedparser acceptance. [scripts/check_frontmatter.py](https://github.com/Multipixelone/blog/blob/36ce65753f99d39a025f4ebed9893b10000b86f8/scripts/check_frontmatter.py) checks missing or duplicate descriptions and cover-title consistency. The public CI workflow invokes both. Code inspection establishes implemented checks, not successful execution in this review.
+- **Build tooling evidence:** [scripts/gen_og_cards.py](https://github.com/Multipixelone/blog/blob/36ce65753f99d39a025f4ebed9893b10000b86f8/scripts/gen_og_cards.py) renders social cards with Pillow and verifies referenced card files exist. [scripts/build.sh](https://github.com/Multipixelone/blog/blob/36ce65753f99d39a025f4ebed9893b10000b86f8/scripts/build.sh) shares the Zola, card-generation and Pagefind build sequence between the Nix package and CI audit.
+- **Best current placement:** A compact resume link to the public source and build documentation. This adds direct personal-project API/code/documentation evidence; professional partner support remains adjacent rather than established.
+- **Writing sample correction before featuring:** [content/resume-gen.md](https://github.com/Multipixelone/blog/blob/36ce65753f99d39a025f4ebed9893b10000b86f8/content/resume-gen.md) slides from structural validation into an assertion that generated output must be correct. Narrow that claim to the actual checks; do not imply factual accuracy or universal portability. The blog itself has not been edited as part of the resume review.
+- **Do not infer:** Independent manual authorship, an observed debugging incident, audience or adoption metrics, customer integrations, partner ownership, or trading experience. The Mastodon reader has no explicit timeout, retry/backoff, rate-limit handling, logging, or comprehensive response-schema validation. Do not call the integration security-hardened based only on its reply-markup allowlist.
 
 ### Enterprise-Grade Network Architecture & Security
 

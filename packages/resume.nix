@@ -16,7 +16,7 @@ let
   typstWithPackages = typst.withPackages (ps: [ typstPackages.fontawesome ]);
   variants = builtins.fromTOML (builtins.readFile ../variants.toml);
 
-  typstFlags = ''--root . --input commit="${commit}" --input version="${version}"'';
+  typstFlags = ''--root . --ignore-system-fonts --input commit="${commit}" --input version="${version}"'';
 
   compileVariant = _: v: ''
     typst compile ${typstFlags} resumes/${v.source}.typ

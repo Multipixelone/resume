@@ -1,0 +1,20 @@
+# Novig — Developer Relations Engineer. Skills limited to what REFERENCE.md
+# substantiates. Deliberately claims no prediction-market, exchange, or
+# trading experience; do not add order-type or market-making lines here
+# unless real experience backs them.
+# Used by the novig resume variant via modules.skills_file.
+
+section_title = "Skills"
+
+[skills]
+[skills.languages]
+type = "Programming"
+info = "Python, Nix, shell scripting; TypeScript and React for Remotion"
+
+[skills.apis]
+type = "APIs & Integration"
+info = "REST APIs, X API v2, OAuth2 token lifecycle, Telegram Bot API, SQLite"
+
+[skills.engineering-practice]
+type = "Tooling & Docs"
+info = "Git, GitHub Actions, pre-commit, pytest, JSON Schema, technical writing, Markdown, Typst"

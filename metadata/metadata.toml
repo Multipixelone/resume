@@ -22,8 +22,8 @@ before_entry_skip = "1pt"
 before_entry_description_skip = "1pt"
 
 [layout.fonts]
-regular_fonts = ["EB Garamond", "Source Sans 3"]
-header_font = "EB Garamond"
+regular_fonts = ["Libertinus Serif"]
+header_font = "Libertinus Serif"
 
 [layout.header]
 # Optional values: left, center, right

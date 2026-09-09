@@ -10,6 +10,7 @@
       systems = [
         "x86_64-linux"
         "x86_64-darwin"
+        "aarch64-darwin"
       ];
       perSystem =
         {
@@ -59,13 +60,16 @@
 
           patchright = pkgs.python3Packages.callPackage (inputs.roomieorder.outPath + "/nix/patchright.nix") { };
 
-          pythonEnv = pkgs.python3.withPackages (p: [
-            patchright
-            p.playwright
-            p.mypy
-            p.pytest
-            p.ruff
-          ]);
+          pythonEnv = pkgs.python3.withPackages (
+            p:
+            [
+              p.playwright
+              p.mypy
+              p.pytest
+              p.ruff
+            ]
+            ++ pkgs.lib.optional (!pkgs.stdenv.isDarwin) patchright
+          );
 
           resume = pkgs.callPackage ./packages/resume.nix {
             inherit
