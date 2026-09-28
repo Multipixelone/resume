@@ -1,0 +1,27 @@
+[modules]
+experience_file = "mta-16360-experience.toml"
+projects_file = "mta-16360-projects.toml"
+skills_file = "mta-16360-skills.toml"
+
+[lang.en]
+header_quote = "Run Linux systems and virtual machines in a personal homelab, with reproducible Nix configuration and a segmented FortiGate network."
+cv_footer = "MTA Systems Administrator Resume"
+
+[layout]
+before_entry_description_skip = "-4pt"
+
+[layout.header]
+display_profile_photo = false
+
+[layout.entry]
+display_entry_society_first = false
+display_logo = false
+
+[personal.info]
+email = "tech@finnrut.is"
+github = "Multipixelone"
+location = "NYC"
+height = ""
+instagram = ""
+vocal-part = ""
+union = ""

@@ -498,6 +498,7 @@ Each entry includes the canonical facts, every summary variant that's been writt
 - NixOS + Flakes for Infrastructure as Code (IaC)
 - Declarative provisioning of dozens of internet-facing services
 - Reproducible builds, zero-downtime deployments
+- Finn confirms substantial hands-on ESXi and virtual-machine work on personal systems. Specific tasks, dates, scale, versions and professional use are not established by this statement; do not infer them from the project's overall dates.
 
 ### Typst-Generated Resume System
 

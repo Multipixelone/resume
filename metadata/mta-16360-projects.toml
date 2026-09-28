@@ -1,0 +1,15 @@
+[projects]
+
+[projects.personal-infrastructure]
+title = "Personal Infrastructure & Virtualization"
+company = "Personal Project"
+date = ""
+location = ""
+summary = "Work hands-on with VMware ESXi and virtual machines in a personal homelab. Use NixOS and Flakes for reproducible Linux configuration, alongside KVM and Docker."
+
+[projects.personal-network]
+title = "Personal Network"
+company = "Personal Project"
+date = ""
+location = ""
+summary = "Manage a personal FortiGate network with isolated VLANs and DMZs. Use MetalLB load balancing for self-hosted services."

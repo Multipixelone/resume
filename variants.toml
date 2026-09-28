@@ -30,6 +30,15 @@ check_metadata = true
 title = "Technical Resume"
 subtitle = "Technology & IT"
 
+[mta-16360]
+source = "mta-16360"
+dest = "mta-16360-resume"
+override_toml = "mta-16360-metadata.toml"
+expected_pages = 1
+check_metadata = true
+title = "MTA Systems Administrator Resume"
+subtitle = "Level 1"
+
 [work]
 source = "work"
 dest = "work-resume"

@@ -1,0 +1,22 @@
+[jobs]
+
+[jobs.prem-ai]
+title = "Developer Relations Manager (Contract)"
+company = "Prem AI"
+date = "June 2026 - Present"
+location = "New York, NY"
+summary = "Specified and operated a Python publishing service with SQLite state, Telegram approvals, and an X API v2 client. Reviewed agent-written code and checked changes in CI. Added GitHub Actions checks and a Python validator to Prem's public skills repository."
+
+[jobs.salt-and-straw]
+title = "Shift Coordinator"
+company = "Salt & Straw"
+date = "April 2026 - Present"
+location = "New York, NY"
+summary = "Coordinate shifts, assign stations, train new hires, and resolve guest issues during service."
+
+[jobs.house-and-facilities-manager]
+title = "House & Facilities Manager"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "October 2021 - September 2022"
+location = "Portland, OR"
+summary = "Handled equipment issues during live performances and kept the facility operating on solo shifts; served as the contact for patrons, renters, and building management."

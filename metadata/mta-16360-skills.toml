@@ -1,0 +1,15 @@
+section_title = "Technical Skills"
+
+[skills]
+
+[skills.systems]
+type = "Systems"
+info = "Linux (NixOS, Ubuntu), VMware ESXi, KVM, Docker"
+
+[skills.networking]
+type = "Networking"
+info = "TCP/IP, DNS / DDNS, VLANs, NAT, FortiGate"
+
+[skills.configuration]
+type = "Tools"
+info = "Nix Flakes, Bash, Python, Git, GitHub Actions"
