@@ -233,6 +233,26 @@ check_metadata = true
 title = "Communications & Systems Resume"
 subtitle = "Technical communication, automation & service"
 
+[sent]
+source = "sent"
+dest = "sent-resume"
+override_toml = "sent-metadata.toml"
+expected_pages = 1
+check_metadata = true
+title = "Sent Resume"
+subtitle = "Content Engineer"
+site_hidden = true
+
+[modal]
+source = "modal"
+dest = "modal-resume"
+override_toml = "modal-metadata.toml"
+expected_pages = 1
+check_metadata = true
+title = "Modal Resume"
+subtitle = "Developer Relations Engineer, Sandboxes"
+site_hidden = true
+
 [anthropic-events]
 source = "anthropic-events"
 dest = "anthropic-events-resume"

@@ -1,0 +1,34 @@
+# Claims follow REFERENCE.md, including the September 9 Prem corrections.
+
+[modules]
+experience_file = "modal-experience.toml"
+projects_file = "modal-projects.toml"
+skills_file = "modal-skills.toml"
+
+[lang.en]
+header_quote = "Developer relations and practical AI demos, with experience in Python workflows and Linux infrastructure."
+cv_footer = "Modal | Developer Relations"
+
+[layout]
+before_entry_description_skip = "-4pt"
+
+[layout.header]
+display_profile_photo = false
+
+[layout.entry]
+display_entry_society_first = false
+display_logo = false
+
+[inject]
+inject_keywords = false
+
+[personal.info]
+email = "tech@finnrut.is"
+# The personal website failed the September 25 certificate check.
+homepage = ""
+github = "Multipixelone"
+location = "Brooklyn, NY"
+instagram = ""
+vocal-part = ""
+union = ""
+height = ""

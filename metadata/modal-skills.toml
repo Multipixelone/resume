@@ -1,0 +1,10 @@
+section_title = "Skills"
+
+[skills]
+[skills.code]
+type = "Code & Systems"
+info = "Python, Nix, shell scripting, TypeScript/React, Linux, Docker, REST APIs, SQLite"
+
+[skills.practice]
+type = "Tools & Content"
+info = "Git, GitHub Actions, pytest, JSON Schema, technical writing, video editing, Remotion, Typst"

@@ -1,0 +1,32 @@
+[jobs]
+
+[jobs.prem-ai]
+title = "Developer Relations Manager (Contract)"
+company = "Prem AI"
+# REFERENCE.md: switch to "June 2026 - September 2026" on 2026-09-29.
+date = "June 2026 - Present"
+location = "New York, NY (Remote)"
+highlights = [
+  "Built a graphics system with 25 HTML layouts, a headless-Chrome renderer, and about 30 brand checks against the DOM and rendered pixels. Shipped nine investor and social graphics with check manifests.",
+  "Built a Remotion renderer in React/TypeScript with 15 film/template definitions, schema validation, and shared design tokens. Separated writing guidelines from machine-readable design rules and generated assets.",
+  "Planned, shot, edited, and published four product videos on a personal X account, shared by the brand. Coordinated release content with marketing and engineering in Linear. Checked scripts against official sources; caught a false demo premise before filming.",
+  "Specified, reviewed, and operated a Python/SQLite publishing service implemented by coding agents. Telegram approvals froze the text before X API v2 posting to a personal account. Used OAuth2 and Claude Agent SDK drafting; active publishing ran July-August 2026.",
+  "Contributed two merged Fluso skills, including a Python CSV/XLSX questionnaire helper. Added GitHub Actions, pre-commit, JSON Schema, and a Python validator to check package consistency."
+]
+links = [
+  {label = "Public work: questionnaire skill & helper", url = "https://github.com/prem-research/fluso-skills/pull/1"}
+]
+
+[jobs.voiceover]
+title = "Freelance Voiceover Artist"
+company = "Self-employed / Fiverr"
+date = "2013 - Present"
+location = "Remote"
+summary = "Record, edit, and deliver audio for clients worldwide, with 1,000+ five-star reviews. Manage quotes, client communication, schedules, revisions, and delivery."
+
+[jobs.oregon-childrens-theatre]
+title = "Video Editor & Sound Engineer"
+company = "Oregon Children's Theatre"
+date = "May 2020 - July 2020"
+location = "Portland, OR"
+summary = "Recorded video and audio on site for two professional productions. Handled multi-camera editing, audio mixing, and final color and sound polish for digital distribution."

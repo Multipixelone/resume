@@ -1,0 +1,25 @@
+[jobs]
+
+[jobs.prem-ai]
+title = "Developer Relations Manager (Contract)"
+company = "Prem AI"
+# REFERENCE.md: switch to "June 2026 - September 2026" on 2026-09-29.
+date = "June 2026 - Present"
+location = "New York, NY (Remote)"
+highlights = [
+  "Planned, shot, edited, and published four product videos on a personal X account, shared by the brand. Created a skill-drop format built around a real work artifact and shipped the first episode with its public skill file. Checked live docs and caught a false demo premise before filming.",
+  "Contributed two merged Fluso skills, including a Python helper for CSV/XLSX questionnaires. Added GitHub Actions, pre-commit, JSON Schema, and a Python validator to check package consistency. Coordinated releases and content across marketing and engineering in Linear.",
+  "Specified, reviewed, and operated a Python/SQLite publishing service implemented by coding agents. Used Claude Agent SDK for drafts; Telegram approval froze the text before X API v2 posting with OAuth2 to a personal account. Active publishing ran July-August 2026.",
+  "Triaged 33 findings from an agent-driven audit, prioritizing approval and duplicate-post risks. Reviewed and shipped fixes through lint, type-check, and test gates in CI."
+]
+links = [
+  {label = "Questionnaire skill & Python helper", url = "https://github.com/prem-research/fluso-skills/pull/1"},
+  {label = "Schema & validator", url = "https://github.com/prem-research/fluso-skills/commit/3175fed418475872afac4f8aeba12379567a5cce"}
+]
+
+[jobs.molloy]
+title = "Student Ambassador"
+company = "Molloy University"
+date = "October 2022 - May 2026"
+location = "Rockville Centre, NY"
+summary = "Led campus tours and answered unscripted questions from prospective students and families. Adjusted explanations to the audience and supported admissions outreach, welcome events, and open houses."

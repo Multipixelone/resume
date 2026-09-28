@@ -1,0 +1,10 @@
+section_title = "Skills"
+
+[skills]
+[skills.production]
+type = "Content & Visuals"
+info = "Technical writing, scriptwriting, Figma storyboards, video editing, Remotion, Adobe Audition"
+
+[skills.technical]
+type = "Code & Tools"
+info = "Python, TypeScript/React, HTML, REST APIs, Git, GitHub Actions, JSON Schema, Nix, Typst"

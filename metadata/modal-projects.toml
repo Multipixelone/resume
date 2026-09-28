@@ -1,0 +1,13 @@
+[projects]
+
+[projects.llm-workflows]
+title = "Python & LLM Workflows"
+company = "Personal Project"
+date = "January 2023 - Present"
+summary = "Built Python tooling for LLM workflows, using structured JSON output and system prompts for data parsing and script generation."
+
+[projects.infrastructure]
+title = "Declarative Infrastructure & Self-Hosting"
+company = "Personal Project"
+date = "November 2016 - Present"
+summary = "Run dozens of internet-facing personal services with Docker, VMware ESXi, and KVM. Use NixOS and Flakes for reproducible configuration and builds."

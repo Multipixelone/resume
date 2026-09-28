@@ -1,0 +1,33 @@
+# Claims and dates follow REFERENCE.md, including the September 9 corrections.
+
+[modules]
+experience_file = "sent-experience.toml"
+skills_file = "sent-skills.toml"
+
+[lang.en]
+header_quote = "Technical content, video production, and visual systems built with code."
+cv_footer = "Sent | Content Engineer"
+
+[layout]
+before_entry_description_skip = "-4pt"
+
+[layout.header]
+display_profile_photo = false
+
+[layout.entry]
+display_entry_society_first = false
+display_logo = false
+
+[inject]
+inject_keywords = false
+
+[personal.info]
+email = "tech@finnrut.is"
+# Omitted after a certificate-name error during the September 25 link check.
+homepage = ""
+github = "Multipixelone"
+location = "Brooklyn, NY"
+instagram = ""
+vocal-part = ""
+union = ""
+height = ""
