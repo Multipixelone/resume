@@ -1,0 +1,33 @@
+# Blacksmith Technical Support Engineer. Claims follow REFERENCE.md.
+
+[modules]
+experience_file = "blacksmith-experience.toml"
+projects_file = "blacksmith-projects.toml"
+skills_file = "blacksmith-skills.toml"
+
+[lang.en]
+header_quote = "Linux infrastructure, Python automation, and agent workflows, backed by hands-on customer service."
+cv_footer = "Blacksmith | Technical Support Engineer"
+
+[layout]
+before_entry_description_skip = "-4pt"
+
+[layout.header]
+display_profile_photo = false
+
+[layout.entry]
+display_entry_society_first = false
+display_logo = false
+
+[inject]
+inject_keywords = false
+
+[personal.info]
+email = "tech@finnrut.is"
+homepage = ""
+github = "Multipixelone"
+location = "Brooklyn, NY"
+instagram = ""
+vocal-part = ""
+union = ""
+height = ""

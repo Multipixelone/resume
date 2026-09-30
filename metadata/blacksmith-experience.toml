@@ -1,0 +1,31 @@
+# Prem scope follows the September 9 corrections in REFERENCE.md.
+
+[jobs.prem-ai]
+title = "Developer Relations Manager (Contract)"
+company = "Prem AI"
+# REFERENCE.md: switch to "June 2026 - September 2026" on 2026-09-29.
+date = "June 2026 - Present"
+location = "New York, NY (Remote)"
+highlights = [
+  "Specified, reviewed, and operated a Python/SQLite publishing service implemented by coding agents. Combined Claude Agent SDK drafting, Telegram approvals, and X API v2 posting with OAuth2; approved text was frozen before posting.",
+  "Triaged 33 findings from an agent-driven audit, prioritizing approval and duplicate-post risks. Reviewed and shipped fixes for state transitions, crash reconciliation, and token refresh through lint, type-check, and test gates in CI.",
+  "Shipped two skills to Prem's public Fluso repository and added GitHub Actions, pre-commit checks, JSON Schema, and a Python validator for marketplace and skill metadata. Coordinated release and content work across marketing and engineering in Linear."
+]
+links = [
+  {label = "Public skills & Python helper", url = "https://github.com/prem-research/fluso-skills/pull/1"},
+  {label = "Schema & validator", url = "https://github.com/prem-research/fluso-skills/commit/3175fed418475872afac4f8aeba12379567a5cce"}
+]
+
+[jobs.salt-and-straw]
+title = "Shift Coordinator"
+company = "Salt & Straw"
+date = "April 2026 - Present"
+location = "New York, NY"
+summary = "Resolve guest issues during service, train new hires, and assign stations. Adjust the shift plan during peak demand."
+
+[jobs.virtual-choir]
+title = "Video Editor, Virtual Choir"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "April 2020"
+location = "Portland, OR"
+summary = "Worked one-on-one with cast members to troubleshoot recording setups remotely. Coordinated audio and video submissions from 20 performers and delivered a finished virtual concert on a tight deadline."

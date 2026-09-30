@@ -1,0 +1,13 @@
+section_title = "Technical Skills"
+
+[skills.systems]
+type = "Systems"
+info = "Linux, NixOS, Docker, KVM, VMware ESXi, TCP/IP, DNS, VLANs, FortiGate"
+
+[skills.automation]
+type = "Automation"
+info = "Python, shell scripting, Nix, Claude Agent SDK, structured JSON output, SQLite"
+
+[skills.delivery]
+type = "CI & Review"
+info = "Git, GitHub Actions, pre-commit, pytest, JSON Schema, code review, audit triage"

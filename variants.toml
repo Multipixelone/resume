@@ -253,6 +253,16 @@ title = "Modal Resume"
 subtitle = "Developer Relations Engineer, Sandboxes"
 site_hidden = true
 
+[blacksmith]
+source = "blacksmith"
+dest = "blacksmith-resume"
+override_toml = "blacksmith-metadata.toml"
+expected_pages = 1
+check_metadata = true
+title = "Blacksmith Resume"
+subtitle = "Technical Support Engineer"
+site_hidden = true
+
 [anthropic-events]
 source = "anthropic-events"
 dest = "anthropic-events-resume"
