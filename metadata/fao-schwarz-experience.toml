@@ -1,0 +1,29 @@
+[jobs]
+
+[jobs.salt-and-straw]
+title = "Shift Coordinator"
+company = "Salt & Straw"
+date = "April 2026 - Present"
+location = "West Village, New York, NY"
+summary = "Handle customer conversations and upselling, and resolve guest issues during service. Coordinate shifts, assign stations, and train new hires. Adjust the plan when demand picks up and keep the team on track."
+
+[jobs.student-ambassador]
+title = "Student Ambassador"
+company = "Molloy University"
+date = "October 2022 - May 2026"
+location = "Rockville Centre, NY"
+summary = "Led campus tours for prospective students and their families, adjusting the pace and energy to the group. Answered questions on the spot from students and parents. Helped run welcome events and open houses."
+
+[jobs.house-manager]
+title = "House & Facilities Manager"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "October 2021 - September 2022"
+location = "Portland, OR"
+summary = "Ran front-of-house for live shows: greeted patrons, handled ticketing and ushering, and managed the lobby. Worked mostly solo shifts, handling patron concerns and unexpected problems while keeping the venue ready for guests."
+
+[jobs.camp-assistant]
+title = "Acting Camp Assistant"
+company = "Northwest Children's Theatre"
+date = "Summer 2018"
+location = "Portland, OR"
+summary = "Helped lead teachers run acting camps for ages 8-15. Ran warm-ups and theatre games, helped teach choreography and blocking, and supervised groups of 10-15 during breaks. Kept the energy up and stayed patient when the room got busy."

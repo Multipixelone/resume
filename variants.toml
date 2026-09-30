@@ -263,6 +263,16 @@ title = "Blacksmith Resume"
 subtitle = "Technical Support Engineer"
 site_hidden = true
 
+[fao-schwarz]
+source = "fao-schwarz"
+dest = "fao-schwarz-resume"
+override_toml = "fao-schwarz-metadata.toml"
+expected_pages = 1
+check_metadata = true
+title = "FAO Schwarz Resume"
+subtitle = "Seasonal Experience Performer"
+site_hidden = true
+
 [anthropic-events]
 source = "anthropic-events"
 dest = "anthropic-events-resume"

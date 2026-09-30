@@ -1,0 +1,23 @@
+section_title = "Performance & Guest Service Skills"
+
+[skills]
+
+[skills.acting]
+type = "Acting"
+info = "Improvisation, Meisner, storytelling, make-believe and pretend play"
+
+[skills.voice]
+type = "Voice & Music"
+info = "Tenor, Linklater voice training, ukulele, beatboxing, whistling"
+
+[skills.dialects]
+type = "Dialects"
+info = "Australian, Generic British, Pacific Northwest (native)"
+
+[skills.service]
+type = "Guest Service"
+info = "Customer upselling, guest issue resolution, POS systems, cash handling"
+
+[skills.languages]
+type = "Languages"
+info = "English (native), ASL (intermediate)"

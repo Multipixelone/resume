@@ -1,0 +1,28 @@
+# Seasonal Experience Performer, FAO Schwarz, 30 Rockefeller Plaza.
+# https://apply.workable.com/fao-schwarz-1/j/FC244074A6
+
+[modules]
+experience_file = "fao-schwarz-experience.toml"
+skills_file = "fao-schwarz-skills.toml"
+
+[lang.en]
+header_quote = "Musical theatre performer with experience leading theatre games, welcoming families, and keeping busy service shifts moving."
+cv_footer = "Performance & Guest Experience Resume"
+
+[layout]
+before_entry_description_skip = "-4pt"
+
+[layout.header]
+display_profile_photo = false
+
+[layout.entry]
+display_entry_society_first = false
+display_logo = false
+
+[personal.info]
+email = "work@finnrut.is"
+location = "Brooklyn, NY"
+instagram = ""
+vocal-part = ""
+union = ""
+height = ""
