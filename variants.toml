@@ -57,6 +57,24 @@ check_metadata = true
 title = "Nanny Resume"
 subtitle = "Childcare"
 
+[astor-place]
+source = "astor-place"
+dest = "astor-place-resume"
+override_toml = "astor-place-metadata.toml"
+expected_pages = 1
+check_metadata = true
+title = "Astor Place Theatre Resume"
+subtitle = "Assistant House Manager / Ticket-Taker"
+site_hidden = true
+
+[astor-place-cover-letter]
+source = "astor-place-cover-letter"
+dest = "astor-place-cover-letter"
+override_toml = "astor-place-metadata.toml"
+expected_pages = 1
+check_metadata = false
+site_hidden = true
+
 [saltandstraw]
 source = "saltandstraw"
 dest = "saltandstraw-resume"

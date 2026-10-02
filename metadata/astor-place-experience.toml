@@ -1,0 +1,22 @@
+[jobs]
+
+[jobs.house-manager]
+title = "House & Facilities Manager"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "October 2021 - September 2022"
+location = "Portland, OR"
+summary = "Ran front-of-house for live performances: greeted patrons, handled ticketing and ushering, and managed the lobby and intermission. Opened and closed the venue, often as the only staff member on shift. Handled patron complaints and unexpected problems, and kept theatre and rehearsal spaces clean, stocked, and ready for use. Main contact for patrons, space renters, and building management."
+
+[jobs.salt-and-straw]
+title = "Shift Coordinator"
+company = "Salt & Straw"
+date = "April 2026 - Present"
+location = "West Village, New York, NY"
+summary = "Coordinate service shifts, assign stations, and train new hires. Also open and close the shop solo on some shifts. Resolve guest issues during service and adjust the plan when demand picks up. Coach the team and handle conflicts while keeping service moving."
+
+[jobs.student-ambassador]
+title = "Student Ambassador"
+company = "Molloy University"
+date = "October 2022 - May 2026"
+location = "Rockville Centre, NY"
+summary = "Led campus tours for prospective students and their families, adjusting the pace and energy to the group. Answered questions on the spot from students and parents. Helped run welcome events and open houses, from setting up the space to keeping things moving during the event."

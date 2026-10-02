@@ -42,6 +42,8 @@ When writing a new variant, lift facts from this file rather than re-deriving th
 - **U.S. Driver's License** (manual transmission capable)
 - **Valid U.S. Passport**
 
+**Astor Place Theatre application (confirmed 2026-09-29):** Willing to obtain FDNY F-03, F-07, and S-95 certificates as a condition of employment. This records willingness, not certificates currently held.
+
 ---
 
 ## Jobs (Reverse Chronological)
@@ -136,6 +138,7 @@ Each entry includes the canonical facts, every summary variant that's been writt
 **Concrete tasks performed:**
 
 - Coordinate service shifts, assign stations, and train new hires
+- Open and close the shop solo on some shifts (confirmed 2026-09-29)
 - Adjust the plan during peak demand
 - Resolve guest issues during service
 - Customer communication and customer upselling
@@ -374,6 +377,8 @@ Each entry includes the canonical facts, every summary variant that's been writt
 - Solo and team shift comfort
 - Long shifts on feet
 - Flexible schedule (evenings, weekends, holidays)
+- Confirmed evening/weekend availability and comfort with solo closing for the Astor Place Theatre application on 2026-09-29
+- Microsoft Word, Excel, and Outlook (comfortable using all three; confirmed 2026-09-29)
 
 ### Food Service
 

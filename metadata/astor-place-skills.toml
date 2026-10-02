@@ -1,0 +1,31 @@
+section_title = "Skills & Availability"
+
+[skills]
+
+[skills.operations]
+type = "Venue Operations"
+info = "Ticketing, ushering, opening and closing, event setup and breakdown, facility safety"
+
+[skills.service]
+type = "Guest Service"
+info = "Guest issue resolution, POS systems, cash handling, staff training"
+
+[skills.technical-theatre]
+type = "Technical Theatre"
+info = "Lighting design and board operation, live sound"
+
+[skills.office]
+type = "Software"
+info = "Microsoft Word, Excel, Outlook"
+
+[skills.languages]
+type = "Languages"
+info = "English (native), ASL (intermediate)"
+
+[skills.availability]
+type = "Availability"
+info = "Evenings and weekends; comfortable with solo closing and long shifts on feet"
+
+[skills.training]
+type = "FDNY Training"
+info = "Willing to obtain F-03, F-07, and S-95 certificates"

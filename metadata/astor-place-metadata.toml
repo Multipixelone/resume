@@ -1,0 +1,31 @@
+# Assistant House Manager/Ticket-Taker, Astor Place Theatre.
+# https://playbill.com/job/assistant-house-manager-ticket-taker/8fbd3cc7-8f39-43f3-a276-3860d69891cb
+
+[modules]
+experience_file = "astor-place-experience.toml"
+skills_file = "astor-place-skills.toml"
+
+[lang.en]
+header_quote = "Theatre house manager and shift coordinator experienced in ticketing, ushering, guest service, and venue operations."
+cv_footer = "Theatre & Guest Service Resume"
+
+[layout]
+before_entry_description_skip = "-4pt"
+
+[layout.header]
+display_profile_photo = false
+
+[layout.entry]
+display_entry_society_first = false
+display_logo = false
+
+[inject]
+inject_keywords = false
+
+[personal.info]
+email = "work@finnrut.is"
+location = "Brooklyn, NY"
+instagram = ""
+vocal-part = ""
+union = ""
+height = ""
