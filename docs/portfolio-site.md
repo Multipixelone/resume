@@ -124,15 +124,30 @@ assembly; do not waive those checks because the five HTML pages build.
 ## Design, fonts, and media
 
 The exact approved light tokens are in `src/styles/site.css`. No theme toggle or
-system-dark rule is added. Desktop is portrait/name, then offset bio, independent
-production notes, then a wide/tall/smaller photo spread repeated as a
-mirror image. At narrow widths the
-portrait comes before the name, the prints become unrotated and vertically
-ordered, and links remain visible. Text never overlays a face. The supplied
-rectangles retain their full proportions; no backgrounds are removed or cutouts
-generated. A single backing entrance, fine-pointer photo-link lift, and optional
-CSS scroll-linked backing drift are removed under reduced motion. Scrolling is
-native. Essential content does not wait for JavaScript or visibility observers.
+system-dark rule is added. The homepage pairs a large Cooper Black name with a
+portrait and an overlapping Seussical print. The portrait has a printed bottom
+strip with Finn's name in Cooper Black and smaller Pragmata pronouns on the same
+left-aligned line, flush with the photograph's left edge. The photograph and name
+strip move together as one printed headshot. Its tan backing stays fixed, and the
+Seussical print moves independently above the label. The bio and reel/contact links sit
+under the name. Production photos use varied sizes, borders and resting angles,
+with one shared angular paper shape behind the first group. Show titles and roles
+stay visible in fixed captions. At narrow widths the name leads, the portrait
+pair follows, and the performance photos become a single column with varied
+widths. Text never overlays a face. Photos retain their full proportions; no
+backgrounds are removed or cutouts generated.
+
+`src/lib/motion.ts` supplies the `paperMotion` action. Marked paper layers
+settle on first entering the viewport; content is never hidden while waiting.
+Fine-pointer movement gives the photos a bounded tilt and translation, with one
+animation frame queued per pointer event and no idle render loop. CSS adds a
+lift/straighten response on hover or keyboard focus. Gallery captions and page
+headings stay fixed; the portrait's printed label moves with its headshot.
+The broad decorative paper has an optional CSS scroll-linked drift.
+Reduced motion cancels active arrivals, clears pointer offsets, and disables
+hover/scroll motion. Touch users keep the same composition and ordinary photo
+links, without pointer tilt. Observers, listeners, frames and animations are cleaned up on navigation.
+Scrolling remains native; all essential content works without JavaScript.
 
 Production-note ticket links use the existing `--accent-hover` token even at
 rest: its reported contrast on `--paper-shade` is 6.52:1, versus 4.43:1 for
@@ -151,9 +166,8 @@ A fallback-only screenshot is not an exact-font approval.
 
 `src/lib/media.js` selects six existing performance photos and keeps the three
 verified reel IDs/titles/order. Each photo's optional `show` (a `theatre.toml` id)
-and `blurb` (Finn's own words) become a note: on fine hover pointers the cursor
-turns into a bubble showing it, and touch, no-JS and screen-reader visitors get
-the same note as the figure caption. An unknown `show` id fails the build.
+and `blurb` (Finn's own words) become a fixed figure caption for pointer, touch,
+no-JS and screen-reader visitors alike. An unknown `show` id fails the build.
 All seven images are preserved by the media lane.
 The selected photo pixels were inspected for descriptive alt text; production
 identifications and photographer credits were not guessed. `PhotoPrint` supports

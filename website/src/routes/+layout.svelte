@@ -18,7 +18,7 @@
     <nav aria-label="Main navigation">
       <a class="brand" href={sitePath('/')} aria-current={page.route.id === '/' ? 'page' : undefined}>
         <span class="brand-ticket" aria-hidden="true">
-          <span class="ticket-card"><span class="ticket-seat">Orch &middot; Row F</span><span class="ticket-mark">FR</span></span>
+          <span class="ticket-card"><span class="ticket-seat">Orch &middot; Row F</span><span class="ticket-mark">Rutis</span></span>
         </span>
         <span class="brand-name">Finn Rutis</span>
       </a>

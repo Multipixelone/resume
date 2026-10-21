@@ -1,10 +1,13 @@
 <script lang="ts">
   import { sitePath } from '$lib/paths';
+  import Arrow from '$lib/components/Arrow.svelte';
   import CurrentProjects from '$lib/components/CurrentProjects.svelte';
   import PhotoSpread from '$lib/components/PhotoSpread.svelte';
+  import { paperMotion } from '$lib/motion';
   import type { PageProps } from './$types';
 
   let { data }: PageProps = $props();
+  let stagePhoto = $derived(data.photos.find(photo => photo.placement === 'tall'));
 </script>
 
 <svelte:head>
@@ -12,23 +15,59 @@
   <meta name="description" content="Finn Rutis is a New York City Based performance artist that is interested in using the magic of theatre to shine a light on unconscious parts of the human experience" />
 </svelte:head>
 
-<div class="home-hero">
-  <div class="portrait-layers">
-    <span class="portrait-backing" aria-hidden="true"></span>
-    <div class="portrait-mat">
-      <img src={sitePath('/media/portrait.jpg')} alt="Finn Rutis, smiling in a blue shirt against a warm brown background." width="2400" height="3000" fetchpriority="high" decoding="async" />
+<section class="home-hero" aria-labelledby="artist-name">
+  <div class="hero-heading">
+    <h1 id="artist-name" class="artist-name"><span>Finn</span> <span>Rutis</span></h1>
+  </div>
+
+  <div class="portrait-scene">
+    <div class="portrait-layers">
+      <span class="portrait-backing" aria-hidden="true"></span>
+      <div class="portrait-headshot" use:paperMotion>
+        <div data-paper-arrival>
+          <figure class="portrait-card">
+            <img src={sitePath('/media/portrait.jpg')} alt="Finn Rutis, smiling in a blue shirt against a warm brown background." width="1536" height="1920" fetchpriority="high" decoding="async" />
+            <figcaption class="portrait-caption">
+              <span class="portrait-name">Finn Rutis</span>
+              <span class="portrait-pronouns">they / them</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+      {#if stagePhoto}
+        <div class="portrait-overlay">
+          <div class="hero-contact-print">
+            <div class="photo-layers" use:paperMotion={{ delay: 140 }}>
+              <div data-paper-arrival>
+                <a class="photo-mat" href="#photos-title" aria-label={`Explore performance photos: ${stagePhoto.note?.title ?? 'On stage'}`}>
+                  <img src={sitePath(`/media/${stagePhoto.file}`)} alt="" width={stagePhoto.width} height={stagePhoto.height} decoding="async" />
+                  <span class="hero-print-caption">{stagePhoto.note?.title}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {/if}
     </div>
   </div>
-  <h1 class="artist-name"><span>Finn</span> <span>Rutis</span></h1>
-</div>
 
-<div class="bio-block">
-  <p>Finn Rutis is a New York City Based performance artist that is interested in using the magic of theatre to shine a light on unconscious parts of the human experience</p>
-</div>
+  <div class="bio-block">
+    <p>Finn Rutis is a New York City Based performance artist that is interested in using the magic of theatre to shine a light on unconscious parts of the human experience</p>
+    <div class="hero-links">
+      <a class="text-link" href={sitePath('/performance-reel/')}>Watch me perform <Arrow /></a>
+      <a class="text-link" href={sitePath('/booking/')}>Get in touch <Arrow /></a>
+    </div>
+  </div>
+</section>
 
 <CurrentProjects shows={data.shows} />
 
 <section class="performance-photos section-block" aria-labelledby="photos-title">
-  <h2 id="photos-title">Performance photos</h2>
+  <div class="spread-heading">
+    <div>
+      <h2 id="photos-title">On stage.</h2>
+    </div>
+    <a class="text-link" href={sitePath('/resume/')}>Theatre credits <Arrow /></a>
+  </div>
   <PhotoSpread photos={data.photos} />
 </section>

@@ -1,7 +1,7 @@
 // Selected from the existing portfolio, not a complete preservation inventory.
 // Alt text describes the inspected pictures without guessing production/photographer credits.
 // Add caption/credit/creditUrl only from Finn's verified media handoff.
-// Hover bubble: `show` is a metadata/theatre.toml id (title and role come from there),
+// Fixed photo captions: `show` is a metadata/theatre.toml id (title and role come from there),
 // `blurb` is Finn's own words about the performance. Leave either empty to skip it.
 // Each `placement` is a fixed slot in the spread (site.css), so use each one once.
 export const performancePhotos = [
