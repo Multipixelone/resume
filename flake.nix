@@ -92,6 +92,8 @@
           };
           website = pkgs.callPackage ./packages/website.nix {
             inherit version resume finnRutis;
+            # Full rev for the footer's commit link; a dirty tree has only dirtyRev.
+            commit = self.rev or self.dirtyRev or "";
           };
           checks = import ./packages/checks.nix {
             inherit (pkgs) lib;

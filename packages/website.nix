@@ -4,6 +4,8 @@
   nodejs_24,
   python3,
   version ? "",
+  # "<rev>", "<rev>-dirty", or "" (footer then links the repo, not a commit).
+  commit ? "",
   resume,
   finnRutis,
   siteBase ? "",
@@ -36,6 +38,7 @@ buildNpmPackage {
   sourceRoot = "source/website";
   npmDepsHash = "sha256-T0gs00394894L/VfuNPizIUBNyLn/y4lJBFvAcL0I9U=";
   env.SITE_BASE = siteBase;
+  env.SITE_COMMIT = commit;
   nativeBuildInputs = [ python3 ];
 
   installPhase = ''

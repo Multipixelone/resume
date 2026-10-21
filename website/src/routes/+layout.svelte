@@ -2,8 +2,9 @@
   import '../styles/site.css';
   import { page } from '$app/state';
   import { sitePath } from '$lib/paths';
+  import SiteFooter from '$lib/components/SiteFooter.svelte';
 
-  let { children } = $props();
+  let { children, data } = $props();
   const navigation = [
     { label: 'Resume', route: '/resume', path: '/resume/' },
     { label: 'Performance reel', route: '/performance-reel', path: '/performance-reel/' },
@@ -26,13 +27,5 @@
 
   <main id="main" tabindex="-1">{@render children()}</main>
 
-  <footer class="site-footer">
-    <nav aria-label="More links">
-      <a href={sitePath('/resumes/')} aria-current={page.route.id === '/resumes' ? 'page' : undefined}>All resumes</a>
-      <a href="https://blog.finnrut.is/">Blog</a>
-      <a href="mailto:me@finnrut.is">me@finnrut.is</a>
-      <a href="https://www.instagram.com/finnrutis/">Instagram <span>@finnrutis</span></a>
-    </nav>
-    <small class="font-notice">Cooper* font: <a href={sitePath('/fonts/cooper/LICENSE.md')}>copyright and license</a></small>
-  </footer>
+  <SiteFooter commit={data.commit} year={data.year} />
 </div>

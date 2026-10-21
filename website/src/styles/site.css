@@ -50,10 +50,27 @@ main:focus { outline: none; }
 .section-block > h2 { margin-bottom: 2rem; }
 .page-heading { margin: 1rem 0 3rem; }
 .page-heading > a { display: inline-block; margin-top: 1.25rem; padding-block: .5rem; }
-.site-footer { margin-top: var(--space-section); padding: 2rem 0 2.5rem; border-top: 1px solid var(--border); }
-.site-footer nav { display: flex; flex-wrap: wrap; gap: .25rem 2.5rem; }
-.site-footer nav a { display: inline-flex; align-items: center; gap: .35em; min-height: 44px; }
-.font-notice { display: block; font-size: .875rem; color: var(--muted); margin-top: 1rem; }
+/* Inline SVG icons (Icon.svelte), same stroke and size as the blog's. Solid brand
+   marks read heavier than a 1.7 outline in the same box, so they are trimmed. */
+.icon { width: 1.15rem; height: 1.15rem; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.icon-solid { width: 1.02rem; height: 1.02rem; fill: currentColor; stroke: none; }
+
+/* Footer ported from the blog: icon row, then copyright and build badge on one line. */
+.site-footer { margin-top: var(--space-section); padding: 1.25rem 0 2.5rem; border-top: 1px solid var(--border); text-align: center; font-variant: small-caps; font-synthesis: small-caps; letter-spacing: .05em; }
+/* 44px boxes clear the touch target; the negative margin keeps that padding from inflating the footer. */
+.footer-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .1rem; margin: -.4rem 0 .5rem; }
+.footer-links a { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; color: var(--muted); text-decoration: none; border-radius: 6px; transition: color 150ms ease, background-color 150ms ease; }
+.footer-links a:hover, .footer-links a[aria-current="page"] { color: var(--accent); background: var(--paper-shade); }
+.footer-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.footer-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .55rem; font-size: .85rem; color: var(--muted); }
+.footer-meta .sep { color: var(--border); }
+.footer-meta > a:not(.build-badge) { color: inherit; }
+.footer-meta > a:not(.build-badge):hover { color: var(--accent); }
+.build-badge { display: inline-flex; align-items: center; gap: .45rem; padding: .28rem .8rem .32rem; color: var(--muted); background: var(--paper-shade); border: 1px solid var(--border); border-radius: 999px; font-size: .8rem; line-height: 1.2; text-decoration: none; transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease; }
+.build-badge:hover { color: var(--accent); background: var(--paper); border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 2px 6px var(--shadow); }
+.build-badge .icon { width: .95rem; height: .95rem; }
+/* The sha is data, not prose: drop the footer's small caps. */
+.build-badge code { font: .95em var(--font-mono); font-variant: normal; letter-spacing: 0; }
 .file-label { font: .8em var(--font-mono); }
 
 /* The portrait and name lead; no text is placed on photographic content. */
@@ -208,7 +225,8 @@ main:focus { outline: none; }
   .download-library { grid-template-columns: 1fr; }
   .contact-links { margin-left: 0; }
   .video-mat { padding: .35rem; }
-  .site-footer nav { column-gap: 1.5rem; }
+  /* The badge wraps under the copyright here; drop the dot that would dangle. */
+  .footer-meta .sep-badge { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
