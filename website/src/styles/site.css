@@ -43,10 +43,12 @@ main:focus { outline: none; }
 .site-header ul { display: flex; flex-wrap: wrap; gap: .25rem .5rem; list-style: none; margin: 0 -.75rem 0 0; padding: 0; }
 .site-header a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); font-weight: 600; text-decoration: none; }
 /* Home is the half of a theatre ticket you keep: card stock, a printed seat, and the ragged
-   edge the usher leaves at the door. The shadow sits on the wrapper because clip-path would cut it. */
+   edge the usher leaves at the door. The shadow sits on the wrapper because clip-path would cut it.
+   The card is as wide as its seat line so the tear, placed in percent, always lands in the right
+   padding: a fixed width let wider fallback monos (SF Mono, Menlo) run the "F" into the tear. */
 .brand { gap: .8rem; margin-right: auto; }
 .brand-ticket { display: block; filter: drop-shadow(0 2px 3px rgba(43, 37, 32, .14)); transform: rotate(-4deg); transition: transform 220ms cubic-bezier(.2, .8, .2, 1); }
-.ticket-card { display: grid; align-content: center; gap: .15rem; width: 5.3rem; height: 2.75rem; padding: 0 1.1rem 0 .85rem; background: linear-gradient(90deg, var(--accent) 0 .3rem, transparent .3rem), #fcfaf5; border: 1px solid var(--border); clip-path: polygon(0 0, 88% 0, 90.5% 4%, 88.5% 8%, 91% 12%, 89% 17%, 92% 21%, 89.5% 26%, 91% 31%, 88% 35%, 90.5% 40%, 89% 45%, 92% 49%, 89.5% 54%, 91.5% 59%, 88.5% 63%, 91% 68%, 89% 73%, 92% 77%, 89.5% 82%, 91% 87%, 88.5% 92%, 90.5% 96%, 89% 100%, 0 100%); }
+.ticket-card { display: grid; align-content: center; gap: .15rem; width: max-content; height: 2.75rem; padding: 0 1.1rem 0 .85rem; background: linear-gradient(90deg, var(--accent) 0 .3rem, transparent .3rem), #fcfaf5; border: 1px solid var(--border); clip-path: polygon(0 0, 88% 0, 90.5% 4%, 88.5% 8%, 91% 12%, 89% 17%, 92% 21%, 89.5% 26%, 91% 31%, 88% 35%, 90.5% 40%, 89% 45%, 92% 49%, 89.5% 54%, 91.5% 59%, 88.5% 63%, 91% 68%, 89% 73%, 92% 77%, 89.5% 82%, 91% 87%, 88.5% 92%, 90.5% 96%, 89% 100%, 0 100%); }
 .ticket-seat { font: .5rem/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
 .ticket-mark { font: 900 1.15rem/1 var(--font-display); letter-spacing: .02em; transition: color 150ms ease; }
 .brand-name { font: 700 1.3rem/1 var(--font-display); letter-spacing: -.01em; transition: color 150ms ease; }
