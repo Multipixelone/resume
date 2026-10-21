@@ -41,6 +41,22 @@ function projectShow(show) {
     ticket_url, photo, photo_alt }).filter(([, value]) => value !== undefined)));
 }
 
+/** Resolve each photo's hover note against the canonical shows. Unknown ids fail the build.
+ * @returns {import('../src/lib/types').Photo[]}
+ */
+export function attachPhotoNotes(photos, shows) {
+  const byId = new Map(shows.map(show => [show.id, show]));
+  return photos.map(({ show: id, blurb, ...photo }) => {
+    const text = blurb?.trim();
+    if (!id && !text) return photo;
+    const show = id ? byId.get(id) : undefined;
+    if (id && !show) throw new TypeError(`${photo.file}: unknown show ${id}`);
+    const note = Object.fromEntries(Object.entries({ title: show?.title, role: show?.character, blurb: text || undefined })
+      .filter(([, value]) => value !== undefined));
+    return { ...photo, note };
+  });
+}
+
 export function portfolioContent(theatreSource, variantSource) {
   const shows = parseShows(theatreSource);
   const variants = parseVariants(variantSource);

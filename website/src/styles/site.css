@@ -96,6 +96,28 @@ main:focus { outline: none; }
 .photo-print figcaption { padding: 1.5rem .25rem 0; font-size: .9375rem; color: var(--ink); line-height: 1.5; }
 .photo-credit { display: block; }
 @media (hover: hover) and (pointer: fine) { .photo-mat:hover { translate: 0 -2px; } }
+
+/* Photo notes: a caption by default, a cursor bubble once PhotoSpread enables hover pointers. */
+.photo-note { display: block; }
+.photo-note-title { display: block; font-family: var(--font-display); font-weight: 700; font-size: 1.125rem; line-height: 1.25; }
+.photo-note-role { display: block; margin-top: .1rem; font: .8125rem/1.5 var(--font-mono); color: var(--muted); }
+.photo-note-blurb { display: block; margin-top: .5rem; }
+.photo-note + * { margin-top: .75rem; }
+.photo-spread--bubbles .photo-note { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.photo-spread--bubbles figcaption:has(> .photo-note:only-child) { padding: 0; }
+.photo-mat.is-bubbled { cursor: none; }
+/* The cursor itself: an accent dot at the pointer that clips open into a paper note. */
+.photo-bubble { --dot: 7px; --ox: var(--dot); --oy: var(--dot); position: fixed; top: 0; left: 0; z-index: 20; pointer-events: none; visibility: hidden; filter: drop-shadow(0 6px 14px rgba(43, 37, 32, .2)); }
+.photo-bubble.is-shown { visibility: visible; }
+.photo-bubble.flip-x { --ox: calc(100% - var(--dot)); }
+.photo-bubble.flip-y { --oy: calc(100% - var(--dot)); }
+.photo-bubble-body { width: max-content; max-width: min(19rem, 100vw - 2rem); padding: .85rem 1.1rem 1rem; font-size: 1rem; line-height: 1.45; background: var(--accent); border: 1px solid var(--border); border-radius: 3px 1.1rem 1.1rem; clip-path: circle(var(--dot) at var(--ox) var(--oy)); transition: clip-path 260ms cubic-bezier(.2, .8, .2, 1), background-color 180ms ease; }
+.flip-x .photo-bubble-body { border-radius: 1.1rem 3px 1.1rem 1.1rem; }
+.flip-y .photo-bubble-body { border-radius: 1.1rem 1.1rem 1.1rem 3px; }
+.flip-x.flip-y .photo-bubble-body { border-radius: 1.1rem 1.1rem 3px 1.1rem; }
+.photo-bubble-body > * { opacity: 0; transition: opacity 100ms ease; }
+.is-open .photo-bubble-body { clip-path: circle(150% at var(--ox) var(--oy)); background: var(--paper); }
+.is-open .photo-bubble-body > * { opacity: 1; transition-delay: 80ms; }
 @supports (animation-timeline: view()) {
   .photo-print--small .photo-backing { animation: paper-drift linear both; animation-timeline: view(); animation-range: entry 0% exit 100%; }
   @keyframes paper-drift { from { translate: 0 0; } to { translate: 0 8px; } }
@@ -185,6 +207,6 @@ main:focus { outline: none; }
 }
 @media (forced-colors: active) {
   .portrait-backing, .photo-backing { display: none; }
-  .photo-mat, .portrait-mat, .project-note, .resume-sheet, .video-mat { border: 1px solid CanvasText; }
+  .photo-mat, .portrait-mat, .project-note, .resume-sheet, .video-mat, .photo-bubble-body { border: 1px solid CanvasText; }
   :focus-visible { outline-color: Highlight; }
 }

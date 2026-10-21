@@ -1,8 +1,7 @@
 <script lang="ts">
   import { sitePath } from '$lib/paths';
-  import { performancePhotos } from '$lib/media';
   import CurrentProjects from '$lib/components/CurrentProjects.svelte';
-  import PhotoPrint from '$lib/components/PhotoPrint.svelte';
+  import PhotoSpread from '$lib/components/PhotoSpread.svelte';
   import type { PageProps } from './$types';
 
   let { data }: PageProps = $props();
@@ -31,7 +30,5 @@
 
 <section class="performance-photos section-block" aria-labelledby="photos-title">
   <h2 id="photos-title">Performance photos</h2>
-  <div class="photo-spread">
-    {#each performancePhotos as photo (photo.file)}<PhotoPrint {photo} />{/each}
-  </div>
+  <PhotoSpread photos={data.photos} />
 </section>

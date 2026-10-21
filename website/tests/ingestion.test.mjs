@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { parse } from 'smol-toml';
-import { parseShows, parseVariants, portfolioContent } from '../lib/content.mjs';
+import { attachPhotoNotes, parseShows, parseVariants, portfolioContent } from '../lib/content.mjs';
+import { performancePhotos } from '../src/lib/media.js';
 import { siteBase } from '../lib/config.mjs';
 import { selectResumeShows } from '../../lib/shows.mjs';
 
@@ -67,6 +68,20 @@ test('registry filenames and flags cannot become paths or accidental public entr
   assert.throws(() => parseVariants('[test]\ndest = "../private"'), /Invalid/);
   assert.throws(() => parseVariants('[test]\ndest = "safe"\nsite_hidden = "true"'), /Invalid/);
   assert.throws(() => parseVariants('[one]\ndest = "same"\n[two]\ndest = "same"'), /Duplicate/);
+});
+
+test('photo hover notes read title and role from canonical shows', () => {
+  const { shows } = portfolioContent(theatre, variants);
+  const photos = attachPhotoNotes(performancePhotos, shows);
+  performancePhotos.forEach((source, index) => {
+    const show = shows.find(entry => entry.id === source.show);
+    if (source.show) assert.equal(photos[index].note?.title, show?.title);
+    assert.equal('show' in photos[index] || 'blurb' in photos[index], false);
+  });
+  const [seussical] = attachPhotoNotes([{ file: 'x.jpg', show: 'seussical', blurb: ' Mine. ' }], shows);
+  assert.deepEqual(seussical.note, { title: 'Seussical', role: 'Cat in the Hat', blurb: 'Mine.' });
+  assert.deepEqual(attachPhotoNotes([{ file: 'x.jpg', show: '', blurb: '  ' }], shows), [{ file: 'x.jpg' }]);
+  assert.throws(() => attachPhotoNotes([{ file: 'x.jpg', show: 'not-a-show' }], shows), /unknown show/);
 });
 
 test('base configuration accepts root and repository Pages, rejects ambiguous paths', () => {

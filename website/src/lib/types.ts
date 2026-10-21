@@ -13,6 +13,22 @@ export interface Show {
   photo?: string;
   photo_alt?: string;
 }
+export interface PhotoNote {
+  title?: string;
+  role?: string;
+  blurb?: string;
+}
+export interface Photo {
+  file: string;
+  width: number;
+  height: number;
+  alt: string;
+  placement: string;
+  caption?: string;
+  credit?: string;
+  creditUrl?: string;
+  note?: PhotoNote;
+}
 export interface CurrentShow extends Show {
   status: 'rehearsing' | 'performing';
   rehearsal_start: string;

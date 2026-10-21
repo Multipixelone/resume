@@ -1,6 +1,8 @@
 // Selected from the existing portfolio, not a complete preservation inventory.
 // Alt text describes the inspected pictures without guessing production/photographer credits.
 // Add caption/credit/creditUrl only from Finn's verified media handoff.
+// Hover bubble: `show` is a metadata/theatre.toml id (title and role come from there),
+// `blurb` is Finn's own words about the performance. Leave either empty to skip it.
 export const performancePhotos = [
   {
     file: "finn_photo_reel_2.jpg",
@@ -8,6 +10,8 @@ export const performancePhotos = [
     height: 3468,
     alt: "Three performers dancing with one arm raised, the center performer in an orange sweater.",
     placement: "wide",
+    show: "",
+    blurb: "",
   },
   {
     file: "2X9A9381-X4.jpg",
@@ -15,6 +19,8 @@ export const performancePhotos = [
     height: 2048,
     alt: "A performer in a tall red-and-white striped hat and cat makeup, reaching forward with both hands.",
     placement: "tall",
+    show: "seussical",
+    blurb: "",
   },
   {
     file: "composer_singing.jpg",
@@ -22,6 +28,8 @@ export const performancePhotos = [
     height: 960,
     alt: "Performers singing together, with the center performer holding a notebook against a burgundy sweater.",
     placement: "small",
+    show: "",
+    blurb: "",
   },
 ];
 

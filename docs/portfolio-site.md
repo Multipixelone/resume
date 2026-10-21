@@ -149,7 +149,11 @@ or successful rendering. Do not deploy them before that permission is confirmed.
 A fallback-only screenshot is not an exact-font approval.
 
 `src/lib/media.js` selects three existing performance photos and keeps the three
-verified reel IDs/titles/order. All seven images are preserved by the media lane.
+verified reel IDs/titles/order. Each photo's optional `show` (a `theatre.toml` id)
+and `blurb` (Finn's own words) become a note: on fine hover pointers the cursor
+turns into a bubble showing it, and touch, no-JS and screen-reader visitors get
+the same note as the figure caption. An unknown `show` id fails the build.
+All seven images are preserved by the media lane.
 The selected photo pixels were inspected for descriptive alt text; production
 identifications and photographer credits were not guessed. `PhotoPrint` supports
 caption/credit/creditUrl once supplied. No invented credit or public "credit
