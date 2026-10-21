@@ -1,0 +1,85 @@
+{
+  "research_date": "2026-10-21",
+  "download_time_utc": "2026-10-21T06:07:31Z",
+  "source_scope": "Seven distinct homepage image URLs captured in the fetched public Squarespace HTML; this is not a complete Squarespace account/media-library inventory.",
+  "archive_semantics": "Byte-for-byte HTTP response bodies from the public CDN base URLs, retained under observed .jpg pathnames. The server returned image/webp payloads, not JPEG. These are the CDN-served representations, not verified camera masters or clean originals.",
+  "items": [
+    {
+      "filename": "portrait.jpg",
+      "route": "/",
+      "source_url": "https://images.squarespace-cdn.com/content/v1/693b77108e84b232a7bf4b84/c560cc7c-2937-4e66-a166-306fbc79fbaa/portrait.jpg",
+      "http_status": 200,
+      "content_type": "image/webp",
+      "stored_payload_format": "WEBP",
+      "bytes": 349998,
+      "dimensions": "2400x3000",
+      "sha256": "766b4f0eb8d8b2e940933f5408fa5d02e7ee65abcf4726134035bc78ce1cbe2c"
+    },
+    {
+      "filename": "finn_photo_reel_2.jpg",
+      "route": "/",
+      "source_url": "https://images.squarespace-cdn.com/content/v1/693b77108e84b232a7bf4b84/e7e31854-a8d5-40fe-8c70-2b82c2f40b86/finn_photo_reel_2.jpg",
+      "http_status": 200,
+      "content_type": "image/webp",
+      "stored_payload_format": "WEBP",
+      "bytes": 541432,
+      "dimensions": "2500x1735",
+      "sha256": "ac02b8b9474aeb58a0fe8d676104d635ebd6cba5f9db309f4711bf4acb1c9994"
+    },
+    {
+      "filename": "2X9A9381-X4.jpg",
+      "route": "/",
+      "source_url": "https://images.squarespace-cdn.com/content/v1/693b77108e84b232a7bf4b84/e44adf1d-c1d7-4183-9128-6699ed3d5813/2X9A9381-X4.jpg",
+      "http_status": 200,
+      "content_type": "image/webp",
+      "stored_payload_format": "WEBP",
+      "bytes": 165164,
+      "dimensions": "1638x2048",
+      "sha256": "625b519011f56887fb438f8865ec867ec01b34803784ee7170c35d13722a1572"
+    },
+    {
+      "filename": "composer_singing.jpg",
+      "route": "/",
+      "source_url": "https://images.squarespace-cdn.com/content/v1/693b77108e84b232a7bf4b84/e8231d12-6fde-4adf-ad20-34e20bd6d1c1/composer_singing.jpg",
+      "http_status": 200,
+      "content_type": "image/webp",
+      "stored_payload_format": "WEBP",
+      "bytes": 100426,
+      "dimensions": "1280x960",
+      "sha256": "d9f815c6f0a1209b741be0f0ee5f30210736a90f1c4817fc0f09e825f81d8a24"
+    },
+    {
+      "filename": "2X9A9285-4K.jpg",
+      "route": "/",
+      "source_url": "https://images.squarespace-cdn.com/content/v1/693b77108e84b232a7bf4b84/f9c08f0e-bf40-43bc-b8e8-e5c0e5e403aa/2X9A9285-4K.jpg",
+      "http_status": 200,
+      "content_type": "image/webp",
+      "stored_payload_format": "WEBP",
+      "bytes": 155242,
+      "dimensions": "1420x1136",
+      "sha256": "d2837d6ae721b9aa6ead514ee4a6f914b0382ff5aa7018ff1c69412f652ee5d0"
+    },
+    {
+      "filename": "20250529_Molloy_University_Legally_Blonde_JRV_3462-X3.jpg",
+      "route": "/",
+      "source_url": "https://images.squarespace-cdn.com/content/v1/693b77108e84b232a7bf4b84/52f5f0f5-5762-48d4-a84b-4b8616fbaad8/20250529_Molloy_University_Legally_Blonde_JRV_3462-X3.jpg",
+      "http_status": 200,
+      "content_type": "image/webp",
+      "stored_payload_format": "WEBP",
+      "bytes": 31774,
+      "dimensions": "655x893",
+      "sha256": "78ad6cc2b71a5dcc82ba0fafb869e7b900c537278801da832df3539b47486d83"
+    },
+    {
+      "filename": "_DSC2342-X3.jpg",
+      "route": "/",
+      "source_url": "https://images.squarespace-cdn.com/content/v1/693b77108e84b232a7bf4b84/9d20d773-aa09-4a36-bf73-e8f12322037c/_DSC2342-X3.jpg",
+      "http_status": 200,
+      "content_type": "image/webp",
+      "stored_payload_format": "WEBP",
+      "bytes": 62656,
+      "dimensions": "739x721",
+      "sha256": "bcaf5db185c7980854a27dd13bdc9c7bbc81e78ad87accc34fafeb13707dacf7"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+/* Exact blog family names and remote declarations. No proprietary binaries bundled.
+   Domain license coverage and CORS are unresolved final-delivery dependencies.
+   Fallback rendering is resilience, not approved equivalent typography. */
+@font-face {
+  font-family: "Sabon Next";
+  src: url("https://fonts.finnrut.is/Sabon%20Next%20Regular.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Sabon Next";
+  src: url("https://fonts.finnrut.is/Sabon%20Next%20Italic.woff2") format("woff2");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Sabon Next";
+  src: url("https://fonts.finnrut.is/Sabon%20Next%20Demi.woff2") format("woff2");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Sabon Next";
+  src: url("https://fonts.finnrut.is/Sabon%20Next%20Bold.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "PragmataPro Mono Liga";
+  src: local("PragmataProMonoLiga-Regular"), url("https://fonts.finnrut.is/PragmataPro_Mono_Regular_ligatures_0827.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "PragmataPro Mono Liga";
+  src: local("PragmataProMonoLiga-Bold"), url("https://fonts.finnrut.is/PragmataPro_Mono_Bold_ligatures_0827.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "PragmataPro Mono Liga";
+  src: local("PragmataProMonoLiga-Italic"), url("https://fonts.finnrut.is/PragmataPro_Mono_Italic_ligatures_0827.woff2") format("woff2");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "PragmataPro Mono Liga";
+  src: local("PragmataProMonoLiga-BoldItalic"), url("https://fonts.finnrut.is/PragmataPro_Mono__Bold_Italic_ligatures_0827.woff2") format("woff2");
+  font-weight: 700; font-style: italic; font-display: swap;
+}

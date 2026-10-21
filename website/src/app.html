@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <style>
+      /* Base-aware local OFL faces; the parallel media lane supplies these files. */
+      @font-face { font-family: "Cooper*"; src: url("%sveltekit.assets%/fonts/cooper/Cooper-Black.woff2") format("woff2"); font-weight: 900; font-style: normal; font-display: swap; }
+      @font-face { font-family: "Cooper*"; src: url("%sveltekit.assets%/fonts/cooper/Cooper-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+      @font-face { font-family: "Cooper*"; src: url("%sveltekit.assets%/fonts/cooper/Cooper-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+    </style>
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>

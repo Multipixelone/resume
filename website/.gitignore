@@ -1,7 +1,10 @@
 # build output
+build/
 dist/
-# generated types
-.astro/
+.svelte-kit/
+# browser validation artifacts
+test-results/
+playwright-report/
 
 # dependencies
 node_modules/

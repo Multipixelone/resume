@@ -1,14 +1,27 @@
 {
-  "name": "",
+  "name": "finn-rutis-portfolio",
+  "private": true,
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "test": "node --test tests/*.test.mjs",
+    "dev:fixture": "vite --config tests/browser/vite.config.mjs --host 127.0.0.1"
   },
+  "engines": { "node": ">=22.12.0" },
   "dependencies": {
-    "astro": "^6.1.6"
+    "smol-toml": "1.9.1"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "3.0.10",
+    "@sveltejs/kit": "2.55.0",
+    "@sveltejs/vite-plugin-svelte": "6.2.1",
+    "svelte": "5.57.2",
+    "svelte-check": "4.7.7",
+    "typescript": "5.9.3",
+    "vite": "7.3.1"
   }
 }
