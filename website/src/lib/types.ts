@@ -10,6 +10,7 @@ export interface Show {
   performance_start?: string;
   closing_night?: string;
   ticket_url?: string;
+  livestream?: boolean;
   photo?: string;
   photo_alt?: string;
 }

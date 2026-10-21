@@ -58,6 +58,7 @@ test('real parser preserves quoted date strings and multiline text', () => {
 test('TOML native dates, wrong field types, bad chronology and unknown fields fail ingestion', () => {
   assert.throws(() => parseShows(fixture + 'performance_start = 2026-10-21\n'), /YYYY-MM-DD/);
   assert.throws(() => parseShows(fixture.replace('on_resume = true', 'on_resume = "true"')), /boolean/);
+  assert.throws(() => parseShows(fixture + 'livestream = "true"\n'), /livestream must be boolean/);
   assert.throws(() => parseShows(fixture + 'rehearsal_start = "2026-10-25"\nperformance_start = "2026-10-21"\n'), /chronological/);
   assert.throws(() => parseShows(fixture + 'description = "not a canonical field"\n'), /unknown field/);
   assert.throws(() => parseShows(fixture + 'photo = "/../private.jpg"\n'), /traverse/);

@@ -35,10 +35,10 @@ export function parseVariants(source) {
  */
 function projectShow(show) {
   const { id, title, character, company, director, on_resume, resume_order,
-    rehearsal_start, performance_start, closing_night, ticket_url, photo, photo_alt } = show;
+    rehearsal_start, performance_start, closing_night, ticket_url, livestream, photo, photo_alt } = show;
   return /** @type {import('../src/lib/types').Show} */ (Object.fromEntries(Object.entries({ id, title, character, company, director,
     on_resume, resume_order, rehearsal_start, performance_start, closing_night,
-    ticket_url, photo, photo_alt }).filter(([, value]) => value !== undefined)));
+    ticket_url, livestream, photo, photo_alt }).filter(([, value]) => value !== undefined)));
 }
 
 /** Resolve each photo's hover note against the canonical shows. Unknown ids fail the build.

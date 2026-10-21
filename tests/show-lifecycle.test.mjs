@@ -128,6 +128,11 @@ test('frontend optional fields reject unsafe URLs and paths, omit rather than fi
   const safe = normalize({ a: record({ ticket_url: 'https://example.com/tickets', photo: '/photos/show.jpg', photo_alt: 'Fixture photo' }) });
   assert.equal(safe[0].photo, '/photos/show.jpg');
   assert.equal(one()[0].ticket_url, undefined);
+  assert.equal(normalize({ a: record({ livestream: true }) })[0].livestream, true);
+  assert.equal(one()[0].livestream, undefined);
+  for (const livestream of ['yes', 1, '', null]) {
+    assert.throws(() => normalize({ a: record({ livestream }) }), /livestream must be boolean/);
+  }
   for (const ticket_url of ['javascript:alert(1)', 'data:text/html,hi', '//example.com', '/tickets', '', 1, 'https://user:pass@example.com']) {
     assert.throws(() => normalize({ a: record({ ticket_url }) }));
   }

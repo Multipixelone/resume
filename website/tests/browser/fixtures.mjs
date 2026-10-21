@@ -14,7 +14,7 @@ export const fixtures = {
   }) } }),
   overlap: normalizeShows({ shows: {
     performing: record(1, { rehearsal_start: '2026-10-01', performance_start: '2026-10-21', closing_night: '2026-10-25' }),
-    rehearsing: record(2, { rehearsal_start: '2026-10-20', performance_start: '2026-10-27', closing_night: '2026-11-02', ticket_url: 'https://example.com/tickets' }),
+    rehearsing: record(2, { rehearsal_start: '2026-10-20', performance_start: '2026-10-27', closing_night: '2026-11-02', ticket_url: 'https://example.com/tickets', livestream: true }),
     later: record(3, { rehearsal_start: '2026-10-20', performance_start: '2026-10-29', closing_night: '2026-11-08' })
   } })
 };

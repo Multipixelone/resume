@@ -92,7 +92,8 @@ The section is a compact playbill notice under a light rule. A single show gets
 the singular "Current project" label; several become ruled listings under
 "Current projects". Titles stay smaller than the next section heading. Each
 show's opening date sits on a landscape ticket with a vertical "Admit one" rail,
-a small paper tear, and an optional "Get tickets" band below the date. When a
+a small paper tear, an optional "Livestream available" line under the run, and
+an optional "Get tickets" band below the date. When a
 booking URL exists, the whole stub is one native link with a visible hover and
 keyboard focus treatment. Stubs without a URL stay non-interactive. The header ticket
 shares its stock and tear. The layout stacks below 768px, with the same readable

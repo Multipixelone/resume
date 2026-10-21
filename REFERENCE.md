@@ -477,7 +477,7 @@ Each entry includes the canonical facts, every summary variant that's been writt
 
 Revisiting Theory of Relativity Cabaret is a one-night performance on 2026-11-15 at The Green Room 42. Finn supplied the date on 2026-10-21 and asked for rehearsal to count from that day; it stays off the PDF and shows on the website's Current projects until closing.
 
-Finn supplied the [ticket booking page](https://thegreenroom42.venuetix.com/showdetails/rTOb8o15Tf5KEEyZQQEN/Egdk6ElXMZBj9v3iTbLM) on 2026-10-21 for the website's ticket stub.
+Finn supplied the [ticket booking page](https://thegreenroom42.venuetix.com/showdetails/rTOb8o15Tf5KEEyZQQEN/Egdk6ElXMZBj9v3iTbLM) on 2026-10-21 for the website's ticket stub. The show is also livestreamed, with stream tickets sold on that same page; Finn asked on 2026-10-21 for the stub to say "Livestream available".
 
 ### Film / Commercial
 

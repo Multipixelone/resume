@@ -28,6 +28,7 @@ Optional fields, omitted entirely when unknown:
 | `performance_start` | Quoted `YYYY-MM-DD` actual Gregorian date |
 | `closing_night` | Quoted `YYYY-MM-DD` actual Gregorian date |
 | `ticket_url` | Absolute HTTP(S) URL, without credentials |
+| `livestream` | Boolean; `true` prints "Livestream available" on the Current projects stub |
 | `photo` | Root-relative public asset path such as `/photos/show.jpg`, no traversal |
 | `photo_alt` | Nonempty alternative text supplied for a future photo consumer |
 

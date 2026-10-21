@@ -67,7 +67,7 @@
             class="now-stub-shadow"
             class:now-stub-link={!!show.ticket_url}
             href={show.ticket_url}
-            aria-labelledby={show.ticket_url ? `${id}-tickets ${id} ${id}-date ${id}-run` : undefined}
+            aria-labelledby={show.ticket_url ? `${id}-tickets ${id} ${id}-date ${id}-run${show.livestream ? ` ${id}-stream` : ''}` : undefined}
             data-paper-arrival
           >
             <div class="now-stub">
@@ -84,6 +84,9 @@
                     Through <time datetime={show.closing_night}>{monthDay(show.closing_night)}{year(show.performance_start) !== year(show.closing_night) ? `, ${year(show.closing_night)}` : ''}</time>
                   {/if}
                 </p>
+                {#if show.livestream}
+                  <p id={`${id}-stream`} class="stub-stream">Livestream available</p>
+                {/if}
               </div>
               {#if show.ticket_url}
                 <span id={`${id}-tickets`} class="stub-action">Get tickets <Arrow /></span>
