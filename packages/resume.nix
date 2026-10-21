@@ -26,7 +26,7 @@ let
     in
     year >= 1 && month >= 1 && month <= 12 && day >= 1 && day <= builtins.elemAt days (month - 1)
   );
-  typstWithPackages = typst.withPackages (ps: [ typstPackages.fontawesome ]);
+  typstWithPackages = typst.withPackages (ps: [ typstPackages.fontawesome_0_6_2 ]);
   variants = builtins.fromTOML (builtins.readFile ../variants.toml);
 
   typstFlags = ''--root . --ignore-system-fonts --input commit="${commit}" --input version="${version}" --input submission-date="${submissionDate}"'';

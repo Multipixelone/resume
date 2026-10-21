@@ -28,7 +28,7 @@ let
     in
     year >= 1 && month >= 1 && month <= 12 && day >= 1 && day <= builtins.elemAt days (month - 1)
   );
-  typstWithPackages = typst.withPackages (ps: [ typstPackages.fontawesome ]);
+  typstWithPackages = typst.withPackages (ps: [ typstPackages.fontawesome_0_6_2 ]);
 in
 assert lib.assertMsg validSubmissionDate "submissionDate must be a real ISO calendar date (YYYY-MM-DD)";
 stdenv.mkDerivation {
