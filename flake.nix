@@ -37,6 +37,8 @@
               (substring 6 2 longDate)
             ]);
           version = mkDate (self.lastModifiedDate or "19700101");
+          # Archived snapshot date, independent of source/revision provenance.
+          submissionDate = pkgs.lib.removeSuffix "\n" (builtins.readFile ./metadata/submission-date.txt);
           src = self;
           websiteRoot = ./website;
 
@@ -77,6 +79,7 @@
               version
               src
               commit
+              submissionDate
               ;
           };
           finnRutis = pkgs.callPackage ./packages/finn-rutis.nix {
@@ -85,6 +88,7 @@
               version
               src
               commit
+              submissionDate
               ;
           };
           website = pkgs.callPackage ./packages/website.nix {

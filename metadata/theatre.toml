@@ -1,61 +1,86 @@
+schema = "theatre-shows-v1"
+
 [shows]
 [shows.joseph]
+on_resume = true
+resume_order = 1
 title = "Joseph & the Technicolor Dreamcoat"
 character = "Simeon"
 company = "Madison Theatre"
 director = "Maizy Post"
-upcoming_until = "2026-07-09"
 [shows.wedding]
+on_resume = true
+resume_order = 2
 title = "Wedding Singer"
 character = "Ensemble"
 company = "CAP21 / Molloy Univ."
 director = "Melissa Firlit"
 [shows.seussical]
+on_resume = true
+resume_order = 3
 title = "Seussical"
 character = "Cat in the Hat"
 company = "CAP21 / Molloy Univ."
 director = "Darren Lee"
 [shows.kiss-me-kate]
+on_resume = true
+resume_order = 4
 title = "Kiss Me Kate"
 character = "Gangster #2"
 company = "Madison Theatre"
 director = "Angelo Fraboni"
 [shows.legally-blonde]
+on_resume = true
+resume_order = 5
 title = "Legally Blonde"
 character = "Aaron / Dewey"
 company = "Madison Theatre"
 director = "Angelo Fraboni"
 [shows.pop]
+on_resume = true
+resume_order = 6
 title = "Pirates of Penzance"
 character = "Pirate"
 company = "CAP21 / Molloy Univ."
 director = "Melissa Firlit"
 [shows.in-pieces]
+on_resume = true
+resume_order = 7
 title = "In Pieces"
 character = "Grey"
 company = "Bridgetown Conservatory"
 director = "Kevin Paul Clark"
 [shows.theory]
+on_resume = true
+resume_order = 8
 title = "Theory of Relativity"
 character = "Ryan"
 company = "Bridgetown Conservatory"
 director = "Rick Lewis"
 [shows.tuck]
+on_resume = true
+resume_order = 9
 title = "Tuck Everlasting"
 character = "Jesse Tuck"
 company = "Broadway Rose"
 director = "Isaac Lamb"
 [shows.curtains]
+on_resume = true
+resume_order = 10
 title = "Curtains"
 character = "Bobby Pepper"
 company = "NW Children's Theatre"
 director = "Dustin Brown"
 [shows.midsummer]
+on_resume = true
+resume_order = 11
 title = "A Midsummer Night's Dream"
 character = "Oberon"
 company = "NW Children's Theatre"
 director = "Sarah Jane Hardy"
 [shows.matilda]
+on_resume = true
+resume_order = 12
 title = "Matilda"
 character = "Sergei/Ensemble"
 company = "NW Children's Theatre"

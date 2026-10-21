@@ -485,26 +485,31 @@
 }
 
 #let cvPerformance(metadata) = {
+  import "./utils/shows.typ": resumeShows, showUpcoming
   let skillTypeStyle(str) = {
     align(left, text(size: 10pt, str))
   }
-  let shows = metadata.shows
+  // Only canonical theatre opts in. Other credit categories retain every row.
+  let theatre = metadata.at("schema", default: none) == "theatre-shows-v1"
+  let shows = if theatre { resumeShows(metadata.shows) } else {
+    metadata.shows.pairs()
+  }
   let today = buildDate()
+  let upcoming(credit) = {
+    if theatre {
+      showUpcoming(credit, today)
+    } else {
+      // Preserve legacy credit behavior without migrating those data files.
+      let until = credit.at("upcoming_until", default: none)
+      if until == none { false } else {
+        showUpcoming((performance_start: until), today)
+      }
+    }
+  }
 
   let hasUpcoming = false
   for (c) in shows {
-    let until = c.at(1).at("upcoming_until", default: none)
-    if until != none {
-      let untilParts = until.split("-")
-      let untilDate = datetime(
-        year: int(untilParts.at(0)),
-        month: int(untilParts.at(1)),
-        day: int(untilParts.at(2)),
-      )
-      if today < untilDate {
-        hasUpcoming = true
-      }
-    }
+    if upcoming(c.at(1)) { hasUpcoming = true }
   }
 
   table(
@@ -518,18 +523,7 @@
       let character = c.at(1).character
       let company = c.at(1).company
       let director = c.at(1).director
-      let until = c.at(1).at("upcoming_until", default: none)
-      let isUpcoming = if until != none {
-        let untilParts = until.split("-")
-        let untilDate = datetime(
-          year: int(untilParts.at(0)),
-          month: int(untilParts.at(1)),
-          day: int(untilParts.at(2)),
-        )
-        today < untilDate
-      } else {
-        false
-      }
+      let isUpcoming = upcoming(c.at(1))
       (
         if isUpcoming {
           skillTypeStyle[#title\*]
@@ -624,4 +618,3 @@
   set bibliography(title: none, style: refStyle, full: refFull)
   bib
 }
-

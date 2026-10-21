@@ -39,3 +39,6 @@ pnpm-debug.log*
 test-*.typ
 test-*.pdf
 *.pdf
+
+# Local orchestration state
+.slim/deepwork/
