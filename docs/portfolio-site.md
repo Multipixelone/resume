@@ -125,7 +125,8 @@ assembly; do not waive those checks because the five HTML pages build.
 
 The exact approved light tokens are in `src/styles/site.css`. No theme toggle or
 system-dark rule is added. Desktop is portrait/name, then offset bio, independent
-production notes, then a wide/tall/smaller photo spread. At narrow widths the
+production notes, then a wide/tall/smaller photo spread repeated as a
+mirror image. At narrow widths the
 portrait comes before the name, the prints become unrotated and vertically
 ordered, and links remain visible. Text never overlays a face. The supplied
 rectangles retain their full proportions; no backgrounds are removed or cutouts
@@ -148,7 +149,7 @@ declarations may trigger browser requests; they are not evidence of permission
 or successful rendering. Do not deploy them before that permission is confirmed.
 A fallback-only screenshot is not an exact-font approval.
 
-`src/lib/media.js` selects three existing performance photos and keeps the three
+`src/lib/media.js` selects six existing performance photos and keeps the three
 verified reel IDs/titles/order. Each photo's optional `show` (a `theatre.toml` id)
 and `blurb` (Finn's own words) become a note: on fine hover pointers the cursor
 turns into a bubble showing it, and touch, no-JS and screen-reader visitors get

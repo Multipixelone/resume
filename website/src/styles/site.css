@@ -81,18 +81,21 @@ main:focus { outline: none; }
 /* Normal-size links on paper-shade need the darker approved accent (6.52:1). */
 .ticket-link { color: var(--accent-hover); display: inline-flex; align-items: center; gap: .75rem; min-height: 44px; margin-top: .75rem; font-weight: 600; }
 
-/* A spread, not a tile grid: wide anchor, offset tall print, smaller trailing scene. */
+/* A spread, not a tile grid: wide anchor, offset tall print, smaller trailing scene, then the same three mirrored. */
 .photo-spread { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3.5rem 2rem; align-items: start; }
 .photo-print { min-width: 0; }
 .photo-print--wide { grid-column: 1 / 9; grid-row: 1; }
 .photo-print--tall { grid-column: 9 / -1; grid-row: 1 / 3; margin-top: 4.5rem; }
 .photo-print--small { grid-column: 3 / 9; grid-row: 2; }
+.photo-print--wide-right { grid-column: 5 / -1; grid-row: 3; }
+.photo-print--tall-left { grid-column: 1 / 5; grid-row: 3 / 5; margin-top: 4.5rem; }
+.photo-print--small-right { grid-column: 6 / 11; grid-row: 4; }
 .photo-layers { position: relative; isolation: isolate; }
 .photo-backing { position: absolute; inset: 0; background: var(--paper-shade); border: 1px solid var(--border); transform: translate(12px, 14px) rotate(-1deg); z-index: -1; pointer-events: none; }
 .photo-mat { display: block; padding: .65rem .65rem 1.25rem; background: var(--paper); border: 1px solid var(--border); box-shadow: 0 4px 14px var(--shadow); transition: translate 150ms ease; }
 .photo-mat img { width: 100%; }
-.photo-print--tall .photo-mat { transform: rotate(1deg); }
-.photo-print--small .photo-mat { transform: rotate(-1deg); }
+.photo-print--tall .photo-mat, .photo-print--small-right .photo-mat { transform: rotate(1deg); }
+.photo-print--small .photo-mat, .photo-print--tall-left .photo-mat { transform: rotate(-1deg); }
 .photo-print figcaption { padding: 1.5rem .25rem 0; font-size: .9375rem; color: var(--ink); line-height: 1.5; }
 .photo-credit { display: block; }
 @media (hover: hover) and (pointer: fine) { .photo-mat:hover { translate: 0 -2px; } }
@@ -119,7 +122,7 @@ main:focus { outline: none; }
 .is-open .photo-bubble-body { clip-path: circle(150% at var(--ox) var(--oy)); background: var(--paper); }
 .is-open .photo-bubble-body > * { opacity: 1; transition-delay: 80ms; }
 @supports (animation-timeline: view()) {
-  .photo-print--small .photo-backing { animation: paper-drift linear both; animation-timeline: view(); animation-range: entry 0% exit 100%; }
+  .photo-print--small .photo-backing, .photo-print--small-right .photo-backing { animation: paper-drift linear both; animation-timeline: view(); animation-range: entry 0% exit 100%; }
   @keyframes paper-drift { from { translate: 0 0; } to { translate: 0 8px; } }
 }
 
@@ -170,6 +173,9 @@ main:focus { outline: none; }
   .photo-print--wide { grid-column: 1 / 8; }
   .photo-print--tall { grid-column: 8 / -1; }
   .photo-print--small { grid-column: 2 / 8; }
+  .photo-print--wide-right { grid-column: 6 / -1; }
+  .photo-print--tall-left { grid-column: 1 / 6; }
+  .photo-print--small-right { grid-column: 6 / 12; }
   .resume-intro { grid-template-columns: 1fr; gap: 2rem; }
   .resume-sheet { max-width: 42rem; width: 100%; }
   .contact-links { margin-left: 12.5%; }
@@ -191,9 +197,12 @@ main:focus { outline: none; }
   .photo-print { width: 100%; margin: 0; }
   .photo-print--tall { width: 78%; align-self: flex-end; }
   .photo-print--small { width: 90%; }
-  .photo-print--tall .photo-mat, .photo-print--small .photo-mat { transform: none; }
+  .photo-print--tall-left { width: 78%; }
+  .photo-print--small-right { width: 90%; align-self: flex-end; }
+  .photo-print--tall .photo-mat, .photo-print--small .photo-mat,
+  .photo-print--tall-left .photo-mat, .photo-print--small-right .photo-mat { transform: none; }
   .photo-backing { transform: translate(8px, 10px); }
-  .photo-print--small .photo-backing { animation: none; }
+  .photo-print--small .photo-backing, .photo-print--small-right .photo-backing { animation: none; }
   .photo-mat { padding: .5rem .5rem 1rem; }
   .credit-list li { grid-template-columns: 1fr; gap: .5rem; }
   .download-library { grid-template-columns: 1fr; }

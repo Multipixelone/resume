@@ -3,6 +3,7 @@
 // Add caption/credit/creditUrl only from Finn's verified media handoff.
 // Hover bubble: `show` is a metadata/theatre.toml id (title and role come from there),
 // `blurb` is Finn's own words about the performance. Leave either empty to skip it.
+// Each `placement` is a fixed slot in the spread (site.css), so use each one once.
 export const performancePhotos = [
   {
     file: "finn_photo_reel_2.jpg",
@@ -29,6 +30,33 @@ export const performancePhotos = [
     alt: "Performers singing together, with the center performer holding a notebook against a burgundy sweater.",
     placement: "small",
     show: "",
+    blurb: "",
+  },
+  {
+    file: "2X9A9285-4K.jpg",
+    width: 1420,
+    height: 1136,
+    alt: "A performer in a tall red-and-white striped hat and cat makeup steps forward mid-dance, with four ensemble members in orange vests and safari helmets behind.",
+    placement: "wide-right",
+    show: "seussical",
+    blurb: "",
+  },
+  {
+    file: "20250529_Molloy_University_Legally_Blonde_JRV_3462-X3.jpg",
+    width: 655,
+    height: 893,
+    alt: "A curly-haired performer in a gray sweater smiles and holds a backpack strap, while a seated performer looks up from a chair.",
+    placement: "tall-left",
+    show: "legally-blonde",
+    blurb: "",
+  },
+  {
+    file: "_DSC2342-X3.jpg",
+    width: 739,
+    height: 721,
+    alt: "Two performers in fedoras, one in a pinstripe suit, lean in over a seated performer in a red velvet jacket at a small wooden desk.",
+    placement: "small-right",
+    show: "kiss-me-kate",
     blurb: "",
   },
 ];
