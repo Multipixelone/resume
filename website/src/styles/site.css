@@ -13,6 +13,8 @@
   --border: #ddd6c6;
   --code-bg: #f3efe6;
   --code-border: #e7e0d1;
+  --ticket-paper: #fcfaf5;
+  --ticket-tear: polygon(0 0, calc(100% - 5px) 0, calc(100% - 2px) 6%, calc(100% - 6px) 12%, calc(100% - 3px) 19%, calc(100% - 7px) 26%, calc(100% - 2px) 33%, calc(100% - 5px) 41%, calc(100% - 1px) 48%, calc(100% - 6px) 55%, calc(100% - 3px) 63%, calc(100% - 7px) 70%, calc(100% - 2px) 77%, calc(100% - 5px) 85%, calc(100% - 1px) 93%, calc(100% - 5px) 100%, 0 100%);
   --shadow: rgba(43, 37, 32, 0.06);
   --glow: rgba(255, 255, 255, 0.5);
   --font-display: "Cooper*", Georgia, serif;
@@ -42,13 +44,10 @@ main:focus { outline: none; }
 .site-header nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; }
 .site-header ul { display: flex; flex-wrap: wrap; gap: .25rem .5rem; list-style: none; margin: 0 -.75rem 0 0; padding: 0; }
 .site-header a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); font-weight: 600; text-decoration: none; }
-/* Home is the half of a theatre ticket you keep: card stock, a printed seat, and the ragged
-   edge the usher leaves at the door. The shadow sits on the wrapper because clip-path would cut it.
-   The card is as wide as its seat line so the tear, placed in percent, always lands in the right
-   padding: a fixed width let wider fallback monos (SF Mono, Menlo) run the "F" into the tear. */
+/* Both tickets use the same stock and a small, fixed-depth paper tear. */
 .brand { gap: .8rem; margin-right: auto; }
-.brand-ticket { display: block; filter: drop-shadow(0 2px 3px rgba(43, 37, 32, .14)); transform: rotate(-4deg); transition: transform 220ms cubic-bezier(.2, .8, .2, 1); }
-.ticket-card { display: grid; align-content: center; gap: .15rem; width: max-content; height: 2.75rem; padding: 0 1.1rem 0 .85rem; background: linear-gradient(90deg, var(--accent) 0 .3rem, transparent .3rem), #fcfaf5; border: 1px solid var(--border); clip-path: polygon(0 0, 88% 0, 90.5% 4%, 88.5% 8%, 91% 12%, 89% 17%, 92% 21%, 89.5% 26%, 91% 31%, 88% 35%, 90.5% 40%, 89% 45%, 92% 49%, 89.5% 54%, 91.5% 59%, 88.5% 63%, 91% 68%, 89% 73%, 92% 77%, 89.5% 82%, 91% 87%, 88.5% 92%, 90.5% 96%, 89% 100%, 0 100%); }
+.brand-ticket { display: block; filter: drop-shadow(0 2px 2px rgb(43 37 32 / .1)); transform: rotate(-3deg); transition: transform 220ms cubic-bezier(.2, .8, .2, 1); }
+.ticket-card { display: grid; align-content: center; gap: .2rem; width: max-content; min-height: 2.75rem; padding: .5rem 1rem .5rem .85rem; background: linear-gradient(90deg, var(--accent) 0 .2rem, transparent .2rem), var(--ticket-paper); border: 1px solid var(--border); clip-path: var(--ticket-tear); }
 .ticket-seat { font: .5rem/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
 .ticket-mark { font: 900 1.15rem/1 var(--font-display); letter-spacing: .02em; transition: color 150ms ease; }
 .brand-name { font: 700 1.3rem/1 var(--font-display); letter-spacing: -.01em; transition: color 150ms ease; }
@@ -123,22 +122,46 @@ main:focus { outline: none; }
 .text-link > .arrow { transition: transform 250ms ease; }
 .text-link:hover > .arrow { transform: translate(2px, -2px); }
 
-/* Production notes: stable text, optional media, independent cards in shared order. */
-.project-notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 2.5rem; padding-bottom: 1.5rem; }
-.project-note { min-width: 0; background: var(--paper-shade); border: 1px solid var(--border); box-shadow: 0 4px 12px var(--shadow); }
-.project-note:nth-child(even) { margin-top: 1.5rem; }
-.project-note-copy { padding: clamp(1.25rem, 3vw, 2rem); }
-.project-note h3 { font-size: clamp(1.5rem, 2.3vw, 1.75rem); overflow-wrap: anywhere; }
-.project-role { margin-top: .8rem; }
-.project-company { margin-top: .15rem; }
-.project-status { margin-top: 1.5rem; font-weight: 600; }
-.project-dates { margin-top: .4rem; font: .875rem/1.6 var(--font-mono); color: var(--muted); }
-.project-photo { width: 100%; height: auto; }
-/* Normal-size links on paper-shade need the darker approved accent (6.52:1). */
-.ticket-link { color: var(--accent-hover); display: inline-flex; align-items: center; gap: .75rem; min-height: 44px; margin-top: .75rem; font-weight: 600; }
+/* A compact playbill notice with a landscape ticket. Keep the date and ticket action
+   together, and leave the production credits on the page. */
+.now-showing { padding-top: 1rem; border-top: 1px solid var(--border); }
+.section-block > .now-kicker { margin: 0; font: .75rem/1.5 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.now-show { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 19rem); align-items: center; gap: 2rem clamp(2rem, 5vw, 4.5rem); padding-block: 1.75rem 2rem; }
+.now-show + .now-show { border-top: 1px solid var(--border); }
+.now-copy { min-width: 0; }
+.now-status { display: inline-flex; align-items: center; gap: .5rem; font: .75rem/1.5 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent-hover); }
+.now-status::before { content: ''; flex: 0 0 auto; width: .4rem; height: .4rem; border: 1px solid currentColor; border-radius: 50%; }
+.now-status--live::before { background: currentColor; }
+.now-show h3 { max-width: 24ch; margin-top: .65rem; font: 700 clamp(1.875rem, 3vw, 2.5rem)/1.12 var(--font-display); letter-spacing: -.025em; text-wrap: pretty; overflow-wrap: anywhere; }
+.now-showing--solo .now-show h3 { font-size: clamp(2rem, 3.8vw, 3rem); }
+.now-credits { display: flex; flex-wrap: wrap; gap: .8rem 2rem; margin: 1.25rem 0 0; }
+.now-credits > div { min-width: 0; }
+.now-credits dt { font: .6875rem/1.5 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.now-credits dd { margin: .15rem 0 0; font-size: 1.125rem; line-height: 1.45; overflow-wrap: anywhere; }
+.now-aside { display: grid; min-width: 0; justify-items: end; perspective: 1000px; padding-inline: .25rem .5rem; }
+.now-photo { width: min(19rem, 100%); padding: .45rem; background: var(--paper); box-shadow: 0 2px 4px rgb(43 37 32 / .1), 0 12px 24px -12px rgb(43 37 32 / .32); rotate: 2deg; }
+.now-photo + .now-stub-shadow { position: relative; margin-top: -.75rem; }
+/* The shadow sits on the wrapper because the tear's clip-path would cut it off the card. */
+.now-stub-shadow { --tilt: 2deg; width: 100%; max-width: 19rem; filter: drop-shadow(0 1px 2px rgb(43 37 32 / .1)) drop-shadow(0 6px 5px rgb(43 37 32 / .06)); transform: translate3d(var(--pointer-x, 0px), var(--pointer-y, 0px), 0) rotate(var(--tilt)) rotateX(var(--pointer-rx, 0deg)) rotateY(var(--pointer-ry, 0deg)); transition: transform 450ms cubic-bezier(.2, .75, .25, 1); }
+.now-show:nth-of-type(even) .now-stub-shadow { --tilt: -1.5deg; }
+.now-stub-link { display: block; color: var(--ink); text-decoration: none; }
+.now-stub-link:hover { color: var(--ink); }
+.now-stub-link:focus-visible { outline-offset: 5px; }
+.now-stub-link:hover .stub-action, .now-stub-link:focus-visible .stub-action { background: var(--accent-hover); color: var(--ticket-paper); }
+.now-stub-link:hover .now-stub, .now-stub-link:focus-visible .now-stub { border-color: var(--accent); }
+.now-stub { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); border: 1px solid var(--border); border-left: 3px solid var(--accent); background: var(--ticket-paper); clip-path: var(--ticket-tear); }
+.stub-admit { grid-column: 1; grid-row: 1 / 3; display: flex; align-items: center; justify-content: center; padding-block: .8rem; border-right: 1px dashed var(--border); color: var(--muted); font: .6875rem/1 var(--font-mono); letter-spacing: .16em; text-transform: uppercase; writing-mode: sideways-lr; }
+/* Keep text clear of the tear while letting the action's ink reach the cut edge. */
+.stub-body { grid-column: 2; padding: 1.25rem 1.75rem 1.1rem 1.25rem; }
+.stub-date { display: flex; flex-direction: column; gap: .4rem; }
+.stub-day { font: 900 clamp(2.25rem, 3.5vw, 2.75rem)/1 var(--font-display); letter-spacing: -.035em; }
+.stub-detail { font: .75rem/1.5 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent-hover); }
+.stub-run { margin-top: .8rem; font: .6875rem/1.5 var(--font-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+.stub-action { grid-column: 2; display: flex; align-items: center; justify-content: space-between; gap: .75rem; min-height: 44px; padding: .7rem 1.75rem .7rem 1.25rem; border-top: 1px dashed var(--border); background: var(--selection-bg); color: var(--accent-hover); font-size: 1rem; font-weight: 600; text-decoration: underline; text-underline-offset: .2em; transition: background-color 150ms ease, color 150ms ease; }
 
 /* An open spread with one shared paper shape, not a frame repeated six times. */
 .performance-photos { margin-top: clamp(5rem, 10vw, 9rem); }
+.now-showing + .performance-photos { margin-top: clamp(2.5rem, 5vw, 4.5rem); }
 .spread-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 1.5rem; padding: 1.5rem 0 2.75rem; border-top: 1px solid var(--ink); }
 .spread-heading > div { min-width: 0; max-width: 100%; }
 .spread-heading h2 { margin-top: .5rem; font: 900 clamp(3rem, 6.5vw, 5.5rem)/1 var(--font-display); letter-spacing: -.04em; overflow-wrap: anywhere; }
@@ -237,12 +260,17 @@ main:focus { outline: none; }
   .resume-sheet { max-width: 42rem; width: 100%; }
   .contact-links { margin-left: 12.5%; }
 }
+@media (max-width: 767px) {
+  .now-show { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  .now-aside { width: min(100%, 19rem); justify-items: start; }
+  .now-stub-shadow { --tilt: -1.5deg; }
+}
 @media (max-width: 639px) {
   .site-shell { width: calc(100% - 2.5rem); }
   .site-header { margin-bottom: 1.5rem; padding-block: .75rem; }
   .site-header nav { gap: .5rem; }
   .site-header .brand { margin-right: 0; }
-  .ticket-card { width: 3.1rem; height: 2.1rem; padding: 0 .7rem 0 .6rem; }
+  .ticket-card { width: max-content; min-height: 2.1rem; padding: .4rem .8rem .4rem .6rem; }
   .ticket-seat { display: none; }
   .ticket-mark { font-size: .9rem; }
   .brand-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -261,8 +289,9 @@ main:focus { outline: none; }
   .bio-block { max-width: 40ch; margin-top: 2rem; padding-top: 0; font-size: 1.25rem; }
   .hero-links { margin-top: 1.25rem; }
   .text-link { font-size: 1rem; gap: .6rem; }
-  .project-notes { grid-template-columns: 1fr; gap: 1.5rem; padding: 0; }
-  .project-note:nth-child(even) { margin-top: 0; }
+  .now-show { padding-block: 1.5rem; }
+  .now-showing--solo .now-show h3 { font-size: clamp(1.875rem, 7.5vw, 2.5rem); }
+  .now-credits { gap: .8rem 1.5rem; }
   .performance-photos { margin-top: 4.5rem; }
   .spread-heading { flex-wrap: wrap; gap: .75rem 1rem; padding-bottom: 2rem; }
   .spread-heading h2 { font-size: clamp(2.5rem, 14vw, 3.5rem); }
@@ -288,11 +317,11 @@ main:focus { outline: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .text-link:hover > .arrow, .build-badge:hover { transform: none; }
-  .brand:hover .brand-ticket { transform: rotate(-4deg); }
+  .brand:hover .brand-ticket { transform: rotate(-3deg); }
 }
 @media (forced-colors: active) {
   .portrait-backing, .photo-backing, .photo-spread::before { display: none; }
-  .photo-mat, .portrait-card, .project-note, .resume-sheet, .video-mat { border: 1px solid CanvasText; }
+  .photo-mat, .portrait-card, .now-stub, .resume-sheet, .video-mat { border: 1px solid CanvasText; }
   .site-header li a[aria-current="page"] { text-decoration: underline; }
   :focus-visible { outline-color: Highlight; }
 }

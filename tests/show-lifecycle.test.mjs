@@ -196,7 +196,7 @@ test('scheduler refreshes on mount, midnight and visible return; cleanup removes
   assert.equal(cleared.at(-1), 7);
 });
 
-test('canonical TOML migration preserves all 12 credits and supplies no invented dates', () => {
+test('canonical TOML keeps the 12 PDF credits and dates only the cabaret', () => {
   // Narrow fixture reader for this string/boolean/integer-only file, not a production TOML parser.
   const text = readFileSync(new URL('../metadata/theatre.toml', import.meta.url), 'utf8');
   const parsed = { schema: 'theatre-shows-v1', shows: {} };
@@ -211,8 +211,12 @@ test('canonical TOML migration preserves all 12 credits and supplies no invented
   }
   const shows = normalizeShows(parsed);
   assert.deepEqual(ids(selectResumeShows(shows)), ['joseph', 'wedding', 'seussical', 'kiss-me-kate', 'legally-blonde', 'pop', 'in-pieces', 'theory', 'tuck', 'curtains', 'midsummer', 'matilda']);
-  assert.deepEqual(shows.map(show => show.resume_order), Array.from({ length: 12 }, (_, i) => i + 1));
-  assert.ok(shows.every(show => !show.rehearsal_start && !show.performance_start && !show.closing_night));
-  assert.ok(shows.every(show => !isUpcoming(show, '2026-07-01')));
-  assert.deepEqual(selectCurrentShows(shows, at('2026-10-21T12:00:00Z')), []);
+  assert.deepEqual(shows.map(show => show.resume_order), Array.from({ length: 15 }, (_, i) => i + 1));
+  const dated = shows.filter(show => show.rehearsal_start || show.performance_start || show.closing_night);
+  assert.deepEqual(ids(dated), ['theory-cabaret']);
+  assert.ok(selectResumeShows(shows).every(show => !isUpcoming(show, '2026-07-01')));
+  assert.deepEqual(selectCurrentShows(shows, at('2026-10-20T12:00:00Z')), []);
+  assert.deepEqual(selectCurrentShows(shows, at('2026-10-21T12:00:00Z')).map(show => [show.id, show.status]), [['theory-cabaret', 'rehearsing']]);
+  assert.deepEqual(selectCurrentShows(shows, at('2026-11-16T04:59:59Z')).map(show => [show.id, show.status]), [['theory-cabaret', 'performing']]);
+  assert.deepEqual(selectCurrentShows(shows, at('2026-11-16T05:00:00Z')), []);
 });

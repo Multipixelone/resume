@@ -468,11 +468,16 @@ Each entry includes the canonical facts, every summary variant that's been writt
 
 | Show | Role | Company | Director |
 | --- | --- | --- | --- |
+| Revisiting Theory of Relativity Cabaret | Self | The Green Room 42 | Justine-Elise Beall |
 | Samantha Single Handed | Shelley | First Table Read | Aaron Gandy |
 | Christmas Cabaret | Self | Bridgetown Conservatory | Marcus Harbaugh |
 | Song & Dance Revue | Self | CAP21 / Molloy Univ. | Lori Leshner |
 | Composer Project Revue | Self | CAP21 / Molloy Univ. | Aimée Francis |
 | Bridgetown Cabaret 2020 | Self | Bridgetown Conservatory | Rick Lewis |
+
+Revisiting Theory of Relativity Cabaret is a one-night performance on 2026-11-15 at The Green Room 42. Finn supplied the date on 2026-10-21 and asked for rehearsal to count from that day; it stays off the PDF and shows on the website's Current projects until closing.
+
+Finn supplied the [ticket booking page](https://thegreenroom42.venuetix.com/showdetails/rTOb8o15Tf5KEEyZQQEN/Egdk6ElXMZBj9v3iTbLM) on 2026-10-21 for the website's ticket stub.
 
 ### Film / Commercial
 

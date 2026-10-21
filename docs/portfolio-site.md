@@ -84,10 +84,22 @@ No Nix or CI changes were made in the site lane.
 only when nonempty, and calls `watchCurrentShows` inside Svelte `onMount`, returning
 its cleanup. The shared helper alone determines eligibility, Eastern dates,
 ordering, next-midnight timing, and tab-return refresh. Component code only
-formats date labels in UTC to preserve date-only display; it contains no second
-lifecycle implementation. Optional photos without supplied alternative text are
-treated as decorative within the already-labeled production note. Supply useful
-`photo_alt` in canonical data when the photo communicates more than that context.
+formats date labels in UTC to preserve date-only display, and words the status
+from the watcher's Eastern date (opening, closing, tonight); it contains no second
+lifecycle implementation.
+
+The section is a compact playbill notice under a light rule. A single show gets
+the singular "Current project" label; several become ruled listings under
+"Current projects". Titles stay smaller than the next section heading. Each
+show's opening date sits on a landscape ticket with a vertical "Admit one" rail,
+a small paper tear, and an optional "Get tickets" band below the date. When a
+booking URL exists, the whole stub is one native link with a visible hover and
+keyboard focus treatment. Stubs without a URL stay non-interactive. The header ticket
+shares its stock and tear. The layout stacks below 768px, with the same readable
+ticket labels for single and multiple shows. A role of `Self` is
+left out, since it tells a visitor nothing. Optional photos without supplied
+alternative text are treated as decorative within the already-labeled show.
+Supply useful `photo_alt` in canonical data when the photo communicates more.
 
 `npm run dev:fixture` serves a separate Vite/Svelte harness rooted at
 `tests/browser/`, not a production SvelteKit route. It mounts the real component
@@ -149,10 +161,10 @@ hover/scroll motion. Touch users keep the same composition and ordinary photo
 links, without pointer tilt. Observers, listeners, frames and animations are cleaned up on navigation.
 Scrolling remains native; all essential content works without JavaScript.
 
-Production-note ticket links use the existing `--accent-hover` token even at
-rest: its reported contrast on `--paper-shade` is 6.52:1, versus 4.43:1 for
-`--accent`. No palette value changes. Underlines, thicker hover underlines and
-the accent focus outline remain; paper-backed links retain their original colors.
+Current-project ticket actions use `--accent-hover` on `--selection-bg`, changing
+to light text on `--accent-hover` when hovered or focused. The weekday and year
+on the stub also use `--accent-hover`. The link wraps the cut paper so its
+keyboard focus outline stays visible around the entire ticket.
 
 Cooper* Black 900 is the name, Bold 700 is the other page titles. Local OFL faces
 and LICENSE.md are supplied by the parallel media lane, not rewritten here.

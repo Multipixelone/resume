@@ -99,3 +99,14 @@ title = "Composer Project Revue"
 character = "Self"
 company = "CAP21 / Molloy Univ."
 director = "Aimée Francis"
+[shows.theory-cabaret]
+on_resume = false
+resume_order = 15
+title = "Revisiting Theory of Relativity Cabaret"
+character = "Self"
+company = "The Green Room 42"
+director = "Justine-Elise Beall"
+rehearsal_start = "2026-10-21"
+performance_start = "2026-11-15"
+closing_night = "2026-11-15"
+ticket_url = "https://thegreenroom42.venuetix.com/showdetails/rTOb8o15Tf5KEEyZQQEN/Egdk6ElXMZBj9v3iTbLM"
