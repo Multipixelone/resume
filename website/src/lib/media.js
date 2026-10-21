@@ -11,7 +11,7 @@ export const performancePhotos = [
     height: 3468,
     alt: "Three performers dancing with one arm raised, the center performer in an orange sweater.",
     placement: "wide",
-    show: "",
+    show: "song-dance-revue",
     blurb: "",
   },
   {
@@ -29,7 +29,7 @@ export const performancePhotos = [
     height: 960,
     alt: "Performers singing together, with the center performer holding a notebook against a burgundy sweater.",
     placement: "small",
-    show: "",
+    show: "composer-project-revue",
     blurb: "",
   },
   {

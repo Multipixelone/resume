@@ -85,3 +85,17 @@ title = "Matilda"
 character = "Sergei/Ensemble"
 company = "NW Children's Theatre"
 director = "Sarah Jane Hardy"
+[shows.song-dance-revue]
+on_resume = false
+resume_order = 13
+title = "Song & Dance Revue"
+character = "Self"
+company = "CAP21 / Molloy Univ."
+director = "Lori Leshner"
+[shows.composer-project-revue]
+on_resume = false
+resume_order = 14
+title = "Composer Project Revue"
+character = "Self"
+company = "CAP21 / Molloy Univ."
+director = "Aimée Francis"
