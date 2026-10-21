@@ -1,5 +1,53 @@
 # Changelog
 
+## [3.0.0] - 2026-10-21
+
+### 🚀 Features
+
+- Sent & modal resume variants in [7645f08](https://github.com/Multipixelone/resume/commit/7645f084db55213a9024ed89b54c224468f8ba45)
+- *(portfolio)* Build static SvelteKit artist website in [60964bd](https://github.com/Multipixelone/resume/commit/60964bdeee76742148e6bedfc4e3f0aa39d74dbc)
+- Blacksmith resume in [75a8463](https://github.com/Multipixelone/resume/commit/75a846337b9d2792995df63f965ad0f08d994e73)
+- Fao resume in [9d6eaea](https://github.com/Multipixelone/resume/commit/9d6eaea88b24e70d15734ff9ebdc18d3f0bc1c32)
+- Astor-place variant in [67004e3](https://github.com/Multipixelone/resume/commit/67004e36c357dd7e1b26d7d1529c33fad0a0107d)
+- *(website)* Turn the cursor into a note bubble over photos in [7fcdf31](https://github.com/Multipixelone/resume/commit/7fcdf313e263901826deb678ea5aa907ecc32c6a)
+- *(website)* Add three photos in a mirrored spread in [0fc72e7](https://github.com/Multipixelone/resume/commit/0fc72e7c9ba60bdc08112dd1ee91fe7a796a831c)
+- *(website)* Tag the song & dance and composer revue photos in [11c0b33](https://github.com/Multipixelone/resume/commit/11c0b33d198d017028c060c04662726ef9cb9efa)
+- *(website)* Replace footer with the blog's icon footer in [1cb5d9c](https://github.com/Multipixelone/resume/commit/1cb5d9c17da912b6a86d8457d12ef929170492cb)
+- *(website)* Replace home link with a torn theatre ticket in [dd6bb24](https://github.com/Multipixelone/resume/commit/dd6bb2467495a7834ca2c46238f95fc571a1c673)
+- *(website)* Refine portfolio composition and photo motion in [7b55fdd](https://github.com/Multipixelone/resume/commit/7b55fdd57b61222736ed6977ad3d1bd8c23aae48)
+- *(website)* Add the blog's favicon and touch icon in [ea8f056](https://github.com/Multipixelone/resume/commit/ea8f0563eea709517843d898dba28a96789c8657)
+- *(website)* Add a social card and its generator in [8ef53f3](https://github.com/Multipixelone/resume/commit/8ef53f331a5c9d42aace10e3dc9b942914aac3c3)
+- *(website)* Add open graph tags for link previews in [4f48280](https://github.com/Multipixelone/resume/commit/4f48280d06b986b496c0d422e014b2d23ecef339)
+- *(website)* Add linked ticket stubs for current projects in [c980b3c](https://github.com/Multipixelone/resume/commit/c980b3c82a1f33363d3c371042279aeee50fe928)
+
+### 🐛 Bug Fixes
+
+- *(website)* Draw every link arrow from one svg in [9a9a3c5](https://github.com/Multipixelone/resume/commit/9a9a3c5b2827050a4a7910520c435990f525830c)
+- *(website)* Size the ticket stub to its seat line in [9702399](https://github.com/Multipixelone/resume/commit/9702399529d97826b15ef6391f792ce6df3062fb)
+
+### 📚 Documentation
+
+- Add website local dev workflow in [886fdf1](https://github.com/Multipixelone/resume/commit/886fdf176b9b81767aa889cc32699570eb1c83e7)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update dependency python to 3.15 (#122) in [d3582fd](https://github.com/Multipixelone/resume/commit/d3582fd18cb73748feb63ec759404229974fbe50)
+- *(portfolio)* Package and publish website independently in [ec8b45d](https://github.com/Multipixelone/resume/commit/ec8b45dac19c3d9065e14339590f8f818e2fa459)
+
+### ✍️ Content
+
+- *(content)* Archive MTA computer specialist posting in [0ec5852](https://github.com/Multipixelone/resume/commit/0ec58525d6f7fea0ba078866032963a4f4f03f5f)
+- *(content)* Add MTA systems administrator posting in [4e9556d](https://github.com/Multipixelone/resume/commit/4e9556db010c198a57b747fc3cbc1c9606106cec)
+- *(content)* Move MTA computer specialist posting in [0aa8fd5](https://github.com/Multipixelone/resume/commit/0aa8fd56feee4aae5717da4107958dc1a1184759)
+- *(content)* Add MTA 14197 posting summary in [cd951ba](https://github.com/Multipixelone/resume/commit/cd951ba3d17d7770f885dfca8ab753c7db5490de)
+- *(content)* Add MTA systems administrator resume in [640626f](https://github.com/Multipixelone/resume/commit/640626fe4ceca4b3a0bea73e29598e0a487710fb)
+- *(content)* Archive Blacksmith technical support posting in [0431bfd](https://github.com/Multipixelone/resume/commit/0431bfdc5520020c6023ff0282cbfd45643eb924)
+- *(content)* Add how lucky you are video in [9cfe546](https://github.com/Multipixelone/resume/commit/9cfe5469d50bcf11753d3e69b7ed588dfddcd627)
+
+### 📋 Template
+
+- *(template)* Share show lifecycle and explicit submission dates in [65527ea](https://github.com/Multipixelone/resume/commit/65527eaaf1c0d9e9bbecdb3309d663be55284ee7)
+
 ## [2.7.1] - 2026-09-09
 
 ### 🚀 Features
