@@ -65,6 +65,8 @@
             p:
             [
               p.playwright
+              # website/scripts/gen_social_card.py draws the Open Graph card.
+              p.pillow
               p.mypy
               p.pytest
               p.ruff

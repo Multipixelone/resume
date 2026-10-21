@@ -14,6 +14,7 @@ available. This is not a standalone copy of the canonical content.
 | `env SITE_BASE=/resume npm run build` | Build for repository Pages rather than domain root |
 | `env SITE_BASE=/resume npm run preview -- --host 127.0.0.1` | Preview that repository-base build |
 | `npm run dev:fixture` | Separate, unshipped CurrentProjects browser test harness |
+| `python3 scripts/gen_social_card.py` | Redraw `static/social-card.png` after changing its copy or palette (needs Pillow, in the dev shell) |
 
 See [portfolio site handoff](../docs/portfolio-site.md) for artifact assembly,
 font permissions, media-credit dependencies, and the assigned validation matrix.
