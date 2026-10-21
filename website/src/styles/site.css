@@ -38,12 +38,29 @@ a, button { -webkit-tap-highlight-color: var(--selection-bg); }
 button { font: inherit; color: var(--ink); cursor: pointer; }
 main:focus { outline: none; }
 .site-shell { width: min(100% - 3rem, 75rem); margin-inline: auto; }
-.site-header { padding-block: 1.5rem; margin-bottom: 2.5rem; border-bottom: 1px solid var(--border); }
-.site-header nav { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; }
-.site-header ul { display: flex; flex-wrap: wrap; gap: .25rem 2rem; list-style: none; margin: 0; padding: 0; }
+.site-header { padding-block: 1.5rem; margin-bottom: 2.5rem; }
+.site-header nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; }
+.site-header ul { display: flex; flex-wrap: wrap; gap: .25rem .5rem; list-style: none; margin: 0 -.75rem 0 0; padding: 0; }
 .site-header a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); font-weight: 600; text-decoration: none; }
-.site-header a:hover, .site-header a[aria-current="page"] { color: var(--accent); text-decoration: underline; }
-.home-link { margin-right: auto; }
+/* Home is the half of a theatre ticket you keep: card stock, a printed seat, and the ragged
+   edge the usher leaves at the door. The shadow sits on the wrapper because clip-path would cut it. */
+.brand { gap: .8rem; margin-right: auto; }
+.brand-ticket { display: block; filter: drop-shadow(0 2px 3px rgba(43, 37, 32, .14)); transform: rotate(-4deg); transition: transform 220ms cubic-bezier(.2, .8, .2, 1); }
+.ticket-card { display: grid; align-content: center; gap: .15rem; width: 5.3rem; height: 2.75rem; padding: 0 1.1rem 0 .85rem; background: linear-gradient(90deg, var(--accent) 0 .3rem, transparent .3rem), #fcfaf5; border: 1px solid var(--border); clip-path: polygon(0 0, 88% 0, 90.5% 4%, 88.5% 8%, 91% 12%, 89% 17%, 92% 21%, 89.5% 26%, 91% 31%, 88% 35%, 90.5% 40%, 89% 45%, 92% 49%, 89.5% 54%, 91.5% 59%, 88.5% 63%, 91% 68%, 89% 73%, 92% 77%, 89.5% 82%, 91% 87%, 88.5% 92%, 90.5% 96%, 89% 100%, 0 100%); }
+.ticket-seat { font: .5rem/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.ticket-mark { font: 900 1.15rem/1 var(--font-display); letter-spacing: .02em; transition: color 150ms ease; }
+.brand-name { font: 700 1.3rem/1 var(--font-display); letter-spacing: -.01em; transition: color 150ms ease; }
+.brand:hover .brand-ticket { transform: rotate(-1deg) translateY(-2px); }
+.brand:hover .ticket-mark { color: var(--accent-hover); }
+.brand:hover .brand-name { color: var(--accent); }
+/* The homepage already carries the large name, so there the stub stands alone. */
+.brand[aria-current="page"] .brand-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* Pages are paper slips: the current one is pinned down, the rest slide in on hover. */
+.site-header li a { position: relative; isolation: isolate; padding-inline: .75rem; }
+.site-header li a::before { content: ""; position: absolute; inset: .3rem 0; z-index: -1; background: var(--paper-shade); border: 1px solid var(--border); box-shadow: 0 2px 6px var(--shadow); opacity: 0; transform: rotate(var(--tilt, -2deg)) scale(.85); transition: opacity 150ms ease, transform 220ms cubic-bezier(.2, .8, .2, 1); pointer-events: none; }
+.site-header li:nth-child(even) a { --tilt: 1.5deg; }
+.site-header li a:hover, .site-header li a[aria-current="page"] { color: var(--accent-hover); }
+.site-header li a:hover::before, .site-header li a[aria-current="page"]::before { opacity: 1; transform: rotate(var(--tilt, -2deg)); }
 .skip-link { position: absolute; top: .5rem; left: .5rem; z-index: 10; transform: translateY(-200%); padding: .65rem 1rem; background: var(--paper); border: 1px solid var(--border); }
 .skip-link:focus { transform: none; }
 .section-block { margin-top: var(--space-section); }
@@ -200,8 +217,14 @@ main:focus { outline: none; }
 @media (max-width: 639px) {
   .site-shell { width: calc(100% - 2.5rem); }
   .site-header { margin-bottom: 1.5rem; padding-block: .75rem; }
-  .site-header nav { display: block; }
-  .site-header ul { column-gap: 1.5rem; row-gap: .35rem; margin-top: .25rem; }
+  .site-header nav { gap: .5rem; }
+  .site-header .brand { margin-right: 0; }
+  .ticket-card { width: 3.1rem; height: 2.1rem; padding: 0 .7rem 0 .6rem; }
+  .ticket-seat { display: none; }
+  .ticket-mark { font-size: .9rem; }
+  .brand-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .site-header ul { gap: 0; margin: 0; }
+  .site-header li a { padding-inline: .35rem; font-size: .875rem; }
   .home-hero { gap: 1.75rem; padding-top: 1rem; }
   .portrait-layers { width: min(100% - 1rem, 17.5rem); }
   .portrait-mat { transform: none; }
@@ -231,9 +254,11 @@ main:focus { outline: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .photo-mat:hover { translate: none; }
+  .brand:hover .brand-ticket { transform: rotate(-4deg); }
 }
 @media (forced-colors: active) {
   .portrait-backing, .photo-backing { display: none; }
   .photo-mat, .portrait-mat, .project-note, .resume-sheet, .video-mat, .photo-bubble-body { border: 1px solid CanvasText; }
+  .site-header li a[aria-current="page"] { text-decoration: underline; }
   :focus-visible { outline-color: Highlight; }
 }
