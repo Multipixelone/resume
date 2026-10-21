@@ -71,6 +71,10 @@ main:focus { outline: none; }
    marks read heavier than a 1.7 outline in the same box, so they are trimmed. */
 .icon { width: 1.15rem; height: 1.15rem; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .icon-solid { width: 1.02rem; height: 1.02rem; fill: currentColor; stroke: none; }
+/* Link arrows (Arrow.svelte) keep the icon box in rem, not em, so a 1.25rem download link
+   and an 11px caption draw the same arrow. The heavier stroke sits beside semibold link
+   text; the drop centers it on the cap height when the link is inline. */
+.arrow { stroke-width: 2.2; vertical-align: -.2em; }
 
 /* Footer ported from the blog: icon row, then copyright and build badge on one line. */
 .site-footer { margin-top: var(--space-section); padding: 1.25rem 0 2.5rem; border-top: 1px solid var(--border); text-align: center; font-variant: small-caps; font-synthesis: small-caps; letter-spacing: .05em; }

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { sitePath } from '$lib/paths';
+  import Arrow from '$lib/components/Arrow.svelte';
   import type { PageProps } from './$types';
   let { data }: PageProps = $props();
 </script>
@@ -9,9 +10,9 @@
 <header class="page-heading"><h1>Resume</h1></header>
 <div class="resume-intro">
   <div class="download-actions">
-    <a class="primary-link" href={sitePath(data.download.pdf)} rel="external" download>Download resume <span class="file-label">(PDF)</span> <span aria-hidden="true">↓</span></a>
+    <a class="primary-link" href={sitePath(data.download.pdf)} rel="external" download>Download resume <span class="file-label">(PDF)</span> <Arrow dir="down" /></a>
     <a href={sitePath(data.composite)} rel="external" download>Resume with headshot <span class="file-label">(PDF)</span></a>
-    <a href={sitePath('/resumes/')}>All resumes <span aria-hidden="true">↗</span></a>
+    <a href={sitePath('/resumes/')}>All resumes <Arrow /></a>
   </div>
   <div class="resume-sheet">
     <!-- Phase 3 supplies the actual PNG and PDFs. Object fallback works without JS. -->

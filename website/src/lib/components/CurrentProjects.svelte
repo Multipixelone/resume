@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { watchCurrentShows } from '$shows';
   import { sitePath } from '$lib/paths';
+  import Arrow from './Arrow.svelte';
   import type { Show, CurrentShow } from '$lib/types';
 
   let { shows, watchOptions }: {
@@ -40,7 +41,7 @@
               {/if}
             </p>
             {#if show.ticket_url}
-              <a class="ticket-link" href={show.ticket_url} aria-label={`Tickets for ${show.title}`}>Tickets <span aria-hidden="true">↗</span></a>
+              <a class="ticket-link" href={show.ticket_url} aria-label={`Tickets for ${show.title}`}>Tickets <Arrow /></a>
             {/if}
           </div>
         </article>

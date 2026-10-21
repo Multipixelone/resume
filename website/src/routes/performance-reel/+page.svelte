@@ -1,5 +1,6 @@
 <script>
   import { recordings } from '$lib/media';
+  import Arrow from '$lib/components/Arrow.svelte';
 </script>
 
 <svelte:head><title>Performance reel | Finn Rutis</title></svelte:head>
@@ -10,7 +11,7 @@
     <section class="recording" aria-labelledby={`recording-${video.id}`}>
       <div class="recording-heading">
         <h2 id={`recording-${video.id}`}>{video.title}</h2>
-        <a href={`https://www.youtube.com/watch?v=${video.id}`} aria-label={`Watch ${video.title} on YouTube`}>Watch on YouTube <span aria-hidden="true">↗</span></a>
+        <a href={`https://www.youtube.com/watch?v=${video.id}`} aria-label={`Watch ${video.title} on YouTube`}>Watch on YouTube <Arrow /></a>
       </div>
       <div class="video-mat">
         <iframe
