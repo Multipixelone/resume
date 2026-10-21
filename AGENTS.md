@@ -26,6 +26,25 @@ Every resume PDF comes out of the single `resume` package (`packages/resume.nix`
 
 The `--input commit=` and `--input version=` flags are supplied by Nix during a real build. Pass them by hand when compiling directly, or `src/utils/date.typ::buildDate()` falls back to today.
 
+## Website Local Development
+
+The portfolio site in `website/` is SvelteKit with adapter-static, served by the Vite dev server with live reload. Run it from `website/` inside the dev shell (direnv loads it, or `nix develop`), which provides Node 24:
+
+```bash
+cd website
+npm ci                                   # once, or after package-lock.json changes
+npm run dev -- --host 127.0.0.1 --open   # http://127.0.0.1:5173
+```
+
+Leave it running and edit. Saves to `website/src/` (components, routes, `site.css`) hot-swap in the browser. Saves to the shared inputs one directory up, `metadata/theatre.toml`, `variants.toml`, and `lib/shows.mjs`, trigger a full page reload, so theatre credits and the resume list update without a restart. Those three are the only parent files the dev server may read (`server.fs.allow` in `website/vite.config.js`); a new shared input must be added there and to the source filter in `packages/website.nix`.
+
+What dev mode does not show:
+
+- **Resume downloads.** The PDF and PNG links are broken in dev because `scripts/assemble-portfolio.py` copies them in only during `nix build '.#website'`. Check download wiring against that build's `result/`.
+- **The prerendered output.** For the real static pages run `npm run build && npm run preview -- --host 127.0.0.1`. Add `env SITE_BASE=/resume` to both to test the GitHub Pages subpath.
+
+Before committing site changes, run `npm run check` and `npm test` from `website/`. See `website/README.md` for the full command table and `docs/portfolio-site.md` for design and media notes.
+
 ## How Resume Variants Work
 
 Each variant is a thin entry file in `resumes/` that loads base metadata merged with a variant override, selects modules, and hands the result to the shared `cv` layout.
