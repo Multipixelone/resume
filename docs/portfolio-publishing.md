@@ -16,6 +16,10 @@ variable and `builtins.getEnv`, never interpolation into Nix source. `--impure`
 permits those explicit environment reads; the flake is obtained from the absolute
 checkout path in `GITHUB_WORKSPACE`.
 
+The same step passes the Pages `origin` output as `siteOrigin`, which the Open
+Graph tags use to make the social card URL absolute. It must be `http` or `https`
+plus a host, with no path or trailing slash.
+
 The workflow builds this package contract:
 
 ```nix

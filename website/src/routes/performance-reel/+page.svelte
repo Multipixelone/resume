@@ -1,9 +1,10 @@
 <script>
   import { recordings } from '$lib/media';
   import Arrow from '$lib/components/Arrow.svelte';
+  import PageHead from '$lib/components/PageHead.svelte';
 </script>
 
-<svelte:head><title>Performance reel | Finn Rutis</title></svelte:head>
+<PageHead title="Performance reel | Finn Rutis" />
 
 <header class="page-heading"><h1>Performance reel</h1></header>
 <div class="recordings">

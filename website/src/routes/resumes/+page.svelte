@@ -1,11 +1,12 @@
 <script lang="ts">
   import { sitePath } from '$lib/paths';
   import Arrow from '$lib/components/Arrow.svelte';
+  import PageHead from '$lib/components/PageHead.svelte';
   import type { PageProps } from './$types';
   let { data }: PageProps = $props();
 </script>
 
-<svelte:head><title>All resumes | Finn Rutis</title></svelte:head>
+<PageHead title="All resumes | Finn Rutis" />
 
 <header class="page-heading">
   <h1>All resumes</h1>

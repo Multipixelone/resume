@@ -24,6 +24,12 @@ digits, underscores and hyphens in nonempty segments; no trailing slash. The
 site's existing validator also runs during Svelte configuration. A mount changes
 URLs, not the on-disk directory layout: there is no extra `resume/` wrapper.
 
+Link previews need absolute URLs, so the package also takes `siteOrigin ? ""`,
+the scheme and host the Open Graph tags resolve against. Empty means
+`https://finnrut.is`; the Pages workflow passes the configured origin, so a
+repository mount on `github.io` previews its own copy of the social card.
+`website/lib/config.mjs` validates the same scheme-and-host grammar.
+
 The final derivation output is the static hosting root:
 
 ```text

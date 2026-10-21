@@ -5,3 +5,12 @@ export function siteBase(value = '') {
   }
   return value;
 }
+
+/** Scheme and host that link previews resolve the social card against; empty means the custom domain. */
+export function siteOrigin(value = '') {
+  if (value === '') return 'https://finnrut.is';
+  if (!/^https?:\/\/[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+$/.test(value)) {
+    throw new TypeError('SITE_ORIGIN must be empty or a scheme and host without a path or trailing slash');
+  }
+  return value;
+}

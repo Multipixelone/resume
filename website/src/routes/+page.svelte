@@ -2,6 +2,7 @@
   import { sitePath } from '$lib/paths';
   import Arrow from '$lib/components/Arrow.svelte';
   import CurrentProjects from '$lib/components/CurrentProjects.svelte';
+  import PageHead from '$lib/components/PageHead.svelte';
   import PhotoSpread from '$lib/components/PhotoSpread.svelte';
   import { paperMotion } from '$lib/motion';
   import type { PageProps } from './$types';
@@ -10,10 +11,7 @@
   let stagePhoto = $derived(data.photos.find(photo => photo.placement === 'tall'));
 </script>
 
-<svelte:head>
-  <title>Finn Rutis</title>
-  <meta name="description" content="Finn Rutis is a New York City Based performance artist that is interested in using the magic of theatre to shine a light on unconscious parts of the human experience" />
-</svelte:head>
+<PageHead title="Finn Rutis" />
 
 <section class="home-hero" aria-labelledby="artist-name">
   <div class="hero-heading">

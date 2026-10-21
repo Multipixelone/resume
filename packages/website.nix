@@ -9,11 +9,17 @@
   resume,
   finnRutis,
   siteBase ? "",
+  # Scheme and host for absolute Open Graph URLs; "" means https://finnrut.is.
+  siteOrigin ? "",
 }:
 assert lib.assertMsg (
   builtins.isString siteBase
   && (siteBase == "" || builtins.match "/[A-Za-z0-9_-]+(/[A-Za-z0-9_-]+)*" siteBase != null)
 ) "siteBase must be empty or a root-relative path without a trailing slash";
+assert lib.assertMsg (
+  builtins.isString siteOrigin
+  && (siteOrigin == "" || builtins.match "https?://[A-Za-z0-9-]+([.][A-Za-z0-9-]+)+" siteOrigin != null)
+) "siteOrigin must be empty or a scheme and host without a path or trailing slash";
 buildNpmPackage {
   pname = "finnrut.is";
   inherit version;
@@ -38,6 +44,7 @@ buildNpmPackage {
   sourceRoot = "source/website";
   npmDepsHash = "sha256-T0gs00394894L/VfuNPizIUBNyLn/y4lJBFvAcL0I9U=";
   env.SITE_BASE = siteBase;
+  env.SITE_ORIGIN = siteOrigin;
   env.SITE_COMMIT = commit;
   nativeBuildInputs = [ python3 ];
 

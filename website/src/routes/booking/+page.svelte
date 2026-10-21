@@ -1,8 +1,9 @@
 <script>
   import Arrow from '$lib/components/Arrow.svelte';
+  import PageHead from '$lib/components/PageHead.svelte';
 </script>
 
-<svelte:head><title>Contact | Finn Rutis</title></svelte:head>
+<PageHead title="Contact | Finn Rutis" />
 
 <div class="contact-page">
   <header class="page-heading"><h1>Contact</h1></header>

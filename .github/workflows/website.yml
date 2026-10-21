@@ -30,6 +30,7 @@ jobs:
         env:
           LC_ALL: C
           SITE_BASE: ${{ steps.pages.outputs.base_path }}
+          SITE_ORIGIN: ${{ steps.pages.outputs.origin }}
         run: |
           # Treat the host mount as data, never as Nix or shell source.
           if [[ "$SITE_BASE" == / ]]; then SITE_BASE=''; fi
@@ -37,11 +38,17 @@ jobs:
             echo 'Invalid Pages base_path' >&2
             exit 1
           fi
-          export SITE_BASE
+          # The origin makes the social card's URL absolute for link previews.
+          if [[ ! "$SITE_ORIGIN" =~ ^https?://[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$ ]]; then
+            echo 'Invalid Pages origin' >&2
+            exit 1
+          fi
+          export SITE_BASE SITE_ORIGIN
           nix build --impure --print-build-logs --expr '
             let flake = builtins.getFlake (builtins.getEnv "GITHUB_WORKSPACE");
             in flake.packages.x86_64-linux.website.override {
               siteBase = builtins.getEnv "SITE_BASE";
+              siteOrigin = builtins.getEnv "SITE_ORIGIN";
             }
           '
       - name: Upload complete Pages artifact

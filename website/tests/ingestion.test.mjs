@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { parse } from 'smol-toml';
 import { attachPhotoNotes, parseShows, parseVariants, portfolioContent } from '../lib/content.mjs';
 import { performancePhotos } from '../src/lib/media.js';
-import { siteBase } from '../lib/config.mjs';
+import { siteBase, siteOrigin } from '../lib/config.mjs';
 import { selectResumeShows } from '../../lib/shows.mjs';
 
 const theatre = await readFile(new URL('../../metadata/theatre.toml', import.meta.url), 'utf8');
@@ -89,5 +89,13 @@ test('base configuration accepts root and repository Pages, rejects ambiguous pa
   assert.equal(siteBase('/resume'), '/resume');
   for (const value of ['/', 'resume', '/resume/', '//host', '/..', '/resume?x=1']) {
     assert.throws(() => siteBase(value), /SITE_BASE/);
+  }
+});
+
+test('origin configuration defaults to the custom domain, rejects paths and slashes', () => {
+  assert.equal(siteOrigin(), 'https://finnrut.is');
+  assert.equal(siteOrigin('https://multipixelone.github.io'), 'https://multipixelone.github.io');
+  for (const value of ['finnrut.is', 'https://finnrut.is/', 'https://finnrut.is/resume', 'https://localhost', 'ftp://finnrut.is', 'https://finnrut.is:8443']) {
+    assert.throws(() => siteOrigin(value), /SITE_ORIGIN/);
   }
 });
