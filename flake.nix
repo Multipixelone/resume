@@ -40,7 +40,6 @@
           # Archived snapshot date, independent of source/revision provenance.
           submissionDate = pkgs.lib.removeSuffix "\n" (builtins.readFile ./metadata/submission-date.txt);
           src = self;
-          websiteRoot = ./website;
 
           tinymistWrapped =
             let
@@ -92,7 +91,7 @@
               ;
           };
           website = pkgs.callPackage ./packages/website.nix {
-            inherit inputs version websiteRoot;
+            inherit version resume finnRutis;
           };
           checks = import ./packages/checks.nix {
             inherit (pkgs) lib;

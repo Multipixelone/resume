@@ -23,5 +23,28 @@ jobs:
 
   build:
     uses: ./.github/workflows/_build.yml
-    with:
-      deploy: false
+
+  website:
+    name: website (${{ matrix.mount }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - mount: root
+            site_base: ''
+          - mount: repository
+            site_base: /resume
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: nixbuild/nix-quick-install-action@v35
+      - name: Build complete website artifact
+        env:
+          SITE_BASE: ${{ matrix.site_base }}
+        run: |
+          nix build --impure --print-build-logs --expr '
+            let flake = builtins.getFlake (builtins.getEnv "GITHUB_WORKSPACE");
+            in flake.packages.x86_64-linux.website.override {
+              siteBase = builtins.getEnv "SITE_BASE";
+            }
+          '

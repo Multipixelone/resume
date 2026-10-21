@@ -1,0 +1,65 @@
+name: Website
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Shared by every Pages publisher; PDF releases do not acquire this lock.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: nixbuild/nix-quick-install-action@v35
+      - name: Read Pages configuration
+        id: pages
+        uses: actions/configure-pages@v6
+      - name: Build complete website artifact for the configured mount
+        env:
+          LC_ALL: C
+          SITE_BASE: ${{ steps.pages.outputs.base_path }}
+        run: |
+          # Treat the host mount as data, never as Nix or shell source.
+          if [[ "$SITE_BASE" == / ]]; then SITE_BASE=''; fi
+          if [[ -n "$SITE_BASE" && ! "$SITE_BASE" =~ ^/[A-Za-z0-9_-]+(/[A-Za-z0-9_-]+)*$ ]]; then
+            echo 'Invalid Pages base_path' >&2
+            exit 1
+          fi
+          export SITE_BASE
+          nix build --impure --print-build-logs --expr '
+            let flake = builtins.getFlake (builtins.getEnv "GITHUB_WORKSPACE");
+            in flake.packages.x86_64-linux.website.override {
+              siteBase = builtins.getEnv "SITE_BASE";
+            }
+          '
+      - name: Upload complete Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ./result
+
+  deploy:
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

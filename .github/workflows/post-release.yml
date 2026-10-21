@@ -8,12 +8,6 @@ on:
 permissions:
   contents: write
   pull-requests: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
 
 jobs:
   tag:
@@ -44,7 +38,6 @@ jobs:
     if: needs.tag.result == 'success'
     uses: ./.github/workflows/_build.yml
     with:
-      deploy: true
       export_pdfs: true
 
   release:

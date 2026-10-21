@@ -1,56 +1,41 @@
-name: Build
+name: Build PDFs
 on:
   workflow_call:
     inputs:
       ref:
         type: string
         default: ''
-      deploy:
-        type: boolean
-        default: false
       export_pdfs:
         type: boolean
         default: false
 
-jobs:
-  get-package-names:
-    runs-on: ubuntu-latest
-    outputs:
-      packages: ${{ steps.get-package-names.outputs.packages }}
-    steps:
-      - uses: actions/checkout@v7.0.1
-        with:
-          ref: ${{ inputs.ref }}
-      - uses: nixbuild/nix-quick-install-action@v35
-      - name: Get package names
-        id: get-package-names
-        run: |
-          packages="$(nix eval --json .#packages.x86_64-linux --apply builtins.attrNames | jq -c '[.[] | select(contains("container") | not)]')"
-          echo "packages=$packages" >> $GITHUB_OUTPUT
+permissions:
+  contents: read
 
+jobs:
   build-package:
-    needs: get-package-names
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        package: ${{ fromJson(needs.get-package-names.outputs.packages) }}
+        package: [resume, finn-rutis]
     steps:
       - uses: actions/checkout@v7.0.1
         with:
           ref: ${{ inputs.ref }}
       - uses: nixbuild/nix-quick-install-action@v35
       - name: Build ${{ matrix.package }}
-        run: nix build '.#packages.x86_64-linux."${{ matrix.package }}"'
+        run: nix build '.#packages.x86_64-linux.${{ matrix.package }}' --print-build-logs
       - name: Upload artifact
         uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.package }}
           path: ./result/
+          if-no-files-found: error
 
-  build:
-    name: assemble artifacts
-    if: ${{ !cancelled() }}
+  export:
+    name: export release PDFs
+    if: ${{ inputs.export_pdfs }}
     needs: build-package
     runs-on: ubuntu-latest
     steps:
@@ -58,114 +43,51 @@ jobs:
         with:
           ref: ${{ inputs.ref }}
           sparse-checkout: |
-            site
             variants.toml
-      - name: Setup Pages
-        if: ${{ inputs.deploy }}
-        uses: actions/configure-pages@v6
-      - name: Download all artifacts
+          sparse-checkout-cone-mode: false
+      - name: Download resume PDFs
         uses: actions/download-artifact@v8
         with:
-          path: ./artifacts
-      - name: Assemble pages artifact
+          name: resume
+          path: ./artifacts/resume
+      - name: Download composite PDF
+        uses: actions/download-artifact@v8
+        with:
+          name: finn-rutis
+          path: ./artifacts/finn-rutis
+      - name: Export complete flat release PDF set
         run: |
-          shopt -s nullglob
-          failed=()
-          succeeded=()
-
-          copy_file() {
-            local pattern="$1"
-            local dest="$2"
-            local files=($pattern)
-            if [ "${#files[@]}" -eq 1 ]; then
-              cp "${files[0]}" "$dest" && succeeded+=("$dest") || failed+=("$dest")
-            elif [ "${#files[@]}" -eq 0 ]; then
-              echo "Warning: No files found matching $pattern"
-              failed+=("$dest")
-            else
-              echo "Warning: Expected 1 file matching $pattern, found ${#files[@]}"
-              failed+=("$dest")
-            fi
-          }
-
-          mkdir -p ./pages
-
-          # Generate index.html with variant cards from variants.toml
-          python3 -c "
-          import tomllib, pathlib, html, os
+          python3 - <<'PY'
+          import pathlib
+          import re
+          import shutil
+          import tomllib
 
           variants = tomllib.loads(pathlib.Path('variants.toml').read_text())
-          template = pathlib.Path('site/index.html').read_text()
-
-          cards = []
-          for v in variants.values():
-              if v.get('site_hidden', False):
-                  continue
-              dest = v['dest']
-              title = html.escape(v.get('title', dest))
-              subtitle = html.escape(v.get('subtitle', ''))
-              png = f'./artifacts/resume/{dest}.png'
-              has_preview = os.path.isfile(png)
-              if has_preview:
-                  preview = f'<img src=\"{dest}.png\" alt=\"{title} preview\">'
-              else:
-                  preview = '<div class=\"placeholder\">PDF</div>'
-              cards.append(f'''    <div class=\"card\">
-                <a href=\"{dest}.pdf\">
-                  <div class=\"preview\">{preview}</div>
-                  <div class=\"info\">
-                    <div class=\"title\">{title}</div>
-                    <div class=\"subtitle\">{subtitle}</div>
-                  </div>
-                </a>
-              </div>''')
-
-          output = template.replace('<!-- VARIANT_CARDS -->', '\n'.join(cards))
-          pathlib.Path('./pages/index.html').write_text(output)
-          "
-
-          # Copy each variant's PDF + PNG from variants.toml
-          python3 -c "
-          import tomllib, pathlib
-          variants = tomllib.loads(pathlib.Path('variants.toml').read_text())
-          for v in variants.values():
-              print(v['dest'])
-          " | while read -r dest; do
-            copy_file "./artifacts/resume/${dest}.pdf" "./pages/${dest}.pdf"
-            copy_file "./artifacts/resume/${dest}.png" "./pages/${dest}.png"
-          done
-
-          # Separate package, not in variants.toml
-          cp "./artifacts/finn-rutis/FINN RUTIS.pdf" "./pages/FINN RUTIS.pdf" && succeeded+=("FINN RUTIS.pdf") || failed+=("FINN RUTIS.pdf")
-
-          echo "Succeeded: ${succeeded[*]:-none}"
-          echo "Failed: ${failed[*]:-none}"
-
-          if [ "${#succeeded[@]}" -eq 0 ]; then
-            echo "Error: No files were copied successfully"
-            exit 1
-          fi
+          if not variants:
+              raise SystemExit('Variant registry is empty')
+          sources = {}
+          for variant in variants.values():
+              dest = variant['dest']
+              if not isinstance(dest, str) or not re.fullmatch(r'[A-Za-z0-9_-]+', dest):
+                  raise SystemExit(f'Unsafe variant destination: {dest!r}')
+              name = f'{dest}.pdf'
+              if name in sources:
+                  raise SystemExit(f'Duplicate release destination: {name}')
+              sources[name] = pathlib.Path('artifacts/resume') / name
+          sources['FINN RUTIS.pdf'] = pathlib.Path('artifacts/finn-rutis/FINN RUTIS.pdf')
+          for source in sources.values():
+              if not source.is_file() or source.stat().st_size == 0:
+                  raise SystemExit(f'Missing or empty required PDF: {source}')
+          output = pathlib.Path('release-pdfs')
+          output.mkdir()
+          for name, source in sources.items():
+              shutil.copyfile(source, output / name)
+          print(f'Exported {len(sources)} required PDFs')
+          PY
       - name: Upload release PDFs
-        if: ${{ inputs.export_pdfs }}
         uses: actions/upload-artifact@v7
         with:
           name: release-pdfs
-          path: ./pages/*.pdf
-
-      - name: Upload pages artifact
-        if: ${{ inputs.deploy }}
-        uses: actions/upload-pages-artifact@v5
-        with:
-          path: ./pages
-
-  deploy:
-    if: ${{ inputs.deploy }}
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+          path: ./release-pdfs/*.pdf
+          if-no-files-found: error
