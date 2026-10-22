@@ -115,7 +115,112 @@ export const callboardEntrance: Action<HTMLElement> = (node) => {
   };
 };
 
-/** Paper responds to the hand. Scrolling never makes the reader wait for it. */
+/** Gallery prints land corner-first, then flatten against the callboard. */
+export const printEntrance: Action<HTMLElement> = (node) => {
+  if (typeof matchMedia !== 'function' || typeof IntersectionObserver !== 'function'
+    || typeof node.animate !== 'function') return;
+
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  if (reduced.matches || document.hidden) return;
+
+  const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
+  const shadow = node.querySelector<HTMLElement>('.photo-arrival-shadow');
+  const animations = new Set<Animation>();
+  let entered = false;
+
+  function release() {
+    observer.disconnect();
+    reduced.removeEventListener('change', syncPreference);
+    document.removeEventListener('visibilitychange', syncPreference);
+    node.removeEventListener('focusin', settle);
+    node.removeEventListener('pointerdown', settle);
+  }
+
+  function settle() {
+    entered = true;
+    release();
+    for (const animation of animations) {
+      animation.onfinish = animation.oncancel = null;
+      animation.cancel();
+    }
+    animations.clear();
+  }
+
+  function play(layer: HTMLElement, frames: Keyframe[], duration: number) {
+    const animation = layer.animate(frames, {
+      id: layer === node ? 'print-landing' : 'print-contact-shadow',
+      duration,
+      easing: 'linear'
+    });
+    animations.add(animation);
+    animation.onfinish = animation.oncancel = () => {
+      animations.delete(animation);
+      animation.onfinish = animation.oncancel = null;
+      if (!animations.size) release();
+    };
+  }
+
+  function arrive() {
+    if (entered || reduced.matches || document.hidden) return;
+    entered = true;
+    if (node.contains(document.activeElement)) {
+      settle();
+      return;
+    }
+
+    // The existing print owns hover/focus transforms. Its outer layer supplies
+    // the landing, keeping the caption and the pointer response independent.
+    const direction = parseFloat(getComputedStyle(node).getPropertyValue('--rotation')) < 0 ? -1 : 1;
+    const compact = !finePointer.matches || window.innerWidth < 640;
+    const travel = compact ? 14 : 28;
+    const turn = compact ? 1.2 : 3;
+    const duration = compact ? 580 : 740;
+    play(node, [
+      {
+        transform: `perspective(1000px) translate3d(${-direction * travel * .4}px, ${-travel}px, 0) rotateX(${compact ? 5 : 9}deg) rotateY(${-direction * turn}deg) rotateZ(${direction * turn}deg) scale(${compact ? .99 : 1.025})`,
+        offset: 0, easing: 'cubic-bezier(.2, .75, .25, 1)'
+      },
+      {
+        transform: `perspective(1000px) translate3d(0, 0, 0) rotateX(-.6deg) rotateY(0deg) rotateZ(${-direction * .18}deg) scale(1)`,
+        offset: .72, easing: SETTLE
+      },
+      { transform: 'perspective(1000px) translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1)', offset: 1 }
+    ], duration);
+
+    // A prepainted shadow loses weight as the paper makes contact. Only opacity
+    // animates, so scrolling never repaints a large blurred shadow each frame.
+    if (shadow) play(shadow, [
+      { opacity: .8, offset: 0, easing: SETTLE },
+      { opacity: .12, offset: .72 },
+      { opacity: 0, offset: 1 }
+    ], duration);
+  }
+
+  function syncPreference() {
+    if (reduced.matches || document.hidden) settle();
+  }
+
+  // Let enough paper enter the viewport to see it land. A capped pixel inset
+  // works even for tall prints and at high zoom. Keep observing during the
+  // landing so a quick scroll past it also cancels the animation.
+  const inset = Math.round(Math.min(160, window.innerHeight * .18));
+  const observer = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) arrive();
+      else if (entered) settle();
+    }
+  }, { rootMargin: `0px 0px -${inset}px 0px`, threshold: 0 });
+
+  observer.observe(node);
+  reduced.addEventListener('change', syncPreference);
+  document.addEventListener('visibilitychange', syncPreference);
+  node.addEventListener('focusin', settle);
+  node.addEventListener('pointerdown', settle, { passive: true });
+
+  return { destroy: settle };
+};
+
+/** Paper responds to the hand, independently of its arrival. */
 export const paperMotion: Action<HTMLElement> = (node) => {
   if (typeof matchMedia !== 'function') return;
 

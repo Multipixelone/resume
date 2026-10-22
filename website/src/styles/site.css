@@ -254,6 +254,9 @@ main:focus { outline: none; }
 .photo-print--tall-left { grid-column: 1 / 5; grid-row: 3 / 5; margin-top: 12rem; --rotation: -4deg; }
 .photo-print--small-right { grid-column: 7 / 12; grid-row: 4; margin-top: 1rem; --rotation: -2.5deg; }
 .photo-layers { position: relative; isolation: isolate; perspective: 1000px; }
+/* The scroll landing moves only the print assembly. Its soft contact shadow is
+   painted once, then faded; captions keep their place on the board. */
+.photo-arrival-shadow { position: absolute; inset: 0; z-index: -1; opacity: 0; transform: rotate(var(--rotation, 0deg)); box-shadow: 0 28px 32px -12px rgb(43 37 32 / .3); pointer-events: none; }
 .photo-backing { display: none; position: absolute; inset: -.5rem; background: var(--paper-shade); border: 1px solid var(--border); transform: translate(calc(10px - var(--pointer-x, 0px)), calc(12px - var(--pointer-y, 0px))) rotate(-3deg); z-index: -1; pointer-events: none; transition: transform 500ms cubic-bezier(.2, .75, .25, 1); }
 .photo-print--tall-left .photo-backing { display: block; }
 .photo-mat { display: block; background: var(--paper); box-shadow: 0 2px 4px rgb(43 37 32 / .1), 0 12px 24px -12px rgb(43 37 32 / .32); transform: translate3d(var(--pointer-x, 0px), calc(var(--pointer-y, 0px) + var(--lift, 0px)), 0) rotate(var(--rest-angle, var(--rotation, 0deg))) rotateX(var(--pointer-rx, 0deg)) rotateY(var(--pointer-ry, 0deg)) scale(var(--photo-scale, 1)); transition: transform 500ms cubic-bezier(.2, .8, .2, 1.15), box-shadow 500ms ease; }
@@ -262,6 +265,38 @@ main:focus { outline: none; }
 .photo-print--small .photo-mat { padding: .4rem; }
 .photo-print--tall-left .photo-mat { padding: .5rem .5rem 1rem; }
 .photo-print--small-right .photo-mat { padding: .5rem; }
+/* A few prints are fastened to the board. The resting angle belongs to the
+   whole object; only the paper flexes beneath its fixed tape or pin. */
+.photo-object { position: relative; }
+.photo-print:not([data-fastening]) .photo-object { perspective: 1000px; }
+.photo-print[data-fastening] .photo-object { transform: rotate(var(--rotation)); }
+.photo-print[data-fastening] .photo-mat { transform: none; }
+.photo-print[data-fastening="tape"] .photo-mat,
+.photo-print[data-fastening="pin"] .photo-mat { transform-origin: 50% .25rem; transition-timing-function: cubic-bezier(.2, .75, .25, 1), ease; }
+.photo-fastener { position: absolute; z-index: 1; pointer-events: none; }
+/* Translucent masking tape, with torn ends and a slight crease in the stock. */
+.photo-tape { top: -.55rem; left: 50%; width: clamp(3.25rem, 20%, 6rem); height: 1.35rem; translate: -50% 0; rotate: -6deg; background: rgb(221 214 198 / .8); clip-path: polygon(3% 0, 98% 5%, 96% 22%, 100% 38%, 97% 56%, 100% 77%, 97% 98%, 2% 93%, 4% 74%, 0 55%, 3% 34%, 0 17%); }
+.photo-tape::after { content: ''; position: absolute; inset: 0; background: linear-gradient(174deg, transparent 45%, rgb(247 244 237 / .5) 49%, rgb(111 100 86 / .08) 52%, transparent 57%); }
+.photo-print--small .photo-tape { width: 24%; min-width: 3.25rem; rotate: 8deg; }
+/* The near-axis view hides the grip behind the cap. Anchor the lower flange's
+   center (60% / 58.5% of the canvas) to the print's pivot, not its bottom edge. */
+.photo-pin { top: .25rem; left: 50%; width: 1.25rem; height: auto; translate: -60% -58.5%; filter: drop-shadow(.5px .75px .5px rgb(43 37 32 / .22)); }
+/* Folded paper corners hold a photograph against a heavier backing card. */
+.photo-print[data-fastening="corners"] .photo-backing { inset: -.8rem -1rem -1rem -.8rem; transform: rotate(var(--rotation)); }
+.photo-corner { width: 1.5rem; height: 1.5rem; filter: drop-shadow(1px 2px 1px rgb(43 37 32 / .17)); }
+.photo-corner::before { content: ''; position: absolute; inset: 0; clip-path: polygon(0 0, 100% 0, 0 100%); background: linear-gradient(135deg, var(--ticket-paper) 0 43%, var(--border) 47%, var(--paper) 51%); }
+.photo-corner--top { top: -.2rem; left: -.2rem; }
+.photo-corner--bottom { right: -.2rem; bottom: -.2rem; rotate: 180deg; }
+@media (prefers-reduced-motion: no-preference) {
+  .photo-print[data-fastening="tape"] .photo-mat { transform: perspective(1000px) rotateX(calc(var(--paper-flex, 0deg) + var(--pointer-rx, 0deg))); }
+  .photo-print[data-fastening="pin"] .photo-mat { transform: perspective(1000px) rotateX(var(--paper-flex, 0deg)) rotateZ(var(--pointer-ry, 0deg)); }
+  .photo-print[data-fastening] .photo-layers:focus-within { --paper-flex: 7deg; }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .photo-print[data-fastening] .photo-layers:hover { --paper-flex: 7deg; }
+}
+/* Corner-mounted prints stay tucked in, including on hover and focus. */
+.photo-print[data-fastening="corners"] .photo-layers .photo-mat { box-shadow: 0 2px 4px rgb(43 37 32 / .1), 0 12px 24px -12px rgb(43 37 32 / .32); }
 .photo-print figcaption { position: relative; display: flex; gap: 1rem; padding: 1.8rem .25rem 0; line-height: 1.5; }
 .photo-index { flex: 0 0 auto; padding-top: .25rem; font: .625rem/1.5 var(--font-mono); color: var(--accent-hover); }
 .photo-caption-copy { min-width: 0; overflow-wrap: anywhere; }
@@ -420,7 +455,7 @@ main:focus { outline: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
 @media (forced-colors: active) {
-  .portrait-backing, .photo-backing, .photo-spread::before, .hero-print-tape { display: none; }
+  .portrait-backing, .photo-backing, .photo-arrival-shadow, .photo-spread::before, .hero-print-tape, .photo-fastener { display: none; }
   .photo-mat, .portrait-card, .now-stub, .resume-sheet, .video-mat { border: 1px solid CanvasText; }
   .hero-links-slip::before { border-color: CanvasText; box-shadow: none; }
   .stub-admit { border-right-color: CanvasText; }

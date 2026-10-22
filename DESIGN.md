@@ -154,7 +154,7 @@ Scrapbook texture is welcome when it is real. A planned layer of blue ballpoint 
 - Cooper Black at playbill scale for the name and big headings; Sabon Next for reading; PragmataPro as the small, tracked, uppercase backstage label voice.
 - Printed objects with square corners, mats, resting angles and soft layered shadows.
 - A torn-ticket motif shared by the header logo and the current-project stub.
-- Motion that feels like paper settling and responding to a hand, never a performance; all of it is removed under reduced motion.
+- Motion that gives printed photos a brief, theatrical landing, then lets the paper respond to a hand; all of it is removed under reduced motion.
 - Every action is a link. No buttons, no forms.
 
 ## Colors
@@ -228,7 +228,7 @@ A single centered shell, `min(100% - 2 x gutter, 75rem)`. Gutters are 1.25rem a 
 
 ## Elevation & Depth
 
-Depth is physical. Printed objects (photo prints, the headshot, tickets, slips, sheets) lift off the page with soft, warm, two-layer shadows tinted from Program Ink; the page, text, rules and captions are flat. Layering comes from stacking paper: a Callboard Card backing under a print, a second print overlapping the headshot, a stub tucked under a show photo. Hover and focus lift a print toward the viewer (9px up, straightened to 0deg, 2.5% larger, deeper shadow).
+Depth is physical. Printed objects (photo prints, the headshot, tickets, slips, sheets) lift off the page with soft, warm, two-layer shadows tinted from Program Ink; the page, text, rules and captions are flat. Layering comes from stacking paper: a Callboard Card backing under a print, a second print overlapping the headshot, a stub tucked under a show photo. Hover and focus lift a loose print toward the viewer (9px up, straightened to 0deg, 2.5% larger, deeper shadow). Fastened prints stay anchored: tape and pins hold the top edge while the paper flexes; corner mounts hold their photograph flat.
 
 ### Shadow Vocabulary
 
@@ -247,7 +247,7 @@ Depth is physical. Printed objects (photo prints, the headshot, tickets, slips, 
 
 Paper is cut square. Prints, sheets, slips and tickets have no corner radius; their silhouettes come from rotation, mats and cut edges instead. The ticket's right edge is a jagged hand-torn line: the header ticket uses the shared `--ticket-tear` clip-path, and the stub repeats the same tear points in its own polygon, adding a V die-cut at the top and bottom of its perforation. Backing papers are irregular quadrilaterals (`polygon(3% 4%, 96% 0, 100% 94%, 0 100%)` and kin), never rectangles. Photo mats are 0.4 to 0.5rem, some with a deeper 1 to 1.1rem bottom edge like a print border.
 
-The only curves are functional: the footer icon hover tile (6px), the pill-shaped build badge, and the small round dot on the ticket's "Livestream available" line.
+Curves in the interface are functional: the footer icon hover tile (6px), the pill-shaped build badge, and the small round dot on the ticket's "Livestream available" line. The gallery's round thumbtack cap follows its physical shape; paper still has square corners.
 
 ### Named Rules
 
@@ -277,8 +277,18 @@ Character: plain, underlined, with one shared arrow.
 Character: a real print with a mat, resting at an angle.
 
 - Playbill Paper mat (0.4 to 0.5rem), no radius, print shadow, resting angle between -4deg and 4deg that alternates between neighbors.
-- Fine pointer only: the print follows the cursor within ±5px / ±4px and tilts up to ±1.5deg / ±2deg; hover or focus lifts and straightens it. Touch gets the same composition without tilt.
+- Fine pointer only: loose prints follow the cursor within ±5px / ±4px and tilt up to ±1.5deg / ±2deg; hover or focus lifts and straightens them. Touch gets the same composition without tilt.
+- Gallery prints land once as they enter view: one corner leads, the paper flattens, and a soft shadow fades as it meets the board. Neighboring prints enter from different angles. The gesture is smaller on phones and touch devices.
 - The caption sits below the print and never moves: a Deep Marquee Rust mono index ("01"), the show title in Cooper Bold, the role in small mono Faded Ink, and Finn's own blurb in body text. Images keep their full proportions; no cutouts, no background removal.
+
+### Photo Fastenings
+
+Character: practical ways of putting a print on the callboard, used selectively.
+
+- The wide opening print and small composer print have translucent masking tape across the top edge, with torn ends and one faint crease. The tape stays fixed while the photo flexes up to 7deg from its grip on hover or keyboard focus, with a small additional pointer response.
+- The tall Seussical print hangs from a rust-colored grip pushpin based on a real photograph, edited to face the viewer as if fully pressed into the paper. The near-axis view shows a thin circular cap covering most of the straight grip, with a small base crescent at the lower right and no visible needle. The canvas is 20px wide. The base's contact center meets the photo's pivot; the photo turns up to 2deg around that point while its bottom edge flexes toward the hand. The pin stays in place. The source photograph, edit prompts, and provenance are recorded in `docs/portfolio-media.md`.
+- The tall-left print sits on heavier Callboard Card stock, held flat by two folded paper corners at opposite ends. Both mounts remain aligned with the photograph, including during interaction.
+- The other two prints remain loose. Every fastening shares its print's resting angle and scroll arrival, while captions stay level. Fastenings are decorative, never cover a face, never intercept a click, and disappear in forced colors. Reduced motion keeps the physical details and removes their movement.
 
 ### Headshot
 
@@ -321,8 +331,8 @@ Hand-drawn blue ballpoint line art, scanned and rendered as CSS masks in one ink
 - **Focal moment:** the homepage portrait is assembled once on first entering view. Its backing seats over 440ms, the headshot and taped print settle together over 620ms with a 60ms offset, and the small print catches at its tape over 640ms with a 140ms offset. The complete gesture ends within 780ms. A contracting shadow gives the headshot weight; name, bio and links are readable throughout. The resting composition is the default, including without JavaScript.
 - **Tape:** pointer entry or keyboard focus nudges the small print through a damped 920ms swing, at most 5deg either way. Its pivot stays at the tape. Repeated entry does not stack swings, and touch follows the link directly.
 - **Feedback:** paper slips settle in 220ms, the ticket end flexes in 280ms, and bounded photo follow uses 450 to 500ms. These are responses to hover or focus, never idle loops. The shared portrait assembly keeps both photographs and the tape together.
-- **Reading:** gallery photos and supporting pages have no scroll entrances or parallax. Captions, headings and body copy stay level.
-- **Lifecycle:** reduced motion cancels active Web Animations and pointer offsets immediately, while color and focus states remain clear. Hidden tabs and navigation clear animations and pending frames. Pointer work is coalesced to one animation frame, with no idle render loop or added dependency.
+- **Gallery:** each photo lands once after entering the bottom 18% of the viewport (capped at 160px), over 740ms (580ms on phones and coarse pointers). Its resting angle determines which corner leads. A brief perspective tilt flattens into the board while a prepainted contact shadow fades. Only the photo assembly moves; captions, headings and body copy stay level. Supporting pages remain still, and scrolling stays native with no parallax or delayed content.
+- **Lifecycle:** reduced motion cancels active Web Animations and pointer offsets immediately, while color and focus states remain clear. Keyboard focus or a pointer press settles an arriving print immediately. Prints scrolled past stop animating and do not replay on return. Hidden tabs and navigation clear animations and pending frames. Pointer work is coalesced to one animation frame, with no idle render loop or added dependency.
 
 ## Do's and Don'ts
 

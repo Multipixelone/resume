@@ -22,6 +22,29 @@ Exact transport metadata and source list are in [`assets/portfolio-originals/man
 
 No reliable photo credits or content/alt descriptions were established by the source HTML (image alt attributes were blank). Filenames such as the Legally Blonde image are copied as observed source filenames, not independently verified credit, show identity, role, photographer, or permission. Rights/credit and meaningful alternative text remain to be confirmed.
 
+## Decorative hardware
+
+`website/static/decorations/pushpin-rust.png` derives from
+[Haragayato's photograph of a pushpin](https://commons.wikimedia.org/wiki/File:Pin.JPG),
+taken on 2006-07-09 and released by the photographer into the public domain.
+The original 1254x1086 JPEG is preserved as
+[`assets/portfolio-decor/pushpin-source.jpg`](../assets/portfolio-decor/pushpin-source.jpg).
+
+On 2026-10-22 the built-in image editor removed the paper background and cast
+shadow, and recolored the turquoise plastic to rust. A second edit changed the
+viewpoint to look nearly along the pin's axis and buried the needle, so the
+cap covers most of the grip and the base appears seated against the paper.
+The result is an AI-assisted reinterpretation of the source photograph, not
+an untouched photograph. The exact prompts are saved in
+[`pushpin-rust.prompt.txt`](../assets/portfolio-decor/pushpin-rust.prompt.txt)
+and [`pushpin-seated.prompt.txt`](../assets/portfolio-decor/pushpin-seated.prompt.txt).
+
+The transparent result was trimmed with 16px of padding and proportionally
+resized to 160x156 and palette-optimized to 13,660 bytes. It displays on a
+20px-wide canvas, anchored by the projected base center, and is decorative
+(`alt=""`, `aria-hidden="true"`). It is separate from the preserved performance
+photography and does not enter the canonical performance-photo list.
+
 ## Reel videos and route inventory status
 
 Current raw public `/performance-reel` HTML exposes these three YouTube blocks in this order:

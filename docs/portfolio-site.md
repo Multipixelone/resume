@@ -150,7 +150,8 @@ pair follows, and the performance photos become a single column with varied
 widths. Text never overlays a face. Photos retain their full proportions; no
 backgrounds are removed or cutouts generated.
 
-`src/lib/motion.ts` supplies the `callboardEntrance` and `paperMotion` actions.
+`src/lib/motion.ts` supplies the `callboardEntrance`, `printEntrance`, and
+`paperMotion` actions.
 The homepage has one opening gesture: the backing seats, the headshot is laid
 down with a contracting shadow, and the taped Seussical print catches and settles.
 The sequence finishes within 780ms, with all content visible throughout. The
@@ -161,14 +162,34 @@ focus, with no cursor-follow twist of its own. Touch follows its photo-spread li
 Fine-pointer movement gives photos a bounded tilt and translation, with one
 animation frame queued for pointer work and no idle render loop. CSS adds a
 lift/straighten response on hover or keyboard focus. Gallery captions and page
-headings stay fixed; gallery and supporting-page photos have no scroll entrances,
-and the broad backing paper has no parallax. Navigation slips respond to keyboard
-focus as well as hover. The ticket's rust end flexes around its perforation while
+headings stay fixed. Gallery prints land corner-first once they enter view, then
+flatten into their resting angles over 740ms (580ms with a smaller gesture on
+phones and coarse pointers). A prepainted contact shadow fades with opacity;
+the landing itself uses transforms, without a scroll listener or per-frame
+shadow painting. Photos remain visible before, during, and after the entrance.
+Supporting-page photos stay still, and the broad backing paper has no parallax.
+Navigation slips respond to keyboard focus as well as hover. The ticket's rust end flexes around its perforation while
 the whole ticket remains one link.
 
-Reduced motion cancels active opening and tape animations, clears pointer offsets,
-and disables spatial feedback. Static color and focus states remain. Hidden tabs
-settle immediately; observers, listeners, frames and animations are cleaned up on
+The gallery uses three physical fastenings: translucent torn tape on the wide
+and small prints, a photographic rust pushpin on the tall print, and two folded corners on
+the tall-left print's backing card. A shared resting wrapper keeps each
+attachment fixed while the paper flexes at its grip. Taped prints hinge from
+their top edge; the pinned print also pivots under its tack. The corner-mounted
+print stays flat, and the two loose prints keep their lift and pointer follow.
+These decorations do not intercept pointer events or enter the accessibility
+tree, and forced colors hides them.
+The pushpin is a transparent PNG derived from a public-domain photograph in
+`static/decorations/`, served through `sitePath()` and anchored by its base.
+The 20px-wide near-axis view hides the grip behind the cap and has no visible
+needle. The source photograph and color, background, and viewpoint edits are
+documented in `docs/portfolio-media.md`.
+
+Reduced motion cancels active opening, tape, and gallery animations, clears pointer
+offsets, and disables spatial feedback. Static color and focus states remain.
+Focus or a pointer press settles an arriving gallery print immediately; prints
+scrolled past also settle and never replay on return. Hidden tabs settle
+immediately; observers, listeners, frames and animations are cleaned up on
 navigation. Scrolling remains native; all essential content works without JavaScript.
 
 Current-project ticket actions use `--accent-hover` on `--selection-bg`, changing
