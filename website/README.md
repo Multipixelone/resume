@@ -19,3 +19,8 @@ available. This is not a standalone copy of the canonical content.
 See [portfolio site handoff](../docs/portfolio-site.md) for artifact assembly,
 font permissions, media-credit dependencies, and the assigned validation matrix.
 Building the site alone does not create PDF/PNG downloads; Phase 3 assembles them.
+
+Licensed `.woff2` files dropped into the gitignored `fonts-local/` (same names as in
+`src/styles/fonts.css`) are served same-origin by both dev servers, so local pages and
+impeccable live need no CORS grant from `fonts.finnrut.is`. Faces without a local copy
+load remotely. Builds always use the remote URLs; restart dev after adding a file.

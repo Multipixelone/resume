@@ -1,9 +1,10 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import { fileURLToPath } from 'node:url';
+import { localFonts } from './lib/local-fonts.mjs';
 
 export default defineConfig({
-  plugins: [sveltekit()],
+  plugins: [localFonts(), sveltekit()],
   server: {
     // The site deliberately consumes canonical sources one directory above it.
     fs: { allow: [
