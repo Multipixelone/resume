@@ -15,7 +15,7 @@ nix build .#website
 For repository Pages, override the function argument, not only a shell variable:
 
 ```sh
-nix build --impure --expr '(builtins.getFlake (toString ./.)).packages.${builtins.currentSystem}.website.override { siteBase = "/resume"; }'
+nix build --impure --expr '(builtins.getFlake "git+file://${toString ./.}").packages.${builtins.currentSystem}.website.override { siteBase = "/resume"; }'
 ```
 
 The argument becomes `SITE_BASE` during the npm build. Nix validates the same

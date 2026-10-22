@@ -21,9 +21,11 @@ compilation. An explicit `--date YYYY-MM-DD` skips the clock and validates the
 actual calendar date, not just its spelling.
 
 The wrapper uses one argv-based `nix build --impure --expr` invocation, a trusted
-repository path resolved from the script location, `builtins.getFlake`, and the
-local `builtins.currentSystem`. Each selected package receives
-`.override { submissionDate = "YYYY-MM-DD"; }`. No shell interprets the command.
+repository path resolved from the script location, `builtins.getFlake` on that
+path as a `git+file://` URI (a bare path drops the commit rev and the footer
+reads "commit dirty"), and the local `builtins.currentSystem`. Each selected
+package receives `.override { submissionDate = "YYYY-MM-DD"; }`. No shell
+interprets the command.
 Repository strings are quoted with Nix interpolation disabled. `--no-link
 --print-out-paths` prints store output directories without creating or overwriting
 a shared `result` symlink. The subprocess runs from the repository and its exit

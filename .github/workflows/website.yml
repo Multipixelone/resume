@@ -44,8 +44,9 @@ jobs:
             exit 1
           fi
           export SITE_BASE SITE_ORIGIN
+          # A bare path loses the git rev and stamps every PDF "commit dirty".
           nix build --impure --print-build-logs --expr '
-            let flake = builtins.getFlake (builtins.getEnv "GITHUB_WORKSPACE");
+            let flake = builtins.getFlake ("git+file://" + builtins.getEnv "GITHUB_WORKSPACE");
             in flake.packages.x86_64-linux.website.override {
               siteBase = builtins.getEnv "SITE_BASE";
               siteOrigin = builtins.getEnv "SITE_ORIGIN";

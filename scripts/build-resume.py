@@ -38,8 +38,10 @@ def build_command(repo, submission_date, outputs):
         f"{{ submissionDate = {nix_string(submission_date)}; }})"
         for output in dict.fromkeys(outputs)
     )
+    # A git+file URI keeps self.rev; a bare path stamps the footer "commit dirty".
+    flake_ref = "git+" + Path(repo).as_uri()
     expression = (
-        f"let f = builtins.getFlake {nix_string(repo)};\nin [\n{packages}\n]"
+        f"let f = builtins.getFlake {nix_string(flake_ref)};\nin [\n{packages}\n]"
     )
     return ["nix", "build", "--impure", "--no-link", "--print-out-paths", "--expr", expression]
 

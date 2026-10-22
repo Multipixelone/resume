@@ -75,9 +75,12 @@ class SubmissionDateTests(unittest.TestCase):
             self.assertEqual(command[:-1], [
                 "nix", "build", "--impure", "--no-link", "--print-out-paths", "--expr"
             ])
-            self.assertIn(r'\${abort \"bad\";}', command[-1])
-            self.assertIn(r'\"quote\"', command[-1])
-            self.assertIn(r'back\\slash', command[-1])
+            self.assertIn(
+                'builtins.getFlake "git+file:///tmp/resume%20space/%22quote%22/'
+                'back%5Cslash/%24%7Babort%20%22bad%22%3B%7D"',
+                command[-1],
+            )
+            self.assertNotIn("${abort", command[-1])
             self.assertIn("builtins.currentSystem", command[-1])
             self.assertEqual(run.call_args.kwargs, {"cwd": repo, "check": False})
 
