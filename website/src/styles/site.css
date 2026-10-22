@@ -169,13 +169,19 @@ main:focus { outline: none; }
 .now-photo { width: min(19rem, 100%); padding: .45rem; background: var(--paper); box-shadow: 0 2px 4px rgb(43 37 32 / .1), 0 12px 24px -12px rgb(43 37 32 / .32); rotate: 2deg; }
 .now-photo + .now-stub-shadow { position: relative; margin-top: -.75rem; }
 /* The shadow sits on the wrapper because the tear's clip-path would cut it off the card. */
-.now-stub-shadow { --tilt: 2deg; width: 100%; max-width: 19rem; filter: drop-shadow(0 1px 2px rgb(43 37 32 / .1)) drop-shadow(0 6px 5px rgb(43 37 32 / .06)); transform: translate3d(var(--pointer-x, 0px), var(--pointer-y, 0px), 0) rotate(var(--tilt)) rotateX(var(--pointer-rx, 0deg)) rotateY(var(--pointer-ry, 0deg)); transition: transform 450ms cubic-bezier(.2, .75, .25, 1); }
+.now-stub-shadow { --tilt: 2deg; width: 100%; max-width: 19rem; filter: drop-shadow(0 1px 2px rgb(43 37 32 / .1)) drop-shadow(0 6px 5px rgb(43 37 32 / .06)); transform: translate3d(var(--pointer-x, 0px), calc(var(--pointer-y, 0px) + var(--lift, 0px)), 0) rotate(calc(var(--tilt) * var(--settle, 1))) rotateX(var(--pointer-rx, 0deg)) rotateY(var(--pointer-ry, 0deg)); transition: transform 450ms cubic-bezier(.2, .75, .25, 1), filter 450ms ease; }
 .now-show:nth-of-type(even) .now-stub-shadow { --tilt: -1.5deg; }
 .now-stub-link { display: block; color: var(--ink); text-decoration: none; }
 .now-stub-link:hover { color: var(--ink); }
 .now-stub-link:focus-visible { outline-offset: 5px; }
+/* Taking the ticket: the band inks over and the date prints in rust. The border stays a plain rule. */
 .now-stub-link:hover .stub-action, .now-stub-link:focus-visible .stub-action { background: var(--accent-hover); color: var(--ticket-paper); }
-.now-stub-link:hover .now-stub, .now-stub-link:focus-visible .now-stub { border-color: var(--accent); }
+.stub-day { transition: color 150ms ease; }
+.now-stub-link:hover .stub-day, .now-stub-link:focus-visible .stub-day { color: var(--accent-hover); }
+/* Like a print, the ticket lifts toward the hand and nearly straightens. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .now-stub-link:is(:hover, :focus-visible) { --lift: -5px; --settle: .25; filter: drop-shadow(0 2px 3px rgb(43 37 32 / .1)) drop-shadow(0 14px 12px rgb(43 37 32 / .12)); }
+}
 /* The ticket's own tear on the right, plus a V die-cut top and bottom where the stub end meets the body. */
 .now-stub { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); border: 1px solid var(--border); background: var(--ticket-paper); clip-path: polygon(0 0, calc(2.25rem - 7px) 0, 2.25rem 7px, calc(2.25rem + 7px) 0, calc(100% - 5px) 0, calc(100% - 2px) 6%, calc(100% - 6px) 12%, calc(100% - 3px) 19%, calc(100% - 7px) 26%, calc(100% - 2px) 33%, calc(100% - 5px) 41%, calc(100% - 1px) 48%, calc(100% - 6px) 55%, calc(100% - 3px) 63%, calc(100% - 7px) 70%, calc(100% - 2px) 77%, calc(100% - 5px) 85%, calc(100% - 1px) 93%, calc(100% - 5px) 100%, calc(2.25rem + 7px) 100%, 2.25rem calc(100% - 7px), calc(2.25rem - 7px) 100%, 0 100%); }
 /* The stub end is printed solid Deep Marquee Rust to the paper's edge (the negative margin covers the
