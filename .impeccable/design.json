@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-22T00:07:57+00:00",
+  "generatedAt": "2026-10-22T19:43:21+00:00",
   "title": "Design System: Finn Rutis",
   "extensions": {
     "colorMeta": {
@@ -217,43 +217,78 @@
         "name": "brand-ticket",
         "value": "drop-shadow(0 2px 2px rgb(43 37 32 / .1))",
         "purpose": "Filter on the header brand ticket."
+      },
+      {
+        "name": "ticket-lifted",
+        "value": "drop-shadow(0 2px 3px rgb(43 37 32 / .1)) drop-shadow(0 14px 12px rgb(43 37 32 / .12))",
+        "purpose": "The current-project stub lifted under fine-pointer hover or keyboard focus."
+      },
+      {
+        "name": "arrival-contact",
+        "value": "0 28px 32px -12px rgb(43 37 32 / .3)",
+        "purpose": "Prepainted contact shadow that fades as a gallery print lands; never at rest."
+      },
+      {
+        "name": "fastener",
+        "value": "drop-shadow(.5px .75px .5px rgb(43 37 32 / .22))",
+        "purpose": "The pushpin's own tiny contact shadow (folded corners use drop-shadow(1px 2px 1px rgb(43 37 32 / .17)))."
       }
     ],
     "motion": [
       {
-        "name": "arrival",
-        "value": "700ms cubic-bezier(0.22, 1, 0.36, 1)",
-        "purpose": "Paper settles in once on first view: from 18px below and 1deg, 2px overshoot, stagger up to 160ms."
+        "name": "settle",
+        "value": "cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Shared landing curve for the portrait assembly and gallery arrivals."
       },
       {
-        "name": "settle",
+        "name": "portrait-assembly",
+        "value": "440ms backing; 620ms headshot + 60ms delay; 640ms small print + 140ms delay",
+        "purpose": "The homepage portrait assembles once on entering view and ends within 780ms. Resting composition is the default without JavaScript."
+      },
+      {
+        "name": "tape-swing",
+        "value": "920ms damped, max 5deg, cubic-bezier(.37, 0, .63, 1)",
+        "purpose": "Pointer entry or focus swings the taped hero print from its tape; repeated entry does not stack."
+      },
+      {
+        "name": "gallery-arrival",
+        "value": "740ms (580ms on phones and coarse pointers)",
+        "purpose": "Each print lands once after entering the bottom 18% of the viewport (capped at 160px); its resting angle picks the leading corner."
+      },
+      {
+        "name": "slip-settle",
         "value": "220ms cubic-bezier(.2, .8, .2, 1)",
-        "purpose": "Nav slips and brand ticket state changes."
+        "purpose": "Nav slips, the reel slip and the brand ticket."
+      },
+      {
+        "name": "stub-flex",
+        "value": "280ms cubic-bezier(.2, .8, .2, 1)",
+        "purpose": "The ticket's Admit one end flexes 28deg around its perforation."
       },
       {
         "name": "print-follow",
         "value": "450ms cubic-bezier(.2, .75, .25, 1)",
-        "purpose": "Pointer-follow tilt for headshot and ticket (500ms on photo prints)."
+        "purpose": "Pointer-follow for the portrait and ticket stub (500ms on photo prints and fastened paper)."
       },
       {
         "name": "print-lift",
         "value": "500ms cubic-bezier(.2, .8, .2, 1.15)",
-        "purpose": "Hover/focus lift with slight overshoot."
+        "purpose": "Loose-print hover/focus lift: 9px up, 0deg, 2.5% larger."
+      },
+      {
+        "name": "paper-flex",
+        "value": "7deg rotateX",
+        "purpose": "Taped and pinned prints flex from their grip on hover or focus; the fastener stays put."
       },
       {
         "name": "color",
         "value": "150ms ease",
-        "purpose": "Link and icon color changes."
+        "purpose": "Link, icon and ink changes."
       },
       {
         "name": "pointer-tilt-bounds",
         "value": "±5px x, ±4px y, ±1.5deg rotateX, ±2deg rotateY",
         "purpose": "Maximum pointer response on fine pointers."
-      },
-      {
-        "name": "paper-drift",
-        "value": "scroll-linked translate ±12px",
-        "purpose": "Only the broad paper behind the photo spread, 960px and up."
       }
     ],
     "breakpoints": [
@@ -289,20 +324,28 @@
       "css": ".ds-text-link { display: inline-flex; align-items: center; gap: .8rem; min-height: 44px; font: 600 1.0625rem var(--font-body, \"Sabon Next\", Georgia, serif); color: var(--accent, #b54a00); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; transition: color 150ms ease; } .ds-text-link:hover { color: var(--accent-hover, #8c3800); text-decoration-thickness: 2px; } .ds-text-link:focus-visible { outline: 3px solid var(--accent, #b54a00); outline-offset: 5px; } .ds-arrow { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: transform 250ms ease; } .ds-text-link:hover .ds-arrow { transform: translate(2px, -2px); }"
     },
     {
+      "name": "Reel Slip",
+      "kind": "custom",
+      "refersTo": "reel-slip",
+      "description": "The homepage's leading reel link on a tilted paper slip, followed by a dotted line of plain links.",
+      "html": "<div class=\"ds-hero-links\"><a class=\"ds-reel-slip\" href=\"#\">Watch me perform <svg class=\"ds-arrow\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 18 18 6M8 6h10v10\"/></svg></a><div class=\"ds-hero-more\"><a href=\"#\">See my resume</a><span aria-hidden=\"true\">&middot;</span><a href=\"#\">More about me</a><span aria-hidden=\"true\">&middot;</span><a href=\"#\">Get in touch</a></div></div>",
+      "css": ".ds-hero-links { display: grid; justify-items: start; gap: .45rem; font-family: var(--font-body, \"Sabon Next\", Georgia, serif); } .ds-hero-links a { display: inline-flex; align-items: center; gap: .8rem; min-height: 44px; font-weight: 600; color: var(--accent, #b54a00); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; transition: color 150ms ease; } .ds-hero-links a:hover { color: var(--accent-hover, #8c3800); text-decoration-thickness: 2px; } .ds-hero-links a:focus-visible { outline: 3px solid var(--accent, #b54a00); outline-offset: 5px; color: var(--accent-hover, #8c3800); } .ds-reel-slip { position: relative; isolation: isolate; margin-left: -1rem; padding: .5rem 1.15rem .55rem 1rem; font-size: 1.1875rem; } .ds-reel-slip::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--paper-shade, #efeadd); border: 1px solid var(--border, #ddd6c6); box-shadow: 0 2px 6px rgba(43,37,32,.06); rotate: 1.5deg; transition: rotate 220ms cubic-bezier(.2,.8,.2,1); } .ds-reel-slip:hover::before, .ds-reel-slip:focus-visible::before { rotate: .45deg; } .ds-arrow { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: transform 250ms ease; } .ds-reel-slip:hover .ds-arrow, .ds-reel-slip:focus-visible .ds-arrow { transform: translate(2px, -2px); } .ds-hero-more { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .7rem; color: var(--muted, #6f6456); } .ds-hero-more a { font-size: .9375rem; }"
+    },
+    {
       "name": "Navigation",
       "kind": "nav",
       "refersTo": "nav-link",
       "description": "Torn brand ticket plus paper-slip nav links; the current page keeps its slip pinned.",
       "html": "<nav class=\"ds-nav\"><a class=\"ds-brand\" href=\"#\"><span class=\"ds-brand-ticket\"><span class=\"ds-ticket-card\"><span class=\"ds-ticket-seat\">Orch &middot; Row F</span><span class=\"ds-ticket-mark\">Rutis</span></span></span><span class=\"ds-brand-name\">Finn Rutis</span></a><ul><li><a href=\"#\">About</a></li><li><a href=\"#\" aria-current=\"page\">Resume</a></li><li><a href=\"#\">Reel</a></li><li><a href=\"#\">Contact</a></li></ul></nav>",
-      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; font-family: var(--font-body, \"Sabon Next\", Georgia, serif); } .ds-nav ul { display: flex; gap: .25rem .5rem; list-style: none; margin: 0; padding: 0; } .ds-nav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink, #2b2520); font-weight: 600; text-decoration: none; } .ds-brand { gap: .8rem; } .ds-brand-ticket { display: block; filter: drop-shadow(0 2px 2px rgb(43 37 32 / .1)); transform: rotate(-3deg); transition: transform 220ms cubic-bezier(.2,.8,.2,1); } .ds-ticket-card { display: grid; gap: .2rem; min-height: 2.75rem; padding: .5rem 1rem .5rem .85rem; background: linear-gradient(90deg, var(--accent, #b54a00) 0 .2rem, transparent .2rem), var(--ticket-paper, #fcfaf5); border: 1px solid var(--border, #ddd6c6); clip-path: polygon(0 0, calc(100% - 5px) 0, calc(100% - 2px) 6%, calc(100% - 6px) 12%, calc(100% - 3px) 19%, calc(100% - 7px) 26%, calc(100% - 2px) 33%, calc(100% - 5px) 41%, calc(100% - 1px) 48%, calc(100% - 6px) 55%, calc(100% - 3px) 63%, calc(100% - 7px) 70%, calc(100% - 2px) 77%, calc(100% - 5px) 85%, calc(100% - 1px) 93%, calc(100% - 5px) 100%, 0 100%); } .ds-ticket-seat { font: .5rem/1 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .08em; text-transform: uppercase; color: var(--muted, #6f6456); white-space: nowrap; } .ds-ticket-mark { font: 900 1.15rem/1 var(--font-display, \"Cooper*\", Georgia, serif); letter-spacing: .02em; } .ds-brand-name { font: 700 1.3rem/1 var(--font-display, \"Cooper*\", Georgia, serif); } .ds-brand:hover .ds-brand-ticket { transform: rotate(-1deg) translateY(-2px); } .ds-nav li a { position: relative; isolation: isolate; padding-inline: .75rem; } .ds-nav li a::before { content: ''; position: absolute; inset: .3rem 0; z-index: -1; background: var(--paper-shade, #efeadd); border: 1px solid var(--border, #ddd6c6); box-shadow: 0 2px 6px rgba(43,37,32,.06); opacity: 0; transform: rotate(var(--tilt, -2deg)) scale(.85); transition: opacity 150ms ease, transform 220ms cubic-bezier(.2,.8,.2,1); } .ds-nav li:nth-child(even) a { --tilt: 1.5deg; } .ds-nav li a:hover, .ds-nav li a[aria-current=page] { color: var(--accent-hover, #8c3800); } .ds-nav li a:hover::before, .ds-nav li a[aria-current=page]::before { opacity: 1; transform: rotate(var(--tilt, -2deg)); } .ds-nav a:focus-visible { outline: 3px solid var(--accent, #b54a00); outline-offset: 5px; }"
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; font-family: var(--font-body, \"Sabon Next\", Georgia, serif); } .ds-nav ul { display: flex; gap: .25rem .5rem; list-style: none; margin: 0; padding: 0; } .ds-nav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink, #2b2520); font-weight: 600; text-decoration: none; } .ds-brand { gap: .8rem; } .ds-brand-ticket { display: block; filter: drop-shadow(0 2px 2px rgb(43 37 32 / .1)); transform: rotate(-3deg); transition: transform 220ms cubic-bezier(.2,.8,.2,1); } .ds-ticket-card { display: grid; gap: .2rem; min-height: 2.75rem; padding: .5rem 1rem .5rem .85rem; background: linear-gradient(90deg, var(--accent, #b54a00) 0 .2rem, transparent .2rem), var(--ticket-paper, #fcfaf5); border: 1px solid var(--border, #ddd6c6); clip-path: polygon(0 0, calc(100% - 5px) 0, calc(100% - 2px) 6%, calc(100% - 6px) 12%, calc(100% - 3px) 19%, calc(100% - 7px) 26%, calc(100% - 2px) 33%, calc(100% - 5px) 41%, calc(100% - 1px) 48%, calc(100% - 6px) 55%, calc(100% - 3px) 63%, calc(100% - 7px) 70%, calc(100% - 2px) 77%, calc(100% - 5px) 85%, calc(100% - 1px) 93%, calc(100% - 5px) 100%, 0 100%); } .ds-ticket-seat { font: .5rem/1 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .08em; text-transform: uppercase; color: var(--muted, #6f6456); white-space: nowrap; } .ds-ticket-mark { font: 900 1.15rem/1 var(--font-display, \"Cooper*\", Georgia, serif); letter-spacing: .02em; } .ds-brand-name { font: 700 1.3rem/1 var(--font-display, \"Cooper*\", Georgia, serif); } .ds-brand:hover .ds-brand-ticket, .ds-brand:focus-visible .ds-brand-ticket { transform: rotate(-1deg) translateY(-2px); } .ds-nav li a { position: relative; isolation: isolate; padding-inline: .75rem; } .ds-nav li a::before { content: ''; position: absolute; inset: .3rem 0; z-index: -1; background: var(--paper-shade, #efeadd); border: 1px solid var(--border, #ddd6c6); box-shadow: 0 2px 6px rgba(43,37,32,.06); opacity: 0; transform: translateY(4px) rotate(var(--tilt, -2deg)); transition: opacity 150ms ease, transform 220ms cubic-bezier(.2,.8,.2,1); } .ds-nav li:nth-child(even) a { --tilt: 1.5deg; } .ds-nav li a:hover, .ds-nav li a:focus-visible, .ds-nav li a[aria-current=page] { color: var(--accent-hover, #8c3800); } .ds-nav li a:hover::before, .ds-nav li a:focus-visible::before, .ds-nav li a[aria-current=page]::before { opacity: 1; transform: translateY(0) rotate(var(--tilt, -2deg)); } .ds-nav a:focus-visible { outline: 3px solid var(--accent, #b54a00); outline-offset: 5px; }"
     },
     {
       "name": "Ticket Stub",
       "kind": "custom",
       "refersTo": "ticket-stub",
-      "description": "Signature landscape ticket for a current project: Admit one rail, Cooper date, torn edge, Get tickets band.",
+      "description": "Signature landscape ticket for a current project: solid rust Admit one end that flexes on its perforation, V die-cut, Cooper date, torn edge, Get tickets band.",
       "html": "<a class=\"ds-stub-wrap\" href=\"#\"><div class=\"ds-stub\"><span class=\"ds-stub-admit\">Admit one</span><div class=\"ds-stub-body\"><span class=\"ds-stub-day\">Nov 15</span><span class=\"ds-stub-detail\">Sun / 2026</span><p class=\"ds-stub-run\">One night only</p><p class=\"ds-stub-stream\">Livestream available</p></div><span class=\"ds-stub-action\">Get tickets <svg class=\"ds-arrow\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 18 18 6M8 6h10v10\"/></svg></span></div></a>",
-      "css": ".ds-stub-wrap { display: block; max-width: 19rem; color: var(--ink, #2b2520); text-decoration: none; filter: drop-shadow(0 1px 2px rgb(43 37 32 / .1)) drop-shadow(0 6px 5px rgb(43 37 32 / .06)); transform: rotate(2deg); } .ds-stub { display: grid; grid-template-columns: 2.25rem minmax(0,1fr); border: 1px solid var(--border, #ddd6c6); border-left: 3px solid var(--accent, #b54a00); background: var(--ticket-paper, #fcfaf5); clip-path: polygon(0 0, calc(100% - 5px) 0, calc(100% - 2px) 6%, calc(100% - 6px) 12%, calc(100% - 3px) 19%, calc(100% - 7px) 26%, calc(100% - 2px) 33%, calc(100% - 5px) 41%, calc(100% - 1px) 48%, calc(100% - 6px) 55%, calc(100% - 3px) 63%, calc(100% - 7px) 70%, calc(100% - 2px) 77%, calc(100% - 5px) 85%, calc(100% - 1px) 93%, calc(100% - 5px) 100%, 0 100%); } .ds-stub-admit { grid-row: 1 / 3; display: flex; align-items: center; justify-content: center; padding-block: .8rem; border-right: 1px dashed var(--border, #ddd6c6); color: var(--muted, #6f6456); font: .6875rem/1 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .16em; text-transform: uppercase; writing-mode: sideways-lr; } .ds-stub-body { display: flex; flex-direction: column; padding: 1.25rem 1.75rem 1.1rem 1.25rem; } .ds-stub-day { font: 900 2.5rem/1 var(--font-display, \"Cooper*\", Georgia, serif); letter-spacing: -.035em; } .ds-stub-detail { margin-top: .4rem; font: .75rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .06em; text-transform: uppercase; color: var(--accent-hover, #8c3800); } .ds-stub-run { margin: .8rem 0 0; font: .6875rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .05em; text-transform: uppercase; color: var(--muted, #6f6456); } .ds-stub-stream { display: flex; align-items: center; gap: .45rem; margin: .35rem 0 0; font: .6875rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .05em; text-transform: uppercase; color: var(--accent-hover, #8c3800); } .ds-stub-stream::before { content: ''; width: .4rem; height: .4rem; border-radius: 50%; background: currentColor; } .ds-stub-action { grid-column: 2; display: flex; align-items: center; justify-content: space-between; min-height: 44px; padding: .7rem 1.75rem .7rem 1.25rem; border-top: 1px dashed var(--border, #ddd6c6); background: var(--selection-bg, #f5d9c4); color: var(--accent-hover, #8c3800); font: 600 1rem var(--font-body, \"Sabon Next\", Georgia, serif); text-decoration: underline; text-underline-offset: .2em; transition: background-color 150ms ease, color 150ms ease; } .ds-stub-wrap:hover .ds-stub-action, .ds-stub-wrap:focus-visible .ds-stub-action { background: var(--accent-hover, #8c3800); color: var(--ticket-paper, #fcfaf5); } .ds-stub-wrap:hover .ds-stub, .ds-stub-wrap:focus-visible .ds-stub { border-color: var(--accent, #b54a00); } .ds-stub-wrap:focus-visible { outline: 3px solid var(--accent, #b54a00); outline-offset: 5px; } .ds-arrow { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }"
+      "css": ".ds-stub-wrap { display: block; max-width: 19rem; color: var(--ink, #2b2520); text-decoration: none; filter: drop-shadow(0 1px 2px rgb(43 37 32 / .1)) drop-shadow(0 6px 5px rgb(43 37 32 / .06)); transform: rotate(2deg); transition: transform 450ms cubic-bezier(.2,.75,.25,1), filter 450ms ease; } .ds-stub-wrap:hover, .ds-stub-wrap:focus-visible { transform: translateY(-5px) rotate(.5deg); filter: drop-shadow(0 2px 3px rgb(43 37 32 / .1)) drop-shadow(0 14px 12px rgb(43 37 32 / .12)); } .ds-stub { position: relative; isolation: isolate; display: grid; grid-template-columns: 2.25rem minmax(0,1fr); border: 1px solid transparent; clip-path: polygon(0 0, calc(2.25rem - 7px) 0, 2.25rem 7px, calc(2.25rem + 7px) 0, calc(100% - 5px) 0, calc(100% - 2px) 6%, calc(100% - 6px) 12%, calc(100% - 3px) 19%, calc(100% - 7px) 26%, calc(100% - 2px) 33%, calc(100% - 5px) 41%, calc(100% - 1px) 48%, calc(100% - 6px) 55%, calc(100% - 3px) 63%, calc(100% - 7px) 70%, calc(100% - 2px) 77%, calc(100% - 5px) 85%, calc(100% - 1px) 93%, calc(100% - 5px) 100%, calc(2.25rem + 7px) 100%, 2.25rem calc(100% - 7px), calc(2.25rem - 7px) 100%, 0 100%); } .ds-stub::before { content: ''; position: absolute; inset: -1px -1px -1px 2.25rem; z-index: -1; border: 1px solid var(--border, #ddd6c6); border-left: 0; background: var(--ticket-paper, #fcfaf5); } .ds-stub-admit { grid-row: 1 / 3; display: flex; align-items: center; justify-content: center; margin: -1px 0 -1px -1px; padding-block: .8rem; border-right: 1px dashed var(--ticket-paper, #fcfaf5); background: var(--accent-hover, #8c3800); color: var(--ticket-paper, #fcfaf5); font: .6875rem/1 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .16em; text-transform: uppercase; writing-mode: sideways-lr; transform-origin: right center; transition: transform 280ms cubic-bezier(.2,.8,.2,1); } .ds-stub-wrap:hover .ds-stub-admit, .ds-stub-wrap:focus-visible .ds-stub-admit { transform: perspective(240px) rotateY(-28deg); } .ds-stub-body { display: flex; flex-direction: column; padding: 1.25rem 1.75rem 1.1rem 1.25rem; } .ds-stub-day { font: 900 2.5rem/1 var(--font-display, \"Cooper*\", Georgia, serif); letter-spacing: -.035em; transition: color 150ms ease; } .ds-stub-wrap:hover .ds-stub-day, .ds-stub-wrap:focus-visible .ds-stub-day { color: var(--accent-hover, #8c3800); } .ds-stub-detail { margin-top: .4rem; font: .75rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .06em; text-transform: uppercase; color: var(--accent-hover, #8c3800); } .ds-stub-run { margin: .8rem 0 0; font: .6875rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .05em; text-transform: uppercase; color: var(--muted, #6f6456); } .ds-stub-stream { display: flex; align-items: center; gap: .45rem; margin: .35rem 0 0; font: .6875rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .05em; text-transform: uppercase; color: var(--accent-hover, #8c3800); } .ds-stub-stream::before { content: ''; width: .4rem; height: .4rem; border-radius: 50%; background: currentColor; } .ds-stub-action { grid-column: 2; display: flex; align-items: center; justify-content: space-between; min-height: 44px; padding: .7rem 1.75rem .7rem 1.25rem; border-top: 1px dashed var(--border, #ddd6c6); background: var(--selection-bg, #f5d9c4); color: var(--accent-hover, #8c3800); font: 600 1rem var(--font-body, \"Sabon Next\", Georgia, serif); text-decoration: underline; text-underline-offset: .2em; transition: background-color 150ms ease, color 150ms ease; } .ds-stub-wrap:hover .ds-stub-action, .ds-stub-wrap:focus-visible .ds-stub-action { background: var(--accent-hover, #8c3800); color: var(--ticket-paper, #fcfaf5); } .ds-stub-wrap:focus-visible { outline: 3px solid var(--accent, #b54a00); outline-offset: 5px; } .ds-arrow { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }"
     },
     {
       "name": "Photo Print",
@@ -313,12 +356,20 @@
       "css": ".ds-print { margin: 0; max-width: 18rem; font-family: var(--font-body, \"Sabon Next\", Georgia, serif); } .ds-mat { display: block; padding: .45rem; background: var(--paper, #f7f4ed); box-shadow: 0 2px 4px rgb(43 37 32 / .1), 0 12px 24px -12px rgb(43 37 32 / .32); transform: rotate(-2deg); transition: transform 500ms cubic-bezier(.2,.8,.2,1.15), box-shadow 500ms ease; } .ds-mat:hover, .ds-mat:focus-visible { transform: translateY(-9px) rotate(0deg) scale(1.025); box-shadow: 0 4px 8px rgb(43 37 32 / .08), 0 25px 35px -14px rgb(43 37 32 / .32); } .ds-mat:focus-visible { outline: 3px solid var(--accent, #b54a00); outline-offset: 5px; } .ds-photo { display: block; aspect-ratio: 4 / 5; background: linear-gradient(160deg, #3a2f28, #1d1916); } .ds-print figcaption { display: flex; gap: 1rem; padding: 1.8rem .25rem 0; line-height: 1.5; } .ds-index { padding-top: .25rem; font: .625rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); color: var(--accent-hover, #8c3800); } .ds-note-title { display: block; font: 700 1.375rem/1.2 var(--font-display, \"Cooper*\", Georgia, serif); color: var(--ink, #2b2520); } .ds-note-role { display: block; margin-top: .4rem; font: .75rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); color: var(--muted, #6f6456); }"
     },
     {
+      "name": "Taped Print",
+      "kind": "card",
+      "refersTo": "photo-mat",
+      "description": "A gallery print fastened with translucent masking tape; the tape stays fixed while the paper flexes from its grip.",
+      "html": "<figure class=\"ds-taped\"><div class=\"ds-taped-object\"><a class=\"ds-taped-mat\" href=\"#\"><span class=\"ds-taped-photo\"></span></a><span class=\"ds-tape\" aria-hidden=\"true\"></span></div></figure>",
+      "css": ".ds-taped { margin: 0; max-width: 18rem; padding-top: .75rem; } .ds-taped-object { position: relative; transform: rotate(-2deg); } .ds-taped-mat { display: block; padding: .45rem; background: var(--paper, #f7f4ed); box-shadow: 0 2px 4px rgb(43 37 32 / .1), 0 12px 24px -12px rgb(43 37 32 / .32); transform-origin: 50% .25rem; transform: perspective(1000px) rotateX(0deg); transition: transform 500ms cubic-bezier(.2,.75,.25,1), box-shadow 500ms ease; } .ds-taped-object:hover .ds-taped-mat, .ds-taped-mat:focus-visible { transform: perspective(1000px) rotateX(7deg); } .ds-taped-mat:focus-visible { outline: 3px solid var(--accent, #b54a00); outline-offset: 5px; } .ds-taped-photo { display: block; aspect-ratio: 3 / 2; background: linear-gradient(160deg, #3a2f28, #1d1916); } .ds-tape { position: absolute; z-index: 1; top: -.55rem; left: 50%; width: clamp(3.25rem, 20%, 6rem); height: 1.35rem; translate: -50% 0; rotate: -6deg; background: rgb(221 214 198 / .8); clip-path: polygon(3% 0, 98% 5%, 96% 22%, 100% 38%, 97% 56%, 100% 77%, 97% 98%, 2% 93%, 4% 74%, 0 55%, 3% 34%, 0 17%); pointer-events: none; } .ds-tape::after { content: ''; position: absolute; inset: 0; background: linear-gradient(174deg, transparent 45%, rgb(247 244 237 / .5) 49%, rgb(111 100 86 / .08) 52%, transparent 57%); }"
+    },
+    {
       "name": "Kicker",
       "kind": "chip",
       "refersTo": "kicker",
-      "description": "Stage-manager label: tiny tracked uppercase mono over a hairline rule, with an optional status dot.",
-      "html": "<div class=\"ds-kicker-block\"><p class=\"ds-kicker\">Current project</p><p class=\"ds-status\">In rehearsal</p></div>",
-      "css": ".ds-kicker-block { padding-top: 1rem; border-top: 1px solid var(--border, #ddd6c6); } .ds-kicker { margin: 0; font: .75rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .14em; text-transform: uppercase; color: var(--muted, #6f6456); } .ds-status { display: inline-flex; align-items: center; gap: .5rem; margin: 1.75rem 0 0; font: .75rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .06em; text-transform: uppercase; color: var(--accent-hover, #8c3800); } .ds-status::before { content: ''; width: .4rem; height: .4rem; border: 1px solid currentColor; border-radius: 50%; }"
+      "description": "Stage-manager label voice: tiny tracked uppercase mono, as on the artist statement label and the current-project status line (no marker).",
+      "html": "<div class=\"ds-kicker-block\"><p class=\"ds-kicker\">Artist statement</p><p class=\"ds-status\">In rehearsal</p></div>",
+      "css": ".ds-kicker-block { padding-top: 1.5rem; border-top: 1px solid var(--ink, #2b2520); } .ds-kicker { margin: 0; font: .75rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .14em; text-transform: uppercase; color: var(--muted, #6f6456); } .ds-status { margin: 1.75rem 0 0; font: .75rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .14em; text-transform: uppercase; color: var(--accent-hover, #8c3800); }"
     },
     {
       "name": "Paper Sheet",
@@ -345,7 +396,7 @@
       "Cooper Black at playbill scale for the name and big headings; Sabon Next for reading; PragmataPro as the small, tracked, uppercase backstage label voice.",
       "Printed objects with square corners, mats, resting angles and soft layered shadows.",
       "A torn-ticket motif shared by the header logo and the current-project stub.",
-      "Motion that feels like paper settling and responding to a hand, never a performance; all of it is removed under reduced motion.",
+      "Motion that gives printed photos a brief, theatrical landing, then lets the paper respond to a hand; all of it is removed under reduced motion.",
       "Every action is a link. No buttons, no forms."
     ],
     "rules": [
@@ -386,7 +437,7 @@
       }
     ],
     "dos": [
-      "Do keep Marquee Rust (#b54a00) as the only interface hue, on links, the surname, ticket rails and focus.",
+      "Do keep Marquee Rust (#b54a00) as the only interface hue, on links, the surname, the tickets (brand stripe, stub end) and focus.",
       "Do give every print a resting angle between -4deg and 4deg, varied between neighbors; the overlapping hero print at -9deg is the one exception.",
       "Do keep captions, headings and body copy level and outside the print, readable without hover or JavaScript.",
       "Do reuse the shared ticket tear and Ticket Stock for anything that is a ticket, with its shadow on an unclipped wrapper.",

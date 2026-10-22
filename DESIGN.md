@@ -90,6 +90,12 @@ components:
   nav-link-current:
     backgroundColor: "{colors.paper-shade}"
     textColor: "{colors.accent-hover}"
+  reel-slip:
+    backgroundColor: "{colors.paper-shade}"
+    textColor: "{colors.accent}"
+    typography: "{typography.link}"
+    height: "44px"
+    padding: "0.5rem 1.15rem 0.55rem 1rem"
   brand-ticket:
     backgroundColor: "{colors.ticket-paper}"
     textColor: "{colors.ink}"
@@ -269,6 +275,7 @@ Character: plain, underlined, with one shared arrow.
 
 - Marquee Rust, 1px underline at 0.2em offset; hover turns Deep Marquee Rust with a 2px underline. Color transitions in 150ms.
 - Calls to action ("Watch me perform", "Theatre credits") are Sabon 600, 44px tall, with the single arrow glyph from `Arrow.svelte` (out, down or back) that nudges 2px up and right on hover.
+- **Hero links:** the reel link leads on its own paper slip at 1.1875rem: a Callboard Card layer with a Rule Line border and slip shadow, rotated 1.5deg behind level text, which settles to 0.45deg on hover or focus. Resume, about and contact follow on one line at 0.9375rem, separated by Faded Ink middle dots and without arrows, like the footer meta. When the bio column gets narrow the line tightens, then drops the dots and wraps on plain spacing rather than stranding a dot at a line end.
 - Download links pair the label with a mono file label, "(PDF)". The primary resume download is 1.25rem.
 - **Buttons and inputs:** none exist. Every action on the site is a link; keep it that way unless a real form is needed.
 
@@ -312,12 +319,13 @@ Character: heavier backing stock holding something.
 
 - Callboard Card, 1px Rule Line border, sheet shadow, square corners. The resume preview sits on one (1rem padding, US Letter aspect), videos on another (0.75rem padding, 0.35rem on phones).
 - Off-stage notes without a photo become slips: the card layer rotates half the item's angle behind level text.
+- The homepage reel link and the nav links use the same slip, smaller: slip shadow, Rule Line border, only the backing rotates.
 
 ### Footer
 
 Character: the blog's footer, ported.
 
-- A centered row of 44px icon links (1.7 stroke outline icons, Faded Ink; hover shows a Callboard Card tile with 6px radius and Marquee Rust icon).
+- A centered row of 44px icon links (1.7 stroke outline icons, Faded Ink; hover shows a Callboard Card tile with 6px radius and Marquee Rust icon). Their focus ring is the one exception to the site ring: 2px Marquee Rust drawn inside the tile (-2px offset), so neighbors don't overlap.
 - Below it, small-caps meta in Faded Ink: copyright, the Cooper license link, and a pill build badge with the commit SHA in mono that lifts 1px and borders in Marquee Rust on hover.
 
 ### Ballpoint Doodles (planned, not yet built)
