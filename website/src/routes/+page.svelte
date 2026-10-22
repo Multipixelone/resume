@@ -53,8 +53,14 @@
   <div class="bio-block">
     <p>Finn Rutis is a New York City Based performance artist that is interested in using the magic of theatre to shine a light on unconscious parts of the human experience</p>
     <div class="hero-links">
-      <a class="text-link" href={sitePath('/performance-reel/')}>Watch me perform <Arrow /></a>
-      <a class="text-link" href={sitePath('/booking/')}>Get in touch <Arrow /></a>
+      <a class="text-link hero-links-slip" href={sitePath('/performance-reel/')}>Watch me perform <Arrow /></a>
+      <div class="hero-links-more">
+        <a class="text-link" href={sitePath('/resume/')}>See my resume</a>
+        <span class="hero-links-dot" aria-hidden="true">·</span>
+        <a class="text-link" href={sitePath('/about/')}>More about me</a>
+        <span class="hero-links-dot" aria-hidden="true">·</span>
+        <a class="text-link" href={sitePath('/booking/')}>Get in touch</a>
+      </div>
     </div>
   </div>
 </section>

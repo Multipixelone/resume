@@ -121,7 +121,30 @@ main:focus { outline: none; }
 .hero-print-tape { position: absolute; top: -.55rem; left: 50%; width: 40%; height: 1.05rem; translate: -50% 0; rotate: 7deg; background: rgb(221 214 198 / .8); clip-path: polygon(3% 10%, 97% 0, 100% 24%, 97% 48%, 100% 74%, 97% 100%, 2% 92%, 4% 70%, 0 46%, 3% 24%); pointer-events: none; }
 .hero-print-caption { display: block; padding: .6rem .1rem .15rem; color: var(--ink); text-align: left; font: .6875rem/1.5 var(--font-mono); }
 .bio-block { grid-column: 1; grid-row: 2; max-width: 36ch; padding-top: .5rem; font-size: clamp(1.2rem, 1.65vw, 1.4rem); line-height: 1.5; }
-.hero-links { display: flex; flex-wrap: wrap; gap: .5rem 1.75rem; margin-top: 1.75rem; }
+/* The reel leads on a paper slip (only the slip tilts); resume, about and contact follow on one dotted line,
+   without arrows, like the footer meta. */
+.hero-links { display: grid; justify-items: start; gap: .45rem; margin-top: 1.75rem; }
+/* Child selector so the larger size outranks .text-link, including its phone override. */
+.hero-links > .hero-links-slip { position: relative; isolation: isolate; margin-left: -1rem; padding: .5rem 1.15rem .55rem 1rem; font-size: 1.1875rem; }
+.hero-links-slip::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--paper-shade); border: 1px solid var(--border); box-shadow: 0 2px 6px var(--shadow); rotate: 1.5deg; transition: rotate 220ms cubic-bezier(.2, .8, .2, 1); pointer-events: none; }
+.hero-links-more { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .7rem; }
+.hero-links-more > .text-link { font-size: .9375rem; }
+.hero-links-dot { color: var(--muted); }
+/* Between the phone and desktop layouts the bio column narrows to ~280px; tighten the dotted line so
+   it never wraps and strands a dot at a line end. */
+.hero-links { container-type: inline-size; }
+@container (max-width: 20.75rem) {
+  .hero-links-more { column-gap: .45rem; }
+  .hero-links-more > .text-link { font-size: .8125rem; }
+}
+/* Too narrow even for that: drop the dots and let the links wrap on plain spacing. */
+@container (max-width: 18.75rem) {
+  .hero-links-more { column-gap: .9rem; }
+  .hero-links-dot { display: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-links-slip:is(:hover, :focus-visible)::before { rotate: .45deg; }
+}
 .text-link { display: inline-flex; align-items: center; gap: .8rem; min-height: 44px; font-size: 1.0625rem; font-weight: 600; }
 .text-link > .arrow { transition: transform 250ms ease; }
 .text-link:hover > .arrow { transform: translate(2px, -2px); }
@@ -276,7 +299,6 @@ main:focus { outline: none; }
   .portrait-scene { width: calc(100% - 1rem); margin-right: .75rem; margin-top: 3.5rem; }
   .portrait-backing { inset: -1rem; }
   .bio-block { font-size: 1.2rem; }
-  .hero-links { column-gap: 1.25rem; }
   .photo-spread { gap: 2.5rem 1.5rem; }
   .photo-print--tall { margin-top: 7rem; margin-left: -1.25rem; }
   .photo-print--small { grid-column: 2 / 8; }
@@ -354,6 +376,7 @@ main:focus { outline: none; }
 @media (forced-colors: active) {
   .portrait-backing, .photo-backing, .photo-spread::before, .hero-print-tape { display: none; }
   .photo-mat, .portrait-card, .now-stub, .resume-sheet, .video-mat { border: 1px solid CanvasText; }
+  .hero-links-slip::before { border-color: CanvasText; box-shadow: none; }
   .site-header li a[aria-current="page"] { text-decoration: underline; }
   :focus-visible { outline-color: Highlight; }
 }
