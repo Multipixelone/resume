@@ -163,8 +163,8 @@ Cream paper stock and warm brown ink, with a single worn-orange accent doing all
 
 ### Primary
 
-- **Marquee Rust** (#b54a00): the only hue. Links and their underlines, the surname "Rutis" in the homepage name, the 3px left rail on tickets, the brand ticket's thin left stripe, and the focus ring (3px solid, 5px offset). 4.85:1 on Playbill Paper, so it holds AA for body-size links.
-- **Deep Marquee Rust** (#8c3800): the pressed and hovered state of Marquee Rust, and the color of small status text that has to read as "live": the current-project status line, the ticket's weekday/year line, the "Livestream available" line, photo index numbers, and the current nav slip's label. 7.13:1 on paper.
+- **Marquee Rust** (#b54a00): the only hue. Links and their underlines, the surname "Rutis" in the homepage name, the brand ticket's thin left stripe, and the focus ring (3px solid, 5px offset). 4.85:1 on Playbill Paper, so it holds AA for body-size links.
+- **Deep Marquee Rust** (#8c3800): the pressed and hovered state of Marquee Rust, and the color of small status text that has to read as "live": the current-project status line, the ticket's weekday/year line, the "Livestream available" line, photo index numbers, and the current nav slip's label. It is also the one solid fill: the ticket stub's printed "Admit one" end, with Ticket Stock lettering. 7.13:1 on paper.
 
 ### Neutral
 
@@ -245,7 +245,7 @@ Depth is physical. Printed objects (photo prints, the headshot, tickets, slips, 
 
 ## Shapes
 
-Paper is cut square. Prints, sheets, slips and tickets have no corner radius; their silhouettes come from rotation, mats and cut edges instead. The ticket's right edge is a jagged hand-torn line, a single shared `--ticket-tear` clip-path used by both the header ticket and the stub. Backing papers are irregular quadrilaterals (`polygon(3% 4%, 96% 0, 100% 94%, 0 100%)` and kin), never rectangles. Photo mats are 0.4 to 0.5rem, some with a deeper 1 to 1.1rem bottom edge like a print border.
+Paper is cut square. Prints, sheets, slips and tickets have no corner radius; their silhouettes come from rotation, mats and cut edges instead. The ticket's right edge is a jagged hand-torn line: the header ticket uses the shared `--ticket-tear` clip-path, and the stub repeats the same tear points in its own polygon, adding a V die-cut at the top and bottom of its perforation. Backing papers are irregular quadrilaterals (`polygon(3% 4%, 96% 0, 100% 94%, 0 100%)` and kin), never rectangles. Photo mats are 0.4 to 0.5rem, some with a deeper 1 to 1.1rem bottom edge like a print border.
 
 The only curves are functional: the footer icon hover tile (6px), the pill-shaped build badge, and small round status dots on the ticket and current-project status.
 
@@ -291,9 +291,9 @@ Character: a printed headshot with its own name strip.
 
 Character: a real landscape theatre ticket you could tear off.
 
-- Ticket Stock, Rule Line border, 3px Marquee Rust left rail, torn right edge, max 19rem wide, resting at 2deg (-1.5deg on even shows and on phones).
-- A vertical "Admit one" mono rail on the left, separated by a dashed perforation. The body holds the opening date in Cooper Black, the weekday and year in Deep Marquee Rust mono, the run ("One night only", or "Through" plus the closing date) in Faded Ink mono, and an optional "Livestream available" line with a filled dot.
-- With a booking URL, the whole stub is one link and gets a Stub Blush "Get tickets" band behind a dashed perforation. Hover or focus inverts the band to Deep Marquee Rust with Ticket Stock text and turns the border Marquee Rust. Without a URL the stub is not interactive.
+- Ticket Stock, Rule Line border, torn right edge, max 19rem wide, resting at 2deg (-1.5deg on even shows and on phones).
+- A printed stub end on the left: solid Deep Marquee Rust running to the paper's edge, with "Admit one" set vertically in Ticket Stock mono. Its perforation shows as Ticket Stock dashes along the rust edge, and a V die-cut notches the ticket top and bottom where the stub end meets the body. No colored side rail. The body holds the opening date in Cooper Black, the weekday and year in Deep Marquee Rust mono, the run ("One night only", or "Through" plus the closing date) in Faded Ink mono, and an optional "Livestream available" line with a filled dot.
+- With a booking URL, the whole stub is one link and gets a Stub Blush "Get tickets" band behind a dashed perforation. Hover or focus inverts the band to Deep Marquee Rust with Ticket Stock text and prints the date in Deep Marquee Rust; the border stays Rule Line. With a fine pointer and motion allowed, the stub also lifts 5px toward the hand, settles to a quarter of its resting angle and casts a deeper ticket shadow. Without a URL the stub is not interactive.
 - Beside it, the current-project notice: a mono status line with a hollow dot (filled when performing), the show title in Cooper Bold, and mono-labelled credits (Role, Venue, Directed by). A role of "Self" is omitted.
 
 ### Paper Sheet and Slip
@@ -327,7 +327,7 @@ Hand-drawn blue ballpoint line art, scanned and rendered as CSS masks in one ink
 
 ### Do:
 
-- **Do** keep Marquee Rust (#b54a00) as the only interface hue, on links, the surname, ticket rails and focus.
+- **Do** keep Marquee Rust (#b54a00) as the only interface hue, on links, the surname, the tickets (brand stripe, stub end) and focus.
 - **Do** give every print a resting angle between -4deg and 4deg, varied between neighbors; the overlapping hero print at -9deg is the one exception.
 - **Do** keep captions, headings and body copy level and outside the print, readable without hover or JavaScript.
 - **Do** reuse the shared ticket tear and Ticket Stock for anything that is a ticket, with its shadow on an unclipped wrapper.
