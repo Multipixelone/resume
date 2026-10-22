@@ -46,7 +46,7 @@
       {@const id = `show-${encodeURIComponent(show.id)}`}
       <article class="now-show" aria-labelledby={id}>
         <div class="now-copy">
-          <p class="now-status" class:now-status--live={show.status === 'performing'}>{statusLabel(show)}</p>
+          <p class="now-status">{statusLabel(show)}</p>
           <h3 {id}>{show.title}</h3>
           <dl class="now-credits">
             <!-- A cabaret singer billed as "Self" is the convention on paper, but says nothing here. -->

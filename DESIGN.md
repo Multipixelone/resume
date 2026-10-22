@@ -247,7 +247,7 @@ Depth is physical. Printed objects (photo prints, the headshot, tickets, slips, 
 
 Paper is cut square. Prints, sheets, slips and tickets have no corner radius; their silhouettes come from rotation, mats and cut edges instead. The ticket's right edge is a jagged hand-torn line: the header ticket uses the shared `--ticket-tear` clip-path, and the stub repeats the same tear points in its own polygon, adding a V die-cut at the top and bottom of its perforation. Backing papers are irregular quadrilaterals (`polygon(3% 4%, 96% 0, 100% 94%, 0 100%)` and kin), never rectangles. Photo mats are 0.4 to 0.5rem, some with a deeper 1 to 1.1rem bottom edge like a print border.
 
-The only curves are functional: the footer icon hover tile (6px), the pill-shaped build badge, and small round status dots on the ticket and current-project status.
+The only curves are functional: the footer icon hover tile (6px), the pill-shaped build badge, and the small round dot on the ticket's "Livestream available" line.
 
 ### Named Rules
 
@@ -294,7 +294,7 @@ Character: a real landscape theatre ticket you could tear off.
 - Ticket Stock, Rule Line border, torn right edge, max 19rem wide, resting at 2deg (-1.5deg on even shows and on phones).
 - A printed stub end on the left: solid Deep Marquee Rust running to the paper's edge, with "Admit one" set vertically in Ticket Stock mono. Its perforation shows as Ticket Stock dashes along the rust edge, and a V die-cut notches the ticket top and bottom where the stub end meets the body. No colored side rail. The body holds the opening date in Cooper Black, the weekday and year in Deep Marquee Rust mono, the run ("One night only", or "Through" plus the closing date) in Faded Ink mono, and an optional "Livestream available" line with a filled dot.
 - With a booking URL, the whole stub is one link and gets a Stub Blush "Get tickets" band behind a dashed perforation. Hover or focus inverts the band to Deep Marquee Rust with Ticket Stock text and prints the date in Deep Marquee Rust; the border stays Rule Line. With a fine pointer and motion allowed, the stub also lifts 5px toward the hand, settles to a quarter of its resting angle and casts a deeper ticket shadow. Without a URL the stub is not interactive.
-- Beside it, the current-project notice: a mono status line with a hollow dot (filled when performing), the show title in Cooper Bold, and mono-labelled credits (Role, Venue, Directed by). A role of "Self" is omitted.
+- Beside it, the current-project notice: a plain Deep Marquee Rust mono status line with no marker (the words say whether it is in rehearsal or playing), the show title in Cooper Bold, then a Faded Ink dashed perforation and the mono-labelled credits (Role, Venue, Directed by) below it, so the credits read as the notice's tear-off. A role of "Self" is omitted.
 
 ### Paper Sheet and Slip
 
