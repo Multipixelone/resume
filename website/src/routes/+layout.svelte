@@ -8,7 +8,7 @@
   const navigation = [
     { label: 'About', route: '/about', path: '/about/' },
     { label: 'Resume', route: '/resume', path: '/resume/' },
-    { label: 'Performance reel', route: '/performance-reel', path: '/performance-reel/' },
+    { label: 'Reel', route: '/performance-reel', path: '/performance-reel/' },
     { label: 'Contact', route: '/booking', path: '/booking/' }
   ];
 </script>
