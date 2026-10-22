@@ -141,8 +141,8 @@ system-dark rule is added. The homepage pairs a large Cooper Black name with a
 portrait and an overlapping Seussical print. The portrait has a printed bottom
 strip with Finn's name in Cooper Black and smaller Pragmata pronouns on the same
 left-aligned line, flush with the photograph's left edge. The photograph and name
-strip move together as one printed headshot. Its tan backing stays fixed, and the
-Seussical print moves independently above the label. The bio and reel/contact links sit
+strip move together as one printed headshot. Its tan backing stays fixed. The
+Seussical print hinges above the label while its tape travels with the headshot. The bio and reel/contact links sit
 under the name. Production photos use varied sizes, borders and resting angles,
 with one shared angular paper shape behind the first group. Show titles and roles
 stay visible in fixed captions. At narrow widths the name leads, the portrait
@@ -150,17 +150,26 @@ pair follows, and the performance photos become a single column with varied
 widths. Text never overlays a face. Photos retain their full proportions; no
 backgrounds are removed or cutouts generated.
 
-`src/lib/motion.ts` supplies the `paperMotion` action. Marked paper layers
-settle on first entering the viewport; content is never hidden while waiting.
-Fine-pointer movement gives the photos a bounded tilt and translation, with one
-animation frame queued per pointer event and no idle render loop. CSS adds a
+`src/lib/motion.ts` supplies the `callboardEntrance` and `paperMotion` actions.
+The homepage has one opening gesture: the backing seats, the headshot is laid
+down with a contracting shadow, and the taped Seussical print catches and settles.
+The sequence finishes within 780ms, with all content visible throughout. The
+headshot, tape and small photo share one pointer transform so their attachment
+stays intact. The small print swings around its tape on pointer entry or keyboard
+focus, with no cursor-follow twist of its own. Touch follows its photo-spread link.
+
+Fine-pointer movement gives photos a bounded tilt and translation, with one
+animation frame queued for pointer work and no idle render loop. CSS adds a
 lift/straighten response on hover or keyboard focus. Gallery captions and page
-headings stay fixed; the portrait's printed label moves with its headshot.
-The broad decorative paper has an optional CSS scroll-linked drift.
-Reduced motion cancels active arrivals, clears pointer offsets, and disables
-hover/scroll motion. Touch users keep the same composition and ordinary photo
-links, without pointer tilt. Observers, listeners, frames and animations are cleaned up on navigation.
-Scrolling remains native; all essential content works without JavaScript.
+headings stay fixed; gallery and supporting-page photos have no scroll entrances,
+and the broad backing paper has no parallax. Navigation slips respond to keyboard
+focus as well as hover. The ticket's rust end flexes around its perforation while
+the whole ticket remains one link.
+
+Reduced motion cancels active opening and tape animations, clears pointer offsets,
+and disables spatial feedback. Static color and focus states remain. Hidden tabs
+settle immediately; observers, listeners, frames and animations are cleaned up on
+navigation. Scrolling remains native; all essential content works without JavaScript.
 
 Current-project ticket actions use `--accent-hover` on `--selection-bg`, changing
 to light text on `--accent-hover` when hovered or focused. The weekday and year

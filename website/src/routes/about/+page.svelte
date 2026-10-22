@@ -30,12 +30,10 @@
       {#each escapades as item, index}
         <article class="offstage-item" class:offstage-item--slip={!item.photo}>
           {#if item.photo}
-            <div class="photo-layers" use:paperMotion={{ delay: (index % 3) * 70 }}>
-              <div data-paper-arrival>
-                <a class="photo-mat" href={sitePath(`/media/${item.photo.file}`)} aria-label={`View full photo: ${item.photo.alt}`}>
-                  <img src={sitePath(`/media/${item.photo.file}`)} alt={item.photo.alt} width={item.photo.width} height={item.photo.height} loading="lazy" decoding="async" />
-                </a>
-              </div>
+            <div class="photo-layers" use:paperMotion>
+              <a class="photo-mat" href={sitePath(`/media/${item.photo.file}`)} aria-label={`View full photo: ${item.photo.alt}`}>
+                <img src={sitePath(`/media/${item.photo.file}`)} alt={item.photo.alt} width={item.photo.width} height={item.photo.height} loading="lazy" decoding="async" />
+              </a>
             </div>
           {/if}
           <div class="offstage-copy">

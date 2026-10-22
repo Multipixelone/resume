@@ -51,17 +51,22 @@ main:focus { outline: none; }
 .ticket-seat { font: .5rem/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
 .ticket-mark { font: 900 1.15rem/1 var(--font-display); letter-spacing: .02em; transition: color 150ms ease; }
 .brand-name { font: 700 1.3rem/1 var(--font-display); letter-spacing: -.01em; transition: color 150ms ease; }
-.brand:hover .brand-ticket { transform: rotate(-1deg) translateY(-2px); }
-.brand:hover .ticket-mark { color: var(--accent-hover); }
-.brand:hover .brand-name { color: var(--accent); }
+.brand:is(:hover, :focus-visible) .ticket-mark { color: var(--accent-hover); }
+.brand:is(:hover, :focus-visible) .brand-name { color: var(--accent); }
 /* The homepage already carries the large name, so there the stub stands alone. */
 .brand[aria-current="page"] .brand-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-/* Pages are paper slips: the current one is pinned down, the rest slide in on hover. */
+/* Pages are paper slips: the selected one stays put, and a hand or keyboard can pick up another. */
 .site-header li a { position: relative; isolation: isolate; padding-inline: .75rem; }
-.site-header li a::before { content: ""; position: absolute; inset: .3rem 0; z-index: -1; background: var(--paper-shade); border: 1px solid var(--border); box-shadow: 0 2px 6px var(--shadow); opacity: 0; transform: rotate(var(--tilt, -2deg)) scale(.85); transition: opacity 150ms ease, transform 220ms cubic-bezier(.2, .8, .2, 1); pointer-events: none; }
+.site-header li a::before { content: ""; position: absolute; inset: .3rem 0; z-index: -1; background: var(--paper-shade); border: 1px solid var(--border); box-shadow: 0 2px 6px var(--shadow); opacity: 0; transform: rotate(var(--tilt, -2deg)); transition: opacity 150ms ease, transform 220ms cubic-bezier(.2, .8, .2, 1); pointer-events: none; }
 .site-header li:nth-child(even) a { --tilt: 1.5deg; }
-.site-header li a:hover, .site-header li a[aria-current="page"] { color: var(--accent-hover); }
-.site-header li a:hover::before, .site-header li a[aria-current="page"]::before { opacity: 1; transform: rotate(var(--tilt, -2deg)); }
+.site-header li a:is(:hover, :focus-visible, [aria-current="page"]) { color: var(--accent-hover); }
+.site-header li a:is(:hover, :focus-visible, [aria-current="page"])::before { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .brand:is(:hover, :focus-visible) .brand-ticket { transform: rotate(-1deg) translateY(-2px); }
+  .site-header li a::before { transform: translateY(4px) rotate(var(--tilt, -2deg)); }
+  .site-header li a:is(:hover, :focus-visible, [aria-current="page"])::before { transform: translateY(0) rotate(var(--tilt, -2deg)); }
+  .site-header li a:active::before { transform: rotate(0deg) scale(.98); transition-duration: 100ms; }
+}
 .skip-link { position: absolute; top: .5rem; left: .5rem; z-index: 10; transform: translateY(-200%); padding: .65rem 1rem; background: var(--paper); border: 1px solid var(--border); }
 .skip-link:focus { transform: none; }
 .section-block { margin-top: var(--space-section); }
@@ -82,14 +87,17 @@ main:focus { outline: none; }
 /* 44px boxes clear the touch target; the negative margin keeps that padding from inflating the footer. */
 .footer-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .1rem; margin: -.4rem 0 .5rem; }
 .footer-links a { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; color: var(--muted); text-decoration: none; border-radius: 6px; transition: color 150ms ease, background-color 150ms ease; }
-.footer-links a:hover, .footer-links a[aria-current="page"] { color: var(--accent); background: var(--paper-shade); }
+.footer-links a:is(:hover, :focus-visible, [aria-current="page"]) { color: var(--accent); background: var(--paper-shade); }
 .footer-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .footer-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .55rem; font-size: .85rem; color: var(--muted); }
 .footer-meta .sep { color: var(--border); }
 .footer-meta > a:not(.build-badge) { color: inherit; }
-.footer-meta > a:not(.build-badge):hover { color: var(--accent); }
+.footer-meta > a:not(.build-badge):is(:hover, :focus-visible) { color: var(--accent); }
 .build-badge { display: inline-flex; align-items: center; gap: .45rem; padding: .28rem .8rem .32rem; color: var(--muted); background: var(--paper-shade); border: 1px solid var(--border); border-radius: 999px; font-size: .8rem; line-height: 1.2; text-decoration: none; transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease; }
-.build-badge:hover { color: var(--accent); background: var(--paper); border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 2px 6px var(--shadow); }
+.build-badge:is(:hover, :focus-visible) { color: var(--accent); background: var(--paper); border-color: var(--accent); box-shadow: 0 2px 6px var(--shadow); }
+@media (prefers-reduced-motion: no-preference) {
+  .build-badge:is(:hover, :focus-visible) { transform: translateY(-1px); }
+}
 .build-badge .icon { width: .95rem; height: .95rem; }
 /* The sha is data, not prose: drop the footer's small caps. */
 .build-badge code { font: .95em var(--font-mono); font-variant: normal; letter-spacing: 0; }
@@ -102,24 +110,28 @@ main:focus { outline: none; }
 .artist-name > span { display: block; }
 .artist-name > span + span { padding-left: .19em; color: var(--accent); }
 .portrait-scene { position: relative; grid-column: 2; grid-row: 1 / 3; width: calc(100% - 2rem); max-width: 28rem; justify-self: end; margin: 2.5rem 1.5rem 0 0; }
-.portrait-layers { position: relative; isolation: isolate; display: grid; --rotation: 2deg; }
+.portrait-layers { position: relative; isolation: isolate; display: grid; perspective: 1000px; --rotation: 2deg; }
+.portrait-assembly { display: grid; min-width: 0; transform: translate3d(var(--pointer-x, 0px), var(--pointer-y, 0px), 0) rotateX(var(--pointer-rx, 0deg)) rotateY(var(--pointer-ry, 0deg)); transition: transform 450ms cubic-bezier(.2, .75, .25, 1); }
 .portrait-backing { position: absolute; inset: -1.5rem -1.25rem -1.25rem -1.75rem; z-index: -1; background: var(--paper-shade); clip-path: polygon(3% 4%, 96% 0, 100% 94%, 0 100%); transform: rotate(-5deg); pointer-events: none; }
 .portrait-backing::after { content: ''; position: absolute; inset: 1rem; border: 1px solid var(--border); }
-.portrait-headshot { grid-area: 1 / 1; min-width: 0; perspective: 1000px; }
-.portrait-card { padding: .45rem; background: var(--paper); box-shadow: 0 3px 5px rgb(43 37 32 / .08), 0 18px 35px -16px rgb(43 37 32 / .28); transform: translate3d(var(--pointer-x, 0px), var(--pointer-y, 0px), 0) rotate(var(--rotation)) rotateX(var(--pointer-rx, 0deg)) rotateY(var(--pointer-ry, 0deg)); transition: transform 450ms cubic-bezier(.2, .75, .25, 1); }
+.portrait-headshot { grid-area: 1 / 1; min-width: 0; }
+.portrait-card { padding: .45rem; background: var(--paper); box-shadow: 0 3px 5px rgb(43 37 32 / .08), 0 18px 35px -16px rgb(43 37 32 / .28); transform: rotate(var(--rotation)); }
 .portrait-card > img { width: 100%; }
 /* Match the photo's box so its separate print stays above the name strip. */
 .portrait-overlay { grid-area: 1 / 1; align-self: start; aspect-ratio: 4 / 5; margin: .45rem; position: relative; pointer-events: none; }
 .portrait-caption { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: flex-start; gap: .35rem .5rem; padding: .35rem 0 .25rem; text-align: left; overflow-wrap: anywhere; }
 .portrait-name { max-width: 100%; font: 900 clamp(1.125rem, 1.8vw, 1.5rem)/1.1 var(--font-display); letter-spacing: -.025em; }
 .portrait-pronouns { max-width: 100%; font: clamp(.75rem, .9vw, .8125rem)/1.5 var(--font-mono); color: var(--muted); }
-.hero-contact-print { position: absolute; width: 36%; right: -12%; bottom: 3rem; --rotation: -9deg; pointer-events: auto; }
-/* The stage print is taped to the headshot. The tape sits outside the print, so it stays put while the print
-   swings from its grip (swingFromTape) and hinges its free bottom edge toward the hand instead of lifting. */
-.hero-contact-print [data-paper-arrival] { position: relative; }
-.hero-contact-print .photo-mat { padding: .4rem; text-decoration: none; transform-origin: 50% .2rem; transform: rotate(var(--rotation)) rotateX(var(--hinge, 0deg)) rotateY(var(--pointer-ry, 0deg)); }
+.hero-contact-print { position: absolute; width: 36%; right: -8%; bottom: 3rem; --rotation: -9deg; pointer-events: auto; }
+/* The tape stays with the headshot while the small print swings from its grip.
+   Both prints move together when the visitor handles the larger composition. */
+.hero-print-hinge { position: relative; }
+.hero-contact-print .photo-mat { padding: .4rem; text-decoration: none; transform-origin: 50% .2rem; transform: rotate(var(--rotation)) rotateX(var(--hinge, 0deg)); }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-contact-print .photo-mat:focus-visible { --hinge: 10deg; box-shadow: 0 4px 8px rgb(43 37 32 / .08), 0 25px 35px -14px rgb(43 37 32 / .32); }
+}
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .hero-contact-print .photo-layers:is(:hover, :focus-within) .photo-mat { --hinge: 10deg; box-shadow: 0 4px 8px rgb(43 37 32 / .08), 0 25px 35px -14px rgb(43 37 32 / .32); }
+  .hero-contact-print .photo-mat:hover { --hinge: 10deg; box-shadow: 0 4px 8px rgb(43 37 32 / .08), 0 25px 35px -14px rgb(43 37 32 / .32); }
 }
 .hero-print-tape { position: absolute; top: -.55rem; left: 50%; width: 40%; height: 1.05rem; translate: -50% 0; rotate: 7deg; background: rgb(221 214 198 / .8); clip-path: polygon(3% 10%, 97% 0, 100% 24%, 97% 48%, 100% 74%, 97% 100%, 2% 92%, 4% 70%, 0 46%, 3% 24%); pointer-events: none; }
 .hero-print-caption { display: block; padding: .6rem .1rem .15rem; color: var(--ink); text-align: left; font: .6875rem/1.5 var(--font-mono); }
@@ -150,7 +162,10 @@ main:focus { outline: none; }
 }
 .text-link { display: inline-flex; align-items: center; gap: .8rem; min-height: 44px; font-size: 1.0625rem; font-weight: 600; }
 .text-link > .arrow { transition: transform 250ms ease; }
-.text-link:hover > .arrow { transform: translate(2px, -2px); }
+.text-link:focus-visible { color: var(--accent-hover); text-decoration-thickness: 2px; }
+@media (prefers-reduced-motion: no-preference) {
+  .text-link:is(:hover, :focus-visible) > .arrow { transform: translate(2px, -2px); }
+}
 
 /* A compact playbill notice with a landscape ticket. Keep the date and ticket action
    together, and leave the production credits on the page. */
@@ -180,14 +195,24 @@ main:focus { outline: none; }
 .stub-day { transition: color 150ms ease; }
 .now-stub-link:hover .stub-day, .now-stub-link:focus-visible .stub-day { color: var(--accent-hover); }
 /* Like a print, the ticket lifts toward the hand and nearly straightens. */
+@media (prefers-reduced-motion: no-preference) {
+  .now-stub-link:focus-visible { --lift: -5px; --settle: .25; filter: drop-shadow(0 2px 3px rgb(43 37 32 / .1)) drop-shadow(0 14px 12px rgb(43 37 32 / .12)); }
+  .now-stub-link:focus-visible .stub-admit { transform: perspective(240px) rotateY(-28deg); }
+}
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .now-stub-link:is(:hover, :focus-visible) { --lift: -5px; --settle: .25; filter: drop-shadow(0 2px 3px rgb(43 37 32 / .1)) drop-shadow(0 14px 12px rgb(43 37 32 / .12)); }
+  .now-stub-link:hover { --lift: -5px; --settle: .25; filter: drop-shadow(0 2px 3px rgb(43 37 32 / .1)) drop-shadow(0 14px 12px rgb(43 37 32 / .12)); }
+  .now-stub-link:hover .stub-admit { transform: perspective(240px) rotateY(-28deg); }
 }
 /* The ticket's own tear on the right, plus a V die-cut top and bottom where the stub end meets the body. */
-.now-stub { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); border: 1px solid var(--border); background: var(--ticket-paper); clip-path: polygon(0 0, calc(2.25rem - 7px) 0, 2.25rem 7px, calc(2.25rem + 7px) 0, calc(100% - 5px) 0, calc(100% - 2px) 6%, calc(100% - 6px) 12%, calc(100% - 3px) 19%, calc(100% - 7px) 26%, calc(100% - 2px) 33%, calc(100% - 5px) 41%, calc(100% - 1px) 48%, calc(100% - 6px) 55%, calc(100% - 3px) 63%, calc(100% - 7px) 70%, calc(100% - 2px) 77%, calc(100% - 5px) 85%, calc(100% - 1px) 93%, calc(100% - 5px) 100%, calc(2.25rem + 7px) 100%, 2.25rem calc(100% - 7px), calc(2.25rem - 7px) 100%, 0 100%); }
+.now-stub { position: relative; isolation: isolate; display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); border: 1px solid transparent; clip-path: polygon(0 0, calc(2.25rem - 7px) 0, 2.25rem 7px, calc(2.25rem + 7px) 0, calc(100% - 5px) 0, calc(100% - 2px) 6%, calc(100% - 6px) 12%, calc(100% - 3px) 19%, calc(100% - 7px) 26%, calc(100% - 2px) 33%, calc(100% - 5px) 41%, calc(100% - 1px) 48%, calc(100% - 6px) 55%, calc(100% - 3px) 63%, calc(100% - 7px) 70%, calc(100% - 2px) 77%, calc(100% - 5px) 85%, calc(100% - 1px) 93%, calc(100% - 5px) 100%, calc(2.25rem + 7px) 100%, 2.25rem calc(100% - 7px), calc(2.25rem - 7px) 100%, 0 100%); }
+/* Only the stationary body has a backing. The flexing end owns its own paper,
+   so its uncovered footprint shows the page rather than a second ticket. */
+.now-stub::before { content: ''; position: absolute; inset: -1px -1px -1px 2.25rem; z-index: -1; border: 1px solid var(--border); border-left: 0; background: var(--ticket-paper); pointer-events: none; }
 /* The stub end is printed solid Deep Marquee Rust to the paper's edge (the negative margin covers the
    ticket's border); its perforation shows as paper-colored dashes. */
 .stub-admit { grid-column: 1; grid-row: 1 / 3; display: flex; align-items: center; justify-content: center; margin: -1px 0 -1px -1px; padding-block: .8rem; border-right: 1px dashed var(--ticket-paper); background: var(--accent-hover); color: var(--ticket-paper); font: .6875rem/1 var(--font-mono); letter-spacing: .16em; text-transform: uppercase; writing-mode: sideways-lr; }
+/* Flex the detachable end around the perforation, without moving its seam or hit target. */
+.stub-admit { transform-origin: right center; transition: transform 280ms cubic-bezier(.2, .8, .2, 1); }
 /* Keep text clear of the tear while letting the action's ink reach the cut edge. */
 .stub-body { grid-column: 2; padding: 1.25rem 1.75rem 1.1rem 1.25rem; }
 .stub-date { display: flex; flex-direction: column; gap: .4rem; }
@@ -246,16 +271,13 @@ main:focus { outline: none; }
 .photo-note-role { display: block; margin-top: .4rem; font: .75rem/1.5 var(--font-mono); color: var(--muted); }
 .photo-note-blurb { display: block; margin-top: .5rem; font-size: .9375rem; }
 .photo-note + * { margin-top: .75rem; }
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .photo-layers:hover, .photo-layers:focus-within { --lift: -9px; --rest-angle: 0deg; --photo-scale: 1.025; z-index: 2; }
-  .photo-layers:hover .photo-mat, .photo-layers:focus-within .photo-mat { box-shadow: 0 4px 8px rgb(43 37 32 / .08), 0 25px 35px -14px rgb(43 37 32 / .32); }
+@media (prefers-reduced-motion: no-preference) {
+  .photo-layers:focus-within { --lift: -9px; --rest-angle: 0deg; --photo-scale: 1.025; z-index: 2; }
+  .photo-layers:focus-within .photo-mat { box-shadow: 0 4px 8px rgb(43 37 32 / .08), 0 25px 35px -14px rgb(43 37 32 / .32); }
 }
-/* Only the broad, decorative paper responds to scroll; captions stay in place. */
-@supports (animation-timeline: view()) {
-  @media (min-width: 960px) and (prefers-reduced-motion: no-preference) {
-    .photo-spread::before { animation: paper-drift linear both; animation-timeline: view(); animation-range: entry 0% exit 100%; }
-    @keyframes paper-drift { from { translate: 0 -12px; } to { translate: 0 12px; } }
-  }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .photo-layers:hover { --lift: -9px; --rest-angle: 0deg; --photo-scale: 1.025; z-index: 2; }
+  .photo-layers:hover .photo-mat { box-shadow: 0 4px 8px rgb(43 37 32 / .08), 0 25px 35px -14px rgb(43 37 32 / .32); }
 }
 
 /* The supporting pages share the paper, without competing with their content. */
@@ -316,6 +338,10 @@ main:focus { outline: none; }
 
 @media (min-width: 640px) { .site-shell { width: min(100% - 5rem, 75rem); } }
 @media (min-width: 1280px) { .site-shell { width: min(100% - 8rem, 75rem); } }
+/* Leave room for the taped print's swing and focus ring on narrower boards. */
+@media (min-width: 640px) and (max-width: 1279px) {
+  .hero-contact-print { right: -4%; }
+}
 @media (max-width: 959px) {
   .home-hero { column-gap: 2rem; grid-template-columns: 1.1fr 1fr; }
   .artist-name { font-size: clamp(5rem, 13vw, 8rem); }
@@ -392,13 +418,14 @@ main:focus { outline: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-  .text-link:hover > .arrow, .build-badge:hover { transform: none; }
-  .brand:hover .brand-ticket { transform: rotate(-3deg); }
 }
 @media (forced-colors: active) {
   .portrait-backing, .photo-backing, .photo-spread::before, .hero-print-tape { display: none; }
   .photo-mat, .portrait-card, .now-stub, .resume-sheet, .video-mat { border: 1px solid CanvasText; }
   .hero-links-slip::before { border-color: CanvasText; box-shadow: none; }
+  .stub-admit { border-right-color: CanvasText; }
+  .now-stub-link:is(:hover, :focus-visible) .stub-admit { transform: none; }
+  .now-stub-link:is(:hover, :focus-visible) .stub-action { color: LinkText; }
   .site-header li a[aria-current="page"] { text-decoration: underline; }
   :focus-visible { outline-color: Highlight; }
 }

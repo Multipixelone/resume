@@ -259,8 +259,8 @@ The only curves are functional: the footer icon hover tile (6px), the pill-shape
 
 Character: a torn ticket and a row of paper slips.
 
-- **Brand:** a small brand ticket (Ticket Stock, Rule Line border, Marquee Rust left stripe, torn right edge) reading "Orch · Row F" in tiny mono over "Rutis" in Cooper Black, rotated -3deg; beside it "Finn Rutis" in Cooper Bold. On the homepage the text name is visually hidden because the big name is already there. Hover straightens the ticket to -1deg and lifts it 2px.
-- **Links:** Sabon 600 in Program Ink, 44px tall. A Callboard Card slip (Rule Line border, slip shadow) sits behind each link, invisible at rest; on hover or as the current page it appears at -2deg or 1.5deg (alternating) and the label turns Deep Marquee Rust.
+- **Brand:** a small brand ticket (Ticket Stock, Rule Line border, Marquee Rust left stripe, torn right edge) reading "Orch · Row F" in tiny mono over "Rutis" in Cooper Black, rotated -3deg; beside it "Finn Rutis" in Cooper Bold. On the homepage the text name is visually hidden because the big name is already there. Hover or keyboard focus straightens the ticket to -1deg and lifts it 2px.
+- **Links:** Sabon 600 in Program Ink, 44px tall. A Callboard Card slip (Rule Line border, slip shadow) sits behind each link, invisible at rest; on hover, keyboard focus or as the current page it appears at -2deg or 1.5deg (alternating) and the label turns Deep Marquee Rust.
 - **Mobile (under 640px):** the seat line and text name hide, the ticket shrinks, links drop to 0.875rem with tight padding, and everything still fits on one or two rows.
 
 ### Text Links
@@ -285,7 +285,7 @@ Character: a real print with a mat, resting at an angle.
 Character: a printed headshot with its own name strip.
 
 - The portrait sits in a Playbill Paper card with a bottom strip: "Finn Rutis" in Cooper Black and "they / them" in small mono Faded Ink, left-aligned on one line. The strip moves with the photo as one object.
-- A Callboard Card quadrilateral backing sits fixed behind it, rotated -5deg, with an inner Rule Line frame. A second print (the Seussical photo) overlaps the lower right at -9deg and links to the photo spread. It is taped at its top edge: the tape stays fixed to the headshot, and the print pivots at the tape's grip, swinging when a pointer arrives and hinging its bottom edge 10deg toward the hand on hover or focus. It does not follow the cursor or slide out from under the tape.
+- A Callboard Card quadrilateral backing sits fixed behind it, rotated -5deg, with an inner Rule Line frame. A second print (the Seussical photo) overlaps the lower right at -9deg and links to the photo spread. It is taped at its top edge: the tape stays fixed to the headshot, and the print pivots at the tape's grip, swinging when a pointer arrives or the link receives keyboard focus, and hinging its bottom edge 10deg toward the hand. The headshot, tape and small print share one pointer response, so the tape stays attached. The small print has no separate cursor-follow tilt.
 
 ### Ticket Stub (signature)
 
@@ -293,7 +293,7 @@ Character: a real landscape theatre ticket you could tear off.
 
 - Ticket Stock, Rule Line border, torn right edge, max 19rem wide, resting at 2deg (-1.5deg on even shows and on phones).
 - A printed stub end on the left: solid Deep Marquee Rust running to the paper's edge, with "Admit one" set vertically in Ticket Stock mono. Its perforation shows as Ticket Stock dashes along the rust edge, and a V die-cut notches the ticket top and bottom where the stub end meets the body. No colored side rail. The body holds the opening date in Cooper Black, the weekday and year in Deep Marquee Rust mono, the run ("One night only", or "Through" plus the closing date) in Faded Ink mono, and an optional "Livestream available" line with a filled dot.
-- With a booking URL, the whole stub is one link and gets a Stub Blush "Get tickets" band behind a dashed perforation. Hover or focus inverts the band to Deep Marquee Rust with Ticket Stock text and prints the date in Deep Marquee Rust; the border stays Rule Line. With a fine pointer and motion allowed, the stub also lifts 5px toward the hand, settles to a quarter of its resting angle and casts a deeper ticket shadow. Without a URL the stub is not interactive.
+- With a booking URL, the whole stub is one link and gets a Stub Blush "Get tickets" band behind a dashed perforation. Hover or focus inverts the band to Deep Marquee Rust with Ticket Stock text and prints the date in Deep Marquee Rust; the border stays Rule Line. With a fine pointer and motion allowed, the stub also lifts 5px toward the hand, settles to a quarter of its resting angle and casts a deeper ticket shadow. The rust "Admit one" end flexes 28deg around its perforated right seam on fine-pointer hover or keyboard focus, while the link target stays whole. Reduced motion keeps the ink change and removes the flex; forced colors also keeps the strip flat. Without a URL the stub is not interactive.
 - Beside it, the current-project notice: a plain Deep Marquee Rust mono status line with no marker (the words say whether it is in rehearsal or playing), the show title in Cooper Bold, then a Faded Ink dashed perforation and the mono-labelled credits (Role, Venue, Directed by) below it, so the credits read as the notice's tear-off. A role of "Self" is omitted.
 
 ### Paper Sheet and Slip
@@ -318,10 +318,11 @@ Hand-drawn blue ballpoint line art, scanned and rendered as CSS masks in one ink
 
 ### Motion
 
-- **Arrival:** marked paper layers settle in once when they first enter view: 700ms, `cubic-bezier(0.22, 1, 0.36, 1)`, from 18px below and 1deg, through a 2px overshoot, staggered at most 160ms. Content is visible without waiting for JavaScript (`fill: backwards`).
-- **Settle:** small paper state changes (nav slips, brand ticket) use 220ms `cubic-bezier(.2, .8, .2, 1)`. Print follow uses 450 to 500ms `cubic-bezier(.2, .75, .25, 1)`; print lift uses `cubic-bezier(.2, .8, .2, 1.15)` for a slight overshoot.
-- **Scroll:** only the broad paper behind the spread drifts (±12px, scroll-linked, 960px and up). Captions and headings never move with scroll.
-- Reduced motion removes all of it, including hover lifts and arrivals already in progress.
+- **Focal moment:** the homepage portrait is assembled once on first entering view. Its backing seats over 440ms, the headshot and taped print settle together over 620ms with a 60ms offset, and the small print catches at its tape over 640ms with a 140ms offset. The complete gesture ends within 780ms. A contracting shadow gives the headshot weight; name, bio and links are readable throughout. The resting composition is the default, including without JavaScript.
+- **Tape:** pointer entry or keyboard focus nudges the small print through a damped 920ms swing, at most 5deg either way. Its pivot stays at the tape. Repeated entry does not stack swings, and touch follows the link directly.
+- **Feedback:** paper slips settle in 220ms, the ticket end flexes in 280ms, and bounded photo follow uses 450 to 500ms. These are responses to hover or focus, never idle loops. The shared portrait assembly keeps both photographs and the tape together.
+- **Reading:** gallery photos and supporting pages have no scroll entrances or parallax. Captions, headings and body copy stay level.
+- **Lifecycle:** reduced motion cancels active Web Animations and pointer offsets immediately, while color and focus states remain clear. Hidden tabs and navigation clear animations and pending frames. Pointer work is coalesced to one animation frame, with no idle render loop or added dependency.
 
 ## Do's and Don'ts
 

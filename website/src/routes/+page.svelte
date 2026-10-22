@@ -4,7 +4,7 @@
   import CurrentProjects from '$lib/components/CurrentProjects.svelte';
   import PageHead from '$lib/components/PageHead.svelte';
   import PhotoSpread from '$lib/components/PhotoSpread.svelte';
-  import { paperMotion, swingFromTape } from '$lib/motion';
+  import { paperMotion, callboardEntrance } from '$lib/motion';
   import type { PageProps } from './$types';
 
   let { data }: PageProps = $props();
@@ -19,10 +19,10 @@
   </div>
 
   <div class="portrait-scene">
-    <div class="portrait-layers">
+    <div class="portrait-layers" use:paperMotion use:callboardEntrance>
       <span class="portrait-backing" aria-hidden="true"></span>
-      <div class="portrait-headshot" use:paperMotion>
-        <div data-paper-arrival>
+      <div class="portrait-assembly">
+        <div class="portrait-headshot">
           <figure class="portrait-card">
             <img src={sitePath('/media/portrait.jpg')} alt="Finn Rutis, smiling in a blue shirt against a warm brown background." width="1536" height="1920" fetchpriority="high" decoding="async" />
             <figcaption class="portrait-caption">
@@ -31,22 +31,22 @@
             </figcaption>
           </figure>
         </div>
-      </div>
-      {#if stagePhoto}
-        <div class="portrait-overlay">
-          <div class="hero-contact-print">
-            <div class="photo-layers" use:paperMotion={{ delay: 140 }}>
-              <div data-paper-arrival>
-                <a class="photo-mat" href="#photos-title" aria-label={`Explore performance photos: ${stagePhoto.note?.title ?? 'On stage'}`} onpointerenter={swingFromTape}>
-                  <img src={sitePath(`/media/${stagePhoto.file}`)} alt="" width={stagePhoto.width} height={stagePhoto.height} decoding="async" />
-                  <span class="hero-print-caption">{stagePhoto.note?.title}</span>
-                </a>
-                <span class="hero-print-tape" aria-hidden="true"></span>
+        {#if stagePhoto}
+          <div class="portrait-overlay">
+            <div class="hero-contact-print">
+              <div class="photo-layers">
+                <div class="hero-print-hinge">
+                  <a class="photo-mat" href="#photos-title" aria-label={`Explore performance photos: ${stagePhoto.note?.title ?? 'On stage'}`}>
+                    <img src={sitePath(`/media/${stagePhoto.file}`)} alt="" width={stagePhoto.width} height={stagePhoto.height} decoding="async" />
+                    <span class="hero-print-caption">{stagePhoto.note?.title}</span>
+                  </a>
+                  <span class="hero-print-tape" aria-hidden="true"></span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      {/if}
+        {/if}
+      </div>
     </div>
   </div>
 

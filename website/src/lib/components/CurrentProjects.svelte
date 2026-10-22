@@ -68,7 +68,6 @@
             class:now-stub-link={!!show.ticket_url}
             href={show.ticket_url}
             aria-labelledby={show.ticket_url ? `${id}-tickets ${id} ${id}-date ${id}-run${show.livestream ? ` ${id}-stream` : ''}` : undefined}
-            data-paper-arrival
           >
             <div class="now-stub">
               <span class="stub-admit" aria-hidden="true">Admit one</span>
