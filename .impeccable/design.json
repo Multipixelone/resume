@@ -1,0 +1,409 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-22T00:07:57+00:00",
+  "title": "Design System: Finn Rutis",
+  "extensions": {
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "Marquee Rust",
+        "canonical": "oklch(54.3% 0.155 45)",
+        "tonalRamp": [
+          "oklch(15% 0.052 45)",
+          "oklch(26% 0.081 45)",
+          "oklch(38% 0.111 45)",
+          "oklch(49% 0.140 45)",
+          "oklch(61% 0.140 45)",
+          "oklch(72% 0.111 45)",
+          "oklch(84% 0.081 45)",
+          "oklch(95% 0.052 45)"
+        ]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Deep Marquee Rust",
+        "canonical": "oklch(45.1% 0.128 46)",
+        "tonalRamp": [
+          "oklch(15% 0.043 46)",
+          "oklch(26% 0.067 46)",
+          "oklch(38% 0.091 46)",
+          "oklch(49% 0.116 46)",
+          "oklch(61% 0.116 46)",
+          "oklch(72% 0.091 46)",
+          "oklch(84% 0.067 46)",
+          "oklch(95% 0.043 46)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Playbill Paper",
+        "canonical": "oklch(96.8% 0.010 87)",
+        "tonalRamp": [
+          "oklch(15% 0.010 87)",
+          "oklch(26% 0.010 87)",
+          "oklch(38% 0.010 87)",
+          "oklch(49% 0.010 87)",
+          "oklch(61% 0.010 87)",
+          "oklch(72% 0.010 87)",
+          "oklch(84% 0.010 87)",
+          "oklch(95% 0.010 87)"
+        ]
+      },
+      "paper-shade": {
+        "role": "neutral",
+        "displayName": "Callboard Card",
+        "canonical": "oklch(93.7% 0.018 89)",
+        "tonalRamp": [
+          "oklch(15% 0.018 89)",
+          "oklch(26% 0.018 89)",
+          "oklch(38% 0.018 89)",
+          "oklch(49% 0.018 89)",
+          "oklch(61% 0.018 89)",
+          "oklch(72% 0.018 89)",
+          "oklch(84% 0.018 89)",
+          "oklch(95% 0.018 89)"
+        ]
+      },
+      "ticket-paper": {
+        "role": "neutral",
+        "displayName": "Ticket Stock",
+        "canonical": "oklch(98.5% 0.007 89)",
+        "tonalRamp": [
+          "oklch(15% 0.007 89)",
+          "oklch(26% 0.007 89)",
+          "oklch(38% 0.007 89)",
+          "oklch(49% 0.007 89)",
+          "oklch(61% 0.007 89)",
+          "oklch(72% 0.007 89)",
+          "oklch(84% 0.007 89)",
+          "oklch(95% 0.007 89)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Program Ink",
+        "canonical": "oklch(26.9% 0.013 62)",
+        "tonalRamp": [
+          "oklch(15% 0.013 62)",
+          "oklch(26% 0.013 62)",
+          "oklch(38% 0.013 62)",
+          "oklch(49% 0.013 62)",
+          "oklch(61% 0.013 62)",
+          "oklch(72% 0.013 62)",
+          "oklch(84% 0.013 62)",
+          "oklch(95% 0.013 62)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Faded Ink",
+        "canonical": "oklch(50.9% 0.026 74)",
+        "tonalRamp": [
+          "oklch(15% 0.026 74)",
+          "oklch(26% 0.026 74)",
+          "oklch(38% 0.026 74)",
+          "oklch(49% 0.026 74)",
+          "oklch(61% 0.026 74)",
+          "oklch(72% 0.026 74)",
+          "oklch(84% 0.026 74)",
+          "oklch(95% 0.026 74)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Rule Line",
+        "canonical": "oklch(87.7% 0.023 87)",
+        "tonalRamp": [
+          "oklch(15% 0.023 87)",
+          "oklch(26% 0.023 87)",
+          "oklch(38% 0.023 87)",
+          "oklch(49% 0.023 87)",
+          "oklch(61% 0.023 87)",
+          "oklch(72% 0.023 87)",
+          "oklch(84% 0.023 87)",
+          "oklch(95% 0.023 87)"
+        ]
+      },
+      "selection-bg": {
+        "role": "neutral",
+        "displayName": "Stub Blush",
+        "canonical": "oklch(90.3% 0.042 59)",
+        "tonalRamp": [
+          "oklch(15% 0.042 59)",
+          "oklch(26% 0.042 59)",
+          "oklch(38% 0.042 59)",
+          "oklch(49% 0.042 59)",
+          "oklch(61% 0.042 59)",
+          "oklch(72% 0.042 59)",
+          "oklch(84% 0.042 59)",
+          "oklch(95% 0.042 59)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The artist name on the homepage only; \"Rutis\" in Marquee Rust."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Spread headings like \"On stage.\" under a 1px ink rule."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Page h1 on supporting pages."
+      },
+      "title-show": {
+        "displayName": "Show title",
+        "purpose": "Current-project show titles; photo and off-stage titles at smaller sizes."
+      },
+      "subtitle": {
+        "displayName": "Subtitle",
+        "purpose": "Default h2 in Sabon bold."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All reading text."
+      },
+      "body-lead": {
+        "displayName": "Body lead",
+        "purpose": "Homepage bio and artist statement."
+      },
+      "link": {
+        "displayName": "Link",
+        "purpose": "Arrowed text links and nav items."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Tracked uppercase kickers in the stage manager voice."
+      },
+      "caption-mono": {
+        "displayName": "Caption mono",
+        "purpose": "Ticket metadata, credit labels, photo indices, pronouns."
+      }
+    },
+    "shadows": [
+      {
+        "name": "print",
+        "value": "0 2px 4px rgb(43 37 32 / .1), 0 12px 24px -12px rgb(43 37 32 / .32)",
+        "purpose": "Photo prints at rest."
+      },
+      {
+        "name": "print-lifted",
+        "value": "0 4px 8px rgb(43 37 32 / .08), 0 25px 35px -14px rgb(43 37 32 / .32)",
+        "purpose": "A print under fine-pointer hover or keyboard focus."
+      },
+      {
+        "name": "headshot",
+        "value": "0 3px 5px rgb(43 37 32 / .08), 0 18px 35px -16px rgb(43 37 32 / .28)",
+        "purpose": "The homepage portrait card."
+      },
+      {
+        "name": "sheet",
+        "value": "0 5px 15px rgba(43, 37, 32, 0.06)",
+        "purpose": "Resume sheet, video mats, off-stage slips."
+      },
+      {
+        "name": "slip",
+        "value": "0 2px 6px rgba(43, 37, 32, 0.06)",
+        "purpose": "Nav slips when shown."
+      },
+      {
+        "name": "ticket",
+        "value": "drop-shadow(0 1px 2px rgb(43 37 32 / .1)) drop-shadow(0 6px 5px rgb(43 37 32 / .06))",
+        "purpose": "Filter on the unclipped wrapper of the current-project stub."
+      },
+      {
+        "name": "brand-ticket",
+        "value": "drop-shadow(0 2px 2px rgb(43 37 32 / .1))",
+        "purpose": "Filter on the header brand ticket."
+      }
+    ],
+    "motion": [
+      {
+        "name": "arrival",
+        "value": "700ms cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Paper settles in once on first view: from 18px below and 1deg, 2px overshoot, stagger up to 160ms."
+      },
+      {
+        "name": "settle",
+        "value": "220ms cubic-bezier(.2, .8, .2, 1)",
+        "purpose": "Nav slips and brand ticket state changes."
+      },
+      {
+        "name": "print-follow",
+        "value": "450ms cubic-bezier(.2, .75, .25, 1)",
+        "purpose": "Pointer-follow tilt for headshot and ticket (500ms on photo prints)."
+      },
+      {
+        "name": "print-lift",
+        "value": "500ms cubic-bezier(.2, .8, .2, 1.15)",
+        "purpose": "Hover/focus lift with slight overshoot."
+      },
+      {
+        "name": "color",
+        "value": "150ms ease",
+        "purpose": "Link and icon color changes."
+      },
+      {
+        "name": "pointer-tilt-bounds",
+        "value": "±5px x, ±4px y, ±1.5deg rotateX, ±2deg rotateY",
+        "purpose": "Maximum pointer response on fine pointers."
+      },
+      {
+        "name": "paper-drift",
+        "value": "scroll-linked translate ±12px",
+        "purpose": "Only the broad paper behind the photo spread, 960px and up."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone",
+        "value": "max-width: 639px"
+      },
+      {
+        "name": "tablet",
+        "value": "max-width: 767px"
+      },
+      {
+        "name": "compact",
+        "value": "max-width: 959px"
+      },
+      {
+        "name": "gutter-md",
+        "value": "min-width: 640px"
+      },
+      {
+        "name": "gutter-lg",
+        "value": "min-width: 1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Text Link",
+      "kind": "custom",
+      "refersTo": "text-link",
+      "description": "Underlined Marquee Rust link with the shared arrow; every action on the site is one of these.",
+      "html": "<a class=\"ds-text-link\" href=\"#\">Watch me perform <svg class=\"ds-arrow\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 18 18 6M8 6h10v10\"/></svg></a>",
+      "css": ".ds-text-link { display: inline-flex; align-items: center; gap: .8rem; min-height: 44px; font: 600 1.0625rem var(--font-body, \"Sabon Next\", Georgia, serif); color: var(--accent, #b54a00); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; transition: color 150ms ease; } .ds-text-link:hover { color: var(--accent-hover, #8c3800); text-decoration-thickness: 2px; } .ds-text-link:focus-visible { outline: 3px solid var(--accent, #b54a00); outline-offset: 5px; } .ds-arrow { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: transform 250ms ease; } .ds-text-link:hover .ds-arrow { transform: translate(2px, -2px); }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Torn brand ticket plus paper-slip nav links; the current page keeps its slip pinned.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-brand\" href=\"#\"><span class=\"ds-brand-ticket\"><span class=\"ds-ticket-card\"><span class=\"ds-ticket-seat\">Orch &middot; Row F</span><span class=\"ds-ticket-mark\">Rutis</span></span></span><span class=\"ds-brand-name\">Finn Rutis</span></a><ul><li><a href=\"#\">About</a></li><li><a href=\"#\" aria-current=\"page\">Resume</a></li><li><a href=\"#\">Reel</a></li><li><a href=\"#\">Contact</a></li></ul></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; font-family: var(--font-body, \"Sabon Next\", Georgia, serif); } .ds-nav ul { display: flex; gap: .25rem .5rem; list-style: none; margin: 0; padding: 0; } .ds-nav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink, #2b2520); font-weight: 600; text-decoration: none; } .ds-brand { gap: .8rem; } .ds-brand-ticket { display: block; filter: drop-shadow(0 2px 2px rgb(43 37 32 / .1)); transform: rotate(-3deg); transition: transform 220ms cubic-bezier(.2,.8,.2,1); } .ds-ticket-card { display: grid; gap: .2rem; min-height: 2.75rem; padding: .5rem 1rem .5rem .85rem; background: linear-gradient(90deg, var(--accent, #b54a00) 0 .2rem, transparent .2rem), var(--ticket-paper, #fcfaf5); border: 1px solid var(--border, #ddd6c6); clip-path: polygon(0 0, calc(100% - 5px) 0, calc(100% - 2px) 6%, calc(100% - 6px) 12%, calc(100% - 3px) 19%, calc(100% - 7px) 26%, calc(100% - 2px) 33%, calc(100% - 5px) 41%, calc(100% - 1px) 48%, calc(100% - 6px) 55%, calc(100% - 3px) 63%, calc(100% - 7px) 70%, calc(100% - 2px) 77%, calc(100% - 5px) 85%, calc(100% - 1px) 93%, calc(100% - 5px) 100%, 0 100%); } .ds-ticket-seat { font: .5rem/1 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .08em; text-transform: uppercase; color: var(--muted, #6f6456); white-space: nowrap; } .ds-ticket-mark { font: 900 1.15rem/1 var(--font-display, \"Cooper*\", Georgia, serif); letter-spacing: .02em; } .ds-brand-name { font: 700 1.3rem/1 var(--font-display, \"Cooper*\", Georgia, serif); } .ds-brand:hover .ds-brand-ticket { transform: rotate(-1deg) translateY(-2px); } .ds-nav li a { position: relative; isolation: isolate; padding-inline: .75rem; } .ds-nav li a::before { content: ''; position: absolute; inset: .3rem 0; z-index: -1; background: var(--paper-shade, #efeadd); border: 1px solid var(--border, #ddd6c6); box-shadow: 0 2px 6px rgba(43,37,32,.06); opacity: 0; transform: rotate(var(--tilt, -2deg)) scale(.85); transition: opacity 150ms ease, transform 220ms cubic-bezier(.2,.8,.2,1); } .ds-nav li:nth-child(even) a { --tilt: 1.5deg; } .ds-nav li a:hover, .ds-nav li a[aria-current=page] { color: var(--accent-hover, #8c3800); } .ds-nav li a:hover::before, .ds-nav li a[aria-current=page]::before { opacity: 1; transform: rotate(var(--tilt, -2deg)); } .ds-nav a:focus-visible { outline: 3px solid var(--accent, #b54a00); outline-offset: 5px; }"
+    },
+    {
+      "name": "Ticket Stub",
+      "kind": "custom",
+      "refersTo": "ticket-stub",
+      "description": "Signature landscape ticket for a current project: Admit one rail, Cooper date, torn edge, Get tickets band.",
+      "html": "<a class=\"ds-stub-wrap\" href=\"#\"><div class=\"ds-stub\"><span class=\"ds-stub-admit\">Admit one</span><div class=\"ds-stub-body\"><span class=\"ds-stub-day\">Nov 15</span><span class=\"ds-stub-detail\">Sun / 2026</span><p class=\"ds-stub-run\">One night only</p><p class=\"ds-stub-stream\">Livestream available</p></div><span class=\"ds-stub-action\">Get tickets <svg class=\"ds-arrow\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 18 18 6M8 6h10v10\"/></svg></span></div></a>",
+      "css": ".ds-stub-wrap { display: block; max-width: 19rem; color: var(--ink, #2b2520); text-decoration: none; filter: drop-shadow(0 1px 2px rgb(43 37 32 / .1)) drop-shadow(0 6px 5px rgb(43 37 32 / .06)); transform: rotate(2deg); } .ds-stub { display: grid; grid-template-columns: 2.25rem minmax(0,1fr); border: 1px solid var(--border, #ddd6c6); border-left: 3px solid var(--accent, #b54a00); background: var(--ticket-paper, #fcfaf5); clip-path: polygon(0 0, calc(100% - 5px) 0, calc(100% - 2px) 6%, calc(100% - 6px) 12%, calc(100% - 3px) 19%, calc(100% - 7px) 26%, calc(100% - 2px) 33%, calc(100% - 5px) 41%, calc(100% - 1px) 48%, calc(100% - 6px) 55%, calc(100% - 3px) 63%, calc(100% - 7px) 70%, calc(100% - 2px) 77%, calc(100% - 5px) 85%, calc(100% - 1px) 93%, calc(100% - 5px) 100%, 0 100%); } .ds-stub-admit { grid-row: 1 / 3; display: flex; align-items: center; justify-content: center; padding-block: .8rem; border-right: 1px dashed var(--border, #ddd6c6); color: var(--muted, #6f6456); font: .6875rem/1 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .16em; text-transform: uppercase; writing-mode: sideways-lr; } .ds-stub-body { display: flex; flex-direction: column; padding: 1.25rem 1.75rem 1.1rem 1.25rem; } .ds-stub-day { font: 900 2.5rem/1 var(--font-display, \"Cooper*\", Georgia, serif); letter-spacing: -.035em; } .ds-stub-detail { margin-top: .4rem; font: .75rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .06em; text-transform: uppercase; color: var(--accent-hover, #8c3800); } .ds-stub-run { margin: .8rem 0 0; font: .6875rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .05em; text-transform: uppercase; color: var(--muted, #6f6456); } .ds-stub-stream { display: flex; align-items: center; gap: .45rem; margin: .35rem 0 0; font: .6875rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .05em; text-transform: uppercase; color: var(--accent-hover, #8c3800); } .ds-stub-stream::before { content: ''; width: .4rem; height: .4rem; border-radius: 50%; background: currentColor; } .ds-stub-action { grid-column: 2; display: flex; align-items: center; justify-content: space-between; min-height: 44px; padding: .7rem 1.75rem .7rem 1.25rem; border-top: 1px dashed var(--border, #ddd6c6); background: var(--selection-bg, #f5d9c4); color: var(--accent-hover, #8c3800); font: 600 1rem var(--font-body, \"Sabon Next\", Georgia, serif); text-decoration: underline; text-underline-offset: .2em; transition: background-color 150ms ease, color 150ms ease; } .ds-stub-wrap:hover .ds-stub-action, .ds-stub-wrap:focus-visible .ds-stub-action { background: var(--accent-hover, #8c3800); color: var(--ticket-paper, #fcfaf5); } .ds-stub-wrap:hover .ds-stub, .ds-stub-wrap:focus-visible .ds-stub { border-color: var(--accent, #b54a00); } .ds-stub-wrap:focus-visible { outline: 3px solid var(--accent, #b54a00); outline-offset: 5px; } .ds-arrow { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }"
+    },
+    {
+      "name": "Photo Print",
+      "kind": "card",
+      "refersTo": "photo-mat",
+      "description": "Matted print at a resting angle with a level caption below: mono index, Cooper title, mono role.",
+      "html": "<figure class=\"ds-print\"><a class=\"ds-mat\" href=\"#\"><span class=\"ds-photo\"></span></a><figcaption><span class=\"ds-index\">01</span><span><span class=\"ds-note-title\">Seussical</span><span class=\"ds-note-role\">Cat in the Hat</span></span></figcaption></figure>",
+      "css": ".ds-print { margin: 0; max-width: 18rem; font-family: var(--font-body, \"Sabon Next\", Georgia, serif); } .ds-mat { display: block; padding: .45rem; background: var(--paper, #f7f4ed); box-shadow: 0 2px 4px rgb(43 37 32 / .1), 0 12px 24px -12px rgb(43 37 32 / .32); transform: rotate(-2deg); transition: transform 500ms cubic-bezier(.2,.8,.2,1.15), box-shadow 500ms ease; } .ds-mat:hover, .ds-mat:focus-visible { transform: translateY(-9px) rotate(0deg) scale(1.025); box-shadow: 0 4px 8px rgb(43 37 32 / .08), 0 25px 35px -14px rgb(43 37 32 / .32); } .ds-mat:focus-visible { outline: 3px solid var(--accent, #b54a00); outline-offset: 5px; } .ds-photo { display: block; aspect-ratio: 4 / 5; background: linear-gradient(160deg, #3a2f28, #1d1916); } .ds-print figcaption { display: flex; gap: 1rem; padding: 1.8rem .25rem 0; line-height: 1.5; } .ds-index { padding-top: .25rem; font: .625rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); color: var(--accent-hover, #8c3800); } .ds-note-title { display: block; font: 700 1.375rem/1.2 var(--font-display, \"Cooper*\", Georgia, serif); color: var(--ink, #2b2520); } .ds-note-role { display: block; margin-top: .4rem; font: .75rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); color: var(--muted, #6f6456); }"
+    },
+    {
+      "name": "Kicker",
+      "kind": "chip",
+      "refersTo": "kicker",
+      "description": "Stage-manager label: tiny tracked uppercase mono over a hairline rule, with an optional status dot.",
+      "html": "<div class=\"ds-kicker-block\"><p class=\"ds-kicker\">Current project</p><p class=\"ds-status\">In rehearsal</p></div>",
+      "css": ".ds-kicker-block { padding-top: 1rem; border-top: 1px solid var(--border, #ddd6c6); } .ds-kicker { margin: 0; font: .75rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .14em; text-transform: uppercase; color: var(--muted, #6f6456); } .ds-status { display: inline-flex; align-items: center; gap: .5rem; margin: 1.75rem 0 0; font: .75rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); letter-spacing: .06em; text-transform: uppercase; color: var(--accent-hover, #8c3800); } .ds-status::before { content: ''; width: .4rem; height: .4rem; border: 1px solid currentColor; border-radius: 50%; }"
+    },
+    {
+      "name": "Paper Sheet",
+      "kind": "card",
+      "refersTo": "paper-sheet",
+      "description": "Callboard Card backing that holds a resume preview or a video.",
+      "html": "<div class=\"ds-sheet\"><div class=\"ds-sheet-page\"></div></div>",
+      "css": ".ds-sheet { max-width: 16rem; padding: 1rem; background: var(--paper-shade, #efeadd); border: 1px solid var(--border, #ddd6c6); box-shadow: 0 5px 15px rgba(43,37,32,.06); } .ds-sheet-page { aspect-ratio: 8.5 / 11; background: var(--paper, #f7f4ed); }"
+    },
+    {
+      "name": "Footer Icons and Build Badge",
+      "kind": "nav",
+      "refersTo": "footer-icon",
+      "description": "Muted 44px icon links on a hover tile, and the pill build badge with a mono SHA.",
+      "html": "<footer class=\"ds-footer\"><nav class=\"ds-footer-links\"><a href=\"#\" aria-label=\"Email\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"m3 7 9 6 9-6\"/></svg></a><a href=\"#\" aria-label=\"Blog\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 20h9\"/><path d=\"M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z\"/></svg></a></nav><p class=\"ds-footer-meta\"><span>&copy; 2026 Finn Rutis</span><a class=\"ds-badge\" href=\"#\"><span>built from</span><code>b42177d</code></a></p></footer>",
+      "css": ".ds-footer { padding: 1.25rem 0; border-top: 1px solid var(--border, #ddd6c6); text-align: center; font-family: var(--font-body, \"Sabon Next\", Georgia, serif); font-variant: small-caps; letter-spacing: .05em; } .ds-footer-links { display: flex; justify-content: center; gap: .1rem; } .ds-footer-links a { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; color: var(--muted, #6f6456); border-radius: 6px; transition: color 150ms ease, background-color 150ms ease; } .ds-footer-links a:hover { color: var(--accent, #b54a00); background: var(--paper-shade, #efeadd); } .ds-footer-links a:focus-visible { outline: 2px solid var(--accent, #b54a00); outline-offset: -2px; } .ds-footer-links svg { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; } .ds-footer-meta { display: flex; justify-content: center; align-items: center; gap: .55rem; font-size: .85rem; color: var(--muted, #6f6456); } .ds-badge { display: inline-flex; gap: .45rem; padding: .28rem .8rem .32rem; color: var(--muted, #6f6456); background: var(--paper-shade, #efeadd); border: 1px solid var(--border, #ddd6c6); border-radius: 999px; font-size: .8rem; line-height: 1.2; text-decoration: none; transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease, transform 150ms ease; } .ds-badge:hover { color: var(--accent, #b54a00); background: var(--paper, #f7f4ed); border-color: var(--accent, #b54a00); transform: translateY(-1px); box-shadow: 0 2px 6px rgba(43,37,32,.06); } .ds-badge code { font: .95em var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); font-variant: normal; letter-spacing: 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Callboard",
+    "overview": "The site is the backstage callboard: the board by the stage door where the cast list, a ticket, a few production photos and someone's scribbled notes get pinned up. It is working theatre, not a keepsake album and not a marquee. Everything on the page is a physical piece of printed paper (a photo print with a mat, a torn ticket stub, a paper slip, a resume sheet) resting at a slight angle on warm stock, with the name set as large as a playbill title. Paper has weight and casts a soft shadow; type and captions stay level and readable beside it.\n\nDensity is generous. One idea per viewport on the homepage: the name and headshot, then the current project, then the \"On stage.\" spread. Supporting pages (resume, reel, contact, all resumes) keep the same paper and type but calm down: fewer angles, ruled lists, and plain links, so a casting director can get the PDF or the video without wading through decoration.\n\nScrapbook texture is welcome when it is real. A planned layer of blue ballpoint doodles, drawn by hand by a friend of Finn's and scanned, will annotate the board like notes in a script margin. `docs/doodles.md` owns that layer's rules. Confirmed rejections: the generic actor template site (centered headshot, stock nav, slideshow), the tech portfolio look (dark mode, terminal motifs, gradients, developer cards), and glossy showbiz (black and gold, glitter, marquee bulbs, rendered spotlight glow).",
+    "keyCharacteristics": [
+      "Warm cream paper with one burnt-orange accent; light only.",
+      "Cooper Black at playbill scale for the name and big headings; Sabon Next for reading; PragmataPro as the small, tracked, uppercase backstage label voice.",
+      "Printed objects with square corners, mats, resting angles and soft layered shadows.",
+      "A torn-ticket motif shared by the header logo and the current-project stub.",
+      "Motion that feels like paper settling and responding to a hand, never a performance; all of it is removed under reduced motion.",
+      "Every action is a link. No buttons, no forms."
+    ],
+    "rules": [
+      {
+        "name": "The One Rust Rule",
+        "body": "Marquee Rust and its deep shade are the only hues in the interface. Everything else is paper and ink. The planned ballpoint blue is ink drawn on the board, not interface color; it never marks a link, state or control.",
+        "section": "colors"
+      },
+      {
+        "name": "The Daylight Rule",
+        "body": "The site is light paper only (`color-scheme: light`). There is no dark theme, no toggle and no system-dark substitution.",
+        "section": "colors"
+      },
+      {
+        "name": "The Playbill Rule",
+        "body": "Cooper is for names and titles only: the artist name, spread headings, page titles, show and photo titles, ticket dates and the brand mark. Never body copy, never labels.",
+        "section": "typography"
+      },
+      {
+        "name": "The Stage Manager Rule",
+        "body": "PragmataPro is a label voice: small (0.75rem or less outside file labels), tracked, usually uppercase, usually Faded Ink or Deep Marquee Rust. It is not a terminal and never sets a heading or a paragraph.",
+        "section": "typography"
+      },
+      {
+        "name": "The Words Stay Level Rule",
+        "body": "Paper tilts; text never does. Captions sit below their print and stay fixed while the print lifts and tilts. Slips rotate their background layer, not their words. Headings never rotate.",
+        "section": "layout"
+      },
+      {
+        "name": "The Prints Cast, Words Don't Rule",
+        "body": "Only paper objects get shadows. Text, captions, rules and icons never do, and neither will the ballpoint doodles: ink drawn on a print has no shadow of its own.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Square Paper Rule",
+        "body": "If it is paper, it has square corners. Rounding belongs only to small UI conveniences in the footer.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do keep Marquee Rust (#b54a00) as the only interface hue, on links, the surname, ticket rails and focus.",
+      "Do give every print a resting angle between -4deg and 4deg, varied between neighbors; the overlapping hero print at -9deg is the one exception.",
+      "Do keep captions, headings and body copy level and outside the print, readable without hover or JavaScript.",
+      "Do reuse the shared ticket tear and Ticket Stock for anything that is a ticket, with its shadow on an unclipped wrapper.",
+      "Do use the shadow vocabulary above for paper objects, and the lifted print shadow only on hover or focus.",
+      "Do keep interactive targets at least 44px tall and the focus ring a 3px Marquee Rust outline at 5px offset.",
+      "Do hide decorative paper layers in forced colors and give prints, tickets and sheets a 1px CanvasText border there.",
+      "Do add scrapbook texture as real hand-drawn ink, placed and limited as `docs/doodles.md` describes."
+    ],
+    "donts": [
+      "Don't build the actor template site: a centered headshot hero, a stock nav and a slideshow.",
+      "Don't borrow the tech portfolio look: dark mode, terminal motifs, gradients or developer-style cards. PragmataPro is a label voice, not a terminal.",
+      "Don't go glossy showbiz: black and gold, glitter, marquee bulbs or rendered spotlight glow.",
+      "Don't fake the hand: no SVG, CSS or AI-generated doodle stand-ins. If a drawing doesn't exist yet, its slot stays empty.",
+      "Don't place text over a face, crop a photo into a cutout, or remove its background.",
+      "Don't round the corners of paper, or add a second accent hue or a dark theme.",
+      "Don't set body copy or labels in Cooper, or headings in PragmataPro.",
+      "Don't put a shadow on text, captions, icons or ink."
+    ]
+  }
+}
