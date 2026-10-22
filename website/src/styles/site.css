@@ -176,8 +176,11 @@ main:focus { outline: none; }
 .now-stub-link:focus-visible { outline-offset: 5px; }
 .now-stub-link:hover .stub-action, .now-stub-link:focus-visible .stub-action { background: var(--accent-hover); color: var(--ticket-paper); }
 .now-stub-link:hover .now-stub, .now-stub-link:focus-visible .now-stub { border-color: var(--accent); }
-.now-stub { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); border: 1px solid var(--border); border-left: 3px solid var(--accent); background: var(--ticket-paper); clip-path: var(--ticket-tear); }
-.stub-admit { grid-column: 1; grid-row: 1 / 3; display: flex; align-items: center; justify-content: center; padding-block: .8rem; border-right: 1px dashed var(--border); color: var(--muted); font: .6875rem/1 var(--font-mono); letter-spacing: .16em; text-transform: uppercase; writing-mode: sideways-lr; }
+/* The ticket's own tear on the right, plus a V die-cut top and bottom where the stub end meets the body. */
+.now-stub { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); border: 1px solid var(--border); background: var(--ticket-paper); clip-path: polygon(0 0, calc(2.25rem - 7px) 0, 2.25rem 7px, calc(2.25rem + 7px) 0, calc(100% - 5px) 0, calc(100% - 2px) 6%, calc(100% - 6px) 12%, calc(100% - 3px) 19%, calc(100% - 7px) 26%, calc(100% - 2px) 33%, calc(100% - 5px) 41%, calc(100% - 1px) 48%, calc(100% - 6px) 55%, calc(100% - 3px) 63%, calc(100% - 7px) 70%, calc(100% - 2px) 77%, calc(100% - 5px) 85%, calc(100% - 1px) 93%, calc(100% - 5px) 100%, calc(2.25rem + 7px) 100%, 2.25rem calc(100% - 7px), calc(2.25rem - 7px) 100%, 0 100%); }
+/* The stub end is printed solid Deep Marquee Rust to the paper's edge (the negative margin covers the
+   ticket's border); its perforation shows as paper-colored dashes. */
+.stub-admit { grid-column: 1; grid-row: 1 / 3; display: flex; align-items: center; justify-content: center; margin: -1px 0 -1px -1px; padding-block: .8rem; border-right: 1px dashed var(--ticket-paper); background: var(--accent-hover); color: var(--ticket-paper); font: .6875rem/1 var(--font-mono); letter-spacing: .16em; text-transform: uppercase; writing-mode: sideways-lr; }
 /* Keep text clear of the tear while letting the action's ink reach the cut edge. */
 .stub-body { grid-column: 2; padding: 1.25rem 1.75rem 1.1rem 1.25rem; }
 .stub-date { display: flex; flex-direction: column; gap: .4rem; }
