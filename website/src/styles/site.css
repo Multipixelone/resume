@@ -114,7 +114,11 @@ main:focus { outline: none; }
 .portrait-name { max-width: 100%; font: 900 clamp(1.125rem, 1.8vw, 1.5rem)/1.1 var(--font-display); letter-spacing: -.025em; }
 .portrait-pronouns { max-width: 100%; font: clamp(.75rem, .9vw, .8125rem)/1.5 var(--font-mono); color: var(--muted); }
 .hero-contact-print { position: absolute; width: 36%; right: -12%; bottom: 3rem; --rotation: -9deg; pointer-events: auto; }
-.hero-contact-print .photo-mat { padding: .4rem; text-decoration: none; }
+/* The stage print is taped to the headshot: it pivots at the tape and swings (swingFromTape) instead of lifting. */
+.hero-contact-print .photo-mat { position: relative; padding: .4rem; text-decoration: none; transform-origin: 50% .45rem; }
+.hero-contact-print .photo-layers:is(:hover, :focus-within) { --lift: 0px; --rest-angle: var(--rotation); --photo-scale: 1; }
+.hero-contact-print .photo-layers:is(:hover, :focus-within) .photo-mat { box-shadow: 0 2px 4px rgb(43 37 32 / .1), 0 12px 24px -12px rgb(43 37 32 / .32); }
+.hero-print-tape { position: absolute; top: -.55rem; left: 50%; width: 40%; height: 1.05rem; translate: -50% 0; rotate: 7deg; background: rgb(221 214 198 / .8); clip-path: polygon(3% 10%, 97% 0, 100% 24%, 97% 48%, 100% 74%, 97% 100%, 2% 92%, 4% 70%, 0 46%, 3% 24%); pointer-events: none; }
 .hero-print-caption { display: block; padding: .6rem .1rem .15rem; color: var(--ink); text-align: left; font: .6875rem/1.5 var(--font-mono); }
 .bio-block { grid-column: 1; grid-row: 2; max-width: 36ch; padding-top: .5rem; font-size: clamp(1.2rem, 1.65vw, 1.4rem); line-height: 1.5; }
 .hero-links { display: flex; flex-wrap: wrap; gap: .5rem 1.75rem; margin-top: 1.75rem; }
@@ -348,7 +352,7 @@ main:focus { outline: none; }
   .brand:hover .brand-ticket { transform: rotate(-3deg); }
 }
 @media (forced-colors: active) {
-  .portrait-backing, .photo-backing, .photo-spread::before { display: none; }
+  .portrait-backing, .photo-backing, .photo-spread::before, .hero-print-tape { display: none; }
   .photo-mat, .portrait-card, .now-stub, .resume-sheet, .video-mat { border: 1px solid CanvasText; }
   .site-header li a[aria-current="page"] { text-decoration: underline; }
   :focus-visible { outline-color: Highlight; }

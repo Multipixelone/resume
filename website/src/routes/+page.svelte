@@ -4,7 +4,7 @@
   import CurrentProjects from '$lib/components/CurrentProjects.svelte';
   import PageHead from '$lib/components/PageHead.svelte';
   import PhotoSpread from '$lib/components/PhotoSpread.svelte';
-  import { paperMotion } from '$lib/motion';
+  import { paperMotion, swingFromTape } from '$lib/motion';
   import type { PageProps } from './$types';
 
   let { data }: PageProps = $props();
@@ -37,7 +37,8 @@
           <div class="hero-contact-print">
             <div class="photo-layers" use:paperMotion={{ delay: 140 }}>
               <div data-paper-arrival>
-                <a class="photo-mat" href="#photos-title" aria-label={`Explore performance photos: ${stagePhoto.note?.title ?? 'On stage'}`}>
+                <a class="photo-mat" href="#photos-title" aria-label={`Explore performance photos: ${stagePhoto.note?.title ?? 'On stage'}`} onpointerenter={swingFromTape}>
+                  <span class="hero-print-tape" aria-hidden="true"></span>
                   <img src={sitePath(`/media/${stagePhoto.file}`)} alt="" width={stagePhoto.width} height={stagePhoto.height} decoding="async" />
                   <span class="hero-print-caption">{stagePhoto.note?.title}</span>
                 </a>

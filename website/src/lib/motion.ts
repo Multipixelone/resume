@@ -2,6 +2,21 @@ import type { Action } from 'svelte/action';
 
 type PaperMotionOptions = { delay?: number };
 
+// A damped pendulum: [offset, share of the first swing]. Each turn eases in and out.
+const TAPE_SWING: [number, number][] = [[0, 0], [.14, 1], [.32, -.62], [.5, .38], [.66, -.22], [.8, .12], [.91, -.05], [1, 0]];
+
+/** A print taped at its top edge swings from the tape when a pointer touches it, then settles. */
+export function swingFromTape(event: PointerEvent) {
+  const print = event.currentTarget;
+  if (!(print instanceof HTMLElement) || event.pointerType === 'touch') return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (print.getAnimations().some(animation => animation.id === 'tape-swing')) return;
+  print.animate(
+    TAPE_SWING.map(([offset, turn]) => ({ offset, rotate: `${turn * 6}deg`, easing: 'cubic-bezier(.37, 0, .63, 1)' })),
+    { id: 'tape-swing', duration: 1600 }
+  );
+}
+
 /** A visible, static composition first; only its marked paper layers move. */
 export const paperMotion: Action<HTMLElement, PaperMotionOptions | undefined> = (node, options) => {
   if (typeof matchMedia !== 'function') return;
