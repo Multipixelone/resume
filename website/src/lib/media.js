@@ -62,6 +62,7 @@ export const performancePhotos = [
 ];
 
 export const recordings = [
+  { id: "ucVBjbfxrHA", title: "Molloy Showcase 2026" },
   { id: "DYrR7xup_Js", title: "I Love to Sing-a & Love Me, Love Me Not" },
   { id: "-QPog0QsJ9s", title: "No One Has to Know" },
   { id: "ZP38u-e76BY", title: "Circus McGurkus" },
