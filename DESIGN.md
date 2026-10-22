@@ -285,7 +285,7 @@ Character: a real print with a mat, resting at an angle.
 Character: a printed headshot with its own name strip.
 
 - The portrait sits in a Playbill Paper card with a bottom strip: "Finn Rutis" in Cooper Black and "they / them" in small mono Faded Ink, left-aligned on one line. The strip moves with the photo as one object.
-- A Callboard Card quadrilateral backing sits fixed behind it, rotated -5deg, with an inner Rule Line frame. A second print (the Seussical photo) overlaps the lower right at -9deg and links to the photo spread.
+- A Callboard Card quadrilateral backing sits fixed behind it, rotated -5deg, with an inner Rule Line frame. A second print (the Seussical photo) overlaps the lower right at -9deg and links to the photo spread. It is taped at its top edge: the tape stays fixed to the headshot, and the print pivots at the tape's grip, swinging when a pointer arrives and hinging its bottom edge 10deg toward the hand on hover or focus. It does not follow the cursor or slide out from under the tape.
 
 ### Ticket Stub (signature)
 

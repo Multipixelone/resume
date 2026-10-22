@@ -38,10 +38,10 @@
             <div class="photo-layers" use:paperMotion={{ delay: 140 }}>
               <div data-paper-arrival>
                 <a class="photo-mat" href="#photos-title" aria-label={`Explore performance photos: ${stagePhoto.note?.title ?? 'On stage'}`} onpointerenter={swingFromTape}>
-                  <span class="hero-print-tape" aria-hidden="true"></span>
                   <img src={sitePath(`/media/${stagePhoto.file}`)} alt="" width={stagePhoto.width} height={stagePhoto.height} decoding="async" />
                   <span class="hero-print-caption">{stagePhoto.note?.title}</span>
                 </a>
+                <span class="hero-print-tape" aria-hidden="true"></span>
               </div>
             </div>
           </div>
