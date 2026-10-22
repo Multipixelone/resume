@@ -36,9 +36,9 @@ env SITE_BASE=/resume npm run build
 env SITE_BASE=/resume npm run preview -- --host 127.0.0.1
 ```
 
-The five route files are `build/index.html`, `build/resume/index.html`,
-`build/performance-reel/index.html`, `build/booking/index.html`, and
-`build/resumes/index.html`. Under a repository mount their URLs begin with
+The six route files are `build/index.html`, `build/about/index.html`,
+`build/resume/index.html`, `build/performance-reel/index.html`,
+`build/booking/index.html`, and `build/resumes/index.html`. Under a repository mount their URLs begin with
 `/resume`, so the theatre page is `/resume/resume/`. The base is a host mount,
 not an extra directory to prepend inside the generated artifact.
 
@@ -132,7 +132,7 @@ The theatre preview is an image object with no-JS fallback links. Until Phase 3
 assembly it may display its fallback and its destinations can return 404.
 This is an explicit integration dependency, not a finished-download claim.
 Verify every visible registry artifact and the encoded composite filename after
-assembly; do not waive those checks because the five HTML pages build.
+assembly; do not waive those checks because the six HTML pages build.
 
 ## Design, fonts, and media
 
@@ -197,7 +197,7 @@ direct YouTube links. No local video files were supplied.
 1. Install/check/ingestion tests and both root and `/resume` base builds. Confirm
    shared TOML inclusion and absence of Astro, fixtures, TOML parser, and server
    filesystem code in browser output. Check direct HTML routes under both bases.
-2. Screenshot all five routes at 320, 390, 768, 1024 and 1440px, with actual
+2. Screenshot all six routes at 320, 390, 768, 1024 and 1440px, with actual
    rendered-font/network evidence. Inspect 200% text sizing, 400% zoom/reflow,
    large production titles, image proportions, focus visibility and no overflow.
 3. Keyboard skip link/navigation/downloads, visible mobile navigation, tab order,

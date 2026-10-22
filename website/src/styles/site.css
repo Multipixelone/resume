@@ -243,6 +243,27 @@ main:focus { outline: none; }
 .composite-download { margin-top: 2rem; }
 .composite-download a { display: inline-block; padding-block: .6rem; }
 
+/* About: the statement reads like a program note, the off-stage notes like loose snapshots. */
+.statement { display: grid; grid-template-columns: minmax(14rem, 1fr) minmax(0, 2fr); gap: 1rem 3rem; align-items: start; padding-top: 1.5rem; border-top: 1px solid var(--ink); }
+.statement > h2 { padding-top: .45rem; font: .75rem/1.5 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.statement-body { max-width: 38em; font-size: clamp(1.2rem, 1.65vw, 1.35rem); line-height: 1.6; }
+.statement-body > p + p { margin-top: 1em; }
+.offstage-list { display: grid; gap: clamp(3.5rem, 7vw, 6rem); }
+.offstage-item { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: center; gap: 2rem clamp(2rem, 5vw, 4.5rem); --rotation: -2deg; }
+.offstage-item:nth-child(even) { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); --rotation: 2.5deg; }
+.offstage-item:nth-child(even) > .photo-layers { order: 2; }
+.offstage-item .photo-mat { padding: .5rem .5rem 1rem; }
+.offstage-copy { display: flex; gap: 1rem; min-width: 0; overflow-wrap: anywhere; }
+.offstage-copy .photo-index { padding-top: .6rem; }
+.offstage-copy h3 { font: 700 clamp(1.5rem, 2.6vw, 2rem)/1.15 var(--font-display); letter-spacing: -.02em; }
+.offstage-copy p { max-width: 60ch; margin-top: .75rem; }
+.offstage-copy .text-link { margin-top: .5rem; }
+/* Without a photo the text sits on a slip; only the paper behind it tilts, never the words. */
+.offstage-item--slip, .offstage-item--slip:nth-child(even) { grid-template-columns: minmax(0, 1fr); width: min(100%, 44rem); }
+.offstage-item--slip:nth-child(even) { justify-self: end; }
+.offstage-item--slip .offstage-copy { position: relative; isolation: isolate; padding: 2rem 2.25rem 2.25rem 1.75rem; }
+.offstage-item--slip .offstage-copy::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--paper-shade); border: 1px solid var(--border); box-shadow: 0 5px 15px var(--shadow); transform: rotate(calc(var(--rotation) / 2)); pointer-events: none; }
+
 @media (min-width: 640px) { .site-shell { width: min(100% - 5rem, 75rem); } }
 @media (min-width: 1280px) { .site-shell { width: min(100% - 8rem, 75rem); } }
 @media (max-width: 959px) {
@@ -261,11 +282,15 @@ main:focus { outline: none; }
   .resume-intro { grid-template-columns: 1fr; gap: 2rem; }
   .resume-sheet { max-width: 42rem; width: 100%; }
   .contact-links { margin-left: 12.5%; }
+  .statement { grid-template-columns: 1fr; }
 }
 @media (max-width: 767px) {
   .now-show { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
   .now-aside { width: min(100%, 19rem); justify-items: start; }
   .now-stub-shadow { --tilt: -1.5deg; }
+  .offstage-item, .offstage-item:nth-child(even) { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
+  .offstage-item > .photo-layers { width: 85%; }
+  .offstage-item:nth-child(even) > .photo-layers { order: 0; justify-self: end; }
 }
 @media (max-width: 639px) {
   .site-shell { width: calc(100% - 2.5rem); }
@@ -313,6 +338,7 @@ main:focus { outline: none; }
   .credit-list li { grid-template-columns: 1fr; gap: .5rem; }
   .download-library { grid-template-columns: 1fr; }
   .contact-links { margin-left: 0; }
+  .offstage-item--slip .offstage-copy { padding: 1.5rem 1.5rem 1.75rem 1.25rem; }
   .video-mat { padding: .35rem; }
   .footer-meta .sep-badge { display: none; }
 }
