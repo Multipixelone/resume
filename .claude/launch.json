@@ -1,0 +1,26 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "website-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "website", "run", "dev", "--", "--host", "127.0.0.1", "--port", "5173", "--strictPort"],
+      "port": 5173,
+      "url": "http://127.0.0.1:5173"
+    },
+    {
+      "name": "website-fixture",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "website", "run", "dev:fixture", "--", "--port", "5180", "--strictPort"],
+      "port": 5180,
+      "url": "http://127.0.0.1:5180"
+    },
+    {
+      "name": "website-preview",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "website", "run", "preview", "--", "--host", "127.0.0.1", "--port", "4173", "--strictPort"],
+      "port": 4173,
+      "url": "http://127.0.0.1:4173"
+    }
+  ]
+}
