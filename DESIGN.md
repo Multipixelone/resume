@@ -197,14 +197,14 @@ Sabon Next and PragmataPro load from `fonts.finnrut.is` and currently fail on lo
 ### Hierarchy
 
 - **Display** (Cooper Black 900, clamp(6rem, 12.8vw, 11.5rem), line-height 0.87, -0.055em): the artist name on `/` only. Two stacked lines, "Rutis" indented 0.19em and set in Marquee Rust. Below 640px it becomes one inline line at clamp(3rem, 15vw, 5.5rem).
-- **Headline** (Cooper Black 900, clamp(3rem, 6.5vw, 5.5rem), line-height 1, -0.04em): spread headings like "On stage." and "Off stage.", always with a full stop and a 1px Program Ink rule above.
+- **Headline** (Cooper Black 900, clamp(3rem, 6.5vw, 5.5rem), line-height 1, -0.04em): spread headings like "On stage.", "Off stage." and the homepage's "Current project.", always with a full stop and a 1px Program Ink rule above.
 - **Title** (Cooper Bold 700, clamp(2.25rem, 5vw, 4rem), line-height 1.18): page `h1` on supporting pages (Resume, Contact, Performance reel).
 - **Title, show** (Cooper Bold 700, clamp(1.875rem, 3vw, 2.5rem), -0.025em): current-project show titles; photo note titles and off-stage titles use the same face at 1.125 to 2rem. Ticket dates use Cooper Black at clamp(2.25rem, 3.5vw, 2.75rem).
 - **Subtitle** (Sabon Next 700, clamp(1.75rem, 3vw, 2.25rem)): default `h2`; `h3` is Sabon 700 at 1.5rem, credit titles at 1.25rem.
 - **Body** (Sabon Next 400, 1.125rem, line-height 1.6): all reading text. Statement and off-stage copy cap at about 38em and 60ch.
 - **Body lead** (Sabon Next 400, clamp(1.2rem, 1.65vw, 1.4rem), line-height 1.5): the homepage bio (max 36ch) and the artist statement.
 - **Link** (Sabon Next 600, 1.0625rem): text links with arrows and nav items.
-- **Label** (PragmataPro 400, 0.75rem, 0.14em, uppercase): section kickers ("Current project", "Artist statement"). Smaller relatives at 0.6875rem and 0.625rem carry ticket metadata, credit labels ("Venue", "Directed by"), photo indices, pronouns and file labels like "(PDF)".
+- **Label** (PragmataPro 400, 0.75rem, 0.14em, uppercase): section kickers ("Artist statement") and the current-project status line. Smaller relatives at 0.6875rem and 0.625rem carry ticket metadata, credit labels ("Venue", "Directed by"), photo indices, pronouns and file labels like "(PDF)".
 
 ### Named Rules
 

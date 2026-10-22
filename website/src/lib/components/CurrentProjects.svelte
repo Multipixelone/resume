@@ -40,8 +40,8 @@
 </script>
 
 {#if current.length}
-  <section class="now-showing section-block" class:now-showing--solo={current.length === 1} aria-labelledby="current-title">
-    <h2 id="current-title" class="now-kicker">{current.length === 1 ? 'Current project' : 'Current projects'}</h2>
+  <section class="now-showing section-block" aria-labelledby="current-title">
+    <h2 id="current-title" class="now-heading">{current.length === 1 ? 'Current project' : 'Current projects'}.</h2>
     {#each current as show (show.id)}
       {@const id = `show-${encodeURIComponent(show.id)}`}
       <article class="now-show" aria-labelledby={id}>
