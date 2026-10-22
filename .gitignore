@@ -42,3 +42,6 @@ test-*.pdf
 
 # Local orchestration state
 .slim/deepwork/
+
+# impeccable engine binary, bundled per platform; the launcher fetches it into ~/.impeccable when missing
+**/skills/impeccable/scripts/bin/
