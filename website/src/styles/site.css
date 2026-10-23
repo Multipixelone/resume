@@ -384,9 +384,34 @@ main:focus { outline: none; }
 .recording + .recording { margin-top: 4rem; }
 .video-mat { padding: .75rem; background: var(--paper-shade); border: 1px solid var(--border); box-shadow: 0 5px 15px var(--shadow); }
 .video-mat iframe { display: block; border: 0; width: 100%; aspect-ratio: 16 / 9; }
-.recording:not(:first-child) { max-width: 58rem; margin-inline: auto; }
-/* Captioned below the sheet like a print: song, then show, role and year in the label voice. */
-.recording-caption { display: flex; flex-wrap: wrap; align-items: last baseline; justify-content: space-between; gap: .25rem 2rem; padding: 1.25rem .25rem 0; }
+.recording { max-width: 58rem; margin-inline: auto; }
+.recording-poster { position: relative; display: block; color: var(--accent-hover); text-decoration: none; }
+/* Paper and its fixed-pitch perforation share one painted layer and transform.
+   Unlike a dashed border, the 3px marks / 3px gaps never redistribute to fit. */
+.recording-play { position: absolute; z-index: 1; inset-inline-start: -.4rem; inset-block-start: 50%; translate: 0 -50%; display: grid; grid-template-columns: 3rem auto; align-items: center; min-height: 3rem; color: var(--accent-hover); isolation: isolate; filter: drop-shadow(0 2px 2px rgb(43 37 32 / .15)) drop-shadow(0 5px 5px rgb(43 37 32 / .12)); }
+.recording-play::before { content: ''; position: absolute; inset: 0; z-index: -1; background: repeating-linear-gradient(to bottom, var(--ticket-paper) 0 3px, transparent 3px 6px) calc(3rem - 1px) 0 / 1px 100% no-repeat, linear-gradient(to right, var(--accent-hover) 0 3rem, var(--ticket-paper) 3rem); clip-path: var(--ticket-tear); rotate: -2deg; }
+.recording-play-icon { display: grid; place-items: center; align-self: stretch; color: var(--ticket-paper); }
+.recording-play-label { padding: .5rem 1.4rem .5rem .85rem; font-size: 1.0625rem; font-weight: 600; }
+.recording-poster:is(:hover, :focus-visible) .recording-play-label { text-decoration: underline; text-underline-offset: .2em; }
+@media (prefers-reduced-motion: no-preference) {
+  .recording-play { transition: translate 220ms cubic-bezier(.16, 1, .3, 1), filter 220ms ease; }
+  .recording-play::before { transition: rotate 220ms cubic-bezier(.16, 1, .3, 1); }
+  .recording-poster:is(:hover, :focus-visible) .recording-play { translate: 0 calc(-50% - 3px); filter: drop-shadow(0 3px 3px rgb(43 37 32 / .12)) drop-shadow(0 8px 7px rgb(43 37 32 / .18)); }
+  .recording-poster:is(:hover, :focus-visible) .recording-play::before { rotate: 0deg; }
+  .recording-poster:active .recording-play { translate: 0 -50%; }
+}
+@media (forced-colors: active) {
+  .recording-play { background: Canvas; color: LinkText; border: 1px solid LinkText; filter: none; }
+  .recording-play::before { display: none; }
+  .recording-play-icon { color: LinkText; }
+}
+.recording-still { display: grid; place-items: center; aspect-ratio: 16 / 9; overflow: hidden; background: var(--paper); }
+.recording-still img { display: block; width: 100%; height: 100%; object-fit: contain; }
+/* YouTube's older 4:3 thumbnails contain letterboxing around the 16:9 still. */
+.recording-still img.recording-still--letterboxed { object-fit: cover; }
+.recording-no-preview { padding: 1rem 1rem 5rem; text-align: center; color: var(--ink); }
+/* Introduce the clip before its poster so the title stays in the first viewport. */
+.recording-caption { display: flex; flex-wrap: wrap; align-items: last baseline; justify-content: space-between; gap: .25rem 2rem; padding: 0 .25rem 1.25rem; }
 .recording-caption hgroup { min-width: 0; overflow-wrap: anywhere; }
 .recording-caption h2 { font: 700 clamp(1.5rem, 2.6vw, 2rem)/1.15 var(--font-display); letter-spacing: -.02em; }
 .recording--start h2 { font-size: clamp(1.875rem, 3vw, 2.5rem); letter-spacing: -.025em; }
