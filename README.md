@@ -59,6 +59,25 @@ typst watch resumes/cv.typ   # live preview
 typst compile --input commit="dev" --input version="2026-04-22" resumes/tech.typ
 ```
 
+### Business cards (separate build)
+
+The card CLI validates explicit `card_profile` associations in `variants.toml`,
+then renders three shared profiles from `cards/profiles.toml`. It does not change
+the resume or website artifact inventory. Supply your authorized local Sabon font:
+
+```bash
+nix run "path:$PWD#business-cards" -- --root "$PWD" --output /tmp/business-cards --sabon "../blog/static/fonts/sabon/Sabon Next Regular.woff2"
+```
+
+This packages the tool environment, not the proprietary font or finished cards.
+The renderer runs against the checkout outside the Nix build sandbox; Sabon is
+required explicitly, with no substitution or copying into this repository.
+The `path:` reference includes new untracked integration files without staging;
+`.#business-cards` works once the required Nix/checker files are tracked by Git.
+Use `path:` only with a trusted checkout: it snapshots untracked files too.
+See [the business-card brief](docs/business-cards.md) for outputs, validation
+boundaries, and approval history. These exports are not press-ready certification.
+
 ## Adding a Variant
 
 1. **Create a metadata override** in `metadata/<variant>-metadata.toml`. Only include fields that differ from the base `metadata/metadata.toml` — everything else is inherited.

@@ -97,6 +97,7 @@
             # Full rev for the footer's commit link; a dirty tree has only dirtyRev.
             commit = self.rev or self.dirtyRev or "";
           };
+          businessCards = pkgs.callPackage ./packages/business-cards.nix { };
           checks = import ./packages/checks.nix {
             inherit (pkgs) lib;
             inherit pkgs src resume;
@@ -125,9 +126,21 @@
             resume = forceLocalBuild resume;
             finn-rutis = forceLocalBuild finnRutis;
             website = forceLocalBuild website;
+            business-cards = businessCards;
+          };
+
+          apps.business-cards = {
+            type = "app";
+            program = "${businessCards}/bin/business-cards";
           };
 
           checks = {
+            card-profiles = pkgs.runCommandLocal "check-card-profiles"
+              { nativeBuildInputs = [ pkgs.python3 ]; }
+              ''
+                python3 ${./scripts/check_card_profiles.py} --root ${src}
+                touch "$out"
+              '';
             inherit (checks)
               typstyle
               toml-validity

@@ -1,0 +1,23 @@
+# Shared card profiles, not resume variants. Profile names are never printed.
+# Contacts: REFERENCE.md, Personal; approved brief: docs/business-cards.md.
+[identity]
+first_name = "Finn"
+last_name = "Rutis"
+pronouns = "they / them"
+
+[back]
+address = "www.finnrut.is"
+destination = "https://finnrut.is"
+
+[profiles.performance]
+email = "me@finnrut.is"
+phone = "503-267-5052"
+instagram = "@finnrutis"
+
+[profiles.technology]
+email = "tech@finnrut.is"
+github = "Multipixelone"
+
+[profiles.work]
+email = "work@finnrut.is"
+phone = "503-267-5052"

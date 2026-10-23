@@ -8,6 +8,8 @@
 #   dest            output filename stem (without extension) for built artifacts and pages deploy (required)
 #   expected_pages  exact page count for the PDF check; 0 = multi-page (>= 1) (required)
 #   check_metadata  whether the variant's merged metadata is checked for completeness (required)
+#   card_profile    shared business card: performance, technology, work, or none (required)
+#                   supporting documents/letters use none; never emit per-variant cards
 #   override_toml   override TOML filename in metadata/ (optional; omit for base-only variants)
 #   title           display title on /resumes/ (required unless site_hidden; the site build fails without it)
 #   field           group heading on /resumes/ (required unless site_hidden). The cv's field is listed
@@ -18,6 +20,7 @@
 #                   employer-tailored resume and every cover letter.
 
 [cv]
+card_profile = "performance"
 source = "cv"
 dest = "resume"
 expected_pages = 1
@@ -26,6 +29,7 @@ title = "Artistic Resume"
 field = "Theatre & performance"
 
 [tech]
+card_profile = "technology"
 source = "tech"
 dest = "tech-resume"
 override_toml = "tech-metadata.toml"
@@ -35,6 +39,7 @@ title = "Technical Resume"
 field = "Technology & IT"
 
 [mta-16360]
+card_profile = "technology"
 source = "mta-16360"
 dest = "mta-16360-resume"
 override_toml = "mta-16360-metadata.toml"
@@ -45,6 +50,7 @@ subtitle = "Level 1"
 site_hidden = true
 
 [work]
+card_profile = "work"
 source = "work"
 dest = "work-resume"
 override_toml = "work-metadata.toml"
@@ -54,6 +60,7 @@ title = "Work Resume"
 field = "Events & operations"
 
 [nanny]
+card_profile = "work"
 source = "nanny"
 dest = "nanny-resume"
 override_toml = "nanny-metadata.toml"
@@ -63,6 +70,7 @@ title = "Nanny Resume"
 field = "Childcare"
 
 [astor-place]
+card_profile = "work"
 source = "astor-place"
 dest = "astor-place-resume"
 override_toml = "astor-place-metadata.toml"
@@ -73,6 +81,7 @@ subtitle = "Assistant House Manager / Ticket-Taker"
 site_hidden = true
 
 [astor-place-cover-letter]
+card_profile = "none"
 source = "astor-place-cover-letter"
 dest = "astor-place-cover-letter"
 override_toml = "astor-place-metadata.toml"
@@ -81,6 +90,7 @@ check_metadata = false
 site_hidden = true
 
 [saltandstraw]
+card_profile = "work"
 source = "saltandstraw"
 dest = "saltandstraw-resume"
 override_toml = "saltandstraw-metadata.toml"
@@ -91,6 +101,7 @@ subtitle = "Scooper"
 site_hidden = true
 
 [saltandstraw-sc]
+card_profile = "work"
 source = "saltandstraw-sc"
 dest = "saltandstraw-sc-resume"
 override_toml = "saltandstraw-sc-metadata.toml"
@@ -101,6 +112,7 @@ subtitle = "Shift coordinator"
 site_hidden = true
 
 [writer]
+card_profile = "technology"
 source = "writer"
 dest = "writer-resume"
 override_toml = "writer-metadata.toml"
@@ -111,6 +123,7 @@ subtitle = "Software quality engineer"
 site_hidden = true
 
 [sierra]
+card_profile = "technology"
 source = "sierra"
 dest = "sierra-resume"
 override_toml = "sierra-metadata.toml"
@@ -121,6 +134,7 @@ subtitle = "Developer relations engineer"
 site_hidden = true
 
 [logrocket]
+card_profile = "technology"
 source = "logrocket"
 dest = "logrocket-resume"
 override_toml = "logrocket-metadata.toml"
@@ -131,6 +145,7 @@ subtitle = "Developer relations / PodRocket"
 site_hidden = true
 
 [notion]
+card_profile = "technology"
 source = "notion"
 dest = "notion-resume"
 override_toml = "notion-metadata.toml"
@@ -141,6 +156,7 @@ subtitle = "Developer advocate"
 site_hidden = true
 
 [mistral]
+card_profile = "technology"
 source = "mistral"
 dest = "mistral-resume"
 override_toml = "mistral-metadata.toml"
@@ -151,6 +167,7 @@ subtitle = "AI developer relations"
 site_hidden = true
 
 [hebbia]
+card_profile = "technology"
 source = "hebbia"
 dest = "hebbia-resume"
 override_toml = "hebbia-metadata.toml"
@@ -161,6 +178,7 @@ subtitle = "Backend engineer, agents"
 site_hidden = true
 
 [baseten]
+card_profile = "technology"
 source = "baseten"
 dest = "baseten-resume"
 override_toml = "baseten-metadata.toml"
@@ -171,6 +189,7 @@ subtitle = "Content Engineer"
 site_hidden = true
 
 [ramp]
+card_profile = "technology"
 source = "ramp"
 dest = "ramp-resume"
 override_toml = "ramp-metadata.toml"
@@ -181,6 +200,7 @@ subtitle = "Video producer / editor"
 site_hidden = true
 
 [runway]
+card_profile = "technology"
 source = "runway"
 dest = "runway-resume"
 override_toml = "runway-metadata.toml"
@@ -191,6 +211,7 @@ subtitle = "Creative producer"
 site_hidden = true
 
 [captions]
+card_profile = "technology"
 source = "captions"
 dest = "captions-resume"
 override_toml = "captions-metadata.toml"
@@ -201,6 +222,7 @@ subtitle = "Video / education"
 site_hidden = true
 
 [agentio]
+card_profile = "technology"
 source = "agentio"
 dest = "agentio-resume"
 override_toml = "agentio-metadata.toml"
@@ -211,6 +233,7 @@ subtitle = "Video content producer"
 site_hidden = true
 
 [viam]
+card_profile = "technology"
 source = "viam"
 dest = "viam-resume"
 override_toml = "viam-metadata.toml"
@@ -221,6 +244,7 @@ subtitle = "Video production / education"
 site_hidden = true
 
 [elevenlabs]
+card_profile = "technology"
 source = "elevenlabs"
 dest = "elevenlabs-resume"
 override_toml = "elevenlabs-metadata.toml"
@@ -231,6 +255,7 @@ subtitle = "Developer relations"
 site_hidden = true
 
 [tavily]
+card_profile = "technology"
 source = "tavily"
 dest = "tavily-resume"
 override_toml = "tavily-metadata.toml"
@@ -241,6 +266,7 @@ subtitle = "Developer relations"
 site_hidden = true
 
 [tavily-cover-letter]
+card_profile = "none"
 source = "tavily-cover-letter"
 dest = "tavily-cover-letter"
 expected_pages = 1
@@ -249,6 +275,7 @@ override_toml = "tavily-metadata.toml"
 site_hidden = true
 
 [novig]
+card_profile = "technology"
 source = "novig"
 dest = "novig-resume"
 override_toml = "novig-metadata.toml"
@@ -259,6 +286,7 @@ subtitle = "Developer relations engineer"
 site_hidden = true
 
 [novig-cover-letter]
+card_profile = "none"
 source = "novig-cover-letter"
 dest = "novig-cover-letter"
 expected_pages = 1
@@ -267,6 +295,7 @@ override_toml = "novig-metadata.toml"
 site_hidden = true
 
 [communications-systems]
+card_profile = "technology"
 source = "communications-systems"
 dest = "communications-systems-resume"
 override_toml = "communications-systems-metadata.toml"
@@ -277,6 +306,7 @@ field = "Technology & IT"
 subtitle = "Technical communication, automation & service"
 
 [sent]
+card_profile = "technology"
 source = "sent"
 dest = "sent-resume"
 override_toml = "sent-metadata.toml"
@@ -287,6 +317,7 @@ subtitle = "Content Engineer"
 site_hidden = true
 
 [modal]
+card_profile = "technology"
 source = "modal"
 dest = "modal-resume"
 override_toml = "modal-metadata.toml"
@@ -297,6 +328,7 @@ subtitle = "Developer Relations Engineer, Sandboxes"
 site_hidden = true
 
 [blacksmith]
+card_profile = "technology"
 source = "blacksmith"
 dest = "blacksmith-resume"
 override_toml = "blacksmith-metadata.toml"
@@ -307,6 +339,7 @@ subtitle = "Technical Support Engineer"
 site_hidden = true
 
 [fao-schwarz]
+card_profile = "performance"
 source = "fao-schwarz"
 dest = "fao-schwarz-resume"
 override_toml = "fao-schwarz-metadata.toml"
@@ -317,6 +350,7 @@ subtitle = "Seasonal Experience Performer"
 site_hidden = true
 
 [anthropic-events]
+card_profile = "work"
 source = "anthropic-events"
 dest = "anthropic-events-resume"
 override_toml = "anthropic-events-metadata.toml"
@@ -327,6 +361,7 @@ subtitle = "Marketing events content manager"
 site_hidden = true
 
 [anthropic-comms]
+card_profile = "technology"
 source = "anthropic-comms"
 dest = "anthropic-comms-resume"
 override_toml = "anthropic-comms-metadata.toml"
@@ -337,6 +372,7 @@ subtitle = "Communications specialist, product"
 site_hidden = true
 
 [anthropic-social]
+card_profile = "technology"
 source = "anthropic-social"
 dest = "anthropic-social-resume"
 override_toml = "anthropic-social-metadata.toml"
@@ -347,6 +383,7 @@ subtitle = "Head of social communications"
 site_hidden = true
 
 [anthropic-events-producer]
+card_profile = "work"
 source = "anthropic-events-producer"
 dest = "anthropic-events-producer-resume"
 override_toml = "anthropic-events-producer-metadata.toml"
@@ -357,6 +394,7 @@ subtitle = "Marketing events producer"
 site_hidden = true
 
 [nyt-tech-specialist]
+card_profile = "technology"
 source = "nyt-tech-specialist"
 dest = "nyt-tech-specialist-resume"
 override_toml = "nyt-tech-specialist-metadata.toml"
@@ -367,6 +405,7 @@ subtitle = "News technology specialist, video"
 site_hidden = true
 
 [cover-letter]
+card_profile = "none"
 source = "cover-letter"
 dest = "cover-letter"
 expected_pages = 1
@@ -376,6 +415,7 @@ subtitle = "General"
 site_hidden = true
 
 [rep-sheet]
+card_profile = "none"
 source = "rep-sheet"
 dest = "rep"
 expected_pages = 0
@@ -385,6 +425,7 @@ field = "Theatre & performance"
 subtitle = "MT Book song list"
 
 [title-pages]
+card_profile = "none"
 source = "title-pages"
 dest = "title-pages"
 override_toml = "title-pages-metadata.toml"
@@ -395,6 +436,7 @@ subtitle = "MT Book title pages"
 check_metadata = false
 
 [vox-unexplainable]
+card_profile = "technology"
 source = "vox-unexplainable"
 dest = "vox-unexplainable-resume"
 override_toml = "vox-unexplainable-metadata.toml"
@@ -405,6 +447,7 @@ subtitle = "Senior video producer"
 site_hidden = true
 
 [sofi]
+card_profile = "technology"
 source = "sofi"
 dest = "sofi-content"
 override_toml = "sofi-metadata.toml"
