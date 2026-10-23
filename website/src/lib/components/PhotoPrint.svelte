@@ -9,7 +9,10 @@
   const fastenings: Record<string, 'tape' | 'pin' | 'corners'> = {
     wide: 'tape', tall: 'pin', small: 'tape', 'tall-left': 'corners'
   };
-  let fastening = $derived(fastenings[photo.placement]);
+  let fastening = $derived(photo.placement ? fastenings[photo.placement] : undefined);
+  // A print from a known show opens that show's page; anything else opens the full photo.
+  let href = $derived(sitePath(photo.reel ?? `/media/${photo.file}`));
+  let label = $derived(photo.reel ? `More from ${photo.note?.title}: ${photo.alt}` : `View full photo: ${photo.alt}`);
 </script>
 
 <figure class={`photo-print photo-print--${photo.placement}`} data-fastening={fastening}>
@@ -17,7 +20,7 @@
     <span class="photo-backing" aria-hidden="true"></span>
     <span class="photo-arrival-shadow" aria-hidden="true"></span>
     <div class="photo-object">
-      <a class="photo-mat" href={sitePath(`/media/${photo.file}`)} aria-label={`View full photo: ${photo.alt}`}
+      <a class="photo-mat" {href} aria-label={label}
         aria-describedby={photo.note ? noteId : undefined}>
         <img src={sitePath(`/media/${photo.file}`)} alt={photo.alt} width={photo.width} height={photo.height} loading="lazy" decoding="async" />
       </a>

@@ -2,8 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { parse } from 'smol-toml';
-import { attachPhotoNotes, parseShows, parseVariants, portfolioContent } from '../lib/content.mjs';
-import { performancePhotos } from '../src/lib/media.js';
+import { attachPhotoNotes, parseShows, parseVariants, portfolioContent, showReels } from '../lib/content.mjs';
+import { performancePhotos, recordings } from '../src/lib/media.js';
 import { siteBase, siteOrigin } from '../lib/config.mjs';
 import { selectResumeShows } from '../../lib/shows.mjs';
 
@@ -98,12 +98,32 @@ test('photo hover notes read title and role from canonical shows', () => {
   performancePhotos.forEach((source, index) => {
     const show = shows.find(entry => entry.id === source.show);
     if (source.show) assert.equal(photos[index].note?.title, show?.title);
+    if (source.show) assert.equal(photos[index].reel, `/shows/${source.show}/`);
     assert.equal('show' in photos[index] || 'blurb' in photos[index], false);
   });
   const [seussical] = attachPhotoNotes([{ file: 'x.jpg', show: 'seussical', blurb: ' Mine. ' }], shows);
   assert.deepEqual(seussical.note, { title: 'Seussical', role: 'Cat in the Hat', blurb: 'Mine.' });
   assert.deepEqual(attachPhotoNotes([{ file: 'x.jpg', show: '', blurb: '  ' }], shows), [{ file: 'x.jpg' }]);
   assert.throws(() => attachPhotoNotes([{ file: 'x.jpg', show: 'not-a-show' }], shows), /unknown show/);
+});
+
+test('every show with a photo gets one page, in resume order, with only its own photos and videos', () => {
+  const { shows } = portfolioContent(theatre, variants);
+  const reels = showReels(shows, performancePhotos, recordings);
+  const withPhotos = new Set(performancePhotos.map(photo => photo.show).filter(Boolean));
+  assert.deepEqual(new Set(reels.map(reel => reel.id)), withPhotos);
+  const order = reels.map(reel => shows.find(show => show.id === reel.id).resume_order);
+  assert.deepEqual(order, order.toSorted((a, b) => a - b));
+  for (const reel of reels) {
+    assert.equal(reel.path, `/shows/${reel.id}/`);
+    assert.equal(reel.photos.length, performancePhotos.filter(photo => photo.show === reel.id).length);
+    assert.deepEqual(reel.videos.map(video => video.id), recordings.filter(video => video.show === reel.id).map(video => video.id));
+  }
+  assert.deepEqual(reels.find(reel => reel.id === 'seussical').videos.map(video => video.title), ['Circus McGurkus', 'How Lucky You Are']);
+  // A reel-only photo (no homepage placement) still makes a page.
+  assert.equal(showReels(shows, [{ file: 'x.jpg', show: 'joseph' }], []).length, 1);
+  assert.throws(() => showReels(shows, [], [{ id: 'abc', title: 'X', show: 'not-a-show' }]), /abc: unknown show/);
+  assert.throws(() => showReels(shows, [{ file: 'x.jpg', show: 'not-a-show' }], []), /x.jpg: unknown show/);
 });
 
 test('base configuration accepts root and repository Pages, rejects ambiguous paths', () => {

@@ -3,7 +3,10 @@
 // Add caption/credit/creditUrl only from Finn's verified media handoff.
 // Fixed photo captions: `show` is a metadata/theatre.toml id (title and role come from there),
 // `blurb` is Finn's own words about the performance. Leave either empty to skip it.
-// Each `placement` is a fixed slot in the spread (site.css), so use each one once.
+// A `show` also gives that production a page at /shows/<show>/ with all of its photos,
+// linked from its theatre credit and from the homepage print.
+// Each `placement` is a fixed slot in the homepage spread (site.css), so use each one once.
+// Leave `placement` off to add a photo to its show's page only.
 export const performancePhotos = [
   {
     file: "finn_photo_reel_2.jpg",
@@ -61,10 +64,12 @@ export const performancePhotos = [
   },
 ];
 
+// `show` (a theatre.toml id) also embeds the video on that show's page. Set it only
+// when the recording is from that production.
 export const recordings = [
   { id: "ucVBjbfxrHA", title: "She Loves Me" },
   { id: "DYrR7xup_Js", title: "I Love to Sing-a & Love Me, Love Me Not" },
   { id: "-QPog0QsJ9s", title: "No One Has to Know" },
-  { id: "ZP38u-e76BY", title: "Circus McGurkus" },
-  { id: "nwI8Dr8u1OM", title: "How Lucky You Are" },
+  { id: "ZP38u-e76BY", title: "Circus McGurkus", show: "seussical" },
+  { id: "nwI8Dr8u1OM", title: "How Lucky You Are", show: "seussical" },
 ];

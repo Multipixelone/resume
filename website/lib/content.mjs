@@ -48,6 +48,7 @@ function projectShow(show) {
 }
 
 /** Resolve each photo's hover note against the canonical shows. Unknown ids fail the build.
+ * A photo tied to a show also links to that show's page (`reel`).
  * @returns {import('../src/lib/types').Photo[]}
  */
 export function attachPhotoNotes(photos, shows) {
@@ -59,8 +60,27 @@ export function attachPhotoNotes(photos, shows) {
     if (id && !show) throw new TypeError(`${photo.file}: unknown show ${id}`);
     const note = Object.fromEntries(Object.entries({ title: show?.title, role: show?.character, blurb: text || undefined })
       .filter(([, value]) => value !== undefined));
-    return { ...photo, note };
+    return id ? { ...photo, note, reel: `/shows/${id}/` } : { ...photo, note };
   });
+}
+
+/** One page per show that has a photo, in Finn's resume order. A video joins a show
+ * only by its explicit `show` id; unknown ids in either list fail the build.
+ * @returns {import('../src/lib/types').ShowReel[]}
+ */
+export function showReels(shows, photos, recordings) {
+  const known = new Set(shows.map(show => show.id));
+  for (const item of [...photos, ...recordings]) {
+    if (item.show && !known.has(item.show)) throw new TypeError(`${item.file ?? item.id}: unknown show ${item.show}`);
+  }
+  return shows.filter(show => photos.some(photo => photo.show === show.id))
+    .toSorted((a, b) => a.resume_order - b.resume_order)
+    .map(({ id, title, character, company, director, on_resume }) => ({
+      id, title, character, company, director, on_resume,
+      path: `/shows/${id}/`,
+      photos: attachPhotoNotes(photos.filter(photo => photo.show === id), shows),
+      videos: recordings.filter(video => video.show === id).map(video => ({ id: video.id, title: video.title }))
+    }));
 }
 
 export function portfolioContent(theatreSource, variantSource) {

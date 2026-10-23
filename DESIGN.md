@@ -224,7 +224,7 @@ A single centered shell, `min(100% - 2 x gutter, 75rem)`. Gutters are 1.25rem a 
 
 - **Homepage hero:** a two-column grid (1.13fr / 1fr, 4rem gap). Name top left, bio and links below it, the headshot spanning both rows on the right, inset from the edge.
 - **Photo spread:** a 12-column grid with six named placements (wide, tall, small, wide-right, tall-left, small-right), each with its own column span, top offset and resting angle, so prints overlap the grid unevenly like pinned photos. One shared Callboard Card shape sits behind the first group.
-- **Supporting pages:** an asymmetric label column and content column (minmax(14rem, 1fr) / 2fr, 3rem gap) for the resume intro and the artist statement; contact links indent 25%; credits and resume downloads are ruled lists with 1px Rule Line tops and 1.5rem row padding (credits two columns). All resumes repeats the label/content split per field: a Program Ink rule, the field as a Sabon `h2` in the left column, and its downloads on the right with one shared action column so every Download link lines up.
+- **Supporting pages:** an asymmetric label column and content column (minmax(14rem, 1fr) / 2fr, 3rem gap) for the resume intro and the artist statement; contact links indent 25%; credits and resume downloads are ruled lists with 1px Rule Line tops and 1.5rem row padding (credits two columns plus a narrow cover-print column). All resumes repeats the label/content split per field: a Program Ink rule, the field as a Sabon `h2` in the left column, and its downloads on the right with one shared action column so every Download link lines up.
 - **Breakpoints:** 960px tightens the hero and spread; 768px stacks current projects and off-stage items; 640px is the phone layout: name inline, headshot at 73% width, the spread becomes one column of prints at 72 to 100% width alternating left and right, credit rows stack.
 - Interactive targets are at least 44px tall. Horizontal overflow from rotated prints is contained by the layout, never by page scroll.
 
@@ -297,6 +297,14 @@ Character: practical ways of putting a print on the callboard, used selectively.
 - The tall-left print sits on heavier Callboard Card stock, held flat by two folded paper corners at opposite ends. Both mounts remain aligned with the photograph, including during interaction.
 - The other two prints remain loose. Every fastening shares its print's resting angle and scroll arrival, while captions stay level. Fastenings are decorative, never cover a face, never intercept a click, and disappear in forced colors. Reduced motion keeps the physical details and removes their movement.
 
+### Show Pages and Cover Prints
+
+Character: one production's corner of the callboard.
+
+- **Show page** (`/shows/<id>/`): a back link, the show title as the page `h1`, and the current-project notice's mono-labelled credits (Role, Venue, Directed by) under a dashed perforation. Then the show's prints, two across and staggered (the second drops 6rem), resting angles alternating from -3 to 2.5deg, the first taped. Each print is capped at its file's pixel width so small renditions stay sharp, and opens the full photo. A lone print sits offset from center rather than centered. Recordings from that production follow as video sheets, and a pager closes the page with the previous and next show in resume order.
+- **Cover print:** a show's first photo as a small matted print (4.25rem tall, 0.3rem mat with a deeper bottom edge, 3deg or -3deg), decorative beside every link to that show's page: the theatre credit row and the show pager. Hover or keyboard focus on the link straightens it and lifts it 5px with a deeper shadow; reduced motion keeps only the shadow change.
+- **Linked credit:** the title keeps Program Ink with a Marquee Rust underline, its link stretches over the whole row, and a Deep Marquee Rust mono count ("2 photos", "2 videos") sits under the cover print and describes the link.
+
 ### Headshot
 
 Character: a printed headshot with its own name strip.
@@ -317,7 +325,7 @@ Character: a real landscape theatre ticket you could tear off.
 
 Character: heavier backing stock holding something.
 
-- Callboard Card, 1px Rule Line border, sheet shadow, square corners. The resume preview sits on one (1rem padding, US Letter aspect), videos on another (0.75rem padding, 0.35rem on phones).
+- Callboard Card, 1px Rule Line border, sheet shadow, square corners. The resume preview sits on one (1rem padding, US Letter aspect), taped at its top edge with the prints' masking tape; videos on another (0.75rem padding, 0.35rem on phones).
 - Off-stage notes without a photo become slips: the card layer rotates half the item's angle behind level text.
 - The homepage reel link and the nav links use the same slip, smaller: slip shadow, Rule Line border, only the backing rotates.
 
@@ -339,7 +347,7 @@ Hand-drawn blue ballpoint line art, scanned and rendered as CSS masks in one ink
 - **Focal moment:** the homepage portrait is assembled once on first entering view. Its backing seats over 440ms, the headshot and taped print settle together over 620ms with a 60ms offset, and the small print catches at its tape over 640ms with a 140ms offset. The complete gesture ends within 780ms. A contracting shadow gives the headshot weight; name, bio and links are readable throughout. The resting composition is the default, including without JavaScript.
 - **Tape:** pointer entry or keyboard focus nudges the small print through a damped 920ms swing, at most 5deg either way. Its pivot stays at the tape. Repeated entry does not stack swings, and touch follows the link directly.
 - **Feedback:** paper slips settle in 220ms, the ticket end flexes in 280ms, and bounded photo follow uses 450 to 500ms. These are responses to hover or focus, never idle loops. The shared portrait assembly keeps both photographs and the tape together.
-- **Gallery:** each photo lands once after entering the bottom 18% of the viewport (capped at 160px), over 740ms (580ms on phones and coarse pointers). Its resting angle determines which corner leads. A brief perspective tilt flattens into the board while a prepainted contact shadow fades. Only the photo assembly moves; captions, headings and body copy stay level. Supporting pages remain still, and scrolling stays native with no parallax or delayed content.
+- **Gallery:** each photo lands once after entering the bottom 18% of the viewport (capped at 160px), over 740ms (580ms on phones and coarse pointers). Its resting angle determines which corner leads. A brief perspective tilt flattens into the board while a prepainted contact shadow fades. Only the photo assembly moves; captions, headings and body copy stay level. Show pages land their prints the same way. Other supporting pages remain still, and scrolling stays native with no parallax or delayed content.
 - **Lifecycle:** reduced motion cancels active Web Animations and pointer offsets immediately, while color and focus states remain clear. Keyboard focus or a pointer press settles an arriving print immediately. Prints scrolled past stop animating and do not replay on return. Hidden tabs and navigation clear animations and pending frames. Pointer work is coalesced to one animation frame, with no idle render loop or added dependency.
 
 ## Do's and Don'ts

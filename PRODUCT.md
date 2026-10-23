@@ -35,7 +35,8 @@ Routes, all prerendered:
 
 - `/`: name, portrait, bio, current projects (when any), performance photos.
 - `/about/`: artist statement and "Off stage" escapades. Both are bracketed placeholders until Finn writes them.
-- `/resume/`: theatre resume preview, PDF downloads (plain and with headshot), HTML theatre credits.
+- `/resume/`: theatre resume preview, PDF downloads (plain and with headshot), HTML theatre credits. A credit with photos links to its show page.
+- `/shows/<id>/`: one page per show that has a photo in `website/src/lib/media.js`: the credit as a notice, every photo of that show, and any recording tagged to that production. Linked from its theatre credit and its homepage print.
 - `/performance-reel/`: YouTube recordings plus a film section.
 - `/booking/` (labelled "Contact"): email and Instagram.
 - `/resumes/`: theatre documents (with the composite `FINN RUTIS.pdf`) first, then general resumes grouped by field. Employer-tailored resumes and cover letters are `site_hidden`: unlisted, still reachable by direct link.

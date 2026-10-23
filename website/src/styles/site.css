@@ -320,14 +320,58 @@ main:focus { outline: none; }
 .download-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
 .download-actions > a { padding-block: .6rem; }
 .primary-link { font-weight: 600; font-size: 1.25rem; }
-.resume-sheet { background: var(--paper-shade); border: 1px solid var(--border); padding: 1rem; box-shadow: 0 5px 15px var(--shadow); }
+/* Taped to the board like the homepage prints: the same strip, fixed, on a sheet that stays still. */
+.resume-sheet { position: relative; background: var(--paper-shade); border: 1px solid var(--border); padding: 1rem; box-shadow: 0 5px 15px var(--shadow); }
 .resume-preview { display: block; width: 100%; aspect-ratio: 8.5 / 11; background: var(--paper); }
 .preview-fallback { padding: 2rem; display: flex; flex-direction: column; gap: 1rem; }
 .credit-list { list-style: none; margin: 0; padding: 0; }
-.credit-list li { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 3rem; padding: 1.5rem 0; border-top: 1px solid var(--border); }
+/* The third column pins a cover print on credits that have a show page; the rest leave it empty. */
+.credit-list li { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 6rem; align-items: center; gap: 1rem 3rem; padding: 1.5rem 0; border-top: 1px solid var(--border); }
 .credit-list h3 { font-size: 1.25rem; }
 .credit-list p { margin-top: .35rem; }
 .credit-director { font-size: 1rem; color: var(--muted); }
+.credit-reel-link { color: var(--ink); text-decoration-color: var(--accent); }
+.credit-reel-link::after { content: ''; position: absolute; inset: 0; }
+.has-reel:is(:hover, :focus-within) .credit-reel-link { color: var(--accent-hover); text-decoration-thickness: 2px; }
+.credit-reel { display: grid; justify-items: center; gap: .6rem; text-align: center; }
+.credit-reel-count { font: .625rem/1.45 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent-hover); }
+.has-reel:nth-of-type(even) .cover-print { --cover-angle: -3deg; }
+
+/* A show's cover print: small, matted and tilted, beside every link to its page. */
+.cover-print { display: block; width: fit-content; padding: .3rem .3rem .6rem; background: var(--paper); box-shadow: 0 1px 2px rgb(43 37 32 / .12), 0 8px 14px -8px rgb(43 37 32 / .35); rotate: var(--cover-angle, 3deg); transition: rotate 220ms cubic-bezier(.2, .75, .25, 1), translate 220ms cubic-bezier(.2, .75, .25, 1), box-shadow 220ms ease; }
+.cover-print img { display: block; width: auto; height: 4.25rem; }
+:is(.has-reel:hover, .has-reel:focus-within, .pager-link:hover, .pager-link:focus-visible) .cover-print { box-shadow: 0 4px 8px rgb(43 37 32 / .08), 0 16px 22px -10px rgb(43 37 32 / .32); }
+@media (prefers-reduced-motion: no-preference) {
+  :is(.has-reel:focus-within, .pager-link:focus-visible) .cover-print { translate: 0 -5px; rotate: 0deg; }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  :is(.has-reel:hover, .pager-link:hover) .cover-print { translate: 0 -5px; rotate: 0deg; }
+}
+
+/* A show's own page: its notice, then its prints pinned two across and staggered. */
+.show-heading { margin: 1rem 0 3.5rem; }
+.show-back { margin-bottom: .75rem; }
+.show-heading .now-credits { max-width: 46rem; }
+.show-reel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3.5rem clamp(2rem, 6vw, 5rem); align-items: start; }
+.reel-print { --rotation: -2deg; }
+.reel-print:nth-child(even) { margin-top: 6rem; --rotation: 2.5deg; }
+.reel-print:nth-child(4n + 3) { --rotation: 1.5deg; }
+.reel-print:nth-child(4n) { --rotation: -3deg; }
+/* Never wider than the file itself, so the small renditions stay sharp. */
+.reel-print .photo-layers { max-width: var(--print-width); }
+.reel-print[data-orientation="portrait"] .photo-layers { width: 80%; }
+.reel-print:nth-child(even) .photo-layers { margin-left: auto; }
+.reel-print .photo-mat { padding: .5rem; }
+.reel-print[data-orientation="portrait"] .photo-mat { padding-bottom: 1.1rem; }
+.reel-print:only-child { grid-column: 1 / -1; width: min(100%, 44rem); margin-left: clamp(0rem, 8vw, 7rem); }
+.show-reel + .recording { margin-top: var(--space-section); }
+.show-pager { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem 3rem; margin-top: var(--space-section); padding-top: 2rem; border-top: 1px solid var(--ink); }
+.pager-link { display: flex; align-items: center; gap: 1.5rem; color: var(--ink); text-decoration: none; }
+.pager-link--next { margin-left: auto; flex-direction: row-reverse; text-align: right; }
+.pager-link--next .cover-print { --cover-angle: -3deg; }
+.pager-label { display: block; font: .6875rem/1.5 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.pager-title { display: block; margin-top: .35rem; font: 700 clamp(1.375rem, 2.4vw, 1.875rem)/1.15 var(--font-display); letter-spacing: -.02em; color: var(--accent); text-decoration: underline 1px; text-underline-offset: .2em; text-wrap: balance; transition: color 150ms ease; }
+.pager-link:is(:hover, :focus-visible) .pager-title { color: var(--accent-hover); text-decoration-thickness: 2px; }
 .recording + .recording { margin-top: 4rem; }
 .recording-heading { margin-bottom: 1.25rem; }
 .recording-heading h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
@@ -448,7 +492,14 @@ main:focus { outline: none; }
   .photo-print figcaption { gap: .75rem; padding-top: 1.4rem; }
   .photo-note-title { font-size: 1.25rem; }
   .photo-backing { transform: translate(6px, 8px) rotate(1deg); }
-  .credit-list li { grid-template-columns: 1fr; gap: .5rem; }
+  .credit-list li { grid-template-columns: minmax(0, 1fr); gap: .5rem; }
+  .credit-list li.has-reel { grid-template-columns: minmax(0, 1fr) auto; column-gap: 1.25rem; }
+  .credit-reel { grid-column: 2; grid-row: 1 / span 2; }
+  .show-reel { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+  .reel-print:nth-child(even) { margin-top: 0; }
+  .reel-print[data-orientation="portrait"] .photo-layers { width: 78%; }
+  .reel-print:only-child { margin-left: 0; }
+  .show-pager { flex-direction: column; }
   .download-group, .download-library { grid-template-columns: 1fr; }
   .download-group > h2 { padding-bottom: .25rem; }
   .contact-links { margin-left: 0; }
@@ -461,7 +512,7 @@ main:focus { outline: none; }
 }
 @media (forced-colors: active) {
   .portrait-backing, .photo-backing, .photo-arrival-shadow, .photo-spread::before, .hero-print-tape, .photo-fastener { display: none; }
-  .photo-mat, .portrait-card, .now-stub, .resume-sheet, .video-mat { border: 1px solid CanvasText; }
+  .photo-mat, .portrait-card, .now-stub, .resume-sheet, .video-mat, .cover-print { border: 1px solid CanvasText; }
   .hero-links-slip::before { border-color: CanvasText; box-shadow: none; }
   .stub-admit { border-right-color: CanvasText; }
   .now-stub-link:is(:hover, :focus-visible) .stub-admit { transform: none; }
