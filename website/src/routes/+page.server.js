@@ -4,5 +4,6 @@ import { content } from '$lib/server/content';
 
 export function load() {
   const spread = performancePhotos.filter(photo => photo.placement);
-  return { shows: content.shows, photos: attachPhotoNotes(spread, content.shows) };
+  const [stagePhoto] = attachPhotoNotes(performancePhotos.filter(photo => photo.hero), content.shows);
+  return { shows: content.shows, photos: attachPhotoNotes(spread, content.shows), stagePhoto };
 }

@@ -9,7 +9,7 @@
   import type { PageProps } from './$types';
 
   let { data }: PageProps = $props();
-  let stagePhoto = $derived(data.photos.find(photo => photo.placement === 'tall'));
+  let stagePhoto = $derived(data.stagePhoto);
 </script>
 
 <PageHead title="Finn Rutis" />
@@ -41,7 +41,7 @@
             <div class="hero-contact-print">
               <div class="photo-layers">
                 <div class="hero-print-hinge">
-                  <a class="photo-mat" href="#photos-title" aria-label={`Explore performance photos: ${stagePhoto.note?.title ?? 'On stage'}`}>
+                  <a class="photo-mat" href={sitePath(stagePhoto.reel ?? `/media/${stagePhoto.file}`)} aria-label={`More from ${stagePhoto.note?.title}: ${stagePhoto.alt}`}>
                     <img src={sitePath(`/media/${stagePhoto.file}`)} alt="" width={stagePhoto.width} height={stagePhoto.height} decoding="async" />
                     <span class="hero-print-caption">{stagePhoto.note?.title}</span>
                   </a>

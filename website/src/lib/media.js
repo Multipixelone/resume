@@ -6,7 +6,8 @@
 // A `show` also gives that production a page at /shows/<show>/ with all of its photos,
 // linked from its theatre credit and from the homepage print.
 // Each `placement` is a fixed slot in the homepage spread (site.css), so use each one once.
-// Leave `placement` off to add a photo to its show's page only.
+// `hero` selects the small print beside the headshot, independently of the spread.
+// Photos without `placement` stay off the homepage spread.
 export const performancePhotos = [
   {
     file: "finn_photo_reel_2.jpg",
@@ -22,6 +23,15 @@ export const performancePhotos = [
     width: 1638,
     height: 2048,
     alt: "A performer in a tall red-and-white striped hat and cat makeup, reaching forward with both hands.",
+    hero: true,
+    show: "seussical",
+    blurb: "",
+  },
+  {
+    file: "2X9A9285-4K.jpg",
+    width: 1420,
+    height: 1136,
+    alt: "A performer in a tall red-and-white striped hat and cat makeup steps forward mid-dance, with four ensemble members in orange vests and safari helmets behind.",
     placement: "tall",
     show: "seussical",
     blurb: "",
@@ -63,10 +73,10 @@ export const performancePhotos = [
     blurb: "",
   },
   {
-    file: "2X9A9285-4K.jpg",
-    width: 1420,
-    height: 1136,
-    alt: "A performer in a tall red-and-white striped hat and cat makeup steps forward mid-dance, with four ensemble members in orange vests and safari helmets behind.",
+    file: "seussical-hats.jpg",
+    width: 1500,
+    height: 1200,
+    alt: "A performer in a red-and-white striped hat and cat makeup crouches with arms spread in front of an ensemble in tall striped hats, one of them lifted above the group.",
     show: "seussical",
     blurb: "",
   },
@@ -84,14 +94,6 @@ export const performancePhotos = [
     height: 873,
     alt: "A performer in a wide-brimmed hat and orange shirt stands over a seated castmate who recoils with a raised hand, as another crawls beneath a draped table.",
     show: "joseph",
-    blurb: "",
-  },
-  {
-    file: "seussical-hats.jpg",
-    width: 1500,
-    height: 1200,
-    alt: "A performer in a red-and-white striped hat and cat makeup crouches with arms spread in front of an ensemble in tall striped hats, one of them lifted above the group.",
-    show: "seussical",
     blurb: "",
   },
   {
