@@ -73,6 +73,8 @@ main:focus { outline: none; }
 .section-block > h2 { margin-bottom: 2rem; }
 .page-heading { margin: 1rem 0 3rem; }
 .page-heading > a { display: inline-block; margin-top: 1.25rem; padding-block: .5rem; }
+/* Error pages: the way on to the reel and the PDF, one link per line. */
+.error-links { display: flex; flex-direction: column; align-items: flex-start; gap: .25rem; }
 /* Inline SVG icons (Icon.svelte), same stroke and size as the blog's. Solid brand
    marks read heavier than a 1.7 outline in the same box, so they are trimmed. */
 .icon { width: 1.15rem; height: 1.15rem; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }

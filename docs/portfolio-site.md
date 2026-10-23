@@ -38,8 +38,8 @@ env SITE_BASE=/resume npm run preview -- --host 127.0.0.1
 
 The route files are `build/index.html`, `build/resume/index.html`,
 `build/performance-reel/index.html`, `build/booking/index.html`,
-`build/resumes/index.html`, and one `build/shows/<id>/index.html` per show with
-a photo. `build/about/index.html` joins them once
+`build/resumes/index.html`, one `build/shows/<id>/index.html` per show with a
+photo, and `build/404.html`. `build/about/index.html` joins them once
 `src/lib/about.ts` has no bracketed placeholder left; until then builds leave
 the page and its links out, and the dev server still shows it. Under a repository mount their URLs begin with
 `/resume`, so the theatre page is `/resume/resume/`. The base is a host mount,
@@ -50,8 +50,9 @@ No SPA fallback is configured. `sitePath()` applies the configured base and
 encodes each path segment, including the composite PDF's space. Local font URLs
 use SvelteKit's `%sveltekit.assets%` substitution. Direct directory requests must
 work on the eventual static host, not just through client navigation. Check both
-slash spellings on the assigned Pages-like server. Unknown-path hosting behavior
-is a separate host concern, not solved by an SPA shell.
+slash spellings on the assigned Pages-like server. Unknown paths get
+`build/404.html`, which GitHub Pages serves for any miss: a prerendered page
+with no client script (`src/routes/404/`), not an SPA shell.
 
 ## Shared content boundary
 

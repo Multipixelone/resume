@@ -17,6 +17,8 @@ def assemble(website: Path, resume: Path, composite: Path, registry: Path, outpu
     if output.exists() or output.is_symlink():
         raise ValueError(f"output already exists: {output}")
     required_file(website / "index.html")
+    # GitHub Pages serves this for every unknown path; without it, misses get GitHub's own page.
+    required_file(website / "404.html")
     required_file(website / "resumes/index.html")
     required_file(registry)
     with registry.open("rb") as stream:

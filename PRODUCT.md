@@ -40,6 +40,7 @@ Routes, all prerendered:
 - `/performance-reel/`: YouTube recordings plus a film section.
 - `/booking/` (labelled "Contact"): email and Instagram.
 - `/resumes/`: theatre documents (with the composite `FINN RUTIS.pdf`) first, then general resumes grouped by field. Employer-tailored resumes and cover letters are `site_hidden`: unlisted, still reachable by direct link.
+- `404.html`: the not-found page GitHub Pages serves for any unknown path, linking the reel, the theatre PDF and home.
 
 Current projects appear from the first rehearsal day through closing night, computed in Eastern time in the browser. A show with a booking URL gets a linked ticket stub, with an optional "Livestream available" line. Show data and its rules live in `docs/show-data.md`.
 

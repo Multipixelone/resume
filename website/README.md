@@ -10,7 +10,7 @@ available. This is not a standalone copy of the canonical content.
 | `npm run dev -- --host 127.0.0.1` | Local development |
 | `npm run check` | Generate SvelteKit types and check Svelte/TypeScript |
 | `npm test` | Real-parser canonical ingestion and configuration checks |
-| `npm run build` | Prerender six routes to `build/`, no SPA fallback |
+| `npm run build` | Prerender every route to `build/`, plus `404.html`; no SPA fallback |
 | `env SITE_BASE=/resume npm run build` | Build for repository Pages rather than domain root |
 | `env SITE_BASE=/resume npm run preview -- --host 127.0.0.1` | Preview that repository-base build |
 | `npm run dev:fixture` | Separate, unshipped CurrentProjects browser test harness |
