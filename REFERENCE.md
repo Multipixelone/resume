@@ -474,6 +474,9 @@ Each entry includes the canonical facts, every summary variant that's been writt
 | Song & Dance Revue | Self | CAP21 / Molloy Univ. | Lori Leshner |
 | Composer Project Revue | Self | CAP21 / Molloy Univ. | Aimée Francis |
 | Bridgetown Cabaret 2020 | Self | Bridgetown Conservatory | Rick Lewis |
+| Molloy Showcase | Self | CAP21 / Molloy Univ. | Melissa Firlit |
+
+Finn confirmed on 2026-10-23 that the Molloy Showcase was in 2026, directed by Melissa Firlit, with Finn performing as themself, and that Seussical was in 2025. Its "She Loves Me" recording leads the website's performance reel; the showcase stays off the PDF.
 
 Revisiting Theory of Relativity Cabaret is a one-night performance on 2026-11-15 at The Green Room 42. Finn supplied the date on 2026-10-21 and asked for rehearsal to count from that day; it stays off the PDF and shows on the website's Current projects until closing.
 

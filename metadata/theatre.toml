@@ -22,6 +22,7 @@ title = "Seussical"
 character = "Cat in the Hat"
 company = "CAP21 / Molloy Univ."
 director = "Darren Lee"
+year = 2025
 [shows.kiss-me-kate]
 on_resume = true
 resume_order = 4
@@ -111,3 +112,11 @@ performance_start = "2026-11-15"
 closing_night = "2026-11-15"
 ticket_url = "https://thegreenroom42.venuetix.com/showdetails/rTOb8o15Tf5KEEyZQQEN/Egdk6ElXMZBj9v3iTbLM"
 livestream = true
+[shows.molloy-showcase]
+on_resume = false
+resume_order = 16
+title = "Molloy Showcase"
+character = "Self"
+company = "CAP21 / Molloy Univ."
+director = "Melissa Firlit"
+year = 2026

@@ -216,7 +216,7 @@ test('canonical TOML keeps the 12 PDF credits and dates only the cabaret', () =>
   }
   const shows = normalizeShows(parsed);
   assert.deepEqual(ids(selectResumeShows(shows)), ['joseph', 'wedding', 'seussical', 'kiss-me-kate', 'legally-blonde', 'pop', 'in-pieces', 'theory', 'tuck', 'curtains', 'midsummer', 'matilda']);
-  assert.deepEqual(shows.map(show => show.resume_order), Array.from({ length: 15 }, (_, i) => i + 1));
+  assert.deepEqual(shows.map(show => show.resume_order), Array.from({ length: 16 }, (_, i) => i + 1));
   const dated = shows.filter(show => show.rehearsal_start || show.performance_start || show.closing_night);
   assert.deepEqual(ids(dated), ['theory-cabaret']);
   assert.ok(selectResumeShows(shows).every(show => !isUpcoming(show, '2026-07-01')));

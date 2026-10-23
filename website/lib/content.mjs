@@ -40,10 +40,10 @@ export function parseVariants(source) {
  * @returns {import('../src/lib/types').Show}
  */
 function projectShow(show) {
-  const { id, title, character, company, director, on_resume, resume_order,
+  const { id, title, character, company, director, on_resume, resume_order, year,
     rehearsal_start, performance_start, closing_night, ticket_url, livestream, photo, photo_alt } = show;
   return /** @type {import('../src/lib/types').Show} */ (Object.fromEntries(Object.entries({ id, title, character, company, director,
-    on_resume, resume_order, rehearsal_start, performance_start, closing_night,
+    on_resume, resume_order, year, rehearsal_start, performance_start, closing_night,
     ticket_url, livestream, photo, photo_alt }).filter(([, value]) => value !== undefined)));
 }
 

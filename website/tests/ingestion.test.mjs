@@ -77,6 +77,9 @@ test('TOML native dates, wrong field types, bad chronology and unknown fields fa
   assert.throws(() => parseShows(fixture + 'description = "not a canonical field"\n'), /unknown field/);
   assert.throws(() => parseShows(fixture + 'photo = "/../private.jpg"\n'), /traverse/);
   assert.throws(() => parseShows(fixture + 'ticket_url = "javascript:alert(1)"\n'), /HTTP/);
+  assert.throws(() => parseShows(fixture + 'year = "2024"\n'), /four-digit/);
+  assert.throws(() => parseShows(fixture + 'year = 24\n'), /four-digit/);
+  assert.equal(parseShows(fixture + 'year = 2024\n')[0].year, 2024);
 });
 
 test('registry filenames and flags cannot become paths or accidental public entries', () => {

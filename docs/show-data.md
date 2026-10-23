@@ -29,6 +29,7 @@ Optional fields, omitted entirely when unknown:
 | `closing_night` | Quoted `YYYY-MM-DD` actual Gregorian date |
 | `ticket_url` | Absolute HTTP(S) URL, without credentials |
 | `livestream` | Boolean; `true` prints "Livestream available" on the Current projects stub |
+| `year` | Four-digit integer, the year the production ran; the website's reel captions print it |
 | `photo` | Root-relative public asset path such as `/photos/show.jpg`, no traversal |
 | `photo_alt` | Nonempty alternative text supplied for a future photo consumer |
 
