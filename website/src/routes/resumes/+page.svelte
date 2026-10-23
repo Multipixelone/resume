@@ -20,7 +20,7 @@
             {#if item.subtitle}<p>{item.subtitle}</p>{/if}
           </div>
           <div class="library-actions">
-            <a href={sitePath(item.pdf)} rel="external" download aria-label={`Download ${item.title} (PDF)`}>Download <span class="file-label">PDF</span> <Arrow dir="down" /></a>
+            <a href={sitePath(item.pdf)} rel="external" download={`Finn Rutis ${item.title}.pdf`} aria-label={`Download ${item.title} (PDF)`}>Download <span class="file-label">PDF</span> <Arrow dir="down" /></a>
             {#if item.preview}<a href={sitePath(item.preview)} rel="external" aria-label={`Preview ${item.title}`}>Preview</a>{/if}
           </div>
         </li>

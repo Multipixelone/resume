@@ -18,7 +18,7 @@
 <div class="error-links">
   <a class="text-link" href={sitePath('/performance-reel/')}>Watch me perform <Arrow /></a>
   {#if resumePdf}
-    <a class="text-link" href={sitePath(resumePdf)} rel="external" download>Download resume <span class="file-label">(PDF)</span> <Arrow dir="down" /></a>
+    <a class="text-link" href={sitePath(resumePdf)} rel="external" download="Finn Rutis Artistic Resume.pdf">Download resume <span class="file-label">(PDF)</span> <Arrow dir="down" /></a>
   {/if}
   <a class="text-link" href={sitePath('/')}><Arrow dir="back" /> Return home</a>
 </div>

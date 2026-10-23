@@ -1,10 +1,10 @@
 <script lang="ts">
   import { sitePath } from '$lib/paths';
-  import { showAbout } from '$lib/about';
   import Arrow from '$lib/components/Arrow.svelte';
   import CurrentProjects from '$lib/components/CurrentProjects.svelte';
   import PageHead from '$lib/components/PageHead.svelte';
   import PhotoSpread from '$lib/components/PhotoSpread.svelte';
+  import PerformanceNextSteps from '$lib/components/PerformanceNextSteps.svelte';
   import { paperMotion, callboardEntrance } from '$lib/motion';
   import type { PageProps } from './$types';
 
@@ -17,6 +17,10 @@
 <section class="home-hero" aria-labelledby="artist-name">
   <div class="hero-heading">
     <h1 id="artist-name" class="artist-name"><span>Finn</span> <span>Rutis</span></h1>
+    <div class="hero-links">
+      <a class="text-link hero-links-slip" href={sitePath('/performance-reel/')}>Watch me perform <Arrow /></a>
+      <a class="text-link hero-links-slip" href={sitePath('/resume/')}>See my resume <Arrow /></a>
+    </div>
   </div>
 
   <div class="portrait-scene">
@@ -53,18 +57,6 @@
 
   <div class="bio-block">
     <p>Finn Rutis is a New York City Based performance artist that is interested in using the magic of theatre to shine a light on unconscious parts of the human experience</p>
-    <div class="hero-links">
-      <a class="text-link hero-links-slip" href={sitePath('/performance-reel/')}>Watch me perform <Arrow /></a>
-      <div class="hero-links-more">
-        <a class="text-link" href={sitePath('/resume/')}>See my resume</a>
-        {#if showAbout}
-          <span class="hero-links-dot" aria-hidden="true">·</span>
-          <a class="text-link" href={sitePath('/about/')}>More about me</a>
-        {/if}
-        <span class="hero-links-dot" aria-hidden="true">·</span>
-        <a class="text-link" href={sitePath('/booking/')}>Get in touch</a>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -79,3 +71,5 @@
   </div>
   <PhotoSpread photos={data.photos} />
 </section>
+
+<PerformanceNextSteps resumePdf={data.resumePdf} />

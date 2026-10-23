@@ -1,7 +1,6 @@
 <script lang="ts">
   import { film } from '$lib/media';
-  import { sitePath } from '$lib/paths';
-  import Arrow from '$lib/components/Arrow.svelte';
+  import PerformanceNextSteps from '$lib/components/PerformanceNextSteps.svelte';
   import PageHead from '$lib/components/PageHead.svelte';
   import Recording from '$lib/components/Recording.svelte';
   import type { PageProps } from './$types';
@@ -19,11 +18,4 @@
   <Recording video={film} label="Film" />
 </div>
 
-<!-- Watching leads to the resume: the reel ends on the theatre PDF. -->
-<section class="reel-resume" aria-labelledby="reel-resume-title">
-  <h2 id="reel-resume-title">Resume</h2>
-  <div class="download-actions">
-    <a class="primary-link" href={sitePath(data.download.pdf)} rel="external" download>Download resume <span class="file-label">(PDF)</span> <Arrow dir="down" /></a>
-    <a href={sitePath(data.composite)} rel="external" download>Resume with headshot <span class="file-label">(PDF)</span></a>
-  </div>
-</section>
+<PerformanceNextSteps variant="resume" resumePdf={data.download.pdf} composite={data.composite} />

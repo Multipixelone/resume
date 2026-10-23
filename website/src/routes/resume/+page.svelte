@@ -3,6 +3,7 @@
   import Arrow from '$lib/components/Arrow.svelte';
   import CoverPrint from '$lib/components/CoverPrint.svelte';
   import PageHead from '$lib/components/PageHead.svelte';
+  import PerformanceNextSteps from '$lib/components/PerformanceNextSteps.svelte';
   import type { PageProps } from './$types';
   let { data }: PageProps = $props();
   const plural = (count: number, noun: string) => `${count} ${noun}${count === 1 ? '' : 's'}`;
@@ -13,8 +14,8 @@
 <header class="page-heading"><h1>Resume</h1></header>
 <div class="resume-intro">
   <div class="download-actions">
-    <a class="primary-link" href={sitePath(data.download.pdf)} rel="external" download>Download resume <span class="file-label">(PDF)</span> <Arrow dir="down" /></a>
-    <a href={sitePath(data.composite)} rel="external" download>Resume with headshot <span class="file-label">(PDF)</span></a>
+    <a class="primary-link" href={sitePath(data.download.pdf)} rel="external" download="Finn Rutis Artistic Resume.pdf">Download resume <span class="file-label">(PDF)</span> <Arrow dir="down" /></a>
+    <a href={sitePath(data.composite)} rel="external" download="Finn Rutis Resume with headshot.pdf">Resume with headshot <span class="file-label">(PDF)</span></a>
     <a href={sitePath('/resumes/')}>All resumes <Arrow /></a>
   </div>
   <div class="resume-sheet">
@@ -55,3 +56,5 @@
     {/each}
   </ol>
 </section>
+
+<PerformanceNextSteps resumePdf={data.download.pdf} />

@@ -108,7 +108,7 @@ main:focus { outline: none; }
 /* The name is the playbill; the portrait and character print share its edge. */
 .home-hero { display: grid; grid-template-columns: 1.13fr 1fr; column-gap: 4rem; align-items: start; padding-top: 1.5rem; }
 .hero-heading { grid-column: 1; grid-row: 1; }
-.artist-name { font-size: clamp(6rem, 12.8vw, 11.5rem); font-weight: 900; line-height: .87; letter-spacing: -.055em; margin: 1.75rem 0 2.25rem -.04em; }
+.artist-name { font-size: clamp(6rem, 12.8vw, 11.5rem); font-weight: 900; line-height: .87; letter-spacing: -.055em; margin: 1.75rem 0 3.5rem -.04em; }
 .artist-name > span { display: block; }
 .artist-name > span + span { padding-left: .19em; color: var(--accent); }
 .portrait-scene { position: relative; grid-column: 2; grid-row: 1 / 3; width: calc(100% - 2rem); max-width: 28rem; justify-self: end; margin: 2.5rem 1.5rem 0 0; }
@@ -137,28 +137,14 @@ main:focus { outline: none; }
 }
 .hero-print-tape { position: absolute; top: -.55rem; left: 50%; width: 40%; height: 1.05rem; translate: -50% 0; rotate: 7deg; background: rgb(221 214 198 / .8); clip-path: polygon(3% 10%, 97% 0, 100% 24%, 97% 48%, 100% 74%, 97% 100%, 2% 92%, 4% 70%, 0 46%, 3% 24%); pointer-events: none; }
 .hero-print-caption { display: block; padding: .6rem .1rem .15rem; color: var(--ink); text-align: left; font: .6875rem/1.5 var(--font-mono); }
-.bio-block { grid-column: 1; grid-row: 2; max-width: 36ch; padding-top: .5rem; font-size: clamp(1.2rem, 1.65vw, 1.4rem); line-height: 1.5; }
-/* The reel leads on a paper slip (only the slip tilts); resume, about and contact follow on one dotted line,
-   without arrows, like the footer meta. */
-.hero-links { display: grid; justify-items: start; gap: .45rem; margin-top: 1.75rem; }
-/* Child selector so the larger size outranks .text-link, including its phone override. */
-.hero-links > .hero-links-slip { position: relative; isolation: isolate; margin-left: -1rem; padding: .5rem 1.15rem .55rem 1rem; font-size: 1.1875rem; }
+.bio-block { grid-column: 1; grid-row: 2; max-width: 36ch; padding-top: 2rem; font-size: clamp(1.2rem, 1.65vw, 1.4rem); line-height: 1.5; }
+/* The two casting actions belong with the name, before the portrait in DOM order.
+   Only their paper backings tilt; both labels stay level and readable. */
+.hero-links { display: flex; flex-wrap: wrap; align-items: start; gap: 1rem; }
+/* Child selector keeps the primary action size through the phone override. */
+.hero-links > .hero-links-slip { position: relative; isolation: isolate; padding: .5rem 1rem; color: var(--accent-hover); font-size: 1.1875rem; }
 .hero-links-slip::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--paper-shade); border: 1px solid var(--border); box-shadow: 0 2px 6px var(--shadow); rotate: 1.5deg; transition: rotate 220ms cubic-bezier(.2, .8, .2, 1); pointer-events: none; }
-.hero-links-more { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .7rem; }
-.hero-links-more > .text-link { font-size: .9375rem; }
-.hero-links-dot { color: var(--muted); }
-/* Between the phone and desktop layouts the bio column narrows to ~280px; tighten the dotted line so
-   it never wraps and strands a dot at a line end. */
-.hero-links { container-type: inline-size; }
-@container (max-width: 20.75rem) {
-  .hero-links-more { column-gap: .45rem; }
-  .hero-links-more > .text-link { font-size: .8125rem; }
-}
-/* Too narrow even for that: drop the dots and let the links wrap on plain spacing. */
-@container (max-width: 18.75rem) {
-  .hero-links-more { column-gap: .9rem; }
-  .hero-links-dot { display: none; }
-}
+.hero-links-slip:nth-child(even)::before { rotate: -1.5deg; }
 @media (prefers-reduced-motion: no-preference) {
   .hero-links-slip:is(:hover, :focus-visible)::before { rotate: .45deg; }
 }
@@ -425,9 +411,6 @@ main:focus { outline: none; }
 .recording-start { position: relative; width: max-content; margin: 0 0 -.7rem 1.5rem; filter: drop-shadow(0 2px 2px rgb(43 37 32 / .1)); transform: rotate(-3deg); transform-origin: bottom left; }
 .recording-start .ticket-card { padding-bottom: 1rem; font: .75rem/1.5 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent-hover); }
 .recording--start .video-mat { position: relative; }
-/* The reel closes on the theatre resume, split like the resume page's intro. */
-.reel-resume { display: grid; grid-template-columns: minmax(14rem, 1fr) minmax(0, 2fr); gap: 1rem 3rem; align-items: start; margin-top: var(--space-section); padding-top: 1.25rem; border-top: 1px solid var(--ink); }
-.reel-resume > h2 { font-size: clamp(1.5rem, 2.4vw, 1.875rem); }
 .contact-page { padding: 1rem 0 5rem; }
 .contact-links { margin: 0 0 0 25%; }
 .contact-links > div { padding: 1.5rem 0; border-top: 1px solid var(--border); }
@@ -500,6 +483,11 @@ main:focus { outline: none; }
   .offstage-item > .photo-layers { width: 85%; }
   .offstage-item:nth-child(even) > .photo-layers { order: 0; justify-self: end; }
 }
+/* Compact the first screen on shorter desktop windows without clipping content. */
+@media (min-width: 640px) and (max-height: 850px) {
+  .home-hero { padding-top: 0; }
+  .artist-name { margin-top: .5rem; margin-bottom: 3rem; }
+}
 @media (max-width: 639px) {
   .site-shell { width: calc(100% - 2.5rem); }
   .site-header { margin-bottom: 1.5rem; padding-block: .75rem; }
@@ -513,7 +501,7 @@ main:focus { outline: none; }
   .site-header li a { padding-inline: .35rem; font-size: .875rem; }
   .home-hero { display: flex; flex-direction: column; gap: 0; padding-top: .5rem; }
   .hero-heading { width: 100%; }
-  .artist-name { font-size: clamp(3rem, 15vw, 5.5rem); line-height: 1; margin: 1rem 0 2rem; letter-spacing: -.045em; }
+  .artist-name { font-size: clamp(3rem, 15vw, 5.5rem); line-height: 1; margin: 1rem 0 2.5rem; letter-spacing: -.045em; }
   .artist-name > span { display: inline; }
   .artist-name > span + span { padding-left: 0; }
   .portrait-scene { width: 73%; max-width: 22rem; margin: 1rem 11% 0 0; align-self: center; }
@@ -522,7 +510,7 @@ main:focus { outline: none; }
   .hero-contact-print { width: 40%; right: -22%; --rotation: 8deg; }
   .hero-print-caption { font-size: .625rem; padding-top: .4rem; }
   .bio-block { max-width: 40ch; margin-top: 2rem; padding-top: 0; font-size: 1.25rem; }
-  .hero-links { margin-top: 1.25rem; }
+  .hero-links { margin-bottom: 2rem; }
   .text-link { font-size: 1rem; gap: .6rem; }
   .now-show { padding-block: 1.5rem; }
   .now-credits { gap: .8rem 1.5rem; }
@@ -551,7 +539,7 @@ main:focus { outline: none; }
   .reel-print[data-orientation="portrait"] .photo-layers { width: 78%; }
   .reel-print:only-child { margin-left: 0; }
   .show-pager { flex-direction: column; }
-  .download-group, .download-library, .reel-resume { grid-template-columns: 1fr; }
+  .download-group, .download-library { grid-template-columns: 1fr; }
   .download-group > h2 { padding-bottom: .25rem; }
   .contact-links { margin-left: 0; }
   .offstage-item--slip .offstage-copy { padding: 1.5rem 1.5rem 1.75rem 1.25rem; }
