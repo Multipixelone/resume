@@ -3,6 +3,7 @@
   import Arrow from '$lib/components/Arrow.svelte';
   import CoverPrint from '$lib/components/CoverPrint.svelte';
   import PageHead from '$lib/components/PageHead.svelte';
+  import Recording from '$lib/components/Recording.svelte';
   import ReelPrint from '$lib/components/ReelPrint.svelte';
   import type { PageProps } from './$types';
 
@@ -35,23 +36,9 @@
   {/each}
 </div>
 
+<!-- The page heading already names the show and role, so these carry only the song. -->
 {#each reel.videos as video (video.id)}
-  <section class="recording" aria-labelledby={`recording-${video.id}`}>
-    <div class="recording-heading">
-      <h2 id={`recording-${video.id}`}>{video.title}</h2>
-      <a href={`https://www.youtube.com/watch?v=${video.id}`} aria-label={`Watch ${video.title} on YouTube`}>Watch on YouTube <Arrow /></a>
-    </div>
-    <div class="video-mat">
-      <iframe
-        src={`https://www.youtube-nocookie.com/embed/${video.id}?autoplay=0`}
-        title={video.title}
-        loading="lazy"
-        allow="encrypted-media; picture-in-picture; fullscreen"
-        allowfullscreen
-        referrerpolicy="strict-origin-when-cross-origin"
-      ></iframe>
-    </div>
-  </section>
+  <Recording {video} />
 {/each}
 
 {#if data.previous || data.next}

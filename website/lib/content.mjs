@@ -83,6 +83,24 @@ export function showReels(shows, photos, recordings) {
     }));
 }
 
+/** The reel's clips, the one marked `start` first, each captioned from its canonical show.
+ * The show label links to the show's page only when the show has one.
+ * @returns {import('../src/lib/types').Recording[]}
+ */
+export function reelRecordings(shows, recordings, reels) {
+  const byId = new Map(shows.map(show => [show.id, show]));
+  const pages = new Map(reels.map(reel => [reel.id, reel.path]));
+  if (recordings.filter(video => video.start).length > 1) throw new TypeError('Only one recording can be the place to start');
+  return recordings.toSorted((a, b) => Number(b.start === true) - Number(a.start === true))
+    .map(({ id, title, show: showId, start }) => {
+      const show = showId ? byId.get(showId) : undefined;
+      if (showId && !show) throw new TypeError(`${id}: unknown show ${showId}`);
+      const credit = show && Object.fromEntries(Object.entries({ title: show.title, character: show.character,
+        year: show.year, path: pages.get(show.id) }).filter(([, value]) => value !== undefined));
+      return credit ? { id, title, start: start === true, show: credit } : { id, title, start: start === true };
+    });
+}
+
 export function portfolioContent(theatreSource, variantSource) {
   const shows = parseShows(theatreSource);
   const variants = parseVariants(variantSource);

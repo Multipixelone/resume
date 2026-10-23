@@ -326,6 +326,7 @@ Character: a real landscape theatre ticket you could tear off.
 Character: heavier backing stock holding something.
 
 - Callboard Card, 1px Rule Line border, sheet shadow, square corners. The resume preview sits on one (1rem padding, US Letter aspect), taped at its top edge with the prints' masking tape; videos on another (0.75rem padding, 0.35rem on phones).
+- A video's caption sits below its sheet like a print's: the song in Cooper Bold, then the show (linked to its page when it has one), role and year in small Faded Ink mono, with "Watch on YouTube" level with the caption's last line. The film takes a "Film" label above its title instead. On the reel, the clip to start with has a ticket like the brand mark (Ticket Stock, Marquee Rust stripe, torn edge) reading "Start here" in Deep Marquee Rust mono, tucked under the sheet's top edge at -3deg. The reel closes on the theatre resume download under an ink rule.
 - Off-stage notes without a photo become slips: the card layer rotates half the item's angle behind level text.
 - The homepage reel link and the nav links use the same slip, smaller: slip shadow, Rule Line border, only the backing rotates.
 

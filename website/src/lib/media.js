@@ -64,12 +64,17 @@ export const performancePhotos = [
   },
 ];
 
-// `show` (a theatre.toml id) also embeds the video on that show's page. Set it only
-// when the recording is from that production.
+// `title` is the song. `show` (a theatre.toml id) captions the clip with that show's
+// title, role and year, and embeds it on the show's page. Set it only when the
+// recording is from that production. `start` marks the one clip to watch first;
+// the reel plays it at the top.
 export const recordings = [
-  { id: "ucVBjbfxrHA", title: "She Loves Me" },
+  { id: "ucVBjbfxrHA", title: "She Loves Me", show: "molloy-showcase", start: true },
   { id: "DYrR7xup_Js", title: "I Love to Sing-a & Love Me, Love Me Not" },
   { id: "-QPog0QsJ9s", title: "No One Has to Know" },
   { id: "ZP38u-e76BY", title: "Circus McGurkus", show: "seussical" },
   { id: "nwI8Dr8u1OM", title: "How Lucky You Are", show: "seussical" },
 ];
+
+// The film credit closes the reel under its own title.
+export const film = { id: "YmpZh62mMjE", title: "All Over Everywhere" };

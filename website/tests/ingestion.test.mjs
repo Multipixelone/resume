@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { parse } from 'smol-toml';
-import { attachPhotoNotes, parseShows, parseVariants, portfolioContent, showReels } from '../lib/content.mjs';
+import { attachPhotoNotes, parseShows, parseVariants, portfolioContent, reelRecordings, showReels } from '../lib/content.mjs';
 import { performancePhotos, recordings } from '../src/lib/media.js';
 import { siteBase, siteOrigin } from '../lib/config.mjs';
 import { selectResumeShows } from '../../lib/shows.mjs';
@@ -127,6 +127,28 @@ test('every show with a photo gets one page, in resume order, with only its own 
   assert.equal(showReels(shows, [{ file: 'x.jpg', show: 'joseph' }], []).length, 1);
   assert.throws(() => showReels(shows, [], [{ id: 'abc', title: 'X', show: 'not-a-show' }]), /abc: unknown show/);
   assert.throws(() => showReels(shows, [{ file: 'x.jpg', show: 'not-a-show' }], []), /x.jpg: unknown show/);
+});
+
+test('reel clips caption from their canonical show, the one start clip first', () => {
+  const { shows } = portfolioContent(theatre, variants);
+  const reels = showReels(shows, performancePhotos, recordings);
+  const clips = reelRecordings(shows, recordings, reels);
+  assert.equal(recordings.filter(video => video.start).length, 1);
+  assert.equal(clips[0].start, true);
+  assert.deepEqual(clips.slice(1).map(clip => clip.id), recordings.filter(video => !video.start).map(video => video.id));
+  for (const source of recordings) {
+    const clip = clips.find(entry => entry.id === source.id);
+    const show = shows.find(entry => entry.id === source.show);
+    assert.equal(clip.show?.title, show?.title);
+    assert.equal(clip.show?.character, show?.character);
+    assert.equal(clip.show?.year, show?.year);
+    assert.equal(clip.show?.path, reels.find(reel => reel.id === source.show)?.path);
+  }
+  // A show without photos has no page, so its label stays plain text.
+  const [lone] = reelRecordings([{ id: 'joseph', title: 'Joseph', character: 'Simeon', year: 2025 }], [{ id: 'abc', title: 'Song', show: 'joseph' }], []);
+  assert.deepEqual(lone, { id: 'abc', title: 'Song', start: false, show: { title: 'Joseph', character: 'Simeon', year: 2025 } });
+  assert.throws(() => reelRecordings(shows, [{ id: 'abc', title: 'X', show: 'not-a-show' }], []), /abc: unknown show/);
+  assert.throws(() => reelRecordings(shows, [{ id: 'a', title: 'A', start: true }, { id: 'b', title: 'B', start: true }], []), /one recording/);
 });
 
 test('base configuration accepts root and repository Pages, rejects ambiguous paths', () => {

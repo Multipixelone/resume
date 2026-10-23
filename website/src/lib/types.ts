@@ -6,6 +6,7 @@ export interface Show {
   director: string;
   on_resume: boolean;
   resume_order: number;
+  year?: number;
   rehearsal_start?: string;
   performance_start?: string;
   closing_night?: string;
@@ -36,6 +37,19 @@ export interface Photo {
 export interface ShowVideo {
   id: string;
   title: string;
+}
+/** A reel clip's caption labels, from its canonical show. */
+export interface RecordingCredit {
+  title: string;
+  character: string;
+  year?: number;
+  /** Site path of the show's page, when it has one. */
+  path?: string;
+}
+export interface Recording extends ShowVideo {
+  /** The clip to watch first. */
+  start: boolean;
+  show?: RecordingCredit;
 }
 export interface ShowReel {
   id: string;
