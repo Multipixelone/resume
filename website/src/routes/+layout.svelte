@@ -2,6 +2,7 @@
   import '../styles/site.css';
   import { page } from '$app/state';
   import { sitePath } from '$lib/paths';
+  import { showAbout } from '$lib/about';
   import SiteFooter from '$lib/components/SiteFooter.svelte';
 
   let { children, data } = $props();
@@ -10,7 +11,7 @@
     { label: 'Resume', route: '/resume', path: '/resume/' },
     { label: 'Reel', route: '/performance-reel', path: '/performance-reel/' },
     { label: 'Contact', route: '/booking', path: '/booking/' }
-  ];
+  ].filter(item => item.route !== '/about' || showAbout);
 </script>
 
 <a class="skip-link" href="#main">Skip to content</a>

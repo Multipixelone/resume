@@ -36,9 +36,12 @@ env SITE_BASE=/resume npm run build
 env SITE_BASE=/resume npm run preview -- --host 127.0.0.1
 ```
 
-The six route files are `build/index.html`, `build/about/index.html`,
-`build/resume/index.html`, `build/performance-reel/index.html`,
-`build/booking/index.html`, and `build/resumes/index.html`. Under a repository mount their URLs begin with
+The route files are `build/index.html`, `build/resume/index.html`,
+`build/performance-reel/index.html`, `build/booking/index.html`,
+`build/resumes/index.html`, and one `build/shows/<id>/index.html` per show with
+a photo. `build/about/index.html` joins them once
+`src/lib/about.ts` has no bracketed placeholder left; until then builds leave
+the page and its links out, and the dev server still shows it. Under a repository mount their URLs begin with
 `/resume`, so the theatre page is `/resume/resume/`. The base is a host mount,
 not an extra directory to prepend inside the generated artifact.
 

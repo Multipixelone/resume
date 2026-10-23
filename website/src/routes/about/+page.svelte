@@ -1,6 +1,6 @@
 <script lang="ts">
   import { sitePath } from '$lib/paths';
-  import { escapades } from '$lib/about';
+  import { escapades, statement } from '$lib/about';
   import { paperMotion } from '$lib/motion';
   import Arrow from '$lib/components/Arrow.svelte';
   import PageHead from '$lib/components/PageHead.svelte';
@@ -15,8 +15,7 @@
 <section class="statement" aria-labelledby="statement-title">
   <h2 id="statement-title">Artist statement</h2>
   <div class="statement-body">
-    <!-- One <p> per paragraph. -->
-    <p>[Artist statement]</p>
+    {#each paragraphs(statement) as paragraph}<p>{paragraph}</p>{/each}
   </div>
 </section>
 

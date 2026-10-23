@@ -1,5 +1,6 @@
 <script lang="ts">
   import { sitePath } from '$lib/paths';
+  import { showAbout } from '$lib/about';
   import Arrow from '$lib/components/Arrow.svelte';
   import CurrentProjects from '$lib/components/CurrentProjects.svelte';
   import PageHead from '$lib/components/PageHead.svelte';
@@ -56,8 +57,10 @@
       <a class="text-link hero-links-slip" href={sitePath('/performance-reel/')}>Watch me perform <Arrow /></a>
       <div class="hero-links-more">
         <a class="text-link" href={sitePath('/resume/')}>See my resume</a>
-        <span class="hero-links-dot" aria-hidden="true">·</span>
-        <a class="text-link" href={sitePath('/about/')}>More about me</a>
+        {#if showAbout}
+          <span class="hero-links-dot" aria-hidden="true">·</span>
+          <a class="text-link" href={sitePath('/about/')}>More about me</a>
+        {/if}
         <span class="hero-links-dot" aria-hidden="true">·</span>
         <a class="text-link" href={sitePath('/booking/')}>Get in touch</a>
       </div>
