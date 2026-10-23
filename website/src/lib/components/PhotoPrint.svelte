@@ -7,7 +7,7 @@
   const noteId = $props.id();
   // Fastenings belong to the composition, not the production's source data.
   const fastenings: Record<string, 'tape' | 'pin' | 'corners'> = {
-    wide: 'tape', tall: 'pin', small: 'tape', 'tall-left': 'corners'
+    wide: 'tape', tall: 'pin', small: 'tape', 'tall-left': 'corners', 'tall-bottom': 'tape'
   };
   let fastening = $derived(photo.placement ? fastenings[photo.placement] : undefined);
   // A print from a known show opens that show's page; anything else opens the full photo.

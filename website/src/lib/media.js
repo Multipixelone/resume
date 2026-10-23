@@ -163,6 +163,7 @@ export const performancePhotos = [
     width: 900,
     height: 1200,
     alt: "A curly-haired performer in a burgundy sweater sings under bright backlights.",
+    placement: "tall-bottom",
     show: "composer-project-revue",
     blurb: "",
   },

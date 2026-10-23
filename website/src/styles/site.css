@@ -255,6 +255,7 @@ main:focus { outline: none; }
 .photo-print--wide-right { grid-column: 6 / -1; grid-row: 3; margin-top: 6rem; --rotation: 1.5deg; }
 .photo-print--tall-left { grid-column: 1 / 5; grid-row: 3 / 5; margin-top: 12rem; --rotation: -4deg; }
 .photo-print--small-right { grid-column: 7 / 12; grid-row: 4; margin-top: 1rem; --rotation: -2.5deg; }
+.photo-print--tall-bottom { grid-column: 2 / 6; grid-row: 5; margin-top: -18rem; --rotation: 3deg; }
 .photo-layers { position: relative; isolation: isolate; perspective: 1000px; }
 /* The scroll landing moves only the print assembly. Its soft contact shadow is
    painted once, then faded; captions keep their place on the board. */
@@ -267,6 +268,7 @@ main:focus { outline: none; }
 .photo-print--small .photo-mat { padding: .4rem; }
 .photo-print--tall-left .photo-mat { padding: .5rem .5rem 1rem; }
 .photo-print--small-right .photo-mat { padding: .5rem; }
+.photo-print--tall-bottom .photo-mat { padding: .5rem .5rem 1.1rem; }
 /* A few prints are fastened to the board. The resting angle belongs to the
    whole object; only the paper flexes beneath its fixed tape or pin. */
 .photo-object { position: relative; }
@@ -454,6 +456,7 @@ main:focus { outline: none; }
   .photo-print--wide-right { grid-column: 6 / -1; margin-top: 3rem; }
   .photo-print--tall-left { grid-column: 1 / 5; margin-top: 7rem; }
   .photo-print--small-right { grid-column: 6 / 12; }
+  .photo-print--tall-bottom { grid-column: 2 / 6; margin-top: -10rem; }
   .resume-intro { grid-template-columns: 1fr; gap: 2rem; }
   .resume-sheet { max-width: 42rem; width: 100%; }
   .contact-links { margin-left: 12.5%; }
@@ -506,6 +509,7 @@ main:focus { outline: none; }
   .photo-print--wide-right { margin-top: 2rem; --rotation: 2deg; }
   .photo-print--tall-left { width: 72%; --rotation: -3deg; }
   .photo-print--small-right { width: 85%; align-self: flex-end; --rotation: 2deg; }
+  .photo-print--tall-bottom { width: 72%; --rotation: -2deg; }
   .photo-print figcaption { gap: .75rem; padding-top: 1.4rem; }
   .photo-note-title { font-size: 1.25rem; }
   .photo-backing { transform: translate(6px, 8px) rotate(1deg); }
