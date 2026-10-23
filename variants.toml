@@ -1,17 +1,21 @@
-# Resume variant registry — single source of truth.
+# Resume variant registry, the single source of truth.
 # packages/resume.nix, packages/checks.nix, and .github/workflows/_build.yml
 # all read from this file. To add a new variant, add a section here and
 # create the corresponding .typ file (and optional override TOML).
 #
 # Fields:
-#   source          — stem of the .typ file in resumes/ (required)
-#   dest            — output filename stem (without extension) for built artifacts and pages deploy (required)
-#   expected_pages  — exact page count for the PDF check; 0 = multi-page (>= 1) (required)
-#   check_metadata  — whether the variant's merged metadata is checked for completeness (required)
-#   override_toml   — override TOML filename in metadata/ (optional; omit for base-only variants)
-#   title           — display title on the site card (optional; omit if site_hidden)
-#   subtitle        — display subtitle on the site card (optional; omit if site_hidden)
-#   site_hidden     — hide this variant from the site (optional; defaults to false)
+#   source          stem of the .typ file in resumes/ (required)
+#   dest            output filename stem (without extension) for built artifacts and pages deploy (required)
+#   expected_pages  exact page count for the PDF check; 0 = multi-page (>= 1) (required)
+#   check_metadata  whether the variant's merged metadata is checked for completeness (required)
+#   override_toml   override TOML filename in metadata/ (optional; omit for base-only variants)
+#   title           display title on /resumes/ (required unless site_hidden; the site build fails without it)
+#   field           group heading on /resumes/ (required unless site_hidden). The cv's field is listed
+#                   first, then the rest in the order they first appear in this file.
+#   subtitle        detail line under the title (optional; leave it off when it would repeat the field)
+#   site_hidden     unlist from /resumes/ (optional; defaults to false). The PDF still ships at
+#                   /resumes/<dest>.pdf, so a direct link keeps working. Use it for every
+#                   employer-tailored resume and every cover letter.
 
 [cv]
 source = "cv"
@@ -19,7 +23,7 @@ dest = "resume"
 expected_pages = 1
 check_metadata = true
 title = "Artistic Resume"
-subtitle = "Theatre & performance"
+field = "Theatre & performance"
 
 [tech]
 source = "tech"
@@ -28,7 +32,7 @@ override_toml = "tech-metadata.toml"
 expected_pages = 2
 check_metadata = true
 title = "Technical Resume"
-subtitle = "Technology & IT"
+field = "Technology & IT"
 
 [mta-16360]
 source = "mta-16360"
@@ -38,6 +42,7 @@ expected_pages = 1
 check_metadata = true
 title = "MTA Systems Administrator Resume"
 subtitle = "Level 1"
+site_hidden = true
 
 [work]
 source = "work"
@@ -46,7 +51,7 @@ override_toml = "work-metadata.toml"
 expected_pages = 1
 check_metadata = true
 title = "Work Resume"
-subtitle = "Events & operations"
+field = "Events & operations"
 
 [nanny]
 source = "nanny"
@@ -55,7 +60,7 @@ override_toml = "nanny-metadata.toml"
 expected_pages = 1
 check_metadata = true
 title = "Nanny Resume"
-subtitle = "Childcare"
+field = "Childcare"
 
 [astor-place]
 source = "astor-place"
@@ -83,6 +88,7 @@ expected_pages = 1
 check_metadata = true
 title = "Salt & Straw Resume"
 subtitle = "Scooper"
+site_hidden = true
 
 [saltandstraw-sc]
 source = "saltandstraw-sc"
@@ -92,6 +98,7 @@ expected_pages = 1
 check_metadata = true
 title = "Salt & Straw SC Resume"
 subtitle = "Shift coordinator"
+site_hidden = true
 
 [writer]
 source = "writer"
@@ -101,6 +108,7 @@ expected_pages = 0
 check_metadata = true
 title = "Writer Resume"
 subtitle = "Software quality engineer"
+site_hidden = true
 
 [sierra]
 source = "sierra"
@@ -110,6 +118,7 @@ expected_pages = 0
 check_metadata = true
 title = "Sierra Resume"
 subtitle = "Developer relations engineer"
+site_hidden = true
 
 [logrocket]
 source = "logrocket"
@@ -119,6 +128,7 @@ expected_pages = 0
 check_metadata = true
 title = "LogRocket Resume"
 subtitle = "Developer relations / PodRocket"
+site_hidden = true
 
 [notion]
 source = "notion"
@@ -128,6 +138,7 @@ expected_pages = 0
 check_metadata = true
 title = "Notion Resume"
 subtitle = "Developer advocate"
+site_hidden = true
 
 [mistral]
 source = "mistral"
@@ -137,6 +148,7 @@ expected_pages = 0
 check_metadata = true
 title = "Mistral Resume"
 subtitle = "AI developer relations"
+site_hidden = true
 
 [hebbia]
 source = "hebbia"
@@ -146,6 +158,7 @@ expected_pages = 0
 check_metadata = true
 title = "Hebbia Resume"
 subtitle = "Backend engineer, agents"
+site_hidden = true
 
 [baseten]
 source = "baseten"
@@ -155,6 +168,7 @@ expected_pages = 0
 check_metadata = true
 title = "Baseten Resume"
 subtitle = "Content Engineer"
+site_hidden = true
 
 [ramp]
 source = "ramp"
@@ -164,6 +178,7 @@ expected_pages = 0
 check_metadata = true
 title = "Ramp Resume"
 subtitle = "Video producer / editor"
+site_hidden = true
 
 [runway]
 source = "runway"
@@ -173,6 +188,7 @@ expected_pages = 0
 check_metadata = true
 title = "Runway Resume"
 subtitle = "Creative producer"
+site_hidden = true
 
 [captions]
 source = "captions"
@@ -182,6 +198,7 @@ expected_pages = 0
 check_metadata = true
 title = "Captions Resume"
 subtitle = "Video / education"
+site_hidden = true
 
 [agentio]
 source = "agentio"
@@ -191,6 +208,7 @@ expected_pages = 0
 check_metadata = true
 title = "Agentio Resume"
 subtitle = "Video content producer"
+site_hidden = true
 
 [viam]
 source = "viam"
@@ -200,6 +218,7 @@ expected_pages = 0
 check_metadata = true
 title = "Viam Resume"
 subtitle = "Video production / education"
+site_hidden = true
 
 [elevenlabs]
 source = "elevenlabs"
@@ -209,6 +228,7 @@ expected_pages = 0
 check_metadata = true
 title = "ElevenLabs Resume"
 subtitle = "Developer relations"
+site_hidden = true
 
 [tavily]
 source = "tavily"
@@ -218,6 +238,7 @@ expected_pages = 0
 check_metadata = true
 title = "Tavily Resume"
 subtitle = "Developer relations"
+site_hidden = true
 
 [tavily-cover-letter]
 source = "tavily-cover-letter"
@@ -225,6 +246,7 @@ dest = "tavily-cover-letter"
 expected_pages = 1
 check_metadata = false
 override_toml = "tavily-metadata.toml"
+site_hidden = true
 
 [novig]
 source = "novig"
@@ -234,6 +256,7 @@ expected_pages = 1
 check_metadata = true
 title = "Novig Resume"
 subtitle = "Developer relations engineer"
+site_hidden = true
 
 [novig-cover-letter]
 source = "novig-cover-letter"
@@ -241,6 +264,7 @@ dest = "novig-cover-letter"
 expected_pages = 1
 check_metadata = false
 override_toml = "novig-metadata.toml"
+site_hidden = true
 
 [communications-systems]
 source = "communications-systems"
@@ -249,6 +273,7 @@ override_toml = "communications-systems-metadata.toml"
 expected_pages = 1
 check_metadata = true
 title = "Communications & Systems Resume"
+field = "Technology & IT"
 subtitle = "Technical communication, automation & service"
 
 [sent]
@@ -299,6 +324,7 @@ expected_pages = 0
 check_metadata = true
 title = "Anthropic Events Resume"
 subtitle = "Marketing events content manager"
+site_hidden = true
 
 [anthropic-comms]
 source = "anthropic-comms"
@@ -308,6 +334,7 @@ expected_pages = 0
 check_metadata = true
 title = "Anthropic Comms Resume"
 subtitle = "Communications specialist, product"
+site_hidden = true
 
 [anthropic-social]
 source = "anthropic-social"
@@ -317,6 +344,7 @@ expected_pages = 0
 check_metadata = true
 title = "Anthropic Social Resume"
 subtitle = "Head of social communications"
+site_hidden = true
 
 [anthropic-events-producer]
 source = "anthropic-events-producer"
@@ -326,6 +354,7 @@ expected_pages = 0
 check_metadata = true
 title = "Anthropic Events Producer Resume"
 subtitle = "Marketing events producer"
+site_hidden = true
 
 [nyt-tech-specialist]
 source = "nyt-tech-specialist"
@@ -335,6 +364,7 @@ expected_pages = 0
 check_metadata = true
 title = "NYT Video Tech Resume"
 subtitle = "News technology specialist, video"
+site_hidden = true
 
 [cover-letter]
 source = "cover-letter"
@@ -343,6 +373,7 @@ expected_pages = 1
 check_metadata = false
 title = "Cover Letter"
 subtitle = "General"
+site_hidden = true
 
 [rep-sheet]
 source = "rep-sheet"
@@ -350,6 +381,7 @@ dest = "rep"
 expected_pages = 0
 check_metadata = false
 title = "Repertory Sheet"
+field = "Theatre & performance"
 subtitle = "MT Book song list"
 
 [title-pages]
@@ -358,6 +390,7 @@ dest = "title-pages"
 override_toml = "title-pages-metadata.toml"
 expected_pages = 0
 title = "Title Pages"
+field = "Theatre & performance"
 subtitle = "MT Book title pages"
 check_metadata = false
 
@@ -369,6 +402,7 @@ expected_pages = 0
 check_metadata = true
 title = "Vox Unexplainable Resume"
 subtitle = "Senior video producer"
+site_hidden = true
 
 [sofi]
 source = "sofi"
@@ -378,3 +412,4 @@ expected_pages = 2
 check_metadata = true
 title = "Content Strategist Resume"
 subtitle = "Podcasts & Video"
+site_hidden = true

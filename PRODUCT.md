@@ -12,7 +12,7 @@ Primary: theatre makers vetting Finn as a performer. Casting directors, director
 
 Secondary, served but never shaping the site:
 
-- Hiring managers in other fields (tech, events, hospitality, childcare) who follow a tailored resume link to `/resumes/`.
+- Hiring managers in other fields (tech, events, hospitality, childcare) who get a direct link to a tailored PDF, or find their field's general resume on `/resumes/`.
 - People looking up a current show for tickets or the livestream.
 
 ## Product Purpose
@@ -38,7 +38,7 @@ Routes, all prerendered:
 - `/resume/`: theatre resume preview, PDF downloads (plain and with headshot), HTML theatre credits.
 - `/performance-reel/`: YouTube recordings plus a film section.
 - `/booking/` (labelled "Contact"): email and Instagram.
-- `/resumes/`: every visible variant from `variants.toml`, plus the composite `FINN RUTIS.pdf`.
+- `/resumes/`: theatre documents (with the composite `FINN RUTIS.pdf`) first, then general resumes grouped by field. Employer-tailored resumes and cover letters are `site_hidden`: unlisted, still reachable by direct link.
 
 Current projects appear from the first rehearsal day through closing night, computed in Eastern time in the browser. A show with a booking URL gets a linked ticket stub, with an optional "Livestream available" line. Show data and its rules live in `docs/show-data.md`.
 

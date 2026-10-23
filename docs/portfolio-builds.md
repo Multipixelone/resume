@@ -45,11 +45,11 @@ resumes/FINN RUTIS.pdf            separate composite package's actual file
 _app/...                         plus the site's static fonts/media/assets
 ```
 
-At the current registry size, assembly adds 75 documents (37 PDF/PNG pairs plus
-the composite). `resumes/` has 77 files including its retained HTML index and
-SvelteKit's `__data.json` route data.
-The UI's 35 visible variants expose 71 document links including the composite;
-visibility does not remove hidden artifacts from the package. These counts are
+At the current registry size, assembly adds 83 documents (41 PDF/PNG pairs plus
+the composite). `resumes/` also holds its HTML index and SvelteKit's
+`__data.json` route data.
+The UI's 7 listed variants expose 15 document links including the composite;
+`site_hidden` only unlists an entry, so its PDF still answers at its direct link. These counts are
 descriptive, not a second hard-coded registry.
 
 ## Minimal source and npm boundary

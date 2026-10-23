@@ -61,10 +61,13 @@ is a separate host concern, not solved by an SPA shell.
   `/resume` gets `selectResumeShows` in Finn's manual order, with no fabricated
   dates or static current/upcoming labels. The HTML section is theatre credits,
   not an invented complete transcription of all PDF sections.
-- `/resumes` comes from `variants.toml`, excludes `site_hidden = true`, and uses
-  the registry title/subtitle when present. Entries without a title use the
-  existing destination stem as their functional label. No second variant list
-  is maintained. The composite is a separate package/artifact, as before.
+- `/resumes` comes from `variants.toml`, excludes `site_hidden = true`, and
+  groups the rest under their `field`: the cv's field (theatre) first with the
+  composite after the cv, then every other field in registry order. A listed
+  entry without a `title` or `field` fails the build. Employer-tailored resumes
+  and cover letters are `site_hidden`; their PDFs still ship, so direct links
+  work. No second variant list is maintained. The composite is a separate
+  package/artifact, as before.
 - `tests/ingestion.test.mjs` exercises the same real-parser boundary using the
   actual canonical files. It also covers native TOML dates versus required
   quoted date strings, multiline text, invalid types/chronology/fields/URLs,

@@ -25,17 +25,31 @@ test('actual canonical TOML parses through smol-toml and the production normaliz
   assert.deepEqual(content, JSON.parse(JSON.stringify(content)));
 });
 
-test('download entries come from the actual registry; hidden entries stay out', () => {
+test('downloads group by field from the actual registry, theatre first; hidden entries stay out', () => {
   const registry = parse(variants);
-  const { downloads, theatreDownload, composite } = portfolioContent(theatre, variants);
-  assert.deepEqual(downloads.map(entry => entry.id), Object.keys(registry).filter(id => registry[id].site_hidden !== true));
-  for (const entry of downloads) {
-    assert.equal(entry.pdf, `/resumes/${registry[entry.id].dest}.pdf`);
-    assert.equal(entry.preview, `/resumes/${registry[entry.id].dest}.png`);
-    assert.equal(entry.title, registry[entry.id].title ?? registry[entry.id].dest);
+  const { downloadGroups, theatreDownload, composite } = portfolioContent(theatre, variants);
+  const entries = downloadGroups.flatMap(group => group.downloads).filter(entry => entry.id !== 'composite');
+  assert.deepEqual(entries.map(entry => entry.id).sort(), Object.keys(registry).filter(id => registry[id].site_hidden !== true).sort());
+  assert.equal(downloadGroups[0].field, registry.cv.field);
+  assert.deepEqual(downloadGroups[0].downloads.slice(0, 2).map(entry => entry.id), ['cv', 'composite']);
+  assert.equal(downloadGroups[0].downloads[1].pdf, composite);
+  assert.equal(new Set(downloadGroups.map(group => group.field)).size, downloadGroups.length);
+  for (const group of downloadGroups) {
+    for (const entry of group.downloads.filter(item => item.id !== 'composite')) {
+      assert.equal(entry.field, group.field);
+      assert.equal(entry.title, registry[entry.id].title);
+      assert.equal(entry.pdf, `/resumes/${registry[entry.id].dest}.pdf`);
+      assert.equal(entry.preview, `/resumes/${registry[entry.id].dest}.png`);
+    }
   }
   assert.equal(theatreDownload.pdf, `/resumes/${registry.cv.dest}.pdf`);
   assert.equal(composite, '/resumes/FINN RUTIS.pdf');
+});
+
+test('cover letters stay unlisted', () => {
+  for (const [id, record] of Object.entries(parse(variants))) {
+    if (id.includes('cover-letter')) assert.equal(record.site_hidden, true, id);
+  }
 });
 
 const fixture = `schema = "theatre-shows-v1"
@@ -68,7 +82,14 @@ test('TOML native dates, wrong field types, bad chronology and unknown fields fa
 test('registry filenames and flags cannot become paths or accidental public entries', () => {
   assert.throws(() => parseVariants('[test]\ndest = "../private"'), /Invalid/);
   assert.throws(() => parseVariants('[test]\ndest = "safe"\nsite_hidden = "true"'), /Invalid/);
-  assert.throws(() => parseVariants('[one]\ndest = "same"\n[two]\ndest = "same"'), /Duplicate/);
+  assert.throws(() => parseVariants('[one]\ndest = "same"\nsite_hidden = true\n[two]\ndest = "same"\nsite_hidden = true'), /Duplicate/);
+});
+
+test('a listed variant without a title or field fails the build; a hidden one needs neither', () => {
+  assert.throws(() => parseVariants('[test]\ndest = "safe"\nfield = "Tech"'), /no title: test/);
+  assert.throws(() => parseVariants('[test]\ndest = "safe"\ntitle = "Safe"'), /no field: test/);
+  assert.throws(() => parseVariants('[test]\ndest = "safe"\ntitle = "Safe"\nfield = " "'), /Invalid/);
+  assert.doesNotThrow(() => parseVariants('[test]\ndest = "safe"\nsite_hidden = true'));
 });
 
 test('photo hover notes read title and role from canonical shows', () => {

@@ -14,16 +14,22 @@ export function parseVariants(source) {
       || typeof record.dest !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(record.dest)
       || (record.site_hidden !== undefined && typeof record.site_hidden !== 'boolean')
       || (record.title !== undefined && (typeof record.title !== 'string' || !record.title.trim()))
+      || (record.field !== undefined && (typeof record.field !== 'string' || !record.field.trim()))
       || (record.subtitle !== undefined && typeof record.subtitle !== 'string')) {
       throw new TypeError(`Invalid download entry: ${id}`);
     }
+    const hidden = record.site_hidden === true;
+    // A listed entry with no title would publish its file stem; fail the build instead.
+    if (!hidden && record.title === undefined) throw new TypeError(`Listed variant has no title: ${id}`);
+    if (!hidden && record.field === undefined) throw new TypeError(`Listed variant has no field: ${id}`);
     if (destinations.has(record.dest)) throw new TypeError(`Duplicate download destination: ${record.dest}`);
     destinations.add(record.dest);
     return {
       id,
-      title: record.title ?? record.dest,
+      title: record.title ?? '',
       subtitle: record.subtitle ?? '',
-      hidden: record.site_hidden === true,
+      field: record.field ?? '',
+      hidden,
       pdf: `/resumes/${record.dest}.pdf`,
       preview: `/resumes/${record.dest}.png`
     };
@@ -61,13 +67,23 @@ export function portfolioContent(theatreSource, variantSource) {
   const shows = parseShows(theatreSource);
   const variants = parseVariants(variantSource);
   const theatreDownload = variants.find(variant => variant.id === 'cv');
-  if (!theatreDownload) throw new TypeError('The cv variant is required for the theatre resume');
+  if (!theatreDownload || theatreDownload.hidden) throw new TypeError('The cv variant is required and listed for the theatre resume');
+  // Separate package, not a second variant registry. Phase 3 assembles this file.
+  const composite = '/resumes/FINN RUTIS.pdf';
+  const headshotDownload = { id: 'composite', title: 'Resume with headshot', subtitle: '', field: theatreDownload.field,
+    hidden: false, pdf: composite, preview: '' };
+  const listed = variants.filter(variant => !variant.hidden);
+  // Theatre documents lead; every other field follows in registry order.
+  const fields = [...new Set([theatreDownload.field, ...listed.map(variant => variant.field)])];
   return {
     shows: shows.map(projectShow),
     theatreCredits: selectResumeShows(shows).map(projectShow),
     theatreDownload,
-    downloads: variants.filter(variant => !variant.hidden),
-    // Separate package, not a second variant registry. Phase 3 assembles this file.
-    composite: '/resumes/FINN RUTIS.pdf'
+    downloadGroups: fields.map(field => ({
+      field,
+      downloads: listed.filter(variant => variant.field === field)
+        .flatMap(variant => (variant === theatreDownload ? [variant, headshotDownload] : [variant]))
+    })),
+    composite
   };
 }

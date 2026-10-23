@@ -14,7 +14,7 @@ export interface FooterLink {
 export const footerLinks: FooterLink[] = [
   { name: 'Instagram', href: 'https://www.instagram.com/finnrutis/', icon: 'instagram', rel: 'me' },
   { name: 'LinkedIn', href: 'https://www.linkedin.com/in/finn-rutis-44a951304/', icon: 'linkedin', rel: 'me' },
-  { name: 'All resumes', href: '/resumes/', icon: 'resume' },
+  { name: 'Resume', href: '/resume/', icon: 'resume' },
   { name: 'Email', href: 'mailto:me@finnrut.is', icon: 'mail' },
   { name: 'PGP key', href: 'https://blog.finnrut.is/pgp/', icon: 'key' },
   { name: 'Blog', href: 'https://blog.finnrut.is/', icon: 'blog', rel: 'me' }

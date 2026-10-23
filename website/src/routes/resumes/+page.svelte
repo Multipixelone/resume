@@ -8,22 +8,23 @@
 
 <PageHead title="All resumes | Finn Rutis" />
 
-<header class="page-heading">
-  <h1>All resumes</h1>
-  <a href={sitePath('/resume/')}>Theatre resume <Arrow /></a>
-</header>
-<ul class="download-library">
-  {#each data.downloads as item (item.id)}
-    <li>
-      <h2>{item.title}</h2>
-      {#if item.subtitle}<p>{item.subtitle}</p>{/if}
-      <div class="library-actions">
-        <a href={sitePath(item.pdf)} rel="external" download aria-label={`Download ${item.title} (PDF)`}>Download <span class="file-label">PDF</span> <Arrow dir="down" /></a>
-        <a href={sitePath(item.preview)} rel="external" aria-label={`Preview ${item.title}`}>Preview</a>
-      </div>
-    </li>
-  {/each}
-</ul>
-<div class="composite-download">
-  <a href={sitePath(data.composite)} rel="external" download>Resume with headshot <span class="file-label">(PDF)</span> <Arrow dir="down" /></a>
-</div>
+<header class="page-heading"><h1>All resumes</h1></header>
+{#each data.groups as group (group.field)}
+  <section class="download-group">
+    <h2>{group.field}</h2>
+    <ul class="download-library">
+      {#each group.downloads as item (item.id)}
+        <li>
+          <div>
+            <h3>{item.title}</h3>
+            {#if item.subtitle}<p>{item.subtitle}</p>{/if}
+          </div>
+          <div class="library-actions">
+            <a href={sitePath(item.pdf)} rel="external" download aria-label={`Download ${item.title} (PDF)`}>Download <span class="file-label">PDF</span> <Arrow dir="down" /></a>
+            {#if item.preview}<a href={sitePath(item.preview)} rel="external" aria-label={`Preview ${item.title}`}>Preview</a>{/if}
+          </div>
+        </li>
+      {/each}
+    </ul>
+  </section>
+{/each}

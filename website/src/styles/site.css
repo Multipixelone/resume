@@ -341,14 +341,18 @@ main:focus { outline: none; }
 .contact-links dt { font-size: 1rem; color: var(--muted); margin-bottom: .5rem; }
 .contact-links dd { margin: 0; font-size: clamp(1.5rem, 4vw, 2.5rem); }
 .contact-links a { overflow-wrap: anywhere; }
-.download-library { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 3rem; list-style: none; padding: 0; margin: 0; }
-.download-library li { min-width: 0; padding: 1.5rem 0; border-top: 1px solid var(--border); }
-.download-library h2 { font-size: 1.5rem; overflow-wrap: anywhere; }
-.download-library p { margin-top: .4rem; color: var(--muted); }
-.library-actions { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: .5rem; }
+/* All resumes: each field is a label column beside its ruled list, the resume intro's split. */
+.download-group { display: grid; grid-template-columns: minmax(14rem, 1fr) minmax(0, 2fr); gap: 0 3rem; align-items: start; border-top: 1px solid var(--ink); }
+.download-group + .download-group { margin-top: clamp(3rem, 6vw, 4.5rem); }
+.download-group > h2 { padding-top: 1.25rem; font-size: clamp(1.5rem, 2.4vw, 1.875rem); overflow-wrap: anywhere; }
+/* Rows share one action column (subgrid), so every Download link lines up, Preview or not. */
+.download-library { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+.download-library li { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; align-items: center; row-gap: .25rem; padding: 1.25rem 0; border-top: 1px solid var(--border); }
+.download-library li:first-child { border-top: 0; }
+.download-library h3 { font-size: 1.25rem; overflow-wrap: anywhere; }
+.download-library p { margin-top: .25rem; color: var(--muted); }
+.library-actions { display: flex; gap: 1.5rem; flex-wrap: wrap; }
 .library-actions a { display: inline-flex; gap: .35em; align-items: center; min-height: 44px; }
-.composite-download { margin-top: 2rem; }
-.composite-download a { display: inline-block; padding-block: .6rem; }
 
 /* About: the statement reads like a program note, the off-stage notes like loose snapshots. */
 .statement { display: grid; grid-template-columns: minmax(14rem, 1fr) minmax(0, 2fr); gap: 1rem 3rem; align-items: start; padding-top: 1.5rem; border-top: 1px solid var(--ink); }
@@ -445,7 +449,8 @@ main:focus { outline: none; }
   .photo-note-title { font-size: 1.25rem; }
   .photo-backing { transform: translate(6px, 8px) rotate(1deg); }
   .credit-list li { grid-template-columns: 1fr; gap: .5rem; }
-  .download-library { grid-template-columns: 1fr; }
+  .download-group, .download-library { grid-template-columns: 1fr; }
+  .download-group > h2 { padding-bottom: .25rem; }
   .contact-links { margin-left: 0; }
   .offstage-item--slip .offstage-copy { padding: 1.5rem 1.5rem 1.75rem 1.25rem; }
   .video-mat { padding: .35rem; }
