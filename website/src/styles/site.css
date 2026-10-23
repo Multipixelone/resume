@@ -210,9 +210,12 @@ main:focus { outline: none; }
 /* Only the stationary body has a backing. The flexing end owns its own paper,
    so its uncovered footprint shows the page rather than a second ticket. */
 .now-stub::before { content: ''; position: absolute; inset: -1px -1px -1px 2.25rem; z-index: -1; border: 1px solid var(--border); border-left: 0; background: var(--ticket-paper); pointer-events: none; }
+/* Keep the perforation on the hinge, outside the folding strip. Fixed repeats
+   preserve the cuts' spacing when the ticket moves between compositing layers. */
+.now-stub::after { content: ''; position: absolute; top: -1px; bottom: -1px; left: calc(2.25rem - 1px); width: 1px; z-index: 1; background: repeating-linear-gradient(to bottom, var(--ticket-paper) 0 3px, transparent 3px 6px); pointer-events: none; }
 /* The stub end is printed solid Deep Marquee Rust to the paper's edge (the negative margin covers the
    ticket's border); its perforation shows as paper-colored dashes. */
-.stub-admit { grid-column: 1; grid-row: 1 / 3; display: flex; align-items: center; justify-content: center; margin: -1px 0 -1px -1px; padding-block: .8rem; border-right: 1px dashed var(--ticket-paper); background: var(--accent-hover); color: var(--ticket-paper); font: .6875rem/1 var(--font-mono); letter-spacing: .16em; text-transform: uppercase; writing-mode: sideways-lr; }
+.stub-admit { grid-column: 1; grid-row: 1 / 3; display: flex; align-items: center; justify-content: center; margin: -1px 0 -1px -1px; padding-block: .8rem; border-right: 1px solid transparent; background: var(--accent-hover); color: var(--ticket-paper); font: .6875rem/1 var(--font-mono); letter-spacing: .16em; text-transform: uppercase; writing-mode: sideways-lr; }
 /* Flex the detachable end around the perforation, without moving its seam or hit target. */
 .stub-admit { transform-origin: right center; transition: transform 280ms cubic-bezier(.2, .8, .2, 1); }
 /* Keep text clear of the tear while letting the action's ink reach the cut edge. */
@@ -223,7 +226,9 @@ main:focus { outline: none; }
 .stub-run { margin-top: .8rem; font: .6875rem/1.5 var(--font-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
 .stub-stream { display: flex; align-items: center; gap: .45rem; margin-top: .35rem; font: .6875rem/1.5 var(--font-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--accent-hover); }
 .stub-stream::before { content: ''; flex: 0 0 auto; width: .4rem; height: .4rem; border-radius: 50%; background: currentColor; }
-.stub-action { grid-column: 2; display: flex; align-items: center; justify-content: space-between; gap: .75rem; min-height: 44px; padding: .7rem 1.75rem .7rem 1.25rem; border-top: 1px dashed var(--border); background: var(--selection-bg); color: var(--accent-hover); font-size: 1rem; font-weight: 600; text-decoration: underline; text-underline-offset: .2em; transition: background-color 150ms ease, color 150ms ease; }
+.stub-action { position: relative; grid-column: 2; display: flex; align-items: center; justify-content: space-between; gap: .75rem; min-height: 44px; padding: .7rem 1.75rem .7rem 1.25rem; border-top: 1px solid transparent; background: var(--selection-bg); color: var(--accent-hover); font-size: 1rem; font-weight: 600; text-decoration: underline; text-underline-offset: .2em; transition: background-color 150ms ease, color 150ms ease; }
+
+.stub-action::before { content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 1px; background: repeating-linear-gradient(to right, var(--border) 0 3px, transparent 3px 6px); pointer-events: none; }
 
 /* Center a lone ticket beside the whole notice, including its heading. Multiple
    productions keep their own rows; phones keep the existing stacked layout. */
@@ -535,7 +540,9 @@ main:focus { outline: none; }
   .portrait-backing, .photo-backing, .photo-arrival-shadow, .photo-spread::before, .hero-print-tape, .photo-fastener { display: none; }
   .photo-mat, .portrait-card, .now-stub, .resume-sheet, .video-mat, .cover-print { border: 1px solid CanvasText; }
   .hero-links-slip::before { border-color: CanvasText; box-shadow: none; }
-  .stub-admit { border-right-color: CanvasText; }
+  .now-stub::after, .stub-action::before { display: none; }
+  .stub-admit { border-right: 1px dashed CanvasText; }
+  .stub-action { border-top: 1px dashed CanvasText; }
   .now-stub-link:is(:hover, :focus-visible) .stub-admit { transform: none; }
   .now-stub-link:is(:hover, :focus-visible) .stub-action { color: LinkText; }
   .site-header li a[aria-current="page"] { text-decoration: underline; }
