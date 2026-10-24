@@ -16,6 +16,7 @@ import argparse
 import hashlib
 from io import BytesIO
 import json
+import math
 from pathlib import Path
 import shutil
 import subprocess
@@ -25,7 +26,7 @@ from typing import Any
 
 import fitz
 from fontTools.ttLib import TTFont as Font
-from PIL import Image, ImageChops, ImageOps, PngImagePlugin
+from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageOps, PngImagePlugin
 import zxingcpp
 
 
@@ -62,10 +63,35 @@ OPTIONAL_FIELDS = ('role', 'headshot')
 QR_SIZE = 96
 MODULE = QR_SIZE / 33
 CAPTION_GAP = 2 * MODULE
-# A theatre 8x10 (4:5) at the full safe height, standing at the margins, as in
-# card.typ. The JPEG is cut to this size at HEADSHOT_PPI.
-HEADSHOT = (MARGIN, MARGIN, 0.8 * (TRIM[1] - 2 * MARGIN), TRIM[1] - 2 * MARGIN)
+# The headshot is a photographic print, as in card.typ: a theatre 8x10 (4:5)
+# photograph turned 2.5 degrees, held at the top left and bottom right by
+# folded paper photo corners, and resting on the card with a soft shadow. The
+# turned photograph fills the safe height. It is one image at HEADSHOT_PPI,
+# with PRINT_ROOM points around the photograph for its shadows and corners.
+HEADSHOT_TILT = 2.5
 HEADSHOT_PPI = 600
+PT = HEADSHOT_PPI / 72  # Pixels per point.
+PRINT_ROOM = 3.5
+PHOTO_SIZE = tuple(n * (TRIM[1] - 2 * MARGIN) / (math.cos(math.radians(HEADSHOT_TILT))
+                                                 + 0.8 * math.sin(math.radians(HEADSHOT_TILT)))
+                   for n in (0.8, 1))
+PRINT_SIZE = tuple(n + 2 * PRINT_ROOM for n in PHOTO_SIZE)
+PHOTO_PIXELS = tuple(round(n * PT) for n in PHOTO_SIZE)
+PHOTO_OFFSET = (round(PRINT_ROOM * PT),) * 2
+PRINT_PIXELS = tuple(n + 2 * PHOTO_OFFSET[0] for n in PHOTO_PIXELS)
+# Each corner's legs, and how far it overhangs the photograph's two edges. A
+# corner is a slightly heavier paper than the card, Callboard Card laid over
+# the stock as a tint of Rule Line, with its folded long edge in Rule Line.
+MOUNT_LEG, MOUNT_OVERHANG = 10.5, 1.1
+MOUNT_PAPER = ('#ddd6c6', 0.4)
+MOUNT_FOLD = 0.35
+# Light comes from above left, as on the site, so shadows fall down and a
+# little right. Each is (dx, dy, blur sigma, opacity) in points; the ambient
+# shadow is cast by the photograph inset 1 pt. They stay tight, as for a
+# print held flat, and only they may reach into the card's 0.25-inch margin.
+PRINT_CONTACT = (0.1, 0.35, 0.35, 0.22)
+PRINT_AMBIENT = (0.15, 1.0, 0.9, 0.22)
+MOUNT_SHADOW = (0.25, 0.45, 0.3, 0.30)
 
 
 def require(condition, message):
@@ -158,8 +184,8 @@ def rust_qr(path, destination):
     return rgba
 
 
-def headshot_image(root, relative):
-    """Crop the headshot to its 4:5 print and return it as 600 ppi JPEG bytes.
+def headshot_crop(root, relative):
+    """Crop the headshot to its 4:5 print at 600 ppi.
 
     The sides are trimmed evenly to keep the photographer's framing, and the
     top is kept so the hair is never cut. Under 300 ppi at card size fails.
@@ -169,17 +195,77 @@ def headshot_image(root, relative):
     require(path.is_relative_to(root) and path.is_file(), f'Headshot not found in the repository: {relative}')
     with Image.open(path) as source:
         photo = ImageOps.exif_transpose(source).convert('RGB')
-    width, height = HEADSHOT[2:]
+    width, height = PHOTO_SIZE
     crop_width = min(photo.width, photo.height * width / height)
     crop_height = crop_width * height / width
-    pixels = (round(width / 72 * HEADSHOT_PPI), round(height / 72 * HEADSHOT_PPI))
-    require(crop_width >= pixels[0] / 2 and crop_height >= pixels[1] / 2,
+    require(crop_width >= PHOTO_PIXELS[0] / 2 and crop_height >= PHOTO_PIXELS[1] / 2,
             f'Headshot is under 300 ppi at card size: {relative}')
     left = (photo.width - crop_width) / 2
     photo = photo.crop((round(left), 0, round(left + crop_width), round(crop_height)))
+    return photo.resize(PHOTO_PIXELS, Image.Resampling.LANCZOS)
+
+
+def print_image(photo):
+    """Mount the cropped photograph as a print: its shadow, then the corners.
+
+    Points run from the photograph's top left, y down. Shadows print in
+    Program Ink. The corners lie over the photograph, which is cut away beneath
+    them; each is a light tint over the stock with one folded long edge.
+    """
+    width, height = PHOTO_SIZE
+
+    def pixels(x, y):
+        return PHOTO_OFFSET[0] + x * PT, PHOTO_OFFSET[1] + y * PT
+
+    def coverage(*polygons):
+        # Drawn four times over and box-filtered down, for smooth edges.
+        large = Image.new('L', tuple(4 * n for n in PRINT_PIXELS))
+        draw = ImageDraw.Draw(large)
+        for polygon in polygons:
+            draw.polygon([tuple(4 * v for v in pixels(*point)) for point in polygon], fill=255)
+        return large.reduce(4)
+
+    def shadow(shape, dx, dy, sigma, opacity):
+        moved = Image.new('L', PRINT_PIXELS)
+        moved.paste(shape, (round(dx * PT), round(dy * PT)))
+        return moved.filter(ImageFilter.GaussianBlur(sigma * PT)).point(lambda v: round(v * opacity))
+
+    def layer(colour, amount):
+        flat = Image.new('RGBA', PRINT_PIXELS, colour)
+        flat.putalpha(amount)
+        return flat
+
+    def rectangle(inset):
+        return ((inset, inset), (width - inset, inset), (width - inset, height - inset), (inset, height - inset))
+
+    def corner(x, y, dx, dy, length):
+        # A right triangle with its square tip at (x, y), legs running dx, dy.
+        return ((x, y), (x + dx * length, y), (x, y + dy * length))
+
+    over = MOUNT_OVERHANG
+    tips = ((-over, -over, 1, 1), (width + over, height + over, -1, -1))
+    mounts = coverage(*(corner(*tip, MOUNT_LEG) for tip in tips))
+    # The fold is the strip along each long edge, MOUNT_FOLD deep.
+    inner = MOUNT_LEG - MOUNT_FOLD * math.sqrt(2)
+    folds = ImageChops.subtract(mounts, coverage(*(corner(*tip, inner) for tip in tips)))
+    paper, density = MOUNT_PAPER
+
+    printed = Image.new('RGBA', PRINT_PIXELS)
+    printed.alpha_composite(layer(INK, ImageChops.screen(shadow(coverage(rectangle(0)), *PRINT_CONTACT),
+                                                         shadow(coverage(rectangle(1)), *PRINT_AMBIENT))))
+    printed.paste(photo, PHOTO_OFFSET)
+    printed.alpha_composite(layer(INK, shadow(mounts, *MOUNT_SHADOW)))
+    # The corners lie on top: cut away what is beneath them and lay in their paper.
+    printed.putalpha(ImageChops.multiply(printed.getchannel('A'), ImageOps.invert(mounts)))
+    printed.alpha_composite(layer(paper, mounts.point(lambda v: round(v * density))))
+    printed.alpha_composite(layer(paper, folds))
+    return printed
+
+
+def headshot_image(root, relative):
+    """The headshot print, as PNG bytes; its alpha leaves the stock unprinted."""
     buffer = BytesIO()
-    photo.resize(pixels, Image.Resampling.LANCZOS).save(buffer, format='JPEG', quality=92, subsampling=0)
-    # Typst embeds JPEG bytes as they are, without recompressing.
+    print_image(headshot_crop(root, relative)).save(buffer, format='PNG')
     return buffer.getvalue()
 
 
@@ -190,7 +276,8 @@ def png_metadata(profile, side, kind, headshot=None):
                       'proofs/business-cards/performance/proof.py; REFERENCE.md; DESIGN.md'
                       + (f'; {headshot}' if headshot else ''))
     description = ('Code-rendered artwork, not AI-generated imagery. Stacked-name front. '
-                   + (f'Back: the photographed headshot from {headshot}, cropped to 4:5, beside the QR. '
+                   + (f'Back: the photographed headshot from {headshot}, cropped to 4:5 as a print '
+                      'turned 2.5 degrees in two folded paper photo corners, with its shadow, beside the QR. '
                       if headshot else 'Back: centered QR. ')
                    + 'QR pixels from metadata/qr-code.png; rust recolor with four-module quiet zone, '
                    'two above the website address. '
@@ -218,7 +305,7 @@ def typst(stage, data, output):
 
 def render_pdf(path, stage, identity, profile, back, headshot=None):
     """Render one profile in a staged directory holding card.typ, fonts/ and qr.png."""
-    photo = stage / 'headshot.jpg'
+    photo = stage / 'headshot.png'
     if headshot is None:
         photo.unlink(missing_ok=True)
     else:
@@ -309,16 +396,18 @@ def validate_ink(ink, side):
 
 
 def headshot_evidence(page, profile):
-    # The QR is a Flate image; only a headshot is embedded as JPEG. Read each
-    # image's whole filter, which may be a name or a chain.
-    photos = [image[2:4] for image in page.get_images(full=True)
-              if '/DCTDecode' in page.parent.xref_get_key(image[0], 'Filter')[1]]
-    pixels = tuple(round(n / 72 * HEADSHOT_PPI) for n in HEADSHOT[2:])
-    require(photos == ([pixels] if 'headshot' in profile else []),
-            'back: a headshot must print once, at 600 ppi, exactly where the profile names one')
-    if not photos:
+    # Beside the rust QR, the only image is the headshot: one print at 600 ppi,
+    # with the soft mask that leaves its corners and surroundings to the stock.
+    images = [(*image[2:4], bool(image[1])) for image in page.get_images(full=True)]
+    expected = 1 if 'headshot' in profile else 0
+    require(len(images) == 1 + expected and images.count((*PRINT_PIXELS, True)) == expected,
+            'back: a headshot print must appear once, at 600 ppi, exactly where the profile names one')
+    if not expected:
         return {}
-    return {'headshot': profile['headshot'], 'headshot_pixels': list(pixels), 'headshot_ppi': HEADSHOT_PPI}
+    return {'headshot': profile['headshot'], 'headshot_pixels': list(PRINT_PIXELS),
+            'headshot_photo_pixels': list(PHOTO_PIXELS), 'headshot_ppi': HEADSHOT_PPI,
+            'headshot_tilt_deg': HEADSHOT_TILT,
+            'headshot_mounts': 'two folded paper photo corners, a Callboard Card tint; shadows in Program Ink'}
 
 
 def small_caps_evidence(page, role):

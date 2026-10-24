@@ -12,6 +12,7 @@ validation, and visual review are separate validation-owner tasks.
 import copy
 import importlib.util
 from io import BytesIO
+import math
 from pathlib import Path
 import shutil
 import tempfile
@@ -88,9 +89,9 @@ def dashed(drawing):
     return (drawing.get('dashes') or '[] 0') != '[] 0'
 
 
-def headshot_bytes(size=(720, 900)):
+def headshot_bytes():
     buffer = BytesIO()
-    Image.new('RGB', size, '#a0522d').save(buffer, format='JPEG')
+    CARDS.print_image(Image.new('RGB', CARDS.PHOTO_PIXELS, '#a0522d')).save(buffer, format='PNG')
     return buffer.getvalue()
 
 
@@ -282,7 +283,7 @@ class FrontTests(CompiledCardTest):
 @needs_typst
 class BackTests(CompiledCardTest):
     """The back was redrawn after the proof: the address moved up under the
-    code, and the Performance back added a headshot."""
+    code, and the Performance back added a headshot print in two inks."""
 
     def test_address_is_captioned_two_modules_under_the_centred_code(self):
         back = self.render(self.profile('work')).back
@@ -297,31 +298,53 @@ class BackTests(CompiledCardTest):
         # The code and its address are centred together on the card's height.
         self.assertAlmostEqual(symbol_bottom + SYMBOL + url['base'], CARDS.TRIM[1], places=2)
 
-    def test_headshot_stands_at_the_margins_with_the_code_beside_it(self):
+    def test_headshot_print_rests_turned_with_the_code_beside_it(self):
         plain = self.render(self.profile('performance', headshot=None)).back
-        back = self.render(self.profile('performance'), headshot_bytes()).back
-        (px, py, pw, ph), (x, y, _, _) = back['images']
-        url = back['spans']['www.finnrut.is']
-        self.assertAlmostEqual(px, 18)
-        self.assertAlmostEqual(py, 18)
-        self.assertAlmostEqual(pw, CARDS.HEADSHOT[2], places=3)
-        self.assertAlmostEqual(ph, CARDS.TRIM[1] - 36)
-        self.assertAlmostEqual(pw / ph, 0.8)
+        card = self.render(self.profile('performance'), headshot_bytes())
+        back = card.back
+        _, (x, y, _, _) = back['images']
+        # card.typ and the renderer agree on the print's size, turned
+        # counterclockwise, and the photograph inside it is a 4:5 print.
+        turn = CARDS.fitz.Matrix(card.doc[1].get_image_info()[0]['transform'])
+        self.assertAlmostEqual(math.degrees(math.atan2(-turn.b, turn.a)), CARDS.HEADSHOT_TILT, places=3)
+        self.assertAlmostEqual(math.hypot(turn.a, turn.b), CARDS.PRINT_SIZE[0], places=3)
+        self.assertAlmostEqual(math.hypot(turn.c, turn.d), CARDS.PRINT_SIZE[1], places=3)
+        self.assertAlmostEqual(CARDS.PHOTO_SIZE[0] / CARDS.PHOTO_SIZE[1], 0.8)
+
+        def trim(u, v):
+            """A photograph point (points from its top left) on the trim, y up."""
+            page = CARDS.fitz.Point((CARDS.PRINT_ROOM + u) / CARDS.PRINT_SIZE[0],
+                                    (CARDS.PRINT_ROOM + v) / CARDS.PRINT_SIZE[1]) * turn
+            return page.x - CARDS.BLEED, CARDS.MEDIA_BOX[3] - CARDS.BLEED - page.y
+
+        w, h = CARDS.PHOTO_SIZE
+        corners = [trim(u, v) for u in (0, w) for v in (0, h)]
+        # The turned photograph fills the safe height exactly.
+        self.assertAlmostEqual(min(y for _, y in corners), 18, places=3)
+        self.assertAlmostEqual(max(y for _, y in corners), CARDS.TRIM[1] - 18, places=3)
+        # The top-left corner's tip rests on the margin; the bottom-right one's
+        # is the print's far reach.
+        over = CARDS.MOUNT_OVERHANG
+        self.assertAlmostEqual(trim(-over, -over)[0], 18, places=3)
+        reach = trim(w + over, h + over)[0]
+        # The corners and shadows belong to the print; nothing else is drawn.
+        self.assertEqual([d for d in back['drawings'] if d['fill'] is not None], [])
         # The code sits midway between the print and the card's right edge,
-        # with far more than its four-module quiet zone clear of the photo.
+        # with far more than its quiet zone clear of the print.
         symbol_left = x + 4 * CARDS.MODULE
         symbol_right = symbol_left + SYMBOL
-        self.assertAlmostEqual(symbol_left - (px + pw), CARDS.TRIM[0] - symbol_right, places=2)
-        self.assertGreater(symbol_left - (px + pw), 4 * CARDS.MODULE)
+        self.assertAlmostEqual(symbol_left - reach, CARDS.TRIM[0] - symbol_right, places=2)
+        self.assertGreater(symbol_left - reach, 4 * CARDS.MODULE)
+        url = back['spans']['www.finnrut.is']
         self.assertAlmostEqual((url['x'] + url['end']) / 2, (symbol_left + symbol_right) / 2, places=2)
         # Only the horizontal position changes: the caption keeps its height.
         self.assertAlmostEqual(y, plain['images'][0][1])
 
-    def test_headshot_prints_once_as_jpeg_where_the_profile_names_one(self):
+    def test_headshot_prints_once_with_its_stock_mask_where_the_profile_names_one(self):
         named = self.render(self.profile('performance'), headshot_bytes())
         self.assertEqual(CARDS.headshot_evidence(named.doc[1], {'headshot': 'src/headshot.jpg'})['headshot_pixels'],
-                         [720, 900])
-        with self.assertRaisesRegex(ValueError, 'headshot must print once'):
+                         list(CARDS.PRINT_PIXELS))
+        with self.assertRaisesRegex(ValueError, 'headshot print must appear once'):
             CARDS.headshot_evidence(named.doc[1], {})
 
 
@@ -340,11 +363,48 @@ class HeadshotTests(unittest.TestCase):
         for size, sides, bottom in (((1200, 1400), 40, 0), ((800, 1200), 0, 200)):
             with self.subTest(size=size):
                 root = self.headshot_fixture(size, (0, 0, 255), sides, bottom)
-                with Image.open(BytesIO(CARDS.headshot_image(root, 'headshot.png'))) as cropped:
-                    self.assertEqual((cropped.format, cropped.size), ('JPEG', (720, 900)))
-                    red, _, blue = cropped.convert('RGB').split()
-                # No red edge band survives the crop, through JPEG noise.
+                cropped = CARDS.headshot_crop(root, 'headshot.png')
+                self.assertEqual((cropped.mode, cropped.size), ('RGB', CARDS.PHOTO_PIXELS))
+                red, _, blue = cropped.split()
+                # No red edge band survives the crop, through resampling.
                 self.assertLess(CARDS.ImageChops.subtract(red, blue).getextrema()[1], 64)
+
+    def test_print_tucks_the_photograph_into_paper_corners_over_its_shadow(self):
+        shirt = (70, 98, 121)
+        printed = CARDS.print_image(Image.new('RGB', CARDS.PHOTO_PIXELS, shirt))
+        self.assertEqual((printed.mode, printed.size), ('RGBA', CARDS.PRINT_PIXELS))
+        alpha = printed.getchannel('A')
+        width, height = printed.size
+        # Nothing reaches the image's edge, so no shadow is clipped.
+        ring = [alpha.getpixel((x, y)) for x in range(width) for y in (0, height - 1)]
+        ring += [alpha.getpixel((x, y)) for y in range(height) for x in (0, width - 1)]
+        self.assertEqual(max(ring), 0)
+        (x0, y0), (pw, ph) = CARDS.PHOTO_OFFSET, CARDS.PHOTO_PIXELS
+
+        def photo(x, y):  # Points from the photograph's top left.
+            return round(x0 + x * CARDS.PT), round(y0 + y * CARDS.PT)
+
+        w, h = CARDS.PHOTO_SIZE
+        self.assertEqual(printed.getpixel(photo(w / 2, h / 2)), (*shirt, 255))
+        # Inside each corner, away from its fold, its paper covers the
+        # photograph: a light Rule Line tint over the stock.
+        paper = (221, 214, 198, round(255 * CARDS.MOUNT_PAPER[1]))
+        self.assertEqual(printed.getpixel(photo(2, 2)), paper)
+        self.assertEqual(printed.getpixel(photo(w - 2, h - 2)), paper)
+        # The top-left corner's long edge crosses the diagonal here. Just inside
+        # it, the fold prints solid Rule Line; just past it, the corner's shadow
+        # darkens the photograph.
+        edge = CARDS.MOUNT_LEG / 2 - CARDS.MOUNT_OVERHANG
+        across = [printed.getpixel(photo(edge + t / 100, edge + t / 100)) for t in range(-40, 1, 2)]
+        self.assertIn((221, 214, 198, 255), across)
+        shaded = printed.getpixel(photo(edge + 0.2, edge + 0.2))
+        self.assertEqual(shaded[3], 255)
+        self.assertTrue(all(s < p for s, p in zip(shaded[:3], shirt)))
+        # The print's shadow falls below it, in Program Ink, more than above.
+        below = printed.getpixel(photo(w / 2, h + 1))
+        above = printed.getpixel(photo(w / 2, -1))
+        self.assertEqual(below[:3], (43, 37, 32))
+        self.assertTrue(above[3] < below[3] < 128)
 
     def test_headshot_under_300_ppi_or_outside_the_repository_fails(self):
         root = self.headshot_fixture((300, 375), (0, 0, 255))
@@ -356,26 +416,28 @@ class HeadshotTests(unittest.TestCase):
 
     def test_repository_headshot_meets_the_print_resolution(self):
         with Image.open(BytesIO(CARDS.headshot_image(ROOT, 'src/headshot.jpg'))) as photo:
-            self.assertEqual(photo.size, (720, 900))
+            self.assertEqual((photo.format, photo.mode, photo.size), ('PNG', 'RGBA', CARDS.PRINT_PIXELS))
 
     def test_headshot_prints_only_where_the_profile_names_one(self):
-        # PyMuPDF names only the first filter of a chain, so read the whole key.
-        qr = (5, 6, 1749, 1749, 8, 'DeviceRGB', '', 'Im1', 'FlateDecode', 0)
-        photo = (7, 0, 720, 900, 8, 'DeviceRGB', '', 'Im2', 'ASCII85Decode', 0)
-        filters = {5: '/FlateDecode', 7: '[/ASCII85Decode/DCTDecode]'}
+        # get_images rows: xref, soft-mask xref, width, height, ...
+        qr = (5, 6, 1749, 1749, 8, 'ICCBased', '', 'x1', 'FlateDecode', 0)
+        photo = (7, 8, *CARDS.PRINT_PIXELS, 8, 'ICCBased', '', 'x0', 'FlateDecode', 0)
+        unmasked = photo[:1] + (0,) + photo[2:]
+        small = photo[:2] + (348, 435) + photo[4:]
         named, plain = {'headshot': 'src/headshot.jpg'}, {}
         for images, profile, ok in (([qr, photo], named, True), ([qr], plain, True),
                                     ([qr], named, False), ([qr, photo], plain, False),
-                                    ([qr, photo[:2] + (360, 450) + photo[4:]], named, False)):
+                                    ([qr, small], named, False), ([qr, unmasked], named, False),
+                                    ([qr, photo, photo], named, False)):
             page = Mock()
             page.get_images.return_value = images
-            page.parent.xref_get_key.side_effect = lambda xref, key: ('array', filters[xref])
             with self.subTest(images=images, profile=profile):
                 if ok:
                     evidence = CARDS.headshot_evidence(page, profile)
-                    self.assertEqual(evidence.get('headshot_pixels'), [720, 900] if profile else None)
+                    self.assertEqual(evidence.get('headshot_pixels'),
+                                     list(CARDS.PRINT_PIXELS) if profile else None)
                 else:
-                    with self.assertRaisesRegex(ValueError, 'headshot must print once'):
+                    with self.assertRaisesRegex(ValueError, 'headshot print must appear once'):
                         CARDS.headshot_evidence(page, profile)
 
     def test_headshot_is_optional_profile_text(self):

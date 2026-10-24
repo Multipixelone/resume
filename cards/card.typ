@@ -33,8 +33,19 @@
 #let SYMBOL = 25 * MODULE
 #let CAPTION_GAP = 2 * MODULE
 #let URL_TOP = 1647 / 2048 // PragmataPro "i" dot, the address's tallest ink.
-// A theatre 8x10 (4:5) at the full safe height, standing at the margins.
-#let HEADSHOT = (MARGIN, MARGIN, 0.8 * (TRIM.at(1) - 2 * MARGIN), TRIM.at(1) - 2 * MARGIN)
+// The headshot is a photographic print: a theatre 8x10 (4:5) photograph
+// resting at a callboard angle in two folded paper photo corners, with its
+// shadow on the card. The turned photograph fills the safe height, and the
+// top-left corner's tip rests on the margin. scripts/business_cards.py draws
+// the print as one image, with ROOM around the photograph for its shadows and
+// corners; only the faint shadows reach into the margin.
+#let TILT = -2.5deg // Counterclockwise: the print's right edge rises.
+#let OVERHANG = 1.1pt // How far each corner overhangs the photograph's edges.
+#let ROOM = 3.5pt
+#let PHOTO = {
+  let h = (TRIM.at(1) - 2 * MARGIN) / (calc.cos(TILT) + 0.8 * calc.abs(calc.sin(TILT)))
+  (0.8 * h, h)
+}
 
 #set document(
   title: "Finn Rutis - business card",
@@ -139,15 +150,22 @@
 }
 
 // The code and its address are centred together on the card's height. A
-// headshot stands at the safe margins, and the code then sits midway between
-// the print and the card's right edge.
+// headshot print rests against the left margin, centred on the card's height,
+// and the code then sits midway between its far corner and the card's edge.
+// The print turns; the code and its address stay level.
 #let back() = {
   let url-y = (TRIM.at(1) - (SYMBOL + CAPTION_GAP + URL_TOP * URL)) / 2
   let middle = TRIM.at(0) / 2
   if data.headshot {
-    let (x, y, w, h) = HEADSHOT
-    at(x, y + h, image("headshot.jpg", width: w, height: h, fit: "stretch"))
-    middle = (x + w + TRIM.at(0)) / 2
+    let (w, h) = PHOTO
+    let (cos, sin) = (calc.cos(TILT), calc.abs(calc.sin(TILT)))
+    // From the photograph's centre out to the tip of either corner.
+    let reach = (w * cos + h * sin) / 2 + OVERHANG * (cos + sin)
+    let centre = MARGIN + reach
+    let (pw, ph) = (w + 2 * ROOM, h + 2 * ROOM)
+    at(centre - pw / 2, (TRIM.at(1) + ph) / 2,
+      rotate(TILT, image("headshot.png", width: pw, height: ph, fit: "stretch")))
+    middle = (centre + reach + TRIM.at(0)) / 2
   }
   let qr-y = url-y + URL_TOP * URL + CAPTION_GAP - 4 * MODULE
   at(middle - QR_SIZE / 2, qr-y + QR_SIZE, image("qr.png", width: QR_SIZE, scaling: "pixelated"))

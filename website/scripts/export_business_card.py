@@ -56,7 +56,13 @@ def export(pdf: Path, output: Path):
             web[0].get_pixmap(dpi=300, alpha=True).save(output / "front-web-ink.png")
         back = document[1]
         back.set_cropbox(back.trimbox)
-        back.get_pixmap(dpi=300, alpha=True).save(output / "back-ink.png")
+        # MuPDF draws image edges unsmoothed, so the turned headshot print
+        # would step along its edges and shimmer as the card moves. Render at
+        # four times the size and box-filter down in premultiplied alpha.
+        texture = back.get_pixmap(dpi=1200, alpha=True)
+        texture.shrink(2)
+        texture.set_dpi(300, 300)
+        texture.save(output / "back-ink.png")
         # Retire the earlier public texture so it cannot ship alongside the
         # phone-free edition when refreshing an existing output directory.
         (output / "front-ink.png").unlink(missing_ok=True)

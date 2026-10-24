@@ -47,6 +47,62 @@ differs. Minimum visible-ink margins (front/back) are 0.2533 / 0.25 inches for
 Performance and 0.2533 / 0.4133 inches for Technology and Work. The site's
 Performance textures were re-exported from this render.
 
+### Mounted headshot print (2026-10-24)
+
+Finn asked for a more playful back and a better treatment for the headshot,
+then, after seeing a version printed in the card's two inks, asked to keep the
+photo in full colour and make the back a little more skeuomorphic. A final
+pass made the photo bigger and the corners cleaner. The Performance back now
+sets the headshot down like a print on the callboard:
+
+- **Print.** The full-colour photograph, cropped as before (sides trimmed
+  evenly, top kept), rests at -2.5 degrees (counterclockwise), inside the
+  callboard's resting range. Turned, it fills the 1.5-inch safe height:
+  83.56 x 104.46 pt, embedded at 600 ppi. It casts a tight shadow on the card,
+  as a print held flat would, with light from above left: a contact shadow
+  and a short ambient one. The code and its address stay level, centred
+  between the print and the card's edge. No copy was added.
+- **Mounts.** Folded paper photo corners hold the top left and bottom right,
+  the fastening of the site's corner-mounted gallery print. Each is a plain
+  triangle of slightly heavier paper than the card (Callboard Card, laid over
+  the stock as a 40% Rule Line tint, so the card's grain still shows on the
+  site), with one folded long edge in solid Rule Line, 0.35 pt deep, and one
+  small shadow cast down and right. Legs are 10.5 pt, overhanging the
+  photograph by 1.1 pt; the top-left corner's tip rests on the 0.25-inch
+  margin. An earlier pass stacked a lit lip, a blurred crease, a cast shadow
+  and an edge halo along each long edge, which read as messy.
+- **Margin.** The photograph and corners keep the 0.25-inch safe margin. Only
+  the faint print shadow reaches past it, to 0.2267 inches from the trim,
+  inside the validator's 0.2-inch floor.
+- **One image.** `print_image()` in `scripts/business_cards.py` draws the
+  shadows, photograph and corners into one 600 ppi PNG (754 x 928 px), with
+  `PRINT_ROOM` (3.5 pt) on every side so no shadow is clipped; `card.typ`
+  holds the same room, tilt and overhang. The renderer identifies the print as
+  the back's only image besides the QR, at its 600 ppi size and with a soft
+  mask.
+- **Rejected along the way.** A two-ink print (rust and Program Ink, the stock
+  as highlights) was cohesive with the QR but lost the photo's colour, which
+  Finn wanted kept. Halftone screens lost the eyes at this size and would
+  alias in the site's texture. Flat Program Ink corners read as stickers.
+
+MuPDF draws image edges without smoothing, so a turned image steps along its
+edges in a 300 dpi render and shimmered as a dashed seam on the 3D card.
+`website/scripts/export_business_card.py` renders the back at 1200 dpi and
+box-filters it to 1050 x 600 in premultiplied alpha (PyMuPDF `shrink`). The
+print PDF is unaffected: the printer rasterizes the placed image at device
+resolution. The renderer's own 300 dpi PNG previews keep MuPDF's one-pixel
+jogs along the photograph's edge, because validation compares them pixel for
+pixel with that render.
+
+Checked locally on macOS with the Sabon files in `website/fonts-local/`: all
+three profiles passed the structural, safe-area and digital QR checks (decoded
+at 300 and 96 DPI), with the Performance back's visible ink at least 0.2267
+inches inside the trim; the 41 renderer tests passed; and every front and the
+Technology and Work backs rendered pixel-identical to before. The Contact
+page's 3D card was inspected at desktop and phone widths after the re-export.
+The shadows and the corners' paper print as light tints; check them, and the
+QR, on a physical proof on the chosen stock.
+
 ### Runnable separate build
 
 From the repository checkout:
@@ -175,8 +231,10 @@ initial source was the user-owned
 `306119b4698fdfd3a9ed49fe24bfdab1d8c50085e1ccf616e4c26aee040a1ea6`.
 The source PDF is not changed or bundled into the website. Since the 2026-10-24
 redraw, `back-ink.png` comes from the generated `performance.pdf` and carries the
-headshot. That makes it about 360 KB (lossy WebP smeared the QR edges and the
+headshot. That makes it about 250 KB (lossy WebP smeared the QR edges and the
 face), so the component fetches it at low priority, behind the visible front.
+The exporter renders the back at four times its size and filters it down, so
+the turned print's edges stay smooth.
 
 To refresh the site artwork from an approved generator output, using Python with
 PyMuPDF installed:
@@ -345,9 +403,10 @@ other three sides keep four. The Performance back adds `src/headshot.jpg`, the
 composite resume's headshot, as a 4:5 print (a theatre 8x10) at the full safe
 height: 1.2 x 1.5 inches, standing at the 0.25-inch margins and embedded as a
 600 ppi JPEG. The code centres between the print and the card's right edge.
-Technology and Work keep the centred code. The headshot is an optional
-per-profile `headshot` path in `cards/profiles.toml`; the renderer trims the
-sides evenly, keeps the top, and fails under 300 ppi.
+Later that day the print was turned and mounted in paper photo corners; see
+"Mounted headshot print" above. Technology and Work keep the centred code. The
+headshot is an optional per-profile `headshot` path in `cards/profiles.toml`;
+the renderer trims the sides evenly, keeps the top, and fails under 300 ppi.
 
 ## Physical format and material
 
@@ -356,7 +415,10 @@ sides evenly, keeps the top, and fails under 300 ppi.
   background is unprinted, not a cream rectangle.
 - Cream backgrounds belong only to preview images. Transparent artwork carries
   the ink without a paper-color fill.
-- No faux paper textures, baked-in shadows, or perspective in the artwork.
+- No faux paper textures, baked-in shadows, or perspective in the artwork. The
+  one exception, at Finn's request on 2026-10-24, is the Performance back's
+  headshot print: its shadow on the card and its folded paper corners print.
+  No paper texture or perspective is printed anywhere.
 - First pass: printable cards and flat image exports. Contact-page rendering,
   website publication/download wiring, and 3D paper material remain deferred.
 
