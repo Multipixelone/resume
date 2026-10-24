@@ -1,10 +1,10 @@
 {
   python3,
+  typst,
   writeShellApplication,
 }:
 let
   python = python3.withPackages (p: [
-    p.reportlab
     p.pymupdf
     p.pillow
     p.fonttools
@@ -14,7 +14,11 @@ let
 in
 writeShellApplication {
   name = "business-cards";
-  runtimeInputs = [ python ];
+  # Typst draws cards/card.typ; Python stages it and validates the output.
+  runtimeInputs = [
+    python
+    typst
+  ];
   # Run against an explicit working checkout. In particular, the proprietary
   # Sabon file is a runtime argument, never a derivation input or store copy.
   text = ''

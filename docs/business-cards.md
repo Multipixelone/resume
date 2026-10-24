@@ -20,6 +20,33 @@ blockers: consistent identity and contacts, balanced Technology and Work fronts,
 and no collisions. This is not press certification; a physical-stock scan remains
 outstanding.
 
+### Typst renderer (2026-10-24)
+
+The cards are now drawn by `cards/card.typ` in Typst instead of ReportLab.
+ReportLab never applies OpenType GSUB or GPOS, so the contacts printed `f` and
+`i` as separate glyphs and Sabon Next, whose kerning lives only in GPOS, was set
+with no kerning at all. Typst shapes every line: the `fi` in `me@finnrut.is` and
+`@finnrutis` is Sabon's ligature, Sabon and Cooper are kerned, and the role uses
+the font's own `smcp` small caps. PDF text still extracts as the plain profile
+strings.
+
+`scripts/business_cards.py` keeps profile loading, the rust QR, the headshot
+crop, PNG export and every validation check. It stages the template, the QR, any
+headshot and the fonts in a temporary directory (Sabon WOFF2 is decompressed to
+OpenType there, never in the repository), runs `typst compile` with system and
+bundled fonts ignored, then stamps the trim and bleed boxes with PyMuPDF. A Typst
+warning, such as an unknown font family, fails the render instead of falling
+back to another face.
+
+Layout constants and the approved geometry moved into `card.typ` unchanged.
+Measured against the last ReportLab render, every line and image sits within
+0.4pt of where it was: only the contact column moves, 0.39pt right, because the
+email is narrower with its ligature, and the perforation follows by half that.
+The backs keep identical geometry and QR pixels; only the address's antialiasing
+differs. Minimum visible-ink margins (front/back) are 0.2533 / 0.25 inches for
+Performance and 0.2533 / 0.4133 inches for Technology and Work. The site's
+Performance textures were re-exported from this render.
+
 ### Runnable separate build
 
 From the repository checkout:
@@ -44,8 +71,9 @@ files and works only after those required files are tracked. `path:` snapshots
 untracked files too, so use a trusted checkout and keep proprietary Sabon outside
 the repository as required above.
 
-The Python environment declares ReportLab, PyMuPDF, Pillow, fontTools, Brotli
-(WOFF2 decoding), and zxing-cpp. Nix MCP was unavailable in this session; the
+The package puts Typst on the path and declares a Python environment with
+PyMuPDF, Pillow, fontTools, Brotli (WOFF2 decoding), and zxing-cpp. ReportLab
+was dropped with the 2026-10-24 Typst renderer. Nix MCP was unavailable in this session; the
 pinned package attributes and runtime build were successfully validated using
 the local Nix CLI instead.
 No resume/site package depends on this CLI or on Sabon.
@@ -114,7 +142,9 @@ against 336.
 Measured minimum visible-ink margins (front/back) are 0.2567 / 0.3733 inches for
 Performance and 0.2533 / 0.3733 inches for Technology and Work. All six Performance
 PNG exports match the current approved proof exports pixel-for-pixel, with zero
-different pixels; no proof rerender or geometry change was needed. Detailed
+different pixels; no proof rerender or geometry change was needed. (That held
+for the ReportLab renderer; the Typst renderer's shaped fronts differ slightly,
+see above.) Detailed
 temporary evidence is `/tmp/opencode/business-cards-audit.json`, alongside the
 per-profile `validation.json` files. Temporary evidence is not a durable archive.
 
@@ -298,10 +328,11 @@ Spacing stays between 0.04em and 0.14em; a role too long for that fails the
 render, and a short one ends early. On every profile the pronouns follow in 8.5pt
 Sabon Next italic, Faded Ink, on the same margin, so the name keeps its column and
 perforation and only the block's vertical centre moves. PragmataPro remains on
-the back for the website address. The renderer remaps a-z to the regular file's
-`.sc` glyphs in memory and renames that face, because ReportLab merges fonts that
-share a face name. It reads `Sabon Next Italic.woff2` beside the supplied
-`--sabon` file.
+the back for the website address. The role is set with Typst's `smallcaps()`,
+which turns on Sabon's `smcp` feature; validation checks that the role's glyphs
+differ from the same letters in the contacts. The ReportLab renderer instead
+remapped a-z to the `.sc` glyphs in memory. It reads `Sabon Next Italic.woff2`
+beside the supplied `--sabon` file.
 
 All profiles share the back's code: a rust QR to `https://finnrut.is`, captioned
 by the human-readable website address. REFERENCE.md records `www.finnrut.is`; the
