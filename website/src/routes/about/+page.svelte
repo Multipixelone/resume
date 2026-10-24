@@ -6,6 +6,12 @@
   import PageHead from '$lib/components/PageHead.svelte';
 
   const paragraphs = (text: string) => text.trim().split(/\n\s*\n/);
+  // Photos alternate sides among themselves, so a slip between two photos can't leave both
+  // prints on one side. A slip sits opposite the item above it.
+  const flipped = escapades.reduce<boolean[]>((sides, item, index) => {
+    const photosAbove = escapades.slice(0, index).filter(other => other.photo).length;
+    return [...sides, item.photo ? photosAbove % 2 === 1 : index > 0 && !sides[index - 1]];
+  }, []);
 </script>
 
 <PageHead title="About | Finn Rutis" />
@@ -27,7 +33,7 @@
     </div>
     <div class="offstage-list">
       {#each escapades as item, index}
-        <article class="offstage-item" class:offstage-item--slip={!item.photo}>
+        <article class="offstage-item" class:offstage-item--slip={!item.photo} class:offstage-item--flip={flipped[index]}>
           {#if item.photo}
             <div class="photo-layers" use:paperMotion>
               <a class="photo-mat" href={sitePath(`/media/${item.photo.file}`)} aria-label={`View full photo: ${item.photo.alt}`}>

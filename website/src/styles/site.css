@@ -438,8 +438,8 @@ main:focus { outline: none; }
 .statement-body > p + p { margin-top: 1em; }
 .offstage-list { display: grid; gap: clamp(3.5rem, 7vw, 6rem); }
 .offstage-item { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: center; gap: 2rem clamp(2rem, 5vw, 4.5rem); --rotation: -2deg; }
-.offstage-item:nth-child(even) { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); --rotation: 2.5deg; }
-.offstage-item:nth-child(even) > .photo-layers { order: 2; }
+.offstage-item--flip { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); --rotation: 2.5deg; }
+.offstage-item--flip > .photo-layers { order: 2; }
 .offstage-item .photo-mat { padding: .5rem .5rem 1rem; }
 .offstage-copy { display: flex; gap: 1rem; min-width: 0; overflow-wrap: anywhere; }
 .offstage-copy .photo-index { padding-top: .6rem; }
@@ -448,8 +448,8 @@ main:focus { outline: none; }
 .offstage-copy p:first-child { margin-top: 0; }
 .offstage-copy .text-link { margin-top: .5rem; }
 /* Without a photo the text sits on a slip; only the paper behind it tilts, never the words. */
-.offstage-item--slip, .offstage-item--slip:nth-child(even) { grid-template-columns: minmax(0, 1fr); width: min(100%, 44rem); }
-.offstage-item--slip:nth-child(even) { justify-self: end; }
+.offstage-item--slip { grid-template-columns: minmax(0, 1fr); width: min(100%, 44rem); }
+.offstage-item--slip.offstage-item--flip { justify-self: end; }
 .offstage-item--slip .offstage-copy { position: relative; isolation: isolate; padding: 2rem 2.25rem 2.25rem 1.75rem; }
 .offstage-item--slip .offstage-copy::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--paper-shade); border: 1px solid var(--border); box-shadow: 0 5px 15px var(--shadow); transform: rotate(calc(var(--rotation) / 2)); pointer-events: none; }
 
@@ -475,9 +475,9 @@ main:focus { outline: none; }
   .now-show { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
   .now-aside { width: min(100%, 19rem); justify-items: start; }
   .now-stub-shadow { --tilt: -1.5deg; }
-  .offstage-item, .offstage-item:nth-child(even) { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
+  .offstage-item { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
   .offstage-item > .photo-layers { width: 85%; }
-  .offstage-item:nth-child(even) > .photo-layers { order: 0; justify-self: end; }
+  .offstage-item--flip > .photo-layers { order: 0; justify-self: end; }
 }
 /* Compact the first screen on shorter desktop windows without clipping content. */
 @media (min-width: 640px) and (max-height: 850px) {
