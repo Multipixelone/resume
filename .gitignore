@@ -45,3 +45,6 @@ test-*.pdf
 
 # impeccable engine binary, bundled per platform; the launcher fetches it into ~/.impeccable when missing
 **/skills/impeccable/scripts/bin/
+
+# python bytecode
+__pycache__/
