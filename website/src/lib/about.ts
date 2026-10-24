@@ -17,11 +17,11 @@ export const statement = `I believe that there exists a lot of humanity in the e
 export const escapades: Escapade[] = [
   {
     title: `[Escapade title]`,
-    blurb: `From a very young age, I was incredibly into computers. My dad gave me the family's old Dell Inspiron and that computer and it's bloated Windows XP install became my stomping ground for years. Microsoft Publisher, setting up Minecraft servers, downloading bootleg software for my PDAs. In third grade, I'd speedrun my assignments so I could hop on the iBook G4s in the back of the classroom and fire up Scratch, a drag-and-drop programming language that became my home.`
+    blurb: `From a very young age, I was incredibly into computers. My dad gave me the family's old Dell Inspiron and that computer and its bloated Windows XP install became my stomping ground for years. Microsoft Publisher, setting up Minecraft servers, downloading bootleg software for my PDAs. In third grade, I'd speedrun my assignments so I could hop on the iBook G4s in the back of the classroom and fire up Scratch, a drag-and-drop programming language that became my home.`
   },
   {
     title: `[Escapade title]`,
-    blurb: `When I first auditioned for theatre in middle school, I only really did it because the people who were doing it seemed really cool already. It was sort of an aspirational audition: "if I do this, maybe I'll be even half as cool as them." The people in theatre just seemed more unapologetically themselves then almost anyone else I knew, and I knew that the place for me was going to be like that.`
+    blurb: `When I first auditioned for theatre in middle school, I only really did it because the people who were doing it seemed really cool already. It was sort of an aspirational audition: "if I do this, maybe I'll be even half as cool as them." The people in theatre just seemed more unapologetically themselves than almost anyone else I knew, and I knew that the place for me was going to be like that.`
   },
   {
     title: `[Escapade title]`,
