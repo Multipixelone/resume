@@ -43,7 +43,10 @@
 #let OVERHANG = 1.1pt // How far each corner overhangs the photograph's edges.
 #let ROOM = 3.5pt
 #let PHOTO = {
-  let h = (TRIM.at(1) - 2 * MARGIN) / (calc.cos(TILT) + 0.8 * calc.abs(calc.sin(TILT)))
+  let h = (
+    (TRIM.at(1) - 2 * MARGIN)
+      / (calc.cos(TILT) + 0.8 * calc.abs(calc.sin(TILT)))
+  )
   (0.8 * h, h)
 }
 
@@ -53,16 +56,35 @@
   description: "Front then back; unprinted stock; 3.5 x 2 inch trim; 1/8 inch bleed",
   date: none,
 )
-#set page(width: TRIM.at(0) + 2 * BLEED, height: TRIM.at(1) + 2 * BLEED, margin: 0pt)
+#set page(
+  width: TRIM.at(0) + 2 * BLEED,
+  height: TRIM.at(1) + 2 * BLEED,
+  margin: 0pt,
+)
 // A placed line's top edge is its baseline, so `at` takes proof baselines.
-#set text(top-edge: "baseline", bottom-edge: "baseline", fill: INK, hyphenate: false)
+#set text(
+  top-edge: "baseline",
+  bottom-edge: "baseline",
+  fill: INK,
+  hyphenate: false,
+)
 
 // Place a body with its top left (a text baseline) at trim point (x, y).
-#let at(x, y, body) = place(top + left, dx: BLEED + x, dy: BLEED + TRIM.at(1) - y, body)
+#let at(x, y, body) = place(
+  top + left,
+  dx: BLEED + x,
+  dy: BLEED + TRIM.at(1) - y,
+  body,
+)
 #let width(body) = measure(box(body)).width
 
 #let cooper(body, ..args) = text(font: fonts.name, size: NAME, ..args, body)
-#let sabon(size, body, ..args) = text(font: fonts.body, size: size, ..args, body)
+#let sabon(size, body, ..args) = text(
+  font: fonts.body,
+  size: size,
+  ..args,
+  body,
+)
 
 // Approved ten-point marks, plus a matching original GitHub cat outline, in
 // the proof's 24-unit icon space (y down).
@@ -96,7 +118,11 @@
   assert(kind in ICONS, message: "Unknown contact icon: " + kind)
   let svg = (
     "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' "
-      + "color='" + RUST.to-hex() + "' fill='none' stroke='" + RUST.to-hex() + "' "
+      + "color='"
+      + RUST.to-hex()
+      + "' fill='none' stroke='"
+      + RUST.to-hex()
+      + "' "
       + "stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'>"
       + ICONS.at(kind)
       + "</svg>"
@@ -116,7 +142,12 @@
 #let front() = {
   let leading = 0.87 * NAME
   let role = data.role
-  let under = UNDER_NAME + if role != none { SMALL_CAP * ROLE + LINE_STEP } else { ITALIC_X * PRONOUNS }
+  let under = (
+    UNDER_NAME
+      + if role != none { SMALL_CAP * ROLE + LINE_STEP } else {
+        ITALIC_X * PRONOUNS
+      }
+  )
   let top = (TRIM.at(1) + NAME_CAP * NAME + leading + under) / 2
   let finn = top - NAME_CAP * NAME
   let bottom = finn - leading - under
@@ -127,23 +158,48 @@
   if role != none {
     // Letterspace the small caps so they run from the margin to the surname's ink.
     let natural = width(sabon(ROLE, smallcaps(role)))
-    let tracking = (surname-end - SURNAME_RSB * NAME - MARGIN - natural) / calc.max(role.clusters().len() - 1, 1)
-    if tracking < ROLE_TRACKING.at(0) * ROLE { panic("Role line is wider than the name; shorten it") }
+    let tracking = (
+      (surname-end - SURNAME_RSB * NAME - MARGIN - natural)
+        / calc.max(role.clusters().len() - 1, 1)
+    )
+    if tracking < ROLE_TRACKING.at(0) * ROLE {
+      panic("Role line is wider than the name; shorten it")
+    }
     // A short role stays at the widest readable spacing and ends before the name.
-    at(MARGIN, bottom + LINE_STEP, sabon(ROLE, smallcaps(role), tracking: calc.min(tracking, ROLE_TRACKING.at(1) * ROLE)))
+    at(MARGIN, bottom + LINE_STEP, sabon(
+      ROLE,
+      smallcaps(role),
+      tracking: calc.min(tracking, ROLE_TRACKING.at(1) * ROLE),
+    ))
   }
-  at(MARGIN, bottom, sabon(PRONOUNS, data.pronouns, style: "italic", fill: MUTED))
+  at(MARGIN, bottom, sabon(
+    PRONOUNS,
+    data.pronouns,
+    style: "italic",
+    fill: MUTED,
+  ))
   let contacts = data.contacts
-  let text-x = TRIM.at(0) - MARGIN - calc.max(..contacts.map(((_, value)) => width(sabon(CONTACT, value))))
+  let text-x = (
+    TRIM.at(0)
+      - MARGIN
+      - calc.max(..contacts.map(((_, value)) => width(sabon(CONTACT, value))))
+  )
   let icon-x = text-x - 1.5 * CONTACT
-  if icon-x <= surname-end + 2pt { panic("Contact column overlaps the name; review layout") }
+  if icon-x <= surname-end + 2pt {
+    panic("Contact column overlaps the name; review layout")
+  }
   let rule-x = (surname-end + icon-x) / 2
   let dashes = calc.round((top - bottom + 2.7pt) / 4.2pt)
   let gap = (top - bottom - 1.5pt * dashes) / (dashes - 1)
   // Drawn upward from the pronoun baseline, as the proof's dash phase runs.
-  at(rule-x, top, line(start: (0pt, top - bottom), end: (0pt, 0pt),
-    stroke: (paint: RUST, thickness: 0.45pt, dash: (1.5pt, gap))))
-  for ((kind, value), baseline) in contacts.zip(contact-baselines(contacts.len())) {
+  at(rule-x, top, line(start: (0pt, top - bottom), end: (0pt, 0pt), stroke: (
+    paint: RUST,
+    thickness: 0.45pt,
+    dash: (1.5pt, gap),
+  )))
+  for ((kind, value), baseline) in contacts.zip(contact-baselines(
+    contacts.len(),
+  )) {
     at(icon-x, baseline + 8pt, icon(kind))
     at(text-x, baseline, sabon(CONTACT, value))
   }
@@ -163,12 +219,20 @@
     let reach = (w * cos + h * sin) / 2 + OVERHANG * (cos + sin)
     let centre = MARGIN + reach
     let (pw, ph) = (w + 2 * ROOM, h + 2 * ROOM)
-    at(centre - pw / 2, (TRIM.at(1) + ph) / 2,
-      rotate(TILT, image("headshot.png", width: pw, height: ph, fit: "stretch")))
+    at(centre - pw / 2, (TRIM.at(1) + ph) / 2, rotate(TILT, image(
+      "headshot.png",
+      width: pw,
+      height: ph,
+      fit: "stretch",
+    )))
     middle = (centre + reach + TRIM.at(0)) / 2
   }
   let qr-y = url-y + URL_TOP * URL + CAPTION_GAP - 4 * MODULE
-  at(middle - QR_SIZE / 2, qr-y + QR_SIZE, image("qr.png", width: QR_SIZE, scaling: "pixelated"))
+  at(middle - QR_SIZE / 2, qr-y + QR_SIZE, image(
+    "qr.png",
+    width: QR_SIZE,
+    scaling: "pixelated",
+  ))
   let address = text(font: fonts.mono, size: URL, data.address)
   at(middle - width(address) / 2, url-y, address)
 }
