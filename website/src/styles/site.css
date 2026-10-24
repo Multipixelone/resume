@@ -369,6 +369,8 @@ main:focus { outline: none; }
 .pager-label { display: block; font: .6875rem/1.5 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .pager-title { display: block; margin-top: .35rem; font: 700 clamp(1.375rem, 2.4vw, 1.875rem)/1.15 var(--font-display); letter-spacing: -.02em; color: var(--accent); text-decoration: underline 1px; text-underline-offset: .2em; text-wrap: balance; transition: color 150ms ease; }
 .pager-link:is(:hover, :focus-visible) .pager-title { color: var(--accent-hover); text-decoration-thickness: 2px; }
+/* The pager's rule opens the page's closing group, so the slip below it sits a step away, not a section. */
+.show-pager + .performance-next { --next-steps-space: 3rem; }
 .recording + .recording { margin-top: 4rem; }
 .video-mat { padding: .75rem; background: var(--paper-shade); border: 1px solid var(--border); box-shadow: 0 5px 15px var(--shadow); }
 .video-mat iframe { display: block; border: 0; width: 100%; aspect-ratio: 16 / 9; }
@@ -413,47 +415,9 @@ main:focus { outline: none; }
 .recording-start { position: relative; width: max-content; margin: 0 0 -.7rem 1.5rem; filter: drop-shadow(0 2px 2px rgb(43 37 32 / .1)); transform: rotate(-3deg); transform-origin: bottom left; }
 .recording-start .ticket-card { padding-bottom: 1rem; font: .75rem/1.5 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent-hover); }
 .recording--start .video-mat { position: relative; }
-/* A correspondence sheet: level lettering and a perforated
-   social strip. Only the paper settles when a visitor reaches for a link. */
-.contact-page { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 2rem 3rem; align-items: start; padding: 2rem .75rem 2rem 0; }
-.contact-page .page-heading { margin: 0; }
-.contact-note { position: relative; isolation: isolate; min-width: 0; margin-top: 1rem; padding: clamp(1.5rem, 4vw, 3.5rem); }
-.contact-note::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--ticket-paper); border: 1px solid var(--border); box-shadow: 0 3px 5px rgb(43 37 32 / .06), 0 18px 35px -16px rgb(43 37 32 / .2); rotate: -1.25deg; }
-.contact-signature { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1rem; padding-right: 1rem; font: 700 1.5rem/1.2 var(--font-display); }
-.contact-pronouns { color: var(--muted); font: .75rem/1.5 var(--font-mono); }
-.contact-links { margin: 0; }
-.contact-links dt { color: var(--muted); font: .6875rem/1.5 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
-.contact-links dd { margin: .5rem 0 0; }
-.contact-links a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 44px; overflow-wrap: anywhere; }
-.contact-links a > span { min-width: 0; }
-.contact-links a:focus-visible { color: var(--accent-hover); text-decoration-thickness: 2px; }
-.contact-email { padding-block: clamp(3rem, 6vw, 5rem) 2.5rem; }
-.contact-email dd { font-size: clamp(1.625rem, 3.6vw, 3rem); line-height: 1.3; }
-.contact-instagram { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.5rem; padding-top: 1.25rem; border-top: 1px dashed var(--muted); }
-.contact-instagram dt { flex: 1 1 7rem; }
-.contact-instagram dd { flex: 1.5 1 12rem; }
-.contact-instagram dd { margin: 0; font-size: 1.25rem; }
-.contact-next { grid-column: 2; display: flex; flex-wrap: wrap; gap: .5rem 2rem; padding: .5rem clamp(1.5rem, 4vw, 3.5rem) 0; }
-@media (prefers-reduced-motion: no-preference) {
-  .contact-note::before { transition: rotate 280ms cubic-bezier(.16, 1, .3, 1); }
-  .contact-note:focus-within::before { rotate: -.25deg; }
-}
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .contact-note:has(a:hover)::before { rotate: -.25deg; }
-}
-@media (max-width: 768px) {
-  .contact-page { grid-template-columns: minmax(0, 1fr); gap: 2rem; padding-top: 1rem; }
-  .contact-note { margin: 0 0 0 clamp(0rem, 5vw, 2.5rem); }
-  .contact-next { grid-column: 1; margin-left: clamp(0rem, 5vw, 2.5rem); }
-}
-@media (max-width: 480px) {
-  .contact-note, .contact-next { margin-left: 0; }
-}
-@media (forced-colors: active) {
-  .contact-note::before,
-  .contact-note:has(a:hover)::before,
-  .contact-note:focus-within::before { background: Canvas; border-color: CanvasText; box-shadow: none; rotate: none; transition: none; }
-}
+/* The card carries the contact details and native links. */
+.contact-page { width: min(100%, 46rem); margin-inline: auto; }
+.contact-page .page-heading { margin: 0 8.825%; }
 /* All resumes: each field is a label column beside its ruled list, the resume intro's split. */
 .download-group { display: grid; grid-template-columns: minmax(14rem, 1fr) minmax(0, 2fr); gap: 0 3rem; align-items: start; border-top: 1px solid var(--ink); }
 .download-group + .download-group { margin-top: clamp(3rem, 6vw, 4.5rem); }

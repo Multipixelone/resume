@@ -161,7 +161,7 @@ Scrapbook texture is welcome when it is real. A planned layer of blue ballpoint 
 - Printed objects with square corners, mats, resting angles and soft layered shadows.
 - A torn-ticket motif shared by the header logo and the current-project stub.
 - Motion that gives printed photos a brief, theatrical landing, then lets the paper respond to a hand; all of it is removed under reduced motion.
-- Every action is a link. No buttons, no forms.
+- Navigation and contact actions are links. A native button turns the business card, with separate links over its printed contacts and an optional button for enabling device tilt; there are no forms.
 
 ## Colors
 
@@ -176,7 +176,7 @@ Cream paper stock and warm brown ink, with a single worn-orange accent doing all
 
 - **Playbill Paper** (#f7f4ed): the page background and the mat color of every photo print and headshot.
 - **Callboard Card** (#efeadd): the heavier backing stock. Paper shapes behind the hero and photo spread, nav slips, paper sheets around the resume preview and videos, off-stage slips, footer icon hover.
-- **Ticket Stock** (#fcfaf5): the brightest paper, reserved for tickets (header brand ticket and current-project stub).
+- **Ticket Stock** (#fcfaf5): the brightest paper, used for tickets (header brand ticket and current-project stub) and the Contact business card.
 - **Program Ink** (#2b2520): all body text and headings, and the 1px top rule over spread headings and the artist statement. 13.77:1 on paper.
 - **Faded Ink** (#6f6456): secondary text: kickers, mono labels, pronouns, directors, footer icons and meta. 5.26:1 on paper, 4.81:1 on Callboard Card.
 - **Rule Line** (#ddd6c6): 1px hairlines between list rows, borders on slips and sheets, dashed ticket perforations, footer separator dots. Decorative only; never the sole boundary of something interactive.
@@ -224,7 +224,7 @@ A single centered shell, `min(100% - 2 x gutter, 75rem)`. Gutters are 1.25rem a 
 
 - **Homepage hero:** a two-column grid (1.13fr / 1fr, 4rem gap). Name top left, bio and links below it, the headshot spanning both rows on the right, inset from the edge.
 - **Photo spread:** a 12-column grid with seven named placements (wide, tall, small, wide-right, tall-left, small-right, tall-bottom), each with its own column span and resting angle. Song & Dance and Seussical share the opening row and align at the bottom. Composer Project and Joseph share the next row, with Joseph offset 6rem downward. Legally Blonde, Kiss Me Kate, and the final Composer Project print close the spread together in three equal columns, with the square Kiss Me Kate print sitting slightly lower between the portraits. Each row sizes to its photos without portrait-sized row spans or negative vertical margins. One shared Callboard Card shape spans the first two rows independently of the closing group. On phones, all prints return to the alternating single-column layout.
-- **Supporting pages:** an asymmetric label column and content column (minmax(14rem, 1fr) / 2fr, 3rem gap) for the resume intro and the artist statement; contact links indent 25%; credits and resume downloads are ruled lists with 1px Rule Line tops and 1.5rem row padding (credits two columns plus a narrow cover-print column). All resumes repeats the label/content split per field: a Program Ink rule, the field as a Sabon `h2` in the left column, and its downloads on the right with one shared action column so every Download link lines up.
+- **Supporting pages:** an asymmetric label column and content column (minmax(14rem, 1fr) / 2fr, 3rem gap) for the resume intro and the artist statement. Contact is one centered column, capped at 46rem: heading, then the physical business card with clickable contacts. The heading aligns with the card's printed edge. Credits and resume downloads are ruled lists with 1px Rule Line tops and 1.5rem row padding (credits two columns plus a narrow cover-print column). All resumes repeats the label/content split per field: a Program Ink rule, the field as a Sabon `h2` in the left column, and its downloads on the right with one shared action column so every Download link lines up.
 - **Breakpoints:** 960px tightens the hero and spread; 768px stacks current projects and off-stage items; 640px is the phone layout: name inline, headshot at 73% width, the spread becomes one column of prints at 72 to 100% width alternating left and right, credit rows stack.
 - Interactive targets are at least 44px tall. Horizontal overflow from rotated prints is contained by the layout, never by page scroll.
 
@@ -277,7 +277,7 @@ Character: plain, underlined, with one shared arrow.
 - Calls to action ("Watch me perform", "Theatre credits") are Sabon 600, 44px tall, with the single arrow glyph from `Arrow.svelte` (out, down or back) that nudges 2px up and right on hover.
 - **Hero links:** the reel link leads on its own paper slip at 1.1875rem: a Callboard Card layer with a Rule Line border and slip shadow, rotated 1.5deg behind level text, which settles to 0.45deg on hover or focus. Resume, about and contact follow on one line at 0.9375rem, separated by Faded Ink middle dots and without arrows, like the footer meta. When the bio column gets narrow the line tightens, then drops the dots and wraps on plain spacing rather than stranding a dot at a line end.
 - Download links pair the label with a mono file label, "(PDF)". The primary resume download is 1.25rem.
-- **Buttons and inputs:** none exist. Every action on the site is a link; keep it that way unless a real form is needed.
+- **Buttons and inputs:** the business card's turn button uses the shared focus ring. Contact links sit over the printed address and handle, as siblings of the button. Its optional device-tilt button is styled like a quiet text link, with a 44px target. Use buttons for these local state changes; contact and navigation remain links. No form inputs exist.
 
 ### Photo Print
 
@@ -301,7 +301,7 @@ Character: practical ways of putting a print on the callboard, used selectively.
 
 Character: one production's corner of the callboard.
 
-- **Show page** (`/shows/<id>/`): a back link, the show title as the page `h1`, and the current-project notice's mono-labelled credits (Role, Venue, Directed by) under a dashed perforation. Then the show's prints, two across and staggered (the second drops 6rem), resting angles alternating from -3 to 2.5deg, the first taped. Each print is capped at its file's pixel width so small renditions stay sharp, and opens the full photo. A lone print sits offset from center rather than centered. Recordings from that production follow as video sheets, and a pager closes the page with the previous and next show in resume order.
+- **Show page** (`/shows/<id>/`): a back link, the show title as the page `h1`, and the current-project notice's mono-labelled credits (Role, Venue, Directed by) under a dashed perforation. Then the show's prints, two across and staggered (the second drops 6rem), resting angles alternating from -3 to 2.5deg, the first taped. Each print is capped at its file's pixel width so small renditions stay sharp, and opens the full photo. A lone print sits offset from center rather than centered. Recordings from that production follow as video sheets. A pager offers the previous and next show in resume order, and the shared Performance Next Steps slip closes the page 3rem below it, inside the group the pager's rule opens.
 - **Cover print:** a show's first photo as a small matted print (4.25rem tall, 0.3rem mat with a deeper bottom edge, 3deg or -3deg), decorative beside every link to that show's page: the theatre credit row and the show pager. Hover or keyboard focus on the link straightens it and lifts it 5px with a deeper shadow; reduced motion keeps only the shadow change.
 - **Linked credit:** the title keeps Program Ink with a Marquee Rust underline, its link stretches over the whole row, and a Deep Marquee Rust mono count ("2 photos", "2 videos") sits under the cover print and describes the link.
 
@@ -332,9 +332,23 @@ Character: heavier backing stock holding something.
 
 ### Performance Next Steps
 
-`PerformanceNextSteps.svelte` shares the homepage's closing paper slip with the reel page. It uses a tilted Callboard Card backing, level Cooper heading and links, and a perforation between the heading and actions. On phones the actions sit below a horizontal perforation.
+`PerformanceNextSteps.svelte` is the closing paper slip on the homepage, the resume page, every show page and the reel. It uses a tilted Callboard Card backing, level Cooper heading and links, and a perforation between the heading and actions. On phones the actions sit below a horizontal perforation. It sits a section below the content before it; `--next-steps-space` tightens that, and the show pager sets it to 3rem.
 
 Pass `resumePdf` for the homepage's default "Reel & resume" section. Pass `variant="resume"` and `composite` on the reel page for "Resume", with the standard PDF first and the headshot PDF second. The optional headshot link is omitted when no composite is supplied. Each instance generates its own heading ID; links wrap and retain 44px targets, and forced colors flattens the paper to a visible outline.
+
+### Contact Business Card
+
+Character: the approved Performance card, held in the visitor's hand.
+
+- The print artwork supplies all lettering and the rust QR. Under the name, "musical theatre performer" is set in Sabon Next's true small caps at 8pt in Program Ink, letterspaced to run exactly from the left edge of "Finn" to the last ink of "Rutis", and "they / them" follows in 8.5pt Sabon Next italic in Faded Ink. Cards without a role print only the pronoun line; PragmataPro appears only on the back, for the address. The Performance back stands the headshot as a 4:5 print at the safe margins and centres the rust QR in the space beside it, with the address two modules under the code; Technology and Work print the code alone, centred. The web front omits the phone row and recenters email and Instagram; the printable card retains its phone number. Square, 3.5:2 uncoated stock, with a thin cut edge, a slight paper bow, fine pulp grain and fibers, and a soft warm shadow. Diffuse shading removes specular highlights; the surface never reads as glossy laminate. Physical lettering and contact links move with the card; instructions and device-tilt controls stay level outside it.
+- The flat front and native contact links are prerendered. A lazy Three.js scene replaces the card's appearance only after the artwork and renderer are ready. Email and Instagram are underlined directly on the card; the same anchors follow its camera projection, retain keyboard focus and browser link actions, and disappear on the back or near the thin edge. Their touch targets remain at least 44px tall without overlapping. The caption repeats only the address, as plain selectable text in Faded Ink mono for visitors whose mailto opens nothing; there is no repeated contact column or action row. A visually hidden description gives the name, pronouns and role, since the card's artwork is hidden from assistive tech while the 3D scene runs. Reel and resume remain in the main navigation.
+- Lighter Ticket Stock paper separates the card from Playbill Paper behind it. A warm cut edge establishes its thickness. A shallow resting tilt and a distant perspective camera keep the corners close in scale while retaining depth before interaction.
+- Drag to turn or tap the blank card to flip. Its native turn button also responds to Enter and Space. Contact taps open their links; dragging from a contact turns the card without navigating. Release settles to the closest face through a critically damped spring. Fine-pointer hover gives a small hand-follow response.
+- A gentle six-second vertical float pairs with a twelve-second figure-eight tilt: about 3 degrees of yaw, 1.5 degrees of pitch and a slight bank. The face stays readable. Like the header ticket, fine-pointer hover and keyboard focus square the card up: its lean and float ease out together into a level face, nearly flat and slightly lifted, with no hand-follow tilt. Leaving returns it to rest. The idle tilt also eases away for dragging, flips and device tilt. It plays one full twelve-second figure eight and then rests; a hover ending, a release or focus leaving wakes it for another cycle. Holding the card freezes the float's phase; there is no idle spin or separate pause control.
+- A broad, offset shadow separates the card from the page. It softens and lightens as the card rises, and loses density toward the thin edge during turns. The canvas extends beyond the stage on all sides so its warm, diffuse falloff is not clipped at the card's container; horizontal bleed is bounded by the viewport.
+- **Use device tilt** is an optional touch-device control. Permission comes from the visitor's tap, then the first reading calibrates a neutral hand position. Screen rotation recalibrates. Sensor movement is bounded and smoothed; **Turn off tilt** removes the listener.
+- Reduced motion and forced colors retain a flat card with instant front/back changes. A missing renderer leaves the flat artwork and tap/keyboard flipping available. The float renders at 30fps while idle, with full display rate for input and settling. Hidden/offscreen cards stop rendering and listening to sensors. The renderer and textures are disposed on navigation.
+- `docs/business-cards.md` owns artwork provenance, export commands, and sensor limitations. The card does not introduce a profile switcher, new personal copy, or a website font dependency.
 
 ### Footer
 
@@ -355,7 +369,7 @@ Hand-drawn blue ballpoint line art, scanned and rendered as CSS masks in one ink
 - **Tape:** pointer entry or keyboard focus nudges the small print through a damped 920ms swing, at most 5deg either way. Its pivot stays at the tape. Repeated entry does not stack swings, and touch follows the link directly.
 - **Feedback:** paper slips settle in 220ms, the ticket end flexes in 280ms, and bounded photo follow uses 450 to 500ms. These are responses to hover or focus, never idle loops. The shared portrait assembly keeps both photographs and the tape together.
 - **Gallery:** each photo lands once after entering the bottom 18% of the viewport (capped at 160px), over 740ms (580ms on phones and coarse pointers). Its resting angle determines which corner leads. A brief perspective tilt flattens into the board while a prepainted contact shadow fades. Only the photo assembly moves; captions, headings and body copy stay level. Show pages land their prints the same way. Other supporting pages remain still, and scrolling stays native with no parallax or delayed content.
-- **Lifecycle:** reduced motion cancels active Web Animations and pointer offsets immediately, while color and focus states remain clear. Keyboard focus or a pointer press settles an arriving print immediately. Prints scrolled past stop animating and do not replay on return. Hidden tabs and navigation clear animations and pending frames. Pointer work is coalesced to one animation frame, with no idle render loop or added dependency.
+- **Lifecycle:** reduced motion cancels active Web Animations and pointer offsets immediately, while color and focus states remain clear. Keyboard focus or a pointer press settles an arriving print immediately. Prints scrolled past stop animating and do not replay on return. Hidden tabs and navigation clear animations and pending frames. Pointer work is coalesced to one animation frame, with no idle render loop. The Contact card alone loads Three.js on demand; other paper motion has no animation dependency.
 
 ## Do's and Don'ts
 

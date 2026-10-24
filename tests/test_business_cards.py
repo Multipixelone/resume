@@ -16,6 +16,8 @@ import tempfile
 import unittest
 from unittest.mock import Mock, patch
 
+from fontTools.fontBuilder import FontBuilder
+from fontTools.pens.ttGlyphPen import TTGlyphPen
 from PIL import Image
 
 
@@ -66,7 +68,8 @@ class ProfileTests(unittest.TestCase):
             'identity': {'first_name': 'Finn', 'last_name': 'Rutis', 'pronouns': 'they / them'},
             'back': {'address': 'www.finnrut.is', 'destination': 'https://finnrut.is'},
             'profiles': {
-                'performance': {'email': 'me@finnrut.is', 'phone': '503-267-5052', 'instagram': '@finnrutis'},
+                'performance': {'role': 'musical theatre performer', 'headshot': 'src/headshot.jpg',
+                                'email': 'me@finnrut.is', 'phone': '503-267-5052', 'instagram': '@finnrutis'},
                 'technology': {'email': 'tech@finnrut.is', 'github': 'Multipixelone'},
                 'work': {'email': 'work@finnrut.is', 'phone': '503-267-5052'},
             },
@@ -134,35 +137,187 @@ class ProfileTests(unittest.TestCase):
                                            *(v for _, v in CARDS.contacts_for(profile))])
                 self.assertNotIn(name, strings)
 
+    def test_role_spans_the_name_above_the_pronouns_and_recenters_block(self):
+        metrics = lambda s, f, z: len(s) * z * (0.5 if f == 'Cooper' else 0.45)
+        with patch.object(CARDS.pdfmetrics, 'stringWidth', side_effect=metrics):
+            plain, roled = Recorder(), Recorder()
+            profile = self.data['profiles']['performance']
+            CARDS.draw_front(plain, self.data['identity'], {k: v for k, v in profile.items() if k != 'role'})
+            CARDS.draw_front(roled, self.data['identity'], profile)
+        draws = lambda r: {args[2]: (args[:2], kwargs) for op, args, kwargs in r.calls if op == 'drawString'}
+        before, after = draws(plain), draws(roled)
+        role = 'musical theatre performer'
+        self.assertEqual(list(after)[:4], ['Finn', 'Rutis', role, 'they / them'])
+        (role_x, role_y), spacing = after[role]
+        self.assertEqual(after['they / them'], ((18, role_y - CARDS.LINE_STEP), {}))
+        # Letterspacing carries the small caps from the margin to the surname's last ink.
+        role_end = role_x + metrics(role, 'SmallCaps', CARDS.ROLE) + spacing['charSpace'] * (len(role) - 1)
+        surname_end = CARDS.MARGIN + 0.19 * CARDS.NAME + metrics('Rutis', 'Cooper', CARDS.NAME)
+        self.assertEqual(role_x, CARDS.MARGIN)
+        self.assertAlmostEqual(role_end, surname_end - CARDS.SURNAME_RSB * CARDS.NAME)
+        fonts = [args[0] for op, args, _ in roled.calls if op == 'setFont']
+        self.assertEqual(fonts[2:4], ['SmallCaps', 'Italic'])
+        # The block grows by the role line and stays centered on the trim.
+        top = lambda d: d['Finn'][0][1] + CARDS.NAME_CAP * CARDS.NAME
+        for d in (before, after):
+            self.assertAlmostEqual(top(d) + d['they / them'][0][1], CARDS.TRIM[1])
+        self.assertGreater(top(after), top(before))
+        self.assertLess(after['they / them'][0][1], before['they / them'][0][1])
+        for text in ('me@finnrut.is', '503-267-5052', '@finnrutis'):
+            self.assertEqual(after[text], before[text])
+
+    def test_role_is_optional_text_and_must_fit_the_name(self):
+        with self.assertRaises(ValueError):
+            self.load_mutation(lambda d: d['profiles']['performance'].update(role=''))
+        self.load_mutation(lambda d: d['profiles']['work'].update(role='a role'))
+        roled = lambda role: dict(self.data['profiles']['performance'], role=role)
+        short = Recorder()
+        with patch.object(CARDS.pdfmetrics, 'stringWidth', side_effect=lambda s, f, z: len(s) * z * 0.5):
+            with self.assertRaisesRegex(ValueError, 'wider than the name'):
+                CARDS.draw_front(Recorder(), self.data['identity'], roled('x' * 40))
+            CARDS.draw_front(short, self.data['identity'], roled('actor'))
+        # A short role keeps the widest readable spacing rather than stretching.
+        spacing = next(kwargs for op, args, kwargs in short.calls if op == 'drawString' and args[2] == 'actor')
+        self.assertAlmostEqual(spacing['charSpace'], CARDS.ROLE_TRACKING[1] * CARDS.ROLE)
+
     def test_contact_overlap_is_rejected_not_silently_shrunk(self):
         with patch.object(CARDS.pdfmetrics, 'stringWidth', return_value=200):
             with self.assertRaisesRegex(ValueError, 'overlaps the name'):
                 CARDS.draw_front(Recorder(), self.data['identity'], self.data['profiles']['technology'])
 
 
+class BackTests(unittest.TestCase):
+    """The back was redrawn after the proof: the address moved up under the
+    code, and the Performance back added a headshot."""
+
+    qr = Image.new('RGBA', (33, 33), CARDS.RUST)
+    back = {'address': 'www.finnrut.is'}
+
+    def draws(self, headshot=None):
+        canvas = Recorder()
+        CARDS.draw_back(canvas, self.qr, self.back, headshot)
+        images = [(args[1:3], kwargs) for op, args, kwargs in canvas.calls if op == 'drawImage']
+        address, = [args for op, args, _ in canvas.calls if op == 'drawCentredString']
+        return images, address
+
+    def test_address_is_captioned_two_modules_under_the_centred_code(self):
+        images, (url_x, url_y, text) = self.draws()
+        ((x, y), size), = images
+        self.assertEqual(text, 'www.finnrut.is')
+        self.assertEqual(size, {'width': 96, 'height': 96, 'mask': 'auto'})
+        self.assertAlmostEqual(x + 48, 126)
+        self.assertAlmostEqual(url_x, 126)
+        symbol_bottom = y + 4 * CARDS.MODULE
+        self.assertAlmostEqual(symbol_bottom - (url_y + CARDS.URL_TOP * CARDS.URL), 2 * CARDS.MODULE)
+        # The code and its address are centred together on the card's height.
+        self.assertAlmostEqual(symbol_bottom + CARDS.SYMBOL + url_y, CARDS.TRIM[1])
+
+    def test_headshot_stands_at_the_margins_with_the_code_beside_it(self):
+        photo = Image.new('RGB', (72, 90), '#a0522d')
+        plain, _ = self.draws()
+        images, (url_x, url_y, _) = self.draws(CARDS.ImageReader(photo))
+        ((px, py), print_size), ((x, y), _) = images
+        self.assertEqual((px, py), (18, 18))
+        self.assertAlmostEqual(print_size['height'], CARDS.TRIM[1] - 36)
+        self.assertAlmostEqual(print_size['width'] / print_size['height'], 0.8)
+        # The code sits midway between the print and the card's right edge,
+        # with far more than its four-module quiet zone clear of the photo.
+        symbol_left = x + 4 * CARDS.MODULE
+        symbol_right = symbol_left + CARDS.SYMBOL
+        photo_right = px + print_size['width']
+        self.assertAlmostEqual(symbol_left - photo_right, CARDS.TRIM[0] - symbol_right)
+        self.assertGreater(symbol_left - photo_right, 4 * CARDS.MODULE)
+        self.assertAlmostEqual(url_x, (symbol_left + symbol_right) / 2)
+        # Only the horizontal position changes: the caption keeps its height.
+        self.assertEqual(y, plain[0][0][1])
+
+    def headshot_fixture(self, size, fill, sides=0, bottom=0):
+        root = Path(self.enterContext(tempfile.TemporaryDirectory())).resolve()
+        image = Image.new('RGB', size, fill)
+        for box in ((0, 0, sides, size[1]), (size[0] - sides, 0, *size), (0, size[1] - bottom, *size)):
+            if box[2] > box[0] and box[3] > box[1]:
+                image.paste((255, 0, 0), box)
+        image.save(root / 'headshot.png')
+        return root
+
+    def test_headshot_crop_keeps_the_top_and_trims_evenly_at_600_ppi(self):
+        # Wider than 4:5 trims both sides evenly; taller drops the bottom.
+        for size, sides, bottom in (((1200, 1400), 40, 0), ((800, 1200), 0, 200)):
+            with self.subTest(size=size):
+                root = self.headshot_fixture(size, (0, 0, 255), sides, bottom)
+                reader = CARDS.headshot_image(root, 'headshot.png')
+                self.assertEqual(reader.getSize(), (720, 900))
+                self.assertIsNotNone(reader.jpeg_fh())
+                with Image.open(reader.fp) as cropped:
+                    red, _, blue = cropped.convert('RGB').split()
+                # No red edge band survives the crop, through JPEG noise.
+                self.assertLess(CARDS.ImageChops.subtract(red, blue).getextrema()[1], 64)
+
+    def test_headshot_under_300_ppi_or_outside_the_repository_fails(self):
+        root = self.headshot_fixture((300, 375), (0, 0, 255))
+        with self.assertRaisesRegex(ValueError, 'under 300 ppi'):
+            CARDS.headshot_image(root, 'headshot.png')
+        for path in ('../headshot.png', '/etc/hosts', 'missing.jpg'):
+            with self.subTest(path=path), self.assertRaisesRegex(ValueError, 'not found in the repository'):
+                CARDS.headshot_image(root, path)
+
+    def test_repository_headshot_meets_the_print_resolution(self):
+        self.assertEqual(CARDS.headshot_image(ROOT, 'src/headshot.jpg').getSize(), (720, 900))
+
+    def test_headshot_prints_only_where_the_profile_names_one(self):
+        # PyMuPDF names only the first filter, ASCII85, as ReportLab writes them.
+        qr = (5, 6, 1749, 1749, 8, 'DeviceRGB', '', 'Im1', 'ASCII85Decode', 0)
+        photo = (7, 0, 720, 900, 8, 'DeviceRGB', '', 'Im2', 'ASCII85Decode', 0)
+        filters = {5: '[/ASCII85Decode/FlateDecode]', 7: '[/ASCII85Decode/DCTDecode]'}
+        named, plain = {'headshot': 'src/headshot.jpg'}, {}
+        for images, profile, ok in (([qr, photo], named, True), ([qr], plain, True),
+                                    ([qr], named, False), ([qr, photo], plain, False),
+                                    ([qr, photo[:2] + (360, 450) + photo[4:]], named, False)):
+            page = Mock()
+            page.get_images.return_value = images
+            page.parent.xref_get_key.side_effect = lambda xref, key: ('array', filters[xref])
+            with self.subTest(images=images, profile=profile):
+                if ok:
+                    evidence = CARDS.headshot_evidence(page, profile)
+                    self.assertEqual(evidence.get('headshot_pixels'), [720, 900] if profile else None)
+                else:
+                    with self.assertRaisesRegex(ValueError, 'headshot must print once'):
+                        CARDS.headshot_evidence(page, profile)
+
+    def test_headshot_is_optional_profile_text(self):
+        data = CARDS.load_profiles(ROOT / 'cards/profiles.toml')
+        for name in ('technology', 'work'):
+            self.assertNotIn('headshot', data['profiles'][name])
+        changed = copy.deepcopy(data)
+        changed['profiles']['work']['headshot'] = 'src/headshot.jpg'
+        with patch.object(CARDS.tomllib, 'load', return_value=changed):
+            CARDS.load_profiles(ROOT / 'cards/profiles.toml')
+        changed['profiles']['work']['headshot'] = ''
+        with patch.object(CARDS.tomllib, 'load', return_value=changed), self.assertRaises(ValueError):
+            CARDS.load_profiles(ROOT / 'cards/profiles.toml')
+
+
 class ProofRegressionTests(unittest.TestCase):
     @unittest.skipUnless(PROOF.is_file(), 'approved local proof is not included in this source tree')
-    def test_performance_front_drawing_operations_match_current_proof(self):
+    def test_performance_front_name_and_contacts_match_current_proof(self):
         proof = import_file('approved_card_proof_front', PROOF)
         data = CARDS.load_profiles(ROOT / 'cards/profiles.toml')
         expected, actual = Recorder(), Recorder()
         # Both call the same metrics service. No proprietary font is needed to
-        # establish that every coordinate, string, color and path is unchanged.
+        # establish that the name, perforation and contact column are unchanged.
+        # The lines under the name were redrawn after the proof and move the
+        # block's vertical centre; they have their own tests.
         with patch.object(CARDS.pdfmetrics, 'stringWidth', side_effect=lambda s, f, z: len(s) * z * 0.45):
             proof.draw_front(expected)
-            CARDS.draw_front(actual, data['identity'], data['profiles']['performance'])
-        self.assertEqual(actual.calls, expected.calls)
+            approved = {k: v for k, v in data['profiles']['performance'].items() if k != 'role'}
+            CARDS.draw_front(actual, data['identity'], approved)
+        contacts = lambda r: r.calls[next(i for i, (op, _, _) in enumerate(r.calls) if op == 'saveState'):]
+        self.assertEqual(contacts(actual), contacts(expected))
+        x = lambda r, operation: [args[0] for op, args, _ in r.calls if op == operation]
+        self.assertEqual(x(actual, 'drawString')[:3], x(expected, 'drawString')[:3])
+        self.assertEqual(x(actual, 'line'), x(expected, 'line'))
         pronouns = next(args for op, args, _ in actual.calls if op == 'drawString' and args[2] == 'they / them')
         self.assertEqual(pronouns[0], 18)
-
-    @unittest.skipUnless(PROOF.is_file(), 'approved local proof is not included in this source tree')
-    def test_common_back_drawing_operations_match_current_proof(self):
-        proof = import_file('approved_card_proof_back', PROOF)
-        expected, actual = Recorder(), Recorder()
-        qr = Image.new('RGBA', (33, 33), CARDS.RUST)
-        proof.draw_back(expected, qr)
-        CARDS.draw_back(actual, qr, {'address': 'www.finnrut.is'})
-        self.assertEqual(actual.calls, expected.calls)
 
     def test_github_icon_is_distinct_and_unknown_icons_fail(self):
         github, instagram = Recorder(), Recorder()
@@ -344,6 +499,33 @@ class InterfaceTests(unittest.TestCase):
             self.assertIn('glyf', font)
             self.assertIsNone(font.flavor)
 
+    def small_caps_fixture(self, with_small_caps=True):
+        letters = [chr(code) for code in range(ord('a'), ord('z') + 1)]
+        names = ['.notdef', *letters, *(f'{letter}.sc' for letter in letters if with_small_caps)]
+        builder = FontBuilder(1000, isTTF=True)
+        builder.setupGlyphOrder(names)
+        builder.setupCharacterMap({ord(letter): letter for letter in letters})
+        builder.setupGlyf({name: TTGlyphPen(None).glyph() for name in names})
+        builder.setupHorizontalMetrics({name: (500, 0) for name in names})
+        builder.setupHorizontalHeader(ascent=800, descent=-200)
+        builder.setupNameTable({'familyName': 'Fixture', 'styleName': 'Regular', 'psName': 'Fixture-Regular'})
+        builder.setupOS2()
+        builder.setupPost()
+        data = BytesIO()
+        builder.save(data)
+        data.seek(0)
+        return data
+
+    def test_small_caps_remap_lowercase_and_rename_the_face(self):
+        # TrueType output has no glyph names, and ReportLab merges fonts that
+        # share a face name, so the remap runs first and renames the face.
+        with CARDS.Font(CARDS.truetype(CARDS.small_caps(self.small_caps_fixture()))) as font:
+            regular = CARDS.Font(self.small_caps_fixture())
+            self.assertEqual(font.getGlyphID(font.getBestCmap()[ord('m')]), regular.getGlyphID('m.sc'))
+            self.assertEqual(font['name'].getDebugName(6), 'Fixture-RegularSC')
+        with self.assertRaisesRegex(ValueError, 'true small caps'):
+            CARDS.small_caps(self.small_caps_fixture(with_small_caps=False))
+
     def test_proof_and_unrelated_outputs_protected(self):
         for output in (ROOT, ROOT.parent, ROOT / 'proofs/business-cards', ROOT / 'fonts/proofs'):
             with self.subTest(output=output), self.assertRaises(ValueError):
@@ -362,10 +544,15 @@ class InterfaceTests(unittest.TestCase):
             with patch.object(CARDS, 'font_paths', return_value={}), \
                     patch.object(CARDS, 'register_fonts', return_value={}), \
                     patch.object(CARDS, 'rust_qr'), \
+                    patch.object(CARDS, 'headshot_image') as headshot, \
                     patch.object(CARDS, 'render_pdf') as pdf, \
                     patch.object(CARDS, 'export_pngs') as png, \
                     patch.object(CARDS, 'validate_artifacts', return_value={}) as validate:
                 CARDS.render_all(ROOT, output, Path(temp) / 'sabon.woff2')
+            # Only the Performance back carries the headshot.
+            headshot.assert_called_once_with(ROOT, 'src/headshot.jpg')
+            self.assertEqual([call.args[5] for call in pdf.call_args_list],
+                             [headshot.return_value, None, None])
             self.assertEqual(pdf.call_count, 3)
             self.assertEqual(png.call_count, 3)
             self.assertEqual(validate.call_count, 3)

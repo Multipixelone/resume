@@ -3,8 +3,9 @@
 ## Current status (2026-10-23)
 
 The user approved the latest tweaked Performance front/back proof and explicitly
-authorized the full three-profile generator and separate build. Website wiring,
-3D material, and the separate sans-serif print test remain deferred. The earlier
+authorized the full three-profile generator and separate build. A subsequent
+request authorized the Contact page's 3D Performance card, including mobile
+device tilt (see below). The separate sans-serif print test remains deferred. The earlier
 proof-only approval boundary below records the historical decision, not the
 current scope. Original proofs and local font assets remain user-owned.
 
@@ -97,8 +98,18 @@ explicit-font render command. All three two-page PDFs passed front/back order,
 270 x 162-point media/bleed boxes, 252 x 144-point trim, embedded-font, and
 unprinted-background checks. Ink PNGs are RGBA at 1050 x 600 / 300 DPI; cream
 previews are RGB at that size, and actual-size proxies are RGB at 336 x 192 /
-96 DPI. Technology contains no phone number. All backs are pixel-identical,
+96 DPI. Technology contains no phone number. All backs were then pixel-identical,
 and their QR codes decode to `https://finnrut.is` at both resolutions.
+
+After the 2026-10-24 back redraw (see Approved content), all three profiles
+again passed the full render's structural, safe-area and digital QR checks. That
+local run substituted Sabon Next LT, which lacks small caps, for the unchanged
+fronts, so a render with the licensed Sabon Next remains the print source.
+Minimum visible-ink margins on the backs are 0.25 inches for Performance (the
+headshot) and 0.4133 inches for Technology and Work. Across 648 simulated camera
+captures (size, blur, fading, tilt, JPEG and rotation), zxing decoded the new
+backs about as often as the old one: 332 (Performance) and 328 (Technology)
+against 336.
 
 Measured minimum visible-ink margins (front/back) are 0.2567 / 0.3733 inches for
 Performance and 0.2533 / 0.3733 inches for Technology and Work. All six Performance
@@ -109,7 +120,103 @@ per-profile `validation.json` files. Temporary evidence is not a durable archive
 
 Digital QR checks do not prove scanning on the chosen physical stock. Exports
 remain subject to printer specifications, with no PDF/X, CMYK, licensing, or
-press-ready certification. Website and 3D integration remain deferred.
+press-ready certification.
+
+## Contact-page rendering
+
+The `/booking/` page displays a web edition of the approved Performance card.
+At the user's request, the web front and contact actions omit the phone number;
+the printable card retains it. The page remains
+focused on theatre; Technology and Work are not selectors on this surface.
+The card leads a single column. Its printed email and Instagram are native HTML
+links, with rust underlines, keyboard focus, and normal browser link actions.
+The former contact column and separate action row repeated the artwork's
+details, so both were removed. Reel and resume stay in the main navigation.
+The print generator and its proprietary font inputs are not website
+build dependencies.
+
+`website/static/cards/performance/front-web-ink.png` and `back-ink.png` are
+transparent, trim-sized 1050 x 600 images derived from the approved PDF. The web
+front omits the phone row and recenters email and Instagram using the original
+vector lettering and icons. The identity, perforation, rust QR, and quiet zone
+are preserved. The former phone-bearing `front-ink.png` is not shipped. Their
+initial source was the user-owned
+`business-cards/performance/performance-proof.pdf`, SHA-256
+`306119b4698fdfd3a9ed49fe24bfdab1d8c50085e1ccf616e4c26aee040a1ea6`.
+The source PDF is not changed or bundled into the website. Since the 2026-10-24
+redraw, `back-ink.png` comes from the generated `performance.pdf` and carries the
+headshot. That makes it about 360 KB (lossy WebP smeared the QR edges and the
+face), so the component fetches it at low priority, behind the visible front.
+
+To refresh the site artwork from an approved generator output, using Python with
+PyMuPDF installed:
+
+```sh
+python website/scripts/export_business_card.py --pdf /tmp/business-cards/performance/performance.pdf
+```
+
+The exporter checks the Performance print contact text and trim geometry before
+creating the phone-free web front and unchanged back. Review artwork changes
+before replacing these snapshots.
+Committed static textures work in both Vite and the Nix site build without a new
+parent-directory filesystem allowance or Sabon dependency.
+
+`BusinessCard.svelte` owns progressive enhancement, input, and lifecycle.
+`business-card/scene.ts` is a dynamically imported Three.js scene: square stock
+with a thin cut edge, a slight bow, fine pulp grain and fibers, warm diffuse light,
+and a soft projected shadow. The matte Lambert material has no specular highlights;
+the grain remains subtly visible in flat light, with mipmapped relief to avoid
+shimmer during movement. The paper color, grain and lighting are material
+properties, not changes to the exported ink. The stock uses the lighter Ticket
+Stock color, with a warmer cut edge. A shallow resting tilt and a distant
+perspective camera keep the near corner from appearing enlarged.
+The flat image is present in the
+prerendered HTML and stays available if WebGL or the module fails. A native button
+behind the contact links turns the card: Enter and Space work without a separate
+visible control. Pointer dragging snaps to a readable front or back, and a tap
+on the blank card flips it. A contact tap follows its link; a drag beginning on
+a contact turns the card and suppresses navigation.
+
+`business-card/links.js` maps the artwork's coordinates through the same camera
+and canvas bounds as the rendered card. The anchors and their underlines follow
+that CSS projection without duplicating the printed text. They hide on the back
+and near the edge, and their targets stay at least 44px tall. The two target
+areas meet between the printed rows, so phone targets cannot overlap. Without
+JavaScript, WebGL, or motion, the same anchors sit over the flat artwork using
+CSS alone. The button and links are siblings, not nested interactive elements.
+
+A gentle six-second vertical float shares a phase with a twelve-second
+figure-eight tilt. The tilt adds about 3 degrees of yaw, 1.5 degrees of pitch
+and a slight bank, keeping the face readable. A separate spring blends the
+idle tilt out for hover, dragging, flips and device tilt, then restores it
+gradually. Holding the card freezes the phase so release has no jump.
+The broad, offset shadow softens and lightens as the card rises and fades as the
+card turns edge-on. The canvas extends beyond the stage on all sides, with
+horizontal bleed bounded by the viewport to prevent scrolling. The camera
+matches those bounds so the card keeps its size, position and pointer bounds.
+
+On touch devices, **Use device tilt** explicitly enables relative device
+orientation. iOS-style permission is requested directly from that tap, without
+requesting absolute compass orientation. The first valid sample calibrates the
+hand's neutral position; portrait/landscape changes recalibrate. Angles are
+bounded, spring-smoothed, and ignore small sensor jitter. Denied permission,
+missing data, or unavailable sensors leave the ordinary controls usable. Device
+orientation requires a secure context: HTTPS in production or localhost when
+testing. A phone visiting a plain-HTTP LAN development address will not offer it.
+
+Reduced motion and forced colors use a still card with instantaneous front/back
+changes. The scene initializes only in view and uses at most 2x pixel density.
+The idle float renders at 30fps; input and settling use the full display rate.
+Hidden/offscreen cards stop frames and detach sensor listeners. Navigation
+disposes GPU resources and listeners.
+The mathematical tests cover spring convergence, side selection, device angle
+wrapping, calibration, landscape axis mapping, contact projection through
+resizes and canvas bleed, and hiding front links during a turn. A real phone is still needed
+to assess the physical sensor feel and its native permission prompt.
+
+Implementation references: [Three.js on-demand rendering](https://threejs.org/manual/pages/rendering-on-demand.html),
+[diffuse paper material](https://threejs.org/docs/pages/MeshLambertMaterial.html),
+and [device orientation](https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent).
 
 ## Historical proof-only handoff
 
@@ -169,19 +276,47 @@ per-variant or per-employer output and no new fourth profile.
 These values were checked against the Personal section of REFERENCE.md. All fronts
 carry **Finn Rutis** and **they / them**.
 
-| Front | Email | Phone | Social |
-| --- | --- | --- | --- |
-| Performance | `me@finnrut.is` | `503-267-5052` | Instagram `@finnrutis` |
-| Technology | `tech@finnrut.is` | None | GitHub `Multipixelone` |
-| Work | `work@finnrut.is` | `503-267-5052` | None |
+| Front | Role | Email | Phone | Social |
+| --- | --- | --- | --- | --- |
+| Performance | `musical theatre performer` | `me@finnrut.is` | `503-267-5052` | Instagram `@finnrutis` |
+| Technology | None | `tech@finnrut.is` | None | GitHub `Multipixelone` |
+| Work | None | `work@finnrut.is` | `503-267-5052` | None |
 
-Profile names are internal only, not printed audience labels. No taglines or extra
-social fields are approved. Typography and label treatment must not introduce new
-content.
+Profile names are internal only, not printed audience labels. On 2026-10-24 Finn
+approved an optional per-profile `role` line: Finn's own words for what they do,
+set directly under the name. A role is a category, not a tagline. Performance
+uses "musical theatre performer" (voiceover was left off because the site has no
+voiceover material). Technology and Work have no role until Finn writes one. No
+taglines or extra social fields are approved. Typography and label treatment must
+not introduce new content.
 
-All profiles share a common back: QR to `https://finnrut.is` plus the human-readable
-website address. REFERENCE.md records `www.finnrut.is`; the intended QR destination
-is the confirmed HTTPS root above.
+The same day, Finn asked for the role and pronoun lines to be redrawn; the first
+treatment was a 10pt Sabon italic role over 8pt PragmataPro pronouns. The role is
+now Sabon Next's true small caps at 8pt in Program Ink, letterspaced to run from
+the left edge of "Finn" to the last ink of "Rutis" (about 0.1em on Performance).
+Spacing stays between 0.04em and 0.14em; a role too long for that fails the
+render, and a short one ends early. On every profile the pronouns follow in 8.5pt
+Sabon Next italic, Faded Ink, on the same margin, so the name keeps its column and
+perforation and only the block's vertical centre moves. PragmataPro remains on
+the back for the website address. The renderer remaps a-z to the regular file's
+`.sc` glyphs in memory and renames that face, because ReportLab merges fonts that
+share a face name. It reads `Sabon Next Italic.woff2` beside the supplied
+`--sabon` file.
+
+All profiles share the back's code: a rust QR to `https://finnrut.is`, captioned
+by the human-readable website address. REFERENCE.md records `www.finnrut.is`; the
+intended QR destination is the confirmed HTTPS root above.
+
+On 2026-10-24 Finn asked for the address closer to the code and for a headshot
+on the back, and chose Performance only. The address's tallest ink now sits two
+modules under the code (the source PNG's own quiet zone) instead of four; the
+other three sides keep four. The Performance back adds `src/headshot.jpg`, the
+composite resume's headshot, as a 4:5 print (a theatre 8x10) at the full safe
+height: 1.2 x 1.5 inches, standing at the 0.25-inch margins and embedded as a
+600 ppi JPEG. The code centres between the print and the card's right edge.
+Technology and Work keep the centred code. The headshot is an optional
+per-profile `headshot` path in `cards/profiles.toml`; the renderer trims the
+sides evenly, keeps the top, and fails under 300 ppi.
 
 ## Physical format and material
 
@@ -237,7 +372,9 @@ as the intended website, not independently machine-decoded evidence.
 Use rust for the QR. Preserve the module pattern and quiet zone when recoloring;
 do not distort it or let decoration intrude. Validate the recolored QR at actual
 size before final approval. Existing destination confirmation does not establish
-that the new rust rendering will scan reliably on the chosen stock.
+that the new rust rendering will scan reliably on the chosen stock. At Finn's
+request the website address keeps two modules clear under the code rather than
+four; the other three sides keep four.
 
 ## Agreed working export defaults
 

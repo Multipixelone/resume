@@ -10,6 +10,10 @@ address = "www.finnrut.is"
 destination = "https://finnrut.is"
 
 [profiles.performance]
+# Optional role line between the name and the pronouns, in Finn's words. Other profiles have none yet.
+role = "musical theatre performer"
+# Optional headshot beside the QR on the back, a repository path. Finn chose Performance only.
+headshot = "src/headshot.jpg"
 email = "me@finnrut.is"
 phone = "503-267-5052"
 instagram = "@finnrutis"

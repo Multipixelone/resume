@@ -24,3 +24,9 @@ Licensed `.woff2` files dropped into the gitignored `fonts-local/` (same names a
 `src/styles/fonts.css`) are served same-origin by both dev servers, so local pages and
 impeccable live need no CORS grant from `fonts.finnrut.is`. Faces without a local copy
 load remotely. Builds always use the remote URLs; restart dev after adding a file.
+
+The Contact page's business card uses committed transparent Performance artwork
+and a lazy Three.js scene. `npm test` includes its motion and orientation math.
+See [business cards](../docs/business-cards.md#contact-page-rendering) for texture
+refresh commands and mobile tilt behavior. Testing tilt from a phone requires an
+HTTPS origin; a plain-HTTP LAN address cannot expose device orientation.

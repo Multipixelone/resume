@@ -3,6 +3,7 @@
   import Arrow from '$lib/components/Arrow.svelte';
   import CoverPrint from '$lib/components/CoverPrint.svelte';
   import PageHead from '$lib/components/PageHead.svelte';
+  import PerformanceNextSteps from '$lib/components/PerformanceNextSteps.svelte';
   import Recording from '$lib/components/Recording.svelte';
   import ReelPrint from '$lib/components/ReelPrint.svelte';
   import type { PageProps } from './$types';
@@ -57,3 +58,5 @@
     {/if}
   </nav>
 {/if}
+
+<PerformanceNextSteps resumePdf={data.resumePdf} />

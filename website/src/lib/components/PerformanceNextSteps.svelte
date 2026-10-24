@@ -36,7 +36,7 @@
     align-items: center;
     gap: 2rem;
     max-width: 56rem;
-    margin: var(--space-section) auto 0;
+    margin: var(--next-steps-space, var(--space-section)) auto 0;
     padding: clamp(1.5rem, 4vw, 3rem);
     /* Paper and perforation share one transform; only the words stay level. */
     rotate: var(--paper-angle);

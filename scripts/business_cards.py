@@ -1,7 +1,8 @@
 """Render the three shared business cards, independently of resume mappings.
 
-Drawing geometry is taken from proofs/business-cards/performance/proof.py,
-including the approved left-aligned pronouns. The proof is not a runtime input
+Name and contact geometry is taken from
+proofs/business-cards/performance/proof.py; the role and pronoun lines under
+the name, and the back, were redrawn after it. The proof is not a runtime input
 and is never modified. Sabon conversion stays in memory, not in a font asset.
 
 Requires Python 3.11+, reportlab, PyMuPDF, Pillow, fonttools[woff], zxing-cpp.
@@ -41,12 +42,10 @@ TRIM_BOX = (9, 9, 261, 153)
 MARGIN = 18
 NAME = 40
 CONTACT = 10
-LABEL = 8
 URL = 7
 ROW = 24
 NAME_CAP = 1434 / 2000
 CONTACT_CAP = 685 / 1000
-LABEL_ASCENT = 1526 / 2048
 SIDES = ('front', 'back')
 # This is a card-content schema, not a second resume variant registry.
 PROFILE_FIELDS = {
@@ -54,6 +53,32 @@ PROFILE_FIELDS = {
     'technology': ('email', 'github'),
     'work': ('email', 'phone'),
 }
+# A profile may print one role line, in Finn's words. Under the name, the role
+# (true small caps, letterspaced to span the name) and the pronouns (italic, in
+# Faded Ink) form one quiet Sabon tier. A missing role prints only the pronouns.
+# A headshot, a repository path, prints on that profile's back beside the QR.
+OPTIONAL_FIELDS = ('role', 'headshot')
+MUTED = '#6f6456'
+ROLE = 8
+PRONOUNS = 8.5
+UNDER_NAME = 9  # From the surname baseline to the first small line's x-height.
+LINE_STEP = 11
+SMALL_CAP = 457 / 1000
+ITALIC_X = 454 / 1000
+SURNAME_RSB = 50 / 2000  # Cooper Black "s": the role ends on the surname's ink.
+ROLE_TRACKING = (0.04, 0.14)  # em
+SMALL_CAPS_SUFFIX = 'SC'
+# The QR is 25 modules inside a four-module quiet zone. The address under it
+# keeps two of those modules clear, the source PNG's own quiet zone, so it
+# reads as the code's caption; the other three sides keep all four.
+QR_SIZE = 96
+MODULE = QR_SIZE / 33
+SYMBOL = 25 * MODULE
+CAPTION_GAP = 2 * MODULE
+URL_TOP = 1647 / 2048  # PragmataPro "i" dot, the address's tallest ink.
+# A theatre 8x10 (4:5) at the full safe height, standing at the margins.
+HEADSHOT = (MARGIN, MARGIN, 0.8 * (TRIM[1] - 2 * MARGIN), TRIM[1] - 2 * MARGIN)
+HEADSHOT_PPI = 600
 
 
 def require(condition, message):
@@ -84,7 +109,10 @@ def load_profiles(path):
     require(isinstance(profiles, dict) and set(profiles) == set(PROFILE_FIELDS),
             'expected exactly performance, technology, and work card profiles')
     for name, fields in PROFILE_FIELDS.items():
-        text_table(profiles[name], fields, f'profiles.{name}')
+        profile = profiles[name]
+        require(isinstance(profile, dict), f'profiles.{name}: expected a table')
+        optional = tuple(key for key in OPTIONAL_FIELDS if key in profile)
+        text_table(profile, fields + optional, f'profiles.{name}')
     return data
 
 
@@ -132,6 +160,10 @@ def font_paths(root, sabon):
     paths = {
         'Cooper': root / 'website/scripts/fonts/cooper/Cooper-Black.ttf',
         'Contacts': sabon,
+        # The role uses the regular file's own small caps; pronouns use the
+        # italic beside it.
+        'SmallCaps': sabon,
+        'Italic': sabon.with_name('Sabon Next Italic.woff2'),
         'Labels': root / 'src/fonts/PragmataPro_Mono_Regular_ligatures_0827.ttf',
     }
     require(sabon.is_file(), f'Sabon Next not found at {sabon}. Supply --sabon FONT_PATH '
@@ -141,9 +173,35 @@ def font_paths(root, sabon):
     return paths
 
 
+def small_caps(source):
+    """Map a-z to the font's true small caps, in memory like truetype().
+
+    Runs before truetype(), whose TrueType output has no glyph names. PDF text
+    still extracts as the original lowercase string.
+    """
+    with Font(source) as font:
+        caps = {code: f'{chr(code)}.sc' for code in range(ord('a'), ord('z') + 1)}
+        require(set(caps.values()) <= set(font.getGlyphOrder()),
+                'Sabon font must include true small caps (a.sc to z.sc)')
+        for table in font['cmap'].tables:
+            if table.isUnicode():
+                table.cmap.update(caps)
+        # ReportLab treats fonts with one face name as one font, so rename it.
+        for record in font['name'].names:
+            if record.nameID == 6:
+                record.string = record.toUnicode() + SMALL_CAPS_SUFFIX
+        font.flavor = None
+        data = BytesIO()
+        font.save(data)
+    data.seek(0)
+    return data
+
+
 def register_fonts(paths):
+    loaders = {'Contacts': truetype, 'Italic': truetype,
+               'SmallCaps': lambda path: truetype(small_caps(path))}
     for name, path in paths.items():
-        pdfmetrics.registerFont(TTFont(name, truetype(path) if name == 'Contacts' else str(path)))
+        pdfmetrics.registerFont(TTFont(name, loaders[name](path) if name in loaders else str(path)))
     return {name: hashlib.sha256(path.read_bytes()).hexdigest() for name, path in paths.items()}
 
 
@@ -166,11 +224,39 @@ def rust_qr(path, destination):
     return rgba
 
 
-def lettering(canvas, value, font, size, x, y, color=INK, centered=False):
+def headshot_image(root, relative):
+    """Crop the headshot to its 4:5 print and embed it as a 600 ppi JPEG.
+
+    The sides are trimmed evenly to keep the photographer's framing, and the
+    top is kept so the hair is never cut. Under 300 ppi at card size fails.
+    """
+    root = Path(root).resolve()
+    path = (root / relative).resolve()
+    require(path.is_relative_to(root) and path.is_file(), f'Headshot not found in the repository: {relative}')
+    with Image.open(path) as source:
+        photo = ImageOps.exif_transpose(source).convert('RGB')
+    width, height = HEADSHOT[2:]
+    crop_width = min(photo.width, photo.height * width / height)
+    crop_height = crop_width * height / width
+    pixels = (round(width / 72 * HEADSHOT_PPI), round(height / 72 * HEADSHOT_PPI))
+    require(crop_width >= pixels[0] / 2 and crop_height >= pixels[1] / 2,
+            f'Headshot is under 300 ppi at card size: {relative}')
+    left = (photo.width - crop_width) / 2
+    photo = photo.crop((round(left), 0, round(left + crop_width), round(crop_height)))
+    buffer = BytesIO()
+    photo.resize(pixels, Image.Resampling.LANCZOS).save(buffer, format='JPEG', quality=92, subsampling=0)
+    buffer.seek(0)
+    # ReportLab embeds a JPEG reader's bytes as they are, without recompressing.
+    return ImageReader(buffer)
+
+
+def lettering(canvas, value, font, size, x, y, color=INK, centered=False, tracking=0):
     canvas.setFillColor(HexColor(color))
     canvas.setFont(font, size)
     if centered:
         canvas.drawCentredString(x, y, value)
+    elif tracking:
+        canvas.drawString(x, y, value, charSpace=tracking)
     else:
         canvas.drawString(x, y, value)
 
@@ -235,22 +321,37 @@ def contact_icon(canvas, kind, x, y):
     canvas.restoreState()
 
 
+def role_tracking(role, span):
+    """Letterspace the small caps role so it runs from the margin to `span`."""
+    natural = pdfmetrics.stringWidth(role, 'SmallCaps', ROLE)
+    tracking = (span - MARGIN - natural) / max(len(role) - 1, 1)
+    require(tracking >= ROLE_TRACKING[0] * ROLE, 'Role line is wider than the name; shorten it')
+    # A short role stays at the widest readable spacing and ends before the name.
+    return min(tracking, ROLE_TRACKING[1] * ROLE)
+
+
 def draw_front(canvas, identity, profile):
-    # Keep the current approved proof geometry, including left-aligned pronouns.
+    # The name keeps the approved proof geometry. Below it, the role and the
+    # pronouns share the margin; the block is centred from the top of "Finn"
+    # to the pronoun baseline.
     leading = 0.87 * NAME
-    drop = leading - NAME_CAP * NAME + LABEL_ASCENT * LABEL
-    top = (TRIM[1] + NAME_CAP * NAME + leading + drop) / 2
+    role = profile.get('role')
+    under = UNDER_NAME + (SMALL_CAP * ROLE + LINE_STEP if role else ITALIC_X * PRONOUNS)
+    top = (TRIM[1] + NAME_CAP * NAME + leading + under) / 2
     finn = top - NAME_CAP * NAME
-    bottom = finn - leading - drop
+    bottom = finn - leading - under
     surname_x = MARGIN + 0.19 * NAME
+    surname_end = surname_x + pdfmetrics.stringWidth(identity['last_name'], 'Cooper', NAME)
     lettering(canvas, identity['first_name'], 'Cooper', NAME, MARGIN, finn)
     lettering(canvas, identity['last_name'], 'Cooper', NAME, surname_x, finn - leading, RUST)
-    lettering(canvas, identity['pronouns'], 'Labels', LABEL, MARGIN, bottom)
+    if role:
+        tracking = role_tracking(role, surname_end - SURNAME_RSB * NAME)
+        lettering(canvas, role, 'SmallCaps', ROLE, MARGIN, bottom + LINE_STEP, tracking=tracking)
+    lettering(canvas, identity['pronouns'], 'Italic', PRONOUNS, MARGIN, bottom, MUTED)
     contacts = contacts_for(profile)
     text_x = TRIM[0] - MARGIN - max(pdfmetrics.stringWidth(value, 'Contacts', CONTACT)
                                    for _, value in contacts)
     icon_x = text_x - 1.5 * CONTACT
-    surname_end = surname_x + pdfmetrics.stringWidth(identity['last_name'], 'Cooper', NAME)
     require(icon_x > surname_end + 2, 'Contact column overlaps the name; review layout')
     rule_x = (surname_end + icon_x) / 2
     dashes = round((top - bottom + 2.7) / 4.2)
@@ -264,41 +365,49 @@ def draw_front(canvas, identity, profile):
         lettering(canvas, value, 'Contacts', CONTACT, text_x, baseline)
 
 
-def draw_back(canvas, qr, back):
-    # Exact approved QR placement, scale, quiet zone, and website baseline.
-    size = 96
-    quiet = 4 * size / 33
-    url_top = 1647 / 2048 * URL
-    url_y = (TRIM[1] - (size - quiet + url_top)) / 2
+def draw_back(canvas, qr, back, headshot=None):
+    # The code and its address are centred together on the card's height. A
+    # headshot stands at the safe margins, and the code then sits midway
+    # between the print and the card's right edge.
+    url_y = (TRIM[1] - (SYMBOL + CAPTION_GAP + URL_TOP * URL)) / 2
+    middle = TRIM[0] / 2
+    if headshot is not None:
+        x, y, width, height = HEADSHOT
+        canvas.drawImage(headshot, x, y, width=width, height=height)
+        middle = (x + width + TRIM[0]) / 2
     buffer = BytesIO()
     qr.save(buffer, format='PNG')
-    canvas.drawImage(ImageReader(buffer), (TRIM[0] - size) / 2, url_y + url_top,
-                     width=size, height=size, mask='auto')
-    lettering(canvas, back['address'], 'Labels', URL, TRIM[0] / 2, url_y, centered=True)
+    canvas.drawImage(ImageReader(buffer), middle - QR_SIZE / 2,
+                     url_y + URL_TOP * URL + CAPTION_GAP - 4 * MODULE,
+                     width=QR_SIZE, height=QR_SIZE, mask='auto')
+    lettering(canvas, back['address'], 'Labels', URL, middle, url_y, centered=True)
 
 
-def png_metadata(profile, side, kind):
+def png_metadata(profile, side, kind, headshot=None):
     metadata = PngImagePlugin.PngInfo()
     metadata.add_text('Title', f'Finn Rutis {profile} card, {side}, {kind}')
     metadata.add_text('Source', 'scripts/business_cards.py; cards/profiles.toml; '
-                      'proofs/business-cards/performance/proof.py; REFERENCE.md; DESIGN.md')
-    description = ('Code-rendered artwork, not AI-generated imagery. '
-                   'Approved stacked-name front and centered-QR back. '
-                   'QR pixels from metadata/qr-code.png; rust recolor with four-module quiet zone. '
+                      'proofs/business-cards/performance/proof.py; REFERENCE.md; DESIGN.md'
+                      + (f'; {headshot}' if headshot else ''))
+    description = ('Code-rendered artwork, not AI-generated imagery. Stacked-name front. '
+                   + (f'Back: the photographed headshot from {headshot}, cropped to 4:5, beside the QR. '
+                      if headshot else 'Back: centered QR. ')
+                   + 'QR pixels from metadata/qr-code.png; rust recolor with four-module quiet zone, '
+                   'two above the website address. '
                    'Cooper Black, Sabon Next, PragmataPro. Cream is preview-only.')
     metadata.add_text('Description', description)
     metadata.add_text('impeccable:prompt', f'{side} {kind}: {description}')
     return metadata
 
 
-def render_pdf(path, identity, profile, back, qr):
+def render_pdf(path, identity, profile, back, qr, headshot=None):
     raw_pdf = BytesIO()
     canvas = Canvas(raw_pdf, pagesize=(270, 162), initialFontName='Cooper',  # type: ignore[arg-type]
                     initialFontSize=NAME, pageCompression=1, invariant=1)
     canvas.setTitle('Finn Rutis - business card')
     canvas.setAuthor('Finn Rutis')
     canvas.setSubject('Front then back; unprinted stock; 3.5 x 2 inch trim; 1/8 inch bleed')
-    for draw in (lambda c: draw_front(c, identity, profile), lambda c: draw_back(c, qr, back)):
+    for draw in (lambda c: draw_front(c, identity, profile), lambda c: draw_back(c, qr, back, headshot)):
         canvas.saveState()
         canvas.translate(BLEED, BLEED)
         draw(canvas)
@@ -326,7 +435,7 @@ def paper_preview(ink):
     return preview.convert('RGB')
 
 
-def export_pngs(pdf, directory, profile):
+def export_pngs(pdf, directory, profile, headshot=None):
     with fitz.open(pdf) as doc:
         for page, side in zip(doc, SIDES):
             ink = page_ink(page)
@@ -335,7 +444,7 @@ def export_pngs(pdf, directory, profile):
             for kind, image, dpi in (('ink', ink, 300), ('preview', preview, 300),
                                      ('actual-size', small, 96)):
                 image.save(directory / f'{side}-{kind}.png', dpi=(dpi, dpi),
-                           pnginfo=png_metadata(profile, side, kind))
+                           pnginfo=png_metadata(profile, side, kind, headshot))
 
 
 def validate_pdf_page(doc, page, expected, side) -> dict[str, Any]:
@@ -388,6 +497,19 @@ def validate_ink(ink, side):
     return bbox, margin / 300
 
 
+def headshot_evidence(page, profile):
+    # The QR is a Flate image; only a headshot is embedded as JPEG. ReportLab
+    # wraps both in ASCII85, so read each image's whole filter chain.
+    photos = [image[2:4] for image in page.get_images(full=True)
+              if '/DCTDecode' in page.parent.xref_get_key(image[0], 'Filter')[1]]
+    pixels = tuple(round(n / 72 * HEADSHOT_PPI) for n in HEADSHOT[2:])
+    require(photos == ([pixels] if 'headshot' in profile else []),
+            'back: a headshot must print once, at 600 ppi, exactly where the profile names one')
+    if not photos:
+        return {}
+    return {'headshot': profile['headshot'], 'headshot_pixels': list(pixels), 'headshot_ppi': HEADSHOT_PPI}
+
+
 def decode_qr(image, destination, context):
     decoded = zxingcpp.read_barcode(image)
     if decoded is None or decoded.text != destination:
@@ -410,7 +532,8 @@ def validate_artifacts(directory, profile_name, identity, profile, back):
     required = artifact_names(profile_name) - {'validation.json'}
     require(required <= actual_files <= artifact_names(profile_name),
             f'{profile_name}: unexpected or missing output files')
-    expected = [[identity['first_name'], identity['last_name'], identity['pronouns'],
+    expected = [[identity['first_name'], identity['last_name'],
+                 *((profile['role'],) if 'role' in profile else ()), identity['pronouns'],
                  *(value for _, value in contacts_for(profile))], [back['address']]]
     checks: dict[str, Any] = {'profile': profile_name, 'pdf': [], 'png': [], 'qr': {}}
     with fitz.open(directory / f'{profile_name}.pdf') as doc:
@@ -425,6 +548,11 @@ def validate_artifacts(directory, profile_name, identity, profile, back):
             same_pixels(preview, paper_preview(ink), f'{side}: preview differs from ink on cream')
             same_pixels(small, preview.resize((336, 192), Image.Resampling.LANCZOS),
                         f'{side}: actual-size proxy differs from preview')
+            if side == 'front' and 'role' in profile:
+                require(any(font.endswith(SMALL_CAPS_SUFFIX) for font in evidence['embedded_fonts']),
+                        'front: role line is not set in the small caps face')
+            if side == 'back':
+                evidence.update(headshot_evidence(page, profile))
             bbox, margin = validate_ink(ink, side)
             evidence.update(page=i + 1, visible_ink_bounds_300dpi=bbox, minimum_ink_margin_in=margin)
             checks['pdf'].append(evidence)
@@ -436,7 +564,8 @@ def validate_artifacts(directory, profile_name, identity, profile, back):
                 for dpi, image in ((300, preview), (96, small)):
                     checks['qr'][str(dpi)] = decode_qr(image, back['destination'], f'{dpi} DPI')
     checks['qr'].update(source_destination=back['destination'], quiet_zone_modules=4,
-                        qr_width_including_quiet_zone_in=96 / 72,
+                        address_clearance_modules=CAPTION_GAP / MODULE,
+                        qr_width_including_quiet_zone_in=QR_SIZE / 72,
                         physical_stock_scan='Pending user print test; digital decode is not print certification.')
     checks['pdf_background'] = 'No page-sized fill; transparent QR whites; unprinted stock.'
     checks['print_compliance'] = 'RGB artwork, not PDF/X or CMYK certification; confirm printer specifications.'
@@ -473,11 +602,14 @@ def render_all(root, output, sabon):
         report = directory / 'validation.json'
         report.unlink(missing_ok=True)  # Do not leave a stale success report after a failed rerender.
         pdf = directory / f'{name}.pdf'
-        render_pdf(pdf, data['identity'], profile, data['back'], qr)
-        export_pngs(pdf, directory, name)
+        headshot = headshot_image(root, profile['headshot']) if 'headshot' in profile else None
+        render_pdf(pdf, data['identity'], profile, data['back'], qr, headshot)
+        export_pngs(pdf, directory, name, profile.get('headshot'))
         checks = validate_artifacts(directory, name, data['identity'], profile, data['back'])
         checks['font_sha256'] = hashes
         checks['qr_source_sha256'] = hashlib.sha256(qr_path.read_bytes()).hexdigest()
+        if 'headshot' in profile:
+            checks['headshot_source_sha256'] = hashlib.sha256((root / profile['headshot']).read_bytes()).hexdigest()
         checks['profiles_sha256'] = hashlib.sha256((root / 'cards/profiles.toml').read_bytes()).hexdigest()
         report.write_text(json.dumps(checks, indent=2) + '\n', encoding='utf-8')
         print(f'{name}: {pdf} (structural and digital QR checks passed)')
