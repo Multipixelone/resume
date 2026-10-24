@@ -1,7 +1,8 @@
 import { dev } from '$app/environment';
 
 export interface Escapade {
-  title: string;
+  /** Optional heading over the blurb. Without one the entry is just its text. */
+  title?: string;
   /** Blank lines split it into paragraphs. Backtick strings take apostrophes and line breaks as is. */
   blurb: string;
   /** Optional print beside the text, from static/media/. Without one the entry is a paper slip. */
@@ -16,15 +17,12 @@ export const statement = `I believe that there exists a lot of humanity in the e
 /** Off-stage notes on /about/, in display order. An empty list hides the section. */
 export const escapades: Escapade[] = [
   {
-    title: `[Escapade title]`,
     blurb: `From a very young age, I was incredibly into computers. My dad gave me the family's old Dell Inspiron and that computer and its bloated Windows XP install became my stomping ground for years. Microsoft Publisher, setting up Minecraft servers, downloading bootleg software for my PDAs. In third grade, I'd speedrun my assignments so I could hop on the iBook G4s in the back of the classroom and fire up Scratch, a drag-and-drop programming language that became my home.`
   },
   {
-    title: `[Escapade title]`,
     blurb: `When I first auditioned for theatre in middle school, I only really did it because the people who were doing it seemed really cool already. It was sort of an aspirational audition: "if I do this, maybe I'll be even half as cool as them." The people in theatre just seemed more unapologetically themselves than almost anyone else I knew, and I knew that the place for me was going to be like that.`
   },
   {
-    title: `[Escapade title]`,
     blurb: `As soon as I fell in love with theatre, New York City was really the only option. I looked at universities in other states and even outside of the city, but every time they just didn't feel right. The thought that existing freely in those places basically mandated car ownership never sat right with me. There's something about a walkable city with easily accessible public transit that feels intrinsically more human to me, and I don't think it's an amenity I will allow any future places I live to lack.`
   }
 ];
@@ -32,4 +30,4 @@ export const escapades: Escapade[] = [
 // A slot still reading like `[Artist statement]` is one Finn hasn't written. Builds leave
 // /about/ and every link to it out until none is left; dev keeps the page for writing.
 const unwritten = (text: string) => !text.trim() || /^\[[^\]]*\]$/.test(text.trim());
-export const showAbout = dev || ![statement, ...escapades.flatMap(item => [item.title, item.blurb])].some(unwritten);
+export const showAbout = dev || ![statement, ...escapades.flatMap(item => (item.title ? [item.title, item.blurb] : [item.blurb]))].some(unwritten);

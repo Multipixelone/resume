@@ -38,7 +38,7 @@
           <div class="offstage-copy">
             <span class="photo-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
             <div>
-              <h3>{item.title}</h3>
+              {#if item.title}<h3>{item.title}</h3>{/if}
               {#each paragraphs(item.blurb) as paragraph}<p>{paragraph}</p>{/each}
               {#if item.link}<a class="text-link" href={item.link.href}>{item.link.label} <Arrow /></a>{/if}
             </div>

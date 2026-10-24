@@ -445,6 +445,7 @@ main:focus { outline: none; }
 .offstage-copy .photo-index { padding-top: .6rem; }
 .offstage-copy h3 { font: 700 clamp(1.5rem, 2.6vw, 2rem)/1.15 var(--font-display); letter-spacing: -.02em; }
 .offstage-copy p { max-width: 60ch; margin-top: .75rem; }
+.offstage-copy p:first-child { margin-top: 0; }
 .offstage-copy .text-link { margin-top: .5rem; }
 /* Without a photo the text sits on a slip; only the paper behind it tilts, never the words. */
 .offstage-item--slip, .offstage-item--slip:nth-child(even) { grid-template-columns: minmax(0, 1fr); width: min(100%, 44rem); }
