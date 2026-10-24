@@ -17,13 +17,15 @@ export const statement = `I believe that there exists a lot of humanity in the e
 /** Off-stage notes on /about/, in display order. An empty list hides the section. */
 export const escapades: Escapade[] = [
   {
-    blurb: `From a very young age, I was incredibly into computers. My dad gave me the family's old Dell Inspiron and that computer and its bloated Windows XP install became my stomping ground for years. Microsoft Publisher, setting up Minecraft servers, downloading bootleg software for my PDAs. In third grade, I'd speedrun my assignments so I could hop on the iBook G4s in the back of the classroom and fire up Scratch, a drag-and-drop programming language that became my home.`
+    blurb: `From a very young age, I was incredibly into computers. My dad gave me the family's old Dell Inspiron and that computer and its bloated Windows XP install became my stomping ground for years. Microsoft Publisher, setting up Minecraft servers, downloading bootleg software for my PDAs. In third grade, I'd speedrun my assignments so I could hop on the iBook G4s in the back of the classroom and fire up Scratch, a drag-and-drop programming language that became my home.`,
+    photo: { file: `escapade-ipod.jpg`, width: 960, height: 1280, alt: `A young kid stands in a living room wearing a homemade cardboard iPod costume, with a menu screen and click wheel on the front.` }
   },
   {
     blurb: `When I first auditioned for theatre in middle school, I only really did it because the people who were doing it seemed really cool already. It was sort of an aspirational audition: "if I do this, maybe I'll be even half as cool as them." The people in theatre just seemed more unapologetically themselves than almost anyone else I knew, and I knew that the place for me was going to be like that.`
   },
   {
-    blurb: `As soon as I fell in love with theatre, New York City was really the only option. I looked at universities in other states and even outside of the city, but every time they just didn't feel right. The thought that existing freely in those places basically mandated car ownership never sat right with me. There's something about a walkable city with easily accessible public transit that feels intrinsically more human to me, and I don't think it's an amenity I will allow any future places I live to lack.`
+    blurb: `As soon as I fell in love with theatre, New York City was really the only option. I looked at universities in other states and even outside of the city, but every time they just didn't feel right. The thought that existing freely in those places basically mandated car ownership never sat right with me. There's something about a walkable city with easily accessible public transit that feels intrinsically more human to me, and I don't think it's an amenity I will allow any future places I live to lack.`,
+    photo: { file: `escapade-molloy.jpg`, width: 1600, height: 1200, alt: `A curly-haired person in a plaid flannel shirt sits on the brick Molloy College South Gate sign with mouth wide open, in front of shrubs and a flowering tree.` }
   }
 ];
 
