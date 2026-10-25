@@ -56,7 +56,7 @@
   </div>
 
   <div class="bio-block">
-    <p>Finn Rutis is a New York City Based performance artist that is interested in using the magic of theatre to shine a light on unconscious parts of the human experience</p>
+    <p>Finn Rutis is a New York City based performance artist that is interested in using the magic of theatre to shine a light on unconscious parts of the human experience</p>
   </div>
 </section>
 
