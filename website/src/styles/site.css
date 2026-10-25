@@ -88,25 +88,43 @@ main:focus { outline: none; }
    text; the drop centers it on the cap height when the link is inline. */
 .arrow { stroke-width: 2.2; vertical-align: -.2em; }
 
-/* Footer ported from the blog: icon row, then copyright and build badge on one line. */
-.site-footer { margin-top: var(--space-section); padding: 1.25rem 0 2.5rem; border-top: 1px solid var(--border); text-align: center; font-variant: small-caps; font-synthesis: small-caps; letter-spacing: .05em; }
-/* 44px boxes clear the touch target; the negative margin keeps that padding from inflating the footer. */
-.footer-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .1rem; margin: -.4rem 0 .5rem; }
-.footer-links a { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; color: var(--muted); text-decoration: none; border-radius: 6px; transition: color 150ms ease, background-color 150ms ease; }
-.footer-links a:is(:hover, :focus-visible, [aria-current="page"]) { color: var(--accent); background: var(--paper-shade); }
-.footer-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-.footer-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .55rem; font-size: .85rem; color: var(--muted); }
-.footer-meta .sep { color: var(--border); }
-.footer-meta > a:not(.build-badge) { color: inherit; }
-.footer-meta > a:not(.build-badge):is(:hover, :focus-visible) { color: var(--accent); }
-.build-badge { display: inline-flex; align-items: center; gap: .45rem; padding: .28rem .8rem .32rem; color: var(--muted); background: var(--paper-shade); border: 1px solid var(--border); border-radius: 999px; font-size: .8rem; line-height: 1.2; text-decoration: none; transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease; }
-.build-badge:is(:hover, :focus-visible) { color: var(--accent); background: var(--paper); border-color: var(--accent); box-shadow: 0 2px 6px var(--shadow); }
+/* The stage door closes the callboard: level type, loose paper, then a colophon. */
+.site-footer { container: site-footer / inline-size; margin-top: var(--space-section); padding: 1.25rem 0 2.5rem; border-top: 1px solid var(--border); color: var(--muted); }
+.footer-directory { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: .5rem 2rem; }
+.footer-directory h2 { color: var(--muted); font: 700 1.25rem/1.2 var(--font-display); letter-spacing: -.02em; }
+.footer-links { display: flex; flex-wrap: wrap; gap: .5rem .75rem; }
+.footer-links a { position: relative; isolation: isolate; display: flex; align-items: center; gap: .75rem; min-width: 0; min-height: 44px; padding: .6rem .9rem .6rem .65rem; color: var(--muted); font-size: 1rem; text-decoration: none; }
+.footer-links .icon { color: var(--muted); }
+.footer-link-label { min-width: 0; overflow-wrap: anywhere; text-decoration: underline; text-decoration-color: var(--border); text-decoration-thickness: 1px; text-underline-offset: .2em; }
+/* Only the paper turns. Its torn edge is the same cut as the header's ticket. */
+.footer-link-paper { position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0; filter: drop-shadow(0 2px 2px rgb(43 37 32 / .1)); transform: rotate(var(--slip-angle, -2deg)); transition: opacity 150ms ease; }
+.footer-link-paper::before { content: ''; position: absolute; inset: 0; background: var(--ticket-paper); clip-path: var(--ticket-tear); }
+.footer-link-paper::after { content: ''; position: absolute; inset-block: .45rem; inset-inline-start: 2.3rem; border-inline-start: 1px dashed var(--border); }
+.footer-links a:nth-child(even) { --slip-angle: 1.5deg; }
+.footer-links a:is(:hover, :focus-visible, [aria-current="page"]) { color: var(--accent-hover); }
+.footer-links a:is(:hover, :focus-visible, [aria-current="page"]) .icon { color: inherit; }
+.footer-links a:is(:hover, :focus-visible, [aria-current="page"]) .footer-link-paper { opacity: 1; }
+.footer-links a:is(:hover, :focus-visible, [aria-current="page"]) .footer-link-label { text-decoration-color: currentColor; text-decoration-thickness: 2px; }
+.footer-links a:focus-visible { z-index: 1; }
+.footer-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem 1.5rem; margin-top: 1rem; padding-top: .75rem; border-top: 1px dashed var(--border); font-size: .875rem; }
+.footer-meta > a { display: inline-flex; align-items: center; min-height: 44px; color: inherit; }
+.footer-meta > a:is(:hover, :focus-visible) { color: var(--accent-hover); }
+.build-source { flex-wrap: wrap; gap: .4rem; margin-left: auto; }
+.build-source .icon { width: .95rem; height: .95rem; }
+.build-source code { font: .75rem/1.5 var(--font-mono); }
 @media (prefers-reduced-motion: no-preference) {
-  .build-badge:is(:hover, :focus-visible) { transform: translateY(-1px); }
+  .footer-link-paper { transform-origin: 1.2rem 50%; transform: rotate(0deg); transition: opacity 150ms ease, transform 220ms cubic-bezier(.16, 1, .3, 1); }
+  .footer-links a:is(:hover, :focus-visible, [aria-current="page"]) .footer-link-paper { transform: rotate(var(--slip-angle, -2deg)); }
 }
-.build-badge .icon { width: .95rem; height: .95rem; }
-/* The sha is data, not prose: drop the footer's small caps. */
-.build-badge code { font: .95em var(--font-mono); font-variant: normal; letter-spacing: 0; }
+@container site-footer (width < 48rem) {
+  .footer-directory { grid-template-columns: minmax(0, 1fr); }
+  .footer-links { margin-inline-start: -.65rem; }
+}
+@container site-footer (width < 28rem) {
+  .footer-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr)); }
+  .footer-meta { column-gap: 1rem; }
+  .build-source { margin-left: 0; flex-basis: 100%; }
+}
 .file-label { font: .8em var(--font-mono); }
 
 /* The name is the playbill; the portrait and character print share its edge. */
@@ -580,12 +598,12 @@ main:focus { outline: none; }
   .show-pager { flex-direction: column; }
   .offstage-item--slip .offstage-copy { padding: 1.5rem 1.5rem 1.75rem 1.25rem; }
   .video-mat { padding: .35rem; }
-  .footer-meta .sep-badge { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
 @media (forced-colors: active) {
+  .footer-link-paper { display: none; }
   .portrait-backing, .photo-backing, .photo-arrival-shadow, .photo-spread::before, .hero-print-tape, .photo-fastener { display: none; }
   .photo-mat, .portrait-card, .now-stub, .resume-sheet, .video-mat, .cover-print { border: 1px solid CanvasText; }
   .hero-links-slip::before { border-color: CanvasText; box-shadow: none; }
