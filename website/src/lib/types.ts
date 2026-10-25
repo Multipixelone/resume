@@ -37,6 +37,9 @@ export interface Photo {
   reelCount?: { photos: number; videos: number };
 }
 export interface ShowVideo {
+  duration?: number;
+  poster?: string;
+  film?: { character: string; company: string; director: string };
   id: string;
   title: string;
 }

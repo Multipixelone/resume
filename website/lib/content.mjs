@@ -81,7 +81,7 @@ export function showReels(shows, photos, recordings) {
       id, title, character, company, director, on_resume,
       path: `/shows/${id}/`,
       photos: attachPhotoNotes(photos.filter(photo => photo.show === id), shows),
-      videos: recordings.filter(video => video.show === id).map(video => ({ id: video.id, title: video.title }))
+      videos: recordings.filter(video => video.show === id).map(video => ({ id: video.id, title: video.title, duration: video.duration, poster: video.poster }))
     }));
 }
 
@@ -94,12 +94,13 @@ export function reelRecordings(shows, recordings, reels) {
   const pages = new Map(reels.map(reel => [reel.id, reel.path]));
   if (recordings.filter(video => video.start).length > 1) throw new TypeError('Only one recording can be the place to start');
   return recordings.toSorted((a, b) => Number(b.start === true) - Number(a.start === true))
-    .map(({ id, title, show: showId, start }) => {
+    .map(({ show: showId, start, ...video }) => {
+      const { id } = video;
       const show = showId ? byId.get(showId) : undefined;
       if (showId && !show) throw new TypeError(`${id}: unknown show ${showId}`);
       const credit = show && Object.fromEntries(Object.entries({ title: show.title, character: show.character,
         year: show.year, path: pages.get(show.id) }).filter(([, value]) => value !== undefined));
-      return credit ? { id, title, start: start === true, show: credit } : { id, title, start: start === true };
+      return credit ? { ...video, start: start === true, show: credit } : { ...video, start: start === true };
     });
 }
 
@@ -126,4 +127,14 @@ export function portfolioContent(theatreSource, variantSource) {
     })),
     composite
   };
+}
+
+/** Resolve the film from the same credit used by the PDF. */
+export function filmRecording(source, video) {
+  const credit = parse(source).shows?.[video.credit];
+  if (!credit || ['title', 'character', 'company', 'director'].some(key => typeof credit[key] !== 'string' || !credit[key].trim())) {
+    throw new TypeError(`Invalid film credit: ${video.credit}`);
+  }
+  return { id: video.id, title: credit.title, duration: video.duration,
+    film: { character: credit.character, company: credit.company, director: credit.director } };
 }

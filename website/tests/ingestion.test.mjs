@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { parse } from 'smol-toml';
-import { attachPhotoNotes, parseShows, parseVariants, portfolioContent, reelRecordings, showReels } from '../lib/content.mjs';
+import { filmRecording, attachPhotoNotes, parseShows, parseVariants, portfolioContent, reelRecordings, showReels } from '../lib/content.mjs';
 import { performancePhotos, recordings } from '../src/lib/media.js';
 import { siteBase, siteOrigin } from '../lib/config.mjs';
 import { selectResumeShows } from '../../lib/shows.mjs';
@@ -167,4 +167,15 @@ test('origin configuration defaults to the custom domain, rejects paths and slas
   for (const value of ['finnrut.is', 'https://finnrut.is/', 'https://finnrut.is/resume', 'https://localhost', 'ftp://finnrut.is', 'https://finnrut.is:8443']) {
     assert.throws(() => siteOrigin(value), /SITE_ORIGIN/);
   }
+});
+
+test('film captions resolve canonical credits and reject missing or incomplete credits', async () => {
+  const source = await readFile(new URL('../../metadata/film.toml', import.meta.url), 'utf8');
+  const video = { id: 'film-id', credit: 'show-1', duration: 687 };
+  const result = filmRecording(source, video);
+  assert.equal(result.title, parse(source).shows['show-1'].title);
+  assert.equal(result.film.character, 'Stoner 2');
+  assert.equal(result.duration, 687);
+  assert.throws(() => filmRecording(source, { ...video, credit: 'missing' }), /Invalid film credit/);
+  assert.throws(() => filmRecording('[shows.show-1]\ntitle="Incomplete"', video), /Invalid film credit/);
 });

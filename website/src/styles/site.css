@@ -440,6 +440,7 @@ main:focus { outline: none; }
 .recording--start h2 { font-size: clamp(1.875rem, 3vw, 2.5rem); letter-spacing: -.025em; }
 .recording-label { margin-bottom: .4rem; font: .75rem/1.5 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 .recording-credits { margin-top: .5rem; font: .75rem/1.5 var(--font-mono); color: var(--muted); }
+.recording-duration { white-space: nowrap; }
 .recording-credits .sep { margin-inline: .6em; }
 /* Inline padding widens the show link's target to 44px without opening the line. */
 .recording-credits a { padding-block: .875rem; }

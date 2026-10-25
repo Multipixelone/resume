@@ -192,12 +192,12 @@ export const performancePhotos = [
 // recording is from that production. `start` marks the one clip to watch first;
 // the reel plays it at the top.
 export const recordings = [
-  { id: "ucVBjbfxrHA", title: "She Loves Me", show: "molloy-showcase", start: true },
-  { id: "DYrR7xup_Js", title: "I Love to Sing-a & Love Me, Love Me Not" },
-  { id: "-QPog0QsJ9s", title: "No One Has to Know" },
-  { id: "ZP38u-e76BY", title: "Circus McGurkus", show: "seussical" },
-  { id: "nwI8Dr8u1OM", title: "How Lucky You Are", show: "seussical" },
+  { id: "ucVBjbfxrHA", duration: 75, title: "She Loves Me", show: "molloy-showcase", start: true },
+  { id: "DYrR7xup_Js", duration: 169, title: "I Love to Sing-a & Love Me, Love Me Not" },
+  { id: "-QPog0QsJ9s", duration: 94, title: "No One Has to Know" },
+  { id: "ZP38u-e76BY", duration: 158, title: "Circus McGurkus", show: "seussical" },
+  { id: "nwI8Dr8u1OM", duration: 111, poster: "/media/how-lucky-you-are-poster.jpg", title: "How Lucky You Are", show: "seussical" },
 ];
 
 // The film credit closes the reel under its own title.
-export const film = { id: "YmpZh62mMjE", title: "All Over Everywhere" };
+export const film = { credit: "show-1", id: "YmpZh62mMjE", duration: 687, title: "All Over Everywhere" };

@@ -16,7 +16,8 @@
   let player = $state<HTMLIFrameElement>();
 
   function fallbackPoster() {
-    if (posterQuality === 'hq720') posterQuality = 'hqdefault';
+    if (video.poster) posterFailed = true;
+    else if (posterQuality === 'hq720') posterQuality = 'hqdefault';
     else posterFailed = true;
   }
 
@@ -35,12 +36,20 @@
     <hgroup>
       {#if label}<p class="recording-label">{label}</p>{/if}
       <h2 id={`recording-${video.id}`}>{video.title}</h2>
-      {#if credit}
+      {#if credit || video.film || video.duration}
         <p class="recording-credits">
-          {#if credit.path}<a href={sitePath(credit.path)}>{credit.title}</a>{:else}<span>{credit.title}</span>{/if}
-          <!-- A cabaret singer billed as "Self" is the convention on paper, but says nothing here. -->
-          {#if credit.character !== 'Self'}<span class="sep" aria-hidden="true">·</span><span>{credit.character}</span>{/if}
-          {#if credit.year}<span class="sep" aria-hidden="true">·</span><span>{credit.year}</span>{/if}
+          {#if credit}
+            {#if credit.path}<a href={sitePath(credit.path)}>{credit.title}</a>{:else}<span>{credit.title}</span>{/if}
+            <!-- A cabaret singer billed as "Self" is the convention on paper, but says nothing here. -->
+            {#if credit.character !== 'Self'}<span class="sep" aria-hidden="true">·</span><span>{credit.character}</span>{/if}
+            {#if credit.year}<span class="sep" aria-hidden="true">·</span><span>{credit.year}</span>{/if}
+          {:else if video.film}
+            <span>{video.film.character}</span><span class="sep" aria-hidden="true">·</span><span>{video.film.company}</span><span class="sep" aria-hidden="true">·</span><span>Directed by {video.film.director}</span>
+          {/if}
+          {#if video.duration}
+            {#if credit || video.film}<span class="sep" aria-hidden="true">·</span>{/if}
+            <span class="recording-duration" aria-label={`${Math.floor(video.duration / 60)} minutes ${video.duration % 60} seconds`}>{Math.floor(video.duration / 60)}:{String(video.duration % 60).padStart(2, '0')}</span>
+          {/if}
         </p>
       {/if}
     </hgroup>
@@ -67,7 +76,7 @@
         <span class="recording-still">
           {#if !posterFailed}
             <img
-              src={`https://i.ytimg.com/vi/${video.id}/${posterQuality}.jpg`}
+              src={video.poster ? sitePath(video.poster) : `https://i.ytimg.com/vi/${video.id}/${posterQuality}.jpg`}
               alt=""
               loading={eager ? 'eager' : 'lazy'}
               fetchpriority={eager ? 'high' : 'auto'}

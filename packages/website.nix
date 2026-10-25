@@ -36,7 +36,7 @@ buildNpmPackage {
         parts = lib.splitString "/" relative;
       in
       (relative == "website" || lib.hasPrefix "website/" relative
-        || builtins.elem relative [ "lib" "lib/shows.mjs" "metadata" "metadata/theatre.toml" "variants.toml" "scripts" "scripts/assemble-portfolio.py" ])
+        || builtins.elem relative [ "lib" "lib/shows.mjs" "metadata" "metadata/theatre.toml" "metadata/film.toml" "variants.toml" "scripts" "scripts/assemble-portfolio.py" ])
       && !lib.any (part: builtins.elem part [ "node_modules" ".svelte-kit" "build" ".git" "__pycache__" ]) parts;
   };
   # Both fetchNpmDeps and the build unpack the same tree and enter website/.

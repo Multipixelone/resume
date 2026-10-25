@@ -36,7 +36,7 @@ npm ci                                   # once, or after package-lock.json chan
 npm run dev -- --host 127.0.0.1 --open   # http://127.0.0.1:5173
 ```
 
-Leave it running and edit. Saves to `website/src/` (components, routes, `site.css`) hot-swap in the browser. Saves to the shared inputs one directory up, `metadata/theatre.toml`, `variants.toml`, and `lib/shows.mjs`, trigger a full page reload, so theatre credits and the resume list update without a restart. Those three are the only parent files the dev server may read (`server.fs.allow` in `website/vite.config.js`); a new shared input must be added there and to the source filter in `packages/website.nix`.
+Leave it running and edit. Saves to `website/src/` (components, routes, `site.css`) hot-swap in the browser. Saves to the shared inputs one directory up, `metadata/theatre.toml`, `metadata/film.toml`, `variants.toml`, and `lib/shows.mjs`, trigger a full page reload, so theatre credits and the resume list update without a restart. Those four are the only parent files the dev server may read (`server.fs.allow` in `website/vite.config.js`); a new shared input must be added there and to the source filter in `packages/website.nix`.
 
 What dev mode does not show:
 

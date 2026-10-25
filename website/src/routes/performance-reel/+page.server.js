@@ -1,5 +1,5 @@
-import { content, reel } from '$lib/server/content';
+import { content, reel, reelFilm } from '$lib/server/content';
 
 export function load() {
-  return { recordings: reel, download: content.theatreDownload, composite: content.composite };
+  return { recordings: reel, film: reelFilm, download: content.theatreDownload, composite: content.composite };
 }

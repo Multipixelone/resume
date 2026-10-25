@@ -144,3 +144,16 @@ Reproduce from `website/` after `npm run build`:
 `python3 scripts/measure-images.py build` (Playwright and Chromium are required,
 already available in the development shell). The script checks image loading,
 reports selected candidates and slot widths, and saves review screenshots in `/tmp`.
+
+### Reel context verification (2026-10-25)
+
+Runtimes in `media.js` are seconds, verified against each YouTube watch page's
+`videoDetails.lengthSeconds`: `ucVBjbfxrHA` 75, `DYrR7xup_Js` 169,
+`-QPog0QsJ9s` 94, `ZP38u-e76BY` 158, `nwI8Dr8u1OM` 111,
+`YmpZh62mMjE` 687. Displayed runtimes describe the full linked recording.
+
+`how-lucky-you-are-poster.jpg` is the frame at 00:25 of `nwI8Dr8u1OM`,
+extracted with ffmpeg from YouTube format 135 (852 x 480), without upscaling
+or retouching. It replaces the missing hq720 thumbnail and the letterboxed
+480 x 360 fallback. The film's credit is resolved from `metadata/film.toml`
+(`shows.show-1`), the same source as the PDF.
