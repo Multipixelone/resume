@@ -29,6 +29,8 @@ body { margin: 0; color: var(--ink); font-family: var(--font-body); font-size: 1
 ::selection { color: var(--ink); background: var(--selection-bg); }
 img { display: block; max-width: 100%; height: auto; }
 figure, p, h1, h2, h3 { margin: 0; }
+/* No single word left alone on a paragraph's last line. */
+p { text-wrap: pretty; }
 /* A word too long for any line breaks rather than pushing the page sideways. */
 h1, h2, h3 { text-wrap: balance; line-height: 1.18; overflow-wrap: break-word; }
 /* Page titles grow with text, but the 13vw cap keeps a word like "Performance" on a phone line. */
@@ -248,13 +250,16 @@ main:focus { outline: none; }
 .spread-heading > a { margin-bottom: .2rem; }
 #photos-title { scroll-margin-top: 2rem; }
 .photo-spread { position: relative; isolation: isolate; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3rem 2rem; align-items: start; padding-top: 1rem; }
-.photo-spread::before { content: ''; position: absolute; z-index: -1; grid-row: 1 / 3; top: 4rem; bottom: 0; left: -2rem; width: 85%; background: var(--paper-shade); clip-path: polygon(0 3%, 97% 0, 100% 97%, 4% 100%); pointer-events: none; }
+/* The board runs past the second row so its slanted bottom edge clears the last caption. */
+.photo-spread::before { content: ''; position: absolute; z-index: -1; grid-row: 1 / 3; top: 4rem; bottom: -4.5rem; left: -2rem; width: 85%; background: var(--paper-shade); clip-path: polygon(0 3%, 97% 0, 100% 97%, 4% 100%); pointer-events: none; }
 .photo-print { min-width: 0; position: relative; }
 .photo-print--wide { grid-column: 1 / 9; grid-row: 1; --rotation: -2deg; }
 /* Keep the opening landscape prints together, then let each pair size its own row. */
 .photo-print--tall { grid-column: 9 / -1; grid-row: 1; align-self: end; margin-left: -2.75rem; --rotation: 4deg; }
 .photo-print--small { grid-column: 2 / 7; grid-row: 2; margin-top: .5rem; --rotation: 2deg; }
 .photo-print--wide-right { grid-column: 7 / -1; grid-row: 2; margin-top: 6rem; --rotation: 1.5deg; }
+/* The print overhangs the board's right edge; its caption wraps to stay on the board. */
+.photo-print--wide-right figcaption { max-width: 55%; }
 /* The closing three prints share a row: two portraits around a lower square print. */
 .photo-print--tall-left { grid-column: 1 / 5; grid-row: 3; margin-top: 3rem; --rotation: -2deg; }
 .photo-print--small-right { grid-column: 5 / 9; grid-row: 3; margin-top: clamp(5rem, 8vw, 7rem); --rotation: 1.5deg; }
@@ -265,7 +270,7 @@ main:focus { outline: none; }
 .photo-arrival-shadow { position: absolute; inset: 0; z-index: -1; opacity: 0; transform: rotate(var(--rotation, 0deg)); box-shadow: 0 28px 32px -12px rgb(43 37 32 / .3); pointer-events: none; }
 .photo-backing { display: none; position: absolute; inset: -.5rem; background: var(--paper-shade); border: 1px solid var(--border); transform: translate(calc(10px - var(--pointer-x, 0px)), calc(12px - var(--pointer-y, 0px))) rotate(-3deg); z-index: -1; pointer-events: none; transition: transform 500ms cubic-bezier(.2, .75, .25, 1); }
 .photo-print--tall-left .photo-backing { display: block; }
-.photo-mat { display: block; background: var(--paper); box-shadow: 0 2px 4px rgb(43 37 32 / .1), 0 12px 24px -12px rgb(43 37 32 / .32); transform: translate3d(var(--pointer-x, 0px), calc(var(--pointer-y, 0px) + var(--lift, 0px)), 0) rotate(var(--rest-angle, var(--rotation, 0deg))) rotateX(var(--pointer-rx, 0deg)) rotateY(var(--pointer-ry, 0deg)) scale(var(--photo-scale, 1)); transition: transform 500ms cubic-bezier(.2, .8, .2, 1.15), box-shadow 500ms ease; }
+.photo-mat { display: block; background: var(--paper); box-shadow: 0 2px 4px rgb(43 37 32 / .1), 0 12px 24px -12px rgb(43 37 32 / .32); transform: translate3d(var(--pointer-x, 0px), calc(var(--pointer-y, 0px) + var(--lift, 0px)), 0) rotate(var(--rest-angle, var(--rotation, 0deg))) rotateX(var(--pointer-rx, 0deg)) rotateY(var(--pointer-ry, 0deg)) scale(var(--photo-scale, 1)); transition: transform 500ms cubic-bezier(.2, .8, .2, 1), box-shadow 500ms ease; }
 .photo-mat img { width: 100%; }
 .photo-print--tall .photo-mat { padding: .5rem .5rem 1.1rem; }
 .photo-print--small .photo-mat { padding: .4rem; }
@@ -311,6 +316,12 @@ main:focus { outline: none; }
 .photo-note { display: block; }
 .photo-note-title { display: block; font: 700 clamp(1.125rem, 1.8vw, 1.5rem)/1.2 var(--font-display); }
 .photo-note-role { display: block; margin-top: .4rem; font: .75rem/1.5 var(--font-mono); color: var(--muted); }
+/* Captioned like a linked credit: an ink title on a rust underline, and a count of what the show page holds. */
+.photo-note-link { color: var(--ink); text-decoration-color: var(--accent); }
+.photo-print:has(.photo-mat:is(:hover, :focus-visible)) .photo-note-link, .photo-note-link:hover { color: var(--accent-hover); text-decoration-thickness: 2px; }
+.photo-note-count { display: block; margin-top: .4rem; font: .6875rem/1.5 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent-hover); }
+/* Under a role the two mono lines read as one block, so the count stacks tight to it. */
+.photo-note-role + .photo-note-count { margin-top: .1rem; }
 .photo-note-blurb { display: block; margin-top: .5rem; font-size: .9375rem; }
 .photo-note + * { margin-top: .75rem; }
 @media (prefers-reduced-motion: no-preference) {
@@ -341,7 +352,7 @@ main:focus { outline: none; }
 .credit-reel-link::after { content: ''; position: absolute; inset: 0; }
 .has-reel:is(:hover, :focus-within) .credit-reel-link { color: var(--accent-hover); text-decoration-thickness: 2px; }
 .credit-reel { display: grid; justify-items: center; gap: .6rem; text-align: center; }
-.credit-reel-count { font: .625rem/1.45 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent-hover); }
+.credit-reel-count { font: .6875rem/1.45 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent-hover); }
 .has-reel:nth-of-type(even) .cover-print { --cover-angle: -3deg; }
 /* Rows measure their list, so larger text stacks them as surely as a narrow window does:
    title and company need 11.5rem each beside the 6rem print column, and a stacked
@@ -554,6 +565,7 @@ main:focus { outline: none; }
   .photo-print--tall { width: 72%; align-self: flex-end; --rotation: 3deg; }
   .photo-print--small { width: 88%; --rotation: -2deg; }
   .photo-print--wide-right { margin-top: 2rem; --rotation: 2deg; }
+  .photo-print--wide-right figcaption { max-width: none; }
   .photo-print--tall-left { width: 72%; --rotation: -3deg; }
   .photo-print--small-right { width: 85%; align-self: flex-end; --rotation: 2deg; }
   .photo-print--tall-bottom { width: 72%; --rotation: -2deg; }

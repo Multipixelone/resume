@@ -53,7 +53,7 @@
             {#if show.character !== 'Self'}
               <div><dt>Role</dt><dd>{show.character}</dd></div>
             {/if}
-            <div><dt>Venue</dt><dd>{show.company}</dd></div>
+            <div><dt>Company</dt><dd>{show.company}</dd></div>
             <div><dt>Directed by</dt><dd>{show.director}</dd></div>
           </dl>
         </div>

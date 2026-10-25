@@ -198,7 +198,7 @@ The blog palette this was ported from also defines `--code-bg`, `--code-border` 
 
 **Character:** Cooper Black is the playbill: soft, heavy, warm and a little 1970s, set tight and enormous for the name. Sabon Next is the program note underneath, a quiet book serif. PragmataPro is the stage manager's hand: tiny, tracked, uppercase labels on tickets and kickers.
 
-Sabon Next and PragmataPro load from `fonts.finnrut.is` and currently fail on localhost and any domain without license and CORS coverage, so screenshots today render Georgia and the system mono. The named families are the intent; a fallback screenshot is not approval of the typography.
+Sabon Next and PragmataPro load from `fonts.finnrut.is`, which fails on any domain without license and CORS coverage; the dev server serves local copies (`website/lib/local-fonts.mjs`). The named families are the intent; a fallback screenshot is not approval of the typography.
 
 ### Hierarchy
 
@@ -210,7 +210,7 @@ Sabon Next and PragmataPro load from `fonts.finnrut.is` and currently fail on lo
 - **Body** (Sabon Next 400, 1.125rem, line-height 1.6): all reading text. Statement and off-stage copy cap at about 38em and 60ch.
 - **Body lead** (Sabon Next 400, clamp(1.2rem, 1.65vw, 1.4rem), line-height 1.5): the homepage bio (max 36ch) and the artist statement.
 - **Link** (Sabon Next 600, 1.0625rem): text links with arrows and nav items.
-- **Label** (PragmataPro 400, 0.75rem, 0.14em, uppercase): section kickers ("Artist statement") and the current-project status line. Smaller relatives at 0.6875rem and 0.625rem carry ticket metadata, credit labels ("Venue", "Directed by"), photo indices, pronouns and file labels like "(PDF)".
+- **Label** (PragmataPro 400, 0.75rem, 0.14em, uppercase): section kickers ("Artist statement") and the current-project status line. Smaller relatives at 0.6875rem and 0.625rem carry ticket metadata, credit labels ("Company", "Directed by"), photo indices, pronouns and file labels like "(PDF)".
 
 ### Named Rules
 
@@ -275,7 +275,7 @@ Character: plain, underlined, with one shared arrow.
 
 - Marquee Rust, 1px underline at 0.2em offset; hover turns Deep Marquee Rust with a 2px underline. Color transitions in 150ms.
 - Calls to action ("Watch me perform", "Theatre credits") are Sabon 600, 44px tall, with the single arrow glyph from `Arrow.svelte` (out, down or back) that nudges 2px up and right on hover.
-- **Hero links:** the reel link leads on its own paper slip at 1.1875rem: a Callboard Card layer with a Rule Line border and slip shadow, rotated 1.5deg behind level text, which settles to 0.45deg on hover or focus. Resume, about and contact follow on one line at 0.9375rem, separated by Faded Ink middle dots and without arrows, like the footer meta. When the bio column gets narrow the line tightens, then drops the dots and wraps on plain spacing rather than stranding a dot at a line end.
+- **Hero links:** "Watch me perform" and "See my resume" sit under the name as two equal paper slips at 1.1875rem in Deep Marquee Rust: a Callboard Card layer with a Rule Line border and slip shadow, rotated 1.5deg and -1.5deg behind level text, which settles to 0.45deg on hover or focus. They wrap onto two rows rather than shrink.
 - Download links pair the label with a mono file label, "(PDF)". The primary resume download is 1.25rem.
 - **Buttons and inputs:** the business card's turn button uses the shared focus ring. Contact links sit over the printed address and handle, as siblings of the button. Its optional device-tilt button is styled like a quiet text link, with a 44px target. Use buttons for these local state changes; contact and navigation remain links. No form inputs exist.
 
@@ -286,7 +286,7 @@ Character: a real print with a mat, resting at an angle.
 - Playbill Paper mat (0.4 to 0.5rem), no radius, print shadow, resting angle between -4deg and 4deg that alternates between neighbors.
 - Fine pointer only: loose prints follow the cursor within ±5px / ±4px and tilt up to ±1.5deg / ±2deg; hover or focus lifts and straightens them. Touch gets the same composition without tilt.
 - Gallery prints land once as they enter view: one corner leads, the paper flattens, and a soft shadow fades as it meets the board. Neighboring prints enter from different angles. The gesture is smaller on phones and touch devices.
-- The caption sits below the print and never moves: a Deep Marquee Rust mono index ("01"), the show title in Cooper Bold, the role in small mono Faded Ink, and Finn's own blurb in body text. Images keep their full proportions; no cutouts, no background removal.
+- The caption sits below the print and never moves: a Deep Marquee Rust mono index ("01"), the show title in Cooper Bold, the role in small mono Faded Ink (omitted when it is "Self"), and Finn's own blurb in body text. On the homepage a print from a show with a page captions like a linked credit: the title takes a Marquee Rust underline and is a second, pointer-only link to the page, and a Deep Marquee Rust mono count ("3 photos · 2 videos", 0.6875rem) says what the page holds. Hover or focus on the print inks the title. Images keep their full proportions; no cutouts, no background removal.
 
 ### Photo Fastenings
 
@@ -301,9 +301,9 @@ Character: practical ways of putting a print on the callboard, used selectively.
 
 Character: one production's corner of the callboard.
 
-- **Show page** (`/shows/<id>/`): a back link, the show title as the page `h1`, and the current-project notice's mono-labelled credits (Role, Venue, Directed by) under a dashed perforation. Then the show's prints, two across and staggered (the second drops 6rem), resting angles alternating from -3 to 2.5deg, the first taped. Each print is capped at its file's pixel width so small renditions stay sharp, and opens the full photo. A lone print sits offset from center rather than centered. Recordings from that production follow as video sheets. A pager offers the previous and next show in resume order, and the shared Performance Next Steps slip closes the page 3rem below it, inside the group the pager's rule opens.
+- **Show page** (`/shows/<id>/`): a back link, the show title as the page `h1`, and the current-project notice's mono-labelled credits (Role, Company, Directed by) under a dashed perforation. Then the show's prints, two across and staggered (the second drops 6rem), resting angles alternating from -3 to 2.5deg, the first taped. Each print is capped at its file's pixel width so small renditions stay sharp, and opens the full photo. A lone print sits offset from center rather than centered. Recordings from that production follow as video sheets. A pager offers the previous and next show in resume order, and the shared Performance Next Steps slip closes the page 3rem below it, inside the group the pager's rule opens.
 - **Cover print:** a show's first photo as a small matted print (4.25rem tall, 0.3rem mat with a deeper bottom edge, 3deg or -3deg), decorative beside every link to that show's page: the theatre credit row and the show pager. Hover or keyboard focus on the link straightens it and lifts it 5px with a deeper shadow; reduced motion keeps only the shadow change.
-- **Linked credit:** the title keeps Program Ink with a Marquee Rust underline, its link stretches over the whole row, and a Deep Marquee Rust mono count ("2 photos", "2 videos") sits under the cover print and describes the link.
+- **Linked credit:** the title keeps Program Ink with a Marquee Rust underline, its link stretches over the whole row, and a Deep Marquee Rust mono count ("2 photos", "2 videos", 0.6875rem) sits under the cover print and describes the link.
 
 ### Headshot
 
@@ -319,7 +319,7 @@ Character: a real landscape theatre ticket you could tear off.
 - Ticket Stock, Rule Line border, torn right edge, max 19rem wide, resting at 2deg (-1.5deg on even shows and whenever the notice stacks).
 - A printed stub end on the left: solid Deep Marquee Rust running to the paper's edge, with "Admit one" set vertically in Ticket Stock mono. Its perforation shows as Ticket Stock dashes along the rust edge, and a V die-cut notches the ticket top and bottom where the stub end meets the body. No colored side rail. The body holds the opening date in Cooper Black, the weekday and year in Deep Marquee Rust mono, the run ("One night only", or "Through" plus the closing date) in Faded Ink mono, and an optional "Livestream available" line with a filled dot.
 - With a booking URL, the whole stub is one link and gets a Stub Blush "Get tickets" band behind a dashed perforation. Hover or focus inverts the band to Deep Marquee Rust with Ticket Stock text and prints the date in Deep Marquee Rust; the border stays Rule Line. With a fine pointer and motion allowed, the stub also lifts 5px toward the hand, settles to a quarter of its resting angle and casts a deeper ticket shadow. The rust "Admit one" end flexes 28deg around its perforated right seam on fine-pointer hover or keyboard focus, while the link target stays whole. Reduced motion keeps the ink change and removes the flex; forced colors also keeps the strip flat. Without a URL the stub is not interactive.
-- Beside it, the current-project notice: a plain Deep Marquee Rust mono status line with no marker (the words say whether it is in rehearsal or playing), the show title in Cooper Bold, then a Faded Ink dashed perforation and the mono-labelled credits (Role, Venue, Directed by) below it, so the credits read as the notice's tear-off. A role of "Self" is omitted.
+- Beside it, the current-project notice: a plain Deep Marquee Rust mono status line with no marker (the words say whether it is in rehearsal or playing), the show title in Cooper Bold, then a Faded Ink dashed perforation and the mono-labelled credits (Role, Company, Directed by) below it, so the credits read as the notice's tear-off. A role of "Self" is omitted.
 
 ### Paper Sheet and Slip
 

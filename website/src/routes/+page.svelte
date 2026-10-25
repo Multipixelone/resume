@@ -67,7 +67,7 @@
     <div>
       <h2 id="photos-title">On stage.</h2>
     </div>
-    <a class="text-link" href={sitePath('/resume/')}>Theatre credits <Arrow /></a>
+    <a class="text-link" href={`${sitePath('/resume/')}#credits-title`}>Theatre credits <Arrow /></a>
   </div>
   <PhotoSpread photos={data.photos} />
 </section>

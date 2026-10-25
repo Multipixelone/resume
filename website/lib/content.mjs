@@ -58,7 +58,9 @@ export function attachPhotoNotes(photos, shows) {
     if (!id && !text) return photo;
     const show = id ? byId.get(id) : undefined;
     if (id && !show) throw new TypeError(`${photo.file}: unknown show ${id}`);
-    const note = Object.fromEntries(Object.entries({ title: show?.title, role: show?.character, blurb: text || undefined })
+    // A cabaret singer billed as "Self" is the convention on paper, but says nothing in a caption.
+    const role = show?.character === 'Self' ? undefined : show?.character;
+    const note = Object.fromEntries(Object.entries({ title: show?.title, role, blurb: text || undefined })
       .filter(([, value]) => value !== undefined));
     return id ? { ...photo, note, reel: `/shows/${id}/` } : { ...photo, note };
   });

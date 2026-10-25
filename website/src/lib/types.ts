@@ -33,6 +33,8 @@ export interface Photo {
   note?: PhotoNote;
   /** Site path of the photo's show page. */
   reel?: string;
+  /** What that show page holds, for the homepage caption. */
+  reelCount?: { photos: number; videos: number };
 }
 export interface ShowVideo {
   id: string;

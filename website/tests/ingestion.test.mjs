@@ -106,6 +106,8 @@ test('photo hover notes read title and role from canonical shows', () => {
   });
   const [seussical] = attachPhotoNotes([{ file: 'x.jpg', show: 'seussical', blurb: ' Mine. ' }], shows);
   assert.deepEqual(seussical.note, { title: 'Seussical', role: 'Cat in the Hat', blurb: 'Mine.' });
+  const [revue] = attachPhotoNotes([{ file: 'x.jpg', show: 'song-dance-revue' }], shows);
+  assert.equal('role' in revue.note, false);
   assert.deepEqual(attachPhotoNotes([{ file: 'x.jpg', show: '', blurb: '  ' }], shows), [{ file: 'x.jpg' }]);
   assert.throws(() => attachPhotoNotes([{ file: 'x.jpg', show: 'not-a-show' }], shows), /unknown show/);
 });

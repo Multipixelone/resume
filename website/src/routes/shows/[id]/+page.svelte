@@ -26,7 +26,7 @@
     {#if reel.character !== 'Self'}
       <div><dt>Role</dt><dd>{reel.character}</dd></div>
     {/if}
-    <div><dt>Venue</dt><dd>{reel.company}</dd></div>
+    <div><dt>Company</dt><dd>{reel.company}</dd></div>
     <div><dt>Directed by</dt><dd>{reel.director}</dd></div>
   </dl>
 </header>

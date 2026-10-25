@@ -272,7 +272,7 @@
       },
       {
         "name": "print-lift",
-        "value": "500ms cubic-bezier(.2, .8, .2, 1.15)",
+        "value": "500ms cubic-bezier(.2, .8, .2, 1)",
         "purpose": "Loose-print hover/focus lift: 9px up, 0deg, 2.5% larger."
       },
       {
@@ -353,7 +353,7 @@
       "refersTo": "photo-mat",
       "description": "Matted print at a resting angle with a level caption below: mono index, Cooper title, mono role.",
       "html": "<figure class=\"ds-print\"><a class=\"ds-mat\" href=\"#\"><span class=\"ds-photo\"></span></a><figcaption><span class=\"ds-index\">01</span><span><span class=\"ds-note-title\">Seussical</span><span class=\"ds-note-role\">Cat in the Hat</span></span></figcaption></figure>",
-      "css": ".ds-print { margin: 0; max-width: 18rem; font-family: var(--font-body, \"Sabon Next\", Georgia, serif); } .ds-mat { display: block; padding: .45rem; background: var(--paper, #f7f4ed); box-shadow: 0 2px 4px rgb(43 37 32 / .1), 0 12px 24px -12px rgb(43 37 32 / .32); transform: rotate(-2deg); transition: transform 500ms cubic-bezier(.2,.8,.2,1.15), box-shadow 500ms ease; } .ds-mat:hover, .ds-mat:focus-visible { transform: translateY(-9px) rotate(0deg) scale(1.025); box-shadow: 0 4px 8px rgb(43 37 32 / .08), 0 25px 35px -14px rgb(43 37 32 / .32); } .ds-mat:focus-visible { outline: 3px solid var(--accent, #b54a00); outline-offset: 5px; } .ds-photo { display: block; aspect-ratio: 4 / 5; background: linear-gradient(160deg, #3a2f28, #1d1916); } .ds-print figcaption { display: flex; gap: 1rem; padding: 1.8rem .25rem 0; line-height: 1.5; } .ds-index { padding-top: .25rem; font: .625rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); color: var(--accent-hover, #8c3800); } .ds-note-title { display: block; font: 700 1.375rem/1.2 var(--font-display, \"Cooper*\", Georgia, serif); color: var(--ink, #2b2520); } .ds-note-role { display: block; margin-top: .4rem; font: .75rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); color: var(--muted, #6f6456); }"
+      "css": ".ds-print { margin: 0; max-width: 18rem; font-family: var(--font-body, \"Sabon Next\", Georgia, serif); } .ds-mat { display: block; padding: .45rem; background: var(--paper, #f7f4ed); box-shadow: 0 2px 4px rgb(43 37 32 / .1), 0 12px 24px -12px rgb(43 37 32 / .32); transform: rotate(-2deg); transition: transform 500ms cubic-bezier(.2,.8,.2,1), box-shadow 500ms ease; } .ds-mat:hover, .ds-mat:focus-visible { transform: translateY(-9px) rotate(0deg) scale(1.025); box-shadow: 0 4px 8px rgb(43 37 32 / .08), 0 25px 35px -14px rgb(43 37 32 / .32); } .ds-mat:focus-visible { outline: 3px solid var(--accent, #b54a00); outline-offset: 5px; } .ds-photo { display: block; aspect-ratio: 4 / 5; background: linear-gradient(160deg, #3a2f28, #1d1916); } .ds-print figcaption { display: flex; gap: 1rem; padding: 1.8rem .25rem 0; line-height: 1.5; } .ds-index { padding-top: .25rem; font: .625rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); color: var(--accent-hover, #8c3800); } .ds-note-title { display: block; font: 700 1.375rem/1.2 var(--font-display, \"Cooper*\", Georgia, serif); color: var(--ink, #2b2520); } .ds-note-role { display: block; margin-top: .4rem; font: .75rem/1.5 var(--font-mono, \"PragmataPro Mono Liga\", ui-monospace, monospace); color: var(--muted, #6f6456); }"
     },
     {
       "name": "Taped Print",

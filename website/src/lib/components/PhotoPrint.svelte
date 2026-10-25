@@ -13,6 +13,7 @@
   // A print from a known show opens that show's page; anything else opens the full photo.
   let href = $derived(sitePath(photo.reel ?? `/media/${photo.file}`));
   let label = $derived(photo.reel ? `More from ${photo.note?.title}: ${photo.alt}` : `View full photo: ${photo.alt}`);
+  const plural = (count: number, noun: string) => `${count} ${noun}${count === 1 ? '' : 's'}`;
 </script>
 
 <figure class={`photo-print photo-print--${photo.placement}`} data-fastening={fastening}>
@@ -41,8 +42,14 @@
       <div class="photo-caption-copy">
         {#if photo.note}
           <span class="photo-note" id={noteId}>
-            {#if photo.note.title}<span class="photo-note-title">{photo.note.title}</span>{/if}
+            {#if photo.note.title}
+              <!-- A second pointer and touch target for the print's own link, which already names the show. -->
+              <span class="photo-note-title">{#if photo.reel}<a class="photo-note-link" {href} tabindex="-1" aria-hidden="true">{photo.note.title}</a>{:else}{photo.note.title}{/if}</span>
+            {/if}
             {#if photo.note.role}<span class="photo-note-role">{photo.note.role}</span>{/if}
+            {#if photo.reelCount}
+              <span class="photo-note-count">{plural(photo.reelCount.photos, 'photo')}{#if photo.reelCount.videos}{' · '}{plural(photo.reelCount.videos, 'video')}{/if}</span>
+            {/if}
             {#if photo.note.blurb}<span class="photo-note-blurb">{photo.note.blurb}</span>{/if}
           </span>
         {/if}
