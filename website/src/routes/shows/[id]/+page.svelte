@@ -33,7 +33,7 @@
 
 <div class="show-reel">
   {#each reel.photos as photo, index (photo.file)}
-    <ReelPrint {photo} {index} />
+    <ReelPrint {photo} {index} solo={reel.photos.length === 1} />
   {/each}
 </div>
 

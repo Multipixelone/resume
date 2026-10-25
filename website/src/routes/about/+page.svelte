@@ -1,5 +1,6 @@
 <script lang="ts">
   import { sitePath } from '$lib/paths';
+  import { offstageSizes, responsive } from '$lib/images';
   import { escapades, statement } from '$lib/about';
   import { paperMotion } from '$lib/motion';
   import Arrow from '$lib/components/Arrow.svelte';
@@ -37,7 +38,7 @@
           {#if item.photo}
             <div class="photo-layers" use:paperMotion>
               <a class="photo-mat" href={sitePath(`/media/${item.photo.file}`)} aria-label={`View full photo: ${item.photo.alt}`}>
-                <img src={sitePath(`/media/${item.photo.file}`)} alt={item.photo.alt} width={item.photo.width} height={item.photo.height} loading="lazy" decoding="async" />
+                <img {...responsive(item.photo.file, offstageSizes)} alt={item.photo.alt} width={item.photo.width} height={item.photo.height} loading="lazy" decoding="async" />
               </a>
             </div>
           {/if}

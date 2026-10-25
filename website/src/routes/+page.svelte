@@ -1,5 +1,6 @@
 <script lang="ts">
   import { sitePath } from '$lib/paths';
+  import { portraitSizes, responsive } from '$lib/images';
   import Arrow from '$lib/components/Arrow.svelte';
   import CurrentProjects from '$lib/components/CurrentProjects.svelte';
   import PageHead from '$lib/components/PageHead.svelte';
@@ -29,7 +30,7 @@
       <div class="portrait-assembly">
         <div class="portrait-headshot">
           <figure class="portrait-card">
-            <img src={sitePath('/media/portrait.jpg')} alt="Finn Rutis, smiling in a blue shirt against a warm brown background." width="1536" height="1920" fetchpriority="high" decoding="async" />
+            <img {...responsive('portrait.jpg', portraitSizes())} alt="Finn Rutis, smiling in a blue shirt against a warm brown background." width="1536" height="1920" fetchpriority="high" decoding="async" />
             <figcaption class="portrait-caption">
               <span class="portrait-name">Finn Rutis</span>
               <span class="portrait-pronouns">they / them</span>
@@ -42,7 +43,7 @@
               <div class="photo-layers">
                 <div class="hero-print-hinge">
                   <a class="photo-mat" href={sitePath(stagePhoto.reel ?? `/media/${stagePhoto.file}`)} aria-label={`More from ${stagePhoto.note?.title}: ${stagePhoto.alt}`}>
-                    <img src={sitePath(`/media/${stagePhoto.file}`)} alt="" width={stagePhoto.width} height={stagePhoto.height} decoding="async" />
+                    <img {...responsive(stagePhoto.file, portraitSizes(.4, .36))} alt="" width={stagePhoto.width} height={stagePhoto.height} decoding="async" />
                     <span class="hero-print-caption">{stagePhoto.note?.title}</span>
                   </a>
                   <span class="hero-print-tape" aria-hidden="true"></span>

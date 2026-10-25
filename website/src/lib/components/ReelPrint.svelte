@@ -1,11 +1,13 @@
 <script lang="ts">
   import { sitePath } from '$lib/paths';
+  import { reelSizes, responsive } from '$lib/images';
   import type { Photo } from '$lib/types';
   import { paperMotion, printEntrance } from '$lib/motion';
 
   // On a show's own page the title and role are the page heading, so the caption
   // carries only Finn's blurb and any verified credit.
-  let { photo, index = 0 }: { photo: Photo; index?: number } = $props();
+  // `solo` marks a show's only print, which spans the board instead of half of it.
+  let { photo, index = 0, solo = false }: { photo: Photo; index?: number; solo?: boolean } = $props();
   const blurbId = $props.id();
   let orientation = $derived(photo.height > photo.width * 1.05 ? 'portrait' : 'landscape');
   // The first print is taped to the board; the rest rest loose.
@@ -19,7 +21,7 @@
     <div class="photo-object">
       <a class="photo-mat" href={sitePath(`/media/${photo.file}`)} aria-label={`View full photo: ${photo.alt}`}
         aria-describedby={photo.note?.blurb ? blurbId : undefined}>
-        <img src={sitePath(`/media/${photo.file}`)} alt={photo.alt} width={photo.width} height={photo.height}
+        <img {...responsive(photo.file, reelSizes(orientation === 'portrait', solo, photo.width))} alt={photo.alt} width={photo.width} height={photo.height}
           loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
       </a>
       {#if taped}<span class="photo-fastener photo-tape" aria-hidden="true"></span>{/if}

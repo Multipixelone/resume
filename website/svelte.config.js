@@ -13,6 +13,7 @@ export default {
     alias: {
       $shows: fileURLToPath(new URL('../lib/shows.mjs', import.meta.url)),
       $content: fileURLToPath(new URL('./lib/content.mjs', import.meta.url)),
+      $renditions: fileURLToPath(new URL('./lib/renditions.mjs', import.meta.url)),
       $canonical: fileURLToPath(new URL('../metadata', import.meta.url))
     },
     prerender: {

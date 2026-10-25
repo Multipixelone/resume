@@ -1,5 +1,6 @@
 <script lang="ts">
   import { sitePath } from '$lib/paths';
+  import { responsive, spreadSizes } from '$lib/images';
   import type { Photo } from '$lib/types';
   import { paperMotion, printEntrance } from '$lib/motion';
 
@@ -23,7 +24,7 @@
     <div class="photo-object">
       <a class="photo-mat" {href} aria-label={label}
         aria-describedby={photo.note ? noteId : undefined}>
-        <img src={sitePath(`/media/${photo.file}`)} alt={photo.alt} width={photo.width} height={photo.height} loading="lazy" decoding="async" />
+        <img {...responsive(photo.file, spreadSizes[photo.placement ?? 'wide'])} alt={photo.alt} width={photo.width} height={photo.height} loading="lazy" decoding="async" />
       </a>
       {#if fastening === 'tape'}
         <span class="photo-fastener photo-tape" aria-hidden="true"></span>

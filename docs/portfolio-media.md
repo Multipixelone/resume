@@ -87,3 +87,60 @@ The font files were verified as WOFF2 and match reported upstream byte lengths; 
 - Prior public evidence and video IDs: [`.slim/deepwork/portfolio-migration/media-research.md`](../.slim/deepwork/portfolio-migration/media-research.md).
 - Cooper exact files/license pinned source: [font directory](https://github.com/Multipixelone/blog/tree/b12e850e12a71bc07240a74c91fc9bac5d569b59/static/fonts/cooper), [font license](https://github.com/Multipixelone/blog/blob/b12e850e12a71bc07240a74c91fc9bac5d569b59/static/fonts/LICENSE.md).
 - Live public routes: [home](https://burgundy-seahorse-b69m.squarespace.com/), [resume](https://burgundy-seahorse-b69m.squarespace.com/resume), [performance reel](https://burgundy-seahorse-b69m.squarespace.com/performance-reel), [booking](https://burgundy-seahorse-b69m.squarespace.com/booking).
+
+## Responsive print renditions
+
+The JPEGs in `website/static/media/` are the site's masters. They remain byte-for-byte
+unchanged, are copied unchanged to the static build, and remain the full-photo link
+and largest `srcset` candidate. Responsive copies never replace them or the archive.
+
+Generation belongs to the SvelteKit build, before Nix's portfolio assembly. The Vite
+plugin in `website/lib/renditions.mjs` reads JPEG dimensions and exposes a width plan.
+`src/lib/images.ts` supplies base-aware `srcset` URLs and placement-specific `sizes`;
+keep those equations in sync with the shell, grid gaps, mat padding and breakpoints
+in `site.css`. Every print keeps its intrinsic `width` and `height` attributes.
+This covers PhotoPrint, ReelPrint (including lone prints), CoverPrint, both hero
+photos, and the about-page prints.
+
+The prerendered `/media/w<width>/<file>` endpoint generates 480, 960 and 1600px-wide
+copies only when narrower than the master. SvelteKit follows the `srcset` candidates
+and writes the referenced copies into `build/media/w<width>/`. No image server is
+needed in production. A smaller master simply has fewer candidates; it is never
+upscaled or re-encoded at its original size.
+
+`website/scripts/renditions.py` uses Pillow's Lanczos resampling, proportional height,
+JPEG quality 85, progressive encoding and optimization. It preserves the ICC profile
+and applies EXIF orientation to match the browser's display of the master. There is
+no cropping, retouching, color grading or filtering. The copies are lossy JPEGs;
+only their resolution and encoding change.
+
+Use the existing `nix develop` / direnv shell, which supplies Python and Pillow, for
+`npm run dev`, `npm run build`, and the rendition tests in `npm test`.
+`packages/website.nix` also supplies Pillow to the production build.
+`scripts/assemble-portfolio.py` needs no image logic: it copies the completed site.
+Dev requests generate and cache copies on demand; replacing a master invalidates
+its cached bytes. If Python/Pillow is unavailable, dev warns and serves the master
+so photos still render. Production fails instead of silently shipping full masters
+at rendition URLs. Restart dev after installing a missing dependency.
+
+### Browser byte comparison
+
+Measured with Chromium on the same prerendered homepage, cold contexts, scrolling
+the full page, summing successful `/media/` response bodies (decimal bytes, excluding
+HTTP headers and non-photo assets). The baseline restores the old master-only img
+tags by removing `srcset` and `sizes`; both runs disable JavaScript to isolate native
+image selection and keep the layout and content identical. This also checks the
+site's no-JavaScript rendering. These are photo payload savings, not total page or
+Core Web Vitals measurements.
+
+| Viewport | Device pixel ratio | Before | After | Reduction |
+|---|---:|---:|---:|---:|
+| 375 x 812 | 2 | 2,716,740 B | 609,287 B | 77.6% |
+| 1440 x 900 | 1 | 2,716,740 B | 499,151 B | 81.6% |
+| 375 x 812 | 3 | 2,716,740 B | 1,485,039 B | 45.3% |
+| 1440 x 900 | 2 | 2,716,740 B | 1,485,039 B | 45.3% |
+
+Reproduce from `website/` after `npm run build`:
+`python3 scripts/measure-images.py build` (Playwright and Chromium are required,
+already available in the development shell). The script checks image loading,
+reports selected candidates and slot widths, and saves review screenshots in `/tmp`.

@@ -46,7 +46,7 @@ buildNpmPackage {
   env.SITE_BASE = siteBase;
   env.SITE_ORIGIN = siteOrigin;
   env.SITE_COMMIT = commit;
-  nativeBuildInputs = [ python3 ];
+  nativeBuildInputs = [ (python3.withPackages (p: [ p.pillow ])) ];
 
   installPhase = ''
     runHook preInstall
