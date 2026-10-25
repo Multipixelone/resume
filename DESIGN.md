@@ -202,7 +202,7 @@ Sabon Next and PragmataPro load from `fonts.finnrut.is` and currently fail on lo
 
 ### Hierarchy
 
-- **Display** (Cooper Black 900, clamp(6rem, 12.8vw, 11.5rem), line-height 0.87, -0.055em): the artist name on `/` only. Two stacked lines, "Rutis" indented 0.19em and set in Marquee Rust. Below 640px it becomes one inline line at clamp(3rem, 15vw, 5.5rem).
+- **Display** (Cooper Black 900, clamp(6rem, 12.8vw, 11.5rem), line-height 0.87, -0.055em): the artist name on `/` only. Two stacked lines, "Rutis" indented 0.19em and set in Marquee Rust. Below 40em it becomes one inline line at clamp(3rem, 15vw, 5.5rem).
 - **Headline** (Cooper Black 900, clamp(3rem, 6.5vw, 5.5rem), line-height 1, -0.04em): spread headings like "On stage.", "Off stage." and the homepage's "Current project.", always with a full stop and a 1px Program Ink rule above.
 - **Title** (Cooper Bold 700, clamp(2.25rem, 5vw, 4rem), line-height 1.18): page `h1` on supporting pages (Resume, Contact, Performance reel).
 - **Title, show** (Cooper Bold 700, clamp(1.875rem, 3vw, 2.5rem), -0.025em): current-project show titles; photo note titles and off-stage titles use the same face at 1.125 to 2rem. Ticket dates use Cooper Black at clamp(2.25rem, 3.5vw, 2.75rem).
@@ -220,12 +220,12 @@ Sabon Next and PragmataPro load from `fonts.finnrut.is` and currently fail on lo
 
 ## Layout
 
-A single centered shell, `min(100% - 2 x gutter, 75rem)`. Gutters are 1.25rem a side under 640px, 1.5rem by default, 2.5rem from 640px and 4rem from 1280px. Sections are separated by `section` spacing (clamp(4rem, 8vw, 7rem)); the photo spread takes a larger clamp(5rem, 10vw, 9rem) unless it follows the current project.
+A single centered shell, `min(100% - 2 x gutter, 75rem)`. Gutters are 1.25rem a side under 40em, 1.5rem by default, 2.5rem from 40em and 4rem from 80em. Sections are separated by `section` spacing (clamp(4rem, 8vw, 7rem)); the photo spread takes a larger clamp(5rem, 10vw, 9rem) unless it follows the current project.
 
 - **Homepage hero:** a two-column grid (1.13fr / 1fr, 4rem gap). Name top left, bio and links below it, the headshot spanning both rows on the right, inset from the edge.
 - **Photo spread:** a 12-column grid with seven named placements (wide, tall, small, wide-right, tall-left, small-right, tall-bottom), each with its own column span and resting angle. Song & Dance and Seussical share the opening row and align at the bottom. Composer Project and Joseph share the next row, with Joseph offset 6rem downward. Legally Blonde, Kiss Me Kate, and the final Composer Project print close the spread together in three equal columns, with the square Kiss Me Kate print sitting slightly lower between the portraits. Each row sizes to its photos without portrait-sized row spans or negative vertical margins. One shared Callboard Card shape spans the first two rows independently of the closing group. On phones, all prints return to the alternating single-column layout.
-- **Supporting pages:** an asymmetric label column and content column (minmax(14rem, 1fr) / 2fr, 3rem gap) for the resume intro and the artist statement. Contact is one centered column, capped at 46rem: heading, then the physical business card with clickable contacts. The heading aligns with the card's printed edge. Credits and resume downloads are ruled lists with 1px Rule Line tops and 1.5rem row padding (credits two columns plus a narrow cover-print column). All resumes repeats the label/content split per field: a Program Ink rule, the field as a Sabon `h2` in the left column, and its downloads on the right with one shared action column so every Download link lines up.
-- **Breakpoints:** 960px tightens the hero and spread; 768px stacks current projects and off-stage items; 640px is the phone layout: name inline, headshot at 73% width, the spread becomes one column of prints at 72 to 100% width alternating left and right, credit rows stack.
+- **Supporting pages:** an asymmetric label column and content column (minmax(14rem, 1fr) / 2fr, 3rem gap) for the resume intro and the artist statement. Contact is one centered column, capped at 46rem: heading, then the physical business card with clickable contacts. The heading aligns with the card's printed edge. Credits and resume downloads are ruled lists with 1px Rule Line tops and 1.5rem row padding (credits two columns plus a narrow cover-print column). All resumes repeats the label/content split per field: a Program Ink rule, the field as a Sabon `h2` in the left column, and its downloads on the right with one shared action column so every Download link lines up. Each field group measures its own width: under 45rem the label stacks above the list, and under 28rem each title's links drop beneath it.
+- **Breakpoints:** in em, so a larger default font size reflows the page the way zoom does (the px figures are at the default 16px). 60em (960px) tightens the hero and spread; 48em (768px) stacks off-stage items; 40em (640px) is the phone layout: name inline, headshot at 73% width, the spread becomes one column of prints at 72 to 100% width alternating left and right, credit rows stack. Components that pair text with a fixed-width column measure themselves with container queries instead, so any text enlargement stacks them: the current-project notice keeps its ticket beside it from 43rem, the Performance Next Steps slip goes side by side from 35rem, and All resumes uses the thresholds above.
 - Interactive targets are at least 44px tall. Horizontal overflow from rotated prints is contained by the layout, never by page scroll.
 
 ### Named Rules
@@ -267,7 +267,7 @@ Character: a torn ticket and a row of paper slips.
 
 - **Brand:** a small brand ticket (Ticket Stock, Rule Line border, Marquee Rust left stripe, torn right edge) reading "Orch · Row F" in tiny mono over "Rutis" in Cooper Black, rotated -3deg; beside it "Finn Rutis" in Cooper Bold. On the homepage the text name is visually hidden because the big name is already there. Hover or keyboard focus straightens the ticket to -1deg and lifts it 2px.
 - **Links:** Sabon 600 in Program Ink, 44px tall. A Callboard Card slip (Rule Line border, slip shadow) sits behind each link, invisible at rest; on hover, keyboard focus or as the current page it appears at -2deg or 1.5deg (alternating) and the label turns Deep Marquee Rust.
-- **Mobile (under 640px):** the seat line and text name hide, the ticket shrinks, links drop to 0.875rem with tight padding, and everything still fits on one or two rows.
+- **Mobile (under 40em):** the seat line and text name hide, the ticket shrinks, links drop to 0.875rem with tight padding, and everything still fits on one or two rows.
 
 ### Text Links
 
@@ -316,7 +316,7 @@ Character: a printed headshot with its own name strip.
 
 Character: a real landscape theatre ticket you could tear off.
 
-- Ticket Stock, Rule Line border, torn right edge, max 19rem wide, resting at 2deg (-1.5deg on even shows and on phones).
+- Ticket Stock, Rule Line border, torn right edge, max 19rem wide, resting at 2deg (-1.5deg on even shows and whenever the notice stacks).
 - A printed stub end on the left: solid Deep Marquee Rust running to the paper's edge, with "Admit one" set vertically in Ticket Stock mono. Its perforation shows as Ticket Stock dashes along the rust edge, and a V die-cut notches the ticket top and bottom where the stub end meets the body. No colored side rail. The body holds the opening date in Cooper Black, the weekday and year in Deep Marquee Rust mono, the run ("One night only", or "Through" plus the closing date) in Faded Ink mono, and an optional "Livestream available" line with a filled dot.
 - With a booking URL, the whole stub is one link and gets a Stub Blush "Get tickets" band behind a dashed perforation. Hover or focus inverts the band to Deep Marquee Rust with Ticket Stock text and prints the date in Deep Marquee Rust; the border stays Rule Line. With a fine pointer and motion allowed, the stub also lifts 5px toward the hand, settles to a quarter of its resting angle and casts a deeper ticket shadow. The rust "Admit one" end flexes 28deg around its perforated right seam on fine-pointer hover or keyboard focus, while the link target stays whole. Reduced motion keeps the ink change and removes the flex; forced colors also keeps the strip flat. Without a URL the stub is not interactive.
 - Beside it, the current-project notice: a plain Deep Marquee Rust mono status line with no marker (the words say whether it is in rehearsal or playing), the show title in Cooper Bold, then a Faded Ink dashed perforation and the mono-labelled credits (Role, Venue, Directed by) below it, so the credits read as the notice's tear-off. A role of "Self" is omitted.
@@ -332,7 +332,7 @@ Character: heavier backing stock holding something.
 
 ### Performance Next Steps
 
-`PerformanceNextSteps.svelte` is the closing paper slip on the homepage, the resume page, every show page and the reel. It uses a tilted Callboard Card backing, level Cooper heading and links, and a perforation between the heading and actions. On phones the actions sit below a horizontal perforation. It sits a section below the content before it; `--next-steps-space` tightens that, and the show pager sets it to 3rem.
+`PerformanceNextSteps.svelte` is the closing paper slip on the homepage, the resume page, every show page and the reel. It uses a tilted Callboard Card backing, level Cooper heading and links, and a perforation between the heading and actions. When the slip is narrower than 35rem, the actions sit below a horizontal perforation. It sits a section below the content before it; `--next-steps-space` tightens that, and the show pager sets it to 3rem.
 
 Pass `resumePdf` for the homepage's default "Reel & resume" section. Pass `variant="resume"` and `composite` on the reel page for "Resume", with the standard PDF first and the headshot PDF second. The optional headshot link is omitted when no composite is supplied. Each instance generates its own heading ID; links wrap and retain 44px targets, and forced colors flattens the paper to a visible outline.
 

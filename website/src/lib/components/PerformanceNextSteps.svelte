@@ -29,12 +29,15 @@
 <style>
   .performance-next {
     --paper-angle: -.65deg;
+    /* The slip measures itself, so larger text stacks it as surely as a narrow window does. */
+    container: performance-next / inline-size;
     position: relative;
     isolation: isolate;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
     align-items: center;
-    gap: 2rem;
+    /* The row gap only shows once the slip stacks. */
+    gap: 1.25rem 2rem;
     max-width: 56rem;
     margin: var(--next-steps-space, var(--space-section)) auto 0;
     padding: clamp(1.5rem, 4vw, 3rem);
@@ -91,8 +94,9 @@
 
   .lead-link { font-size: 1.25rem; font-weight: 600; }
 
-  @media (max-width: 640px) {
-    .performance-next { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+  /* Under 35rem the links can't keep one line beside the heading. */
+  @container performance-next (width < 35rem) {
+    h2, .next-actions { grid-column: 1 / -1; }
     h2 { max-width: none; }
     .next-actions { padding: 1rem 0 0; }
     .perforation-vertical { display: none; }

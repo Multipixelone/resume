@@ -294,23 +294,23 @@
     "breakpoints": [
       {
         "name": "phone",
-        "value": "max-width: 639px"
+        "value": "max-width: 39.99em"
       },
       {
         "name": "tablet",
-        "value": "max-width: 767px"
+        "value": "max-width: 47.99em"
       },
       {
         "name": "compact",
-        "value": "max-width: 959px"
+        "value": "max-width: 59.99em"
       },
       {
         "name": "gutter-md",
-        "value": "min-width: 640px"
+        "value": "min-width: 40em"
       },
       {
         "name": "gutter-lg",
-        "value": "min-width: 1280px"
+        "value": "min-width: 80em"
       }
     ]
   },

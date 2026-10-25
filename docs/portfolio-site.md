@@ -103,7 +103,8 @@ a small paper tear, an optional "Livestream available" line under the run, and
 an optional "Get tickets" band below the date. When a
 booking URL exists, the whole stub is one native link with a visible hover and
 keyboard focus treatment. Stubs without a URL stay non-interactive. The header ticket
-shares its stock and tear. The layout stacks below 768px, with the same readable
+shares its stock and tear. The notice stacks when it is narrower than 43rem (a 768px
+window at the default text size, wider as text grows), with the same readable
 ticket labels for single and multiple shows. A role of `Self` is
 left out, since it tells a visitor nothing. Optional photos without supplied
 alternative text are treated as decorative within the already-labeled show.
