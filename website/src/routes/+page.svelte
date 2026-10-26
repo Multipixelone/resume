@@ -85,6 +85,12 @@
 <PerformanceNextSteps resumePdf={data.resumePdf} />
 
 <style>
+  @media (prefers-reduced-motion: no-preference) {
+    :global(html:has(#start-here:target)) {
+      scroll-behavior: smooth;
+    }
+  }
+
   .home-recording {
     container: home-recording / inline-size;
     margin-top: clamp(2rem, 4vw, 3rem);
