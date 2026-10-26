@@ -59,7 +59,9 @@
               '';
             };
 
-          patchright = pkgs.python3Packages.callPackage (inputs.roomieorder.outPath + "/nix/patchright.nix") { };
+          patchright = pkgs.python3Packages.callPackage (
+            inputs.roomieorder.outPath + "/nix/patchright.nix"
+          ) { };
 
           pythonEnv = pkgs.python3.withPackages (
             p:
@@ -71,7 +73,7 @@
               p.pytest
               p.ruff
             ]
-            ++ pkgs.lib.optional (!pkgs.stdenv.isDarwin) patchright
+            ++ pkgs.lib.optional (!pkgs.stdenv.hostPlatform.isDarwin) patchright
           );
 
           resume = pkgs.callPackage ./packages/resume.nix {
@@ -135,12 +137,12 @@
           };
 
           checks = {
-            card-profiles = pkgs.runCommandLocal "check-card-profiles"
-              { nativeBuildInputs = [ pkgs.python3 ]; }
-              ''
-                python3 ${./scripts/check_card_profiles.py} --root ${src}
-                touch "$out"
-              '';
+            card-profiles =
+              pkgs.runCommandLocal "check-card-profiles" { nativeBuildInputs = [ pkgs.python3 ]; }
+                ''
+                  python3 ${./scripts/check_card_profiles.py} --root ${src}
+                  touch "$out"
+                '';
             inherit (checks)
               typstyle
               toml-validity
