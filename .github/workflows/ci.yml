@@ -42,7 +42,7 @@ jobs:
         env:
           SITE_BASE: ${{ matrix.site_base }}
         run: |
-          nix build --impure --print-build-logs --expr '
+          nix build --option sandbox true --option sandbox-fallback false --impure --print-build-logs --expr '
             let flake = builtins.getFlake ("git+file://" + builtins.getEnv "GITHUB_WORKSPACE");
             in flake.packages.x86_64-linux.website.override {
               siteBase = builtins.getEnv "SITE_BASE";
