@@ -45,6 +45,12 @@ What dev mode does not show:
 
 Before committing site changes, run `npm run check` and `npm test` from `website/`. See `website/README.md` for the full command table and `docs/portfolio-site.md` for design and media notes.
 
+### Rendered website inspection
+
+For website layout, typography, or browser behavior, start with `npm --prefix website run inspect` inside the Nix dev shell, then open the desktop and mobile viewport PNGs with the agent's image viewer and read `report.json`. This uses the Python Playwright and Chromium already in the shell, reuses a running Vite server, or starts and cleans up its own. A failed font load makes the command fail so fallback typography cannot silently pass review.
+
+See [rendered page inspection](website/README.md#rendered-page-inspection) for routes, viewport sizes, preview servers, and interactive Playwright. Use this repo workflow directly when browser integrations are unavailable.
+
 ## How Resume Variants Work
 
 Each variant is a thin entry file in `resumes/` that loads base metadata merged with a variant override, selects modules, and hands the result to the shared `cv` layout.

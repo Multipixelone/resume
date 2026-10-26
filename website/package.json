@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "inspect": "python3 scripts/inspect-page.py",
     "test": "node --test tests/*.test.mjs",
     "dev:fixture": "vite --config tests/browser/vite.config.mjs --host 127.0.0.1"
   },
