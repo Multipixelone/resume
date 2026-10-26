@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { sitePath } from '$lib/paths';
-  import { reelSizes, responsive } from '$lib/images';
-  import type { Photo } from '$lib/types';
-  import { paperMotion, printEntrance } from '$lib/motion';
+  import { sitePath } from '#lib/paths.js';
+  import { reelSizes, responsive } from '#lib/images.ts';
+  import type { Photo } from '#lib/types.ts';
+  import { paperMotion, printEntrance } from '#lib/motion.ts';
 
   // On a show's own page the title and role are the page heading, so the caption
   // carries only Finn's blurb and any verified credit.

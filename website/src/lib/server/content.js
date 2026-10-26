@@ -2,7 +2,7 @@ import filmSource from '$canonical/film.toml?raw';
 import theatreSource from '$canonical/theatre.toml?raw';
 import variantSource from '../../../../variants.toml?raw';
 import { filmRecording, portfolioContent, reelRecordings, showReels } from '$content';
-import { film, performancePhotos, recordings } from '$lib/media';
+import { film, performancePhotos, recordings } from '#lib/media.js';
 
 // Module-level ingestion: parse and normalize once, not per page or browser tick.
 // Vite tracks canonical raw imports; no duplicated production JSON/Markdown.

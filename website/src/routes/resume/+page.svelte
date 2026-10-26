@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { sitePath } from '$lib/paths';
-  import Arrow from '$lib/components/Arrow.svelte';
-  import CoverPrint from '$lib/components/CoverPrint.svelte';
-  import PageHead from '$lib/components/PageHead.svelte';
-  import PerformanceNextSteps from '$lib/components/PerformanceNextSteps.svelte';
-  import type { PageProps } from './$types';
+  import { sitePath } from '#lib/paths.js';
+  import Arrow from '#lib/components/Arrow.svelte';
+  import CoverPrint from '#lib/components/CoverPrint.svelte';
+  import PageHead from '#lib/components/PageHead.svelte';
+  import PerformanceNextSteps from '#lib/components/PerformanceNextSteps.svelte';
+  import type { PageProps } from './$types.js';
   let { data }: PageProps = $props();
   const plural = (count: number, noun: string) => `${count} ${noun}${count === 1 ? '' : 's'}`;
 </script>

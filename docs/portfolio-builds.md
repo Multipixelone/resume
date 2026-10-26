@@ -71,7 +71,7 @@ The pinned nixpkgs `buildNpmPackage` forwards `sourceRoot` to `fetchNpmDeps` but
 does not forward `npmRoot`. Both dependency fetching and building therefore use
 `sourceRoot = "source/website"` after unpacking the complete minimal tree. The
 adjacent canonical inputs survive unpacking, so existing root-relative aliases
-and imports need no patching. Node 24 satisfies the site's Node >=22.12 floor.
+and imports need no patching. Node 24 satisfies the site's Node >=22.17 floor.
 The npm lock determines the fixed-output dependency hash. Output comes from
 SvelteKit's `build/`, not Astro's obsolete `dist/`.
 

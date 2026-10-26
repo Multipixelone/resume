@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { sitePath } from '$lib/paths';
-  import { offstageSizes, responsive } from '$lib/images';
-  import { escapades, statement } from '$lib/about';
-  import { paperMotion } from '$lib/motion';
-  import Arrow from '$lib/components/Arrow.svelte';
-  import PageHead from '$lib/components/PageHead.svelte';
+  import { sitePath } from '#lib/paths.js';
+  import { offstageSizes, responsive } from '#lib/images.ts';
+  import { escapades, statement } from '#lib/about.ts';
+  import { paperMotion } from '#lib/motion.ts';
+  import Arrow from '#lib/components/Arrow.svelte';
+  import PageHead from '#lib/components/PageHead.svelte';
 
   const paragraphs = (text: string) => text.trim().split(/\n\s*\n/);
   // Photos alternate sides among themselves, so a slip between two photos can't leave both

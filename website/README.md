@@ -1,7 +1,7 @@
 # Finn Rutis portfolio
 
 SvelteKit with adapter-static. Run commands from this `website/` directory, with
-Node >=22.12 and the repository's adjacent `metadata/`, `lib/`, and `variants.toml`
+Node >=22.17 and the repository's adjacent `metadata/`, `lib/`, and `variants.toml`
 available. This is not a standalone copy of the canonical content.
 
 | Command | Purpose |
@@ -84,3 +84,19 @@ This works independently of the browser tools attached to an agent session.
 Licensed faces that fail remotely need their authorized local copies in
 `fonts-local/`; see the font notes above. Review typography only when the report
 shows the needed faces loaded.
+
+## Toolchain upgrades
+
+Renovate groups the Svelte toolchain for one compatibility review. TypeScript is
+constrained to `>=6 <7` until released Kit and svelte-check versions both support
+TypeScript 7 and their compiler integration passes the migration checks. Keep
+Node 24 in Nix. Regenerate the lockfile with normal peer resolution, run `npm ci`
+and `npm ls`, and refresh `npmDepsHash` in `../packages/website.nix` in every
+grouped lockfile change. The Nix package runs `npm run check` and `npm test`
+before assembling the site. Validate both root and `/resume` artifacts and their
+rendered pages before merging.
+
+Kit configuration lives in `vite.config.js`, alongside the custom Vite plugins.
+Package imports map `#lib/*` to `src/lib/*`; include the file extension on imports.
+The isolated browser fixture maps `#lib` and supplies the Kit 3 `resolve(path)`
+contract for paths without a leading slash.

@@ -1,10 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { watchCurrentShows } from '$shows';
-  import { sitePath } from '$lib/paths';
-  import { paperMotion } from '$lib/motion';
+  import { sitePath } from '#lib/paths.js';
+  import { paperMotion } from '#lib/motion.ts';
   import Arrow from './Arrow.svelte';
-  import type { Show, CurrentShow } from '$lib/types';
+  import type { Show, CurrentShow } from '#lib/types.ts';
 
   let { shows, watchOptions }: {
     shows: Show[];

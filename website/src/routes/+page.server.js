@@ -1,6 +1,6 @@
 import { attachPhotoNotes } from '$content';
-import { performancePhotos } from '$lib/media';
-import { content, reel, reels } from '$lib/server/content';
+import { performancePhotos } from '#lib/media.js';
+import { content, reel, reels } from '#lib/server/content.js';
 
 export function load() {
   const counts = new Map(reels.map(reel => [reel.path, { photos: reel.photos.length, videos: reel.videos.length }]));

@@ -1,4 +1,4 @@
-import { base } from '$app/paths';
+import { resolve } from '$app/paths';
 
 /** Only site-local paths enter here. Encode filenames (including the composite's space). */
 export function sitePath(path) {
@@ -6,5 +6,5 @@ export function sitePath(path) {
     || /[?#\\]/.test(path) || path.split('/').some(part => part === '.' || part === '..')) {
     throw new TypeError('Expected a site-local absolute path');
   }
-  return `${base}${path.split('/').map(encodeURIComponent).join('/')}`;
+  return resolve(path.slice(1).split('/').map(encodeURIComponent).join('/'));
 }

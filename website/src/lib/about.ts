@@ -1,4 +1,4 @@
-import { dev } from '$app/environment';
+import { dev } from '$app/env';
 
 export interface Escapade {
   /** Optional heading over the blurb. Without one the entry is just its text. */

@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { sitePath } from '$lib/paths';
-  import { responsive, spreadSizes } from '$lib/images';
-  import type { Photo } from '$lib/types';
-  import { paperMotion, printEntrance } from '$lib/motion';
+  import { sitePath } from '#lib/paths.js';
+  import { responsive, spreadSizes } from '#lib/images.ts';
+  import type { Photo } from '#lib/types.ts';
+  import { paperMotion, printEntrance } from '#lib/motion.ts';
 
   let { photo, index = 0 }: { photo: Photo; index?: number } = $props();
   const noteId = $props.id();

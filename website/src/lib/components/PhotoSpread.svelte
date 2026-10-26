@@ -1,6 +1,6 @@
 <script lang="ts">
   import PhotoPrint from './PhotoPrint.svelte';
-  import type { Photo } from '$lib/types';
+  import type { Photo } from '#lib/types.ts';
 
   let { photos }: { photos: Photo[] } = $props();
 </script>

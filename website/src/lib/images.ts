@@ -1,5 +1,5 @@
 import plan from 'virtual:media-renditions';
-import { sitePath } from '$lib/paths';
+import { sitePath } from '#lib/paths.js';
 
 /** Site path of one width: the copies live at /media/w<width>/ (routes/media), the master at its own path. */
 const renditionPath = (file: string, width: number, widths: number[]) =>

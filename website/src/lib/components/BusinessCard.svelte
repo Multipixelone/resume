@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { sitePath } from '$lib/paths';
-  import { clamp, deviceTilt, nearestFace, spring } from '$lib/business-card/motion';
-  import type { CardPose, CardScene } from '$lib/business-card/scene';
+  import { sitePath } from '#lib/paths.js';
+  import { clamp, deviceTilt, nearestFace, spring } from '#lib/business-card/motion.js';
+  import type { CardPose, CardScene } from '#lib/business-card/scene.ts';
 
   const id = $props.id();
   let stage: HTMLDivElement;
@@ -217,7 +217,7 @@
       loading = true;
       try {
         const [{ createCardScene }] = await Promise.all([
-          import('$lib/business-card/scene'), frontImage.decode(), backImage.decode()
+          import('#lib/business-card/scene.ts'), frontImage.decode(), backImage.decode()
         ]);
         if (destroyed || reduced || forcedColors.matches) return;
         scene = createCardScene(canvas, frontImage, backImage);

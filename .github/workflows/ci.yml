@@ -37,12 +37,18 @@ jobs:
             site_base: /resume
     steps:
       - uses: actions/checkout@v7.0.1
-      - uses: nixbuild/nix-quick-install-action@v35
+      - uses: cachix/install-nix-action@75c75c31ebece974e48ebc36b4ad125bd97bd97b # 31.11.3
+        with:
+          extra_nix_config: |
+            sandbox = true
+            sandbox-fallback = false
+      - name: Check portfolio assembly and standalone 404 preservation
+        run: python3 -B -m unittest discover -s tests -p test_portfolio_assembly.py -v
       - name: Build complete website artifact
         env:
           SITE_BASE: ${{ matrix.site_base }}
         run: |
-          nix build --impure --print-build-logs --expr '
+          nix build --option sandbox true --option sandbox-fallback false --impure --print-build-logs --expr '
             let flake = builtins.getFlake ("git+file://" + builtins.getEnv "GITHUB_WORKSPACE");
             in flake.packages.x86_64-linux.website.override {
               siteBase = builtins.getEnv "SITE_BASE";

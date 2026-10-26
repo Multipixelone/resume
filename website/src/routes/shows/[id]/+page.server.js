@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { reels } from '$lib/server/content';
+import { reels } from '#lib/server/content.js';
 
 /** One prerendered page per show that has a photo. */
 export function entries() {

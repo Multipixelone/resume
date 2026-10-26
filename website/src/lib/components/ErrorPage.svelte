@@ -2,9 +2,9 @@
   // The error page in dev and the prerendered build/404.html (routes/404): a wrong turn
   // still leads to the reel and the theatre resume.
   import { page } from '$app/state';
-  import { sitePath } from '$lib/paths';
-  import Arrow from '$lib/components/Arrow.svelte';
-  import PageHead from '$lib/components/PageHead.svelte';
+  import { sitePath } from '#lib/paths.js';
+  import Arrow from '#lib/components/Arrow.svelte';
+  import PageHead from '#lib/components/PageHead.svelte';
 
   let { status }: { status: number } = $props();
   let heading = $derived(status === 404 ? 'Page not found' : 'Page unavailable');

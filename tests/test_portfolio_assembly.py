@@ -23,6 +23,7 @@ class AssemblyTests(unittest.TestCase):
         self.website = root / "website"
         (self.website / "resumes").mkdir(parents=True)
         (self.website / "index.html").write_text("real homepage")
+        (self.website / "404.html").write_text("standalone not found")
         (self.website / "resumes/index.html").write_text("real downloads")
         self.resume = root / "resume"
         self.resume.mkdir()
@@ -51,6 +52,7 @@ class AssemblyTests(unittest.TestCase):
     def test_complete_site_including_hidden_and_real_indexes(self):
         self.assemble()
         self.assertEqual((self.output / "index.html").read_text(), "real homepage")
+        self.assertEqual((self.output / "404.html").read_text(), "standalone not found")
         self.assertEqual((self.output / "resumes/index.html").read_text(), "real downloads")
         self.assertEqual((self.output / "resumes/FINN RUTIS.pdf").read_bytes(), b"composite")
         self.assertTrue((self.output / ".nojekyll").is_file())

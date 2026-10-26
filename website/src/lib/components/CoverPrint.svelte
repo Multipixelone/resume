@@ -1,8 +1,8 @@
 <script lang="ts">
   // A show's first photo as a small print, pinned beside a link to that show's page.
   // Decorative: the link text names the show, so the picture stays out of the accessible name.
-  import { coverSizes, responsive } from '$lib/images';
-  import type { Photo } from '$lib/types';
+  import { coverSizes, responsive } from '#lib/images.ts';
+  import type { Photo } from '#lib/types.ts';
 
   let { photo }: { photo: Photo } = $props();
 </script>

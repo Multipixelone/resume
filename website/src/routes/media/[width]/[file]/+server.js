@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { building } from '$app/environment';
+import { building } from '$app/env';
 import { resolve } from 'node:path';
 import { readFile, stat } from 'node:fs/promises';
 import { renderRendition } from '$renditions';

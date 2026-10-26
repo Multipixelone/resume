@@ -1,5 +1,5 @@
 import { siteOrigin } from '../../lib/config.mjs';
-import { content } from '$lib/server/content';
+import { content } from '#lib/server/content.js';
 
 // Footer build provenance, read once at prerender. Nix passes SITE_COMMIT as
 // "<sha>" or "<sha>-dirty" (packages/website.nix); dev and plain npm builds
