@@ -20,7 +20,9 @@
   <div class="hero-heading">
     <h1 id="artist-name" class="artist-name"><span>Finn</span> <span>Rutis</span></h1>
     <div class="hero-links">
-      <a class="text-link hero-links-slip" href={sitePath('/performance-reel/')}>Watch me perform <Arrow /></a>
+      <a class="text-link hero-links-slip" href={data.startRecording ? '#start-here' : sitePath('/performance-reel/')}>
+        Watch me perform <Arrow dir={data.startRecording ? 'down' : 'out'} />
+      </a>
       <a class="text-link hero-links-slip" href={sitePath('/resume/')}>See my resume <Arrow /></a>
     </div>
   </div>
