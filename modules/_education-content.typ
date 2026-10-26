@@ -2,14 +2,13 @@
 #let metadata = toml("../metadata/metadata.toml")
 #let cvEntry = cvEntry.with(metadata: metadata)
 
-#cvEntry(
-  title: [Bachelor of Fine Arts in Musical Theatre],
-  society: [CAP21 / Molloy University],
-  date: [2022 - 2026],
-  location: [NYC],
-  logo: image("../src/logos/molloy.png"),
-  // description: list(
-  //   [Thesis: Predicting Customer Churn in Telecommunications Industry using Machine Learning Algorithms and Network Analysis],
-  //   [Course: Big Data Systems and Technologies, Data Mining and Exploration, Natural Language Processing],
-  // ),
-)
+// Strings go through markup, as the hand-written entries did, so quotes stay typographic.
+#for degree in toml("../metadata/education.toml").degrees {
+  cvEntry(
+    title: eval(degree.title, mode: "markup"),
+    society: eval(degree.school, mode: "markup"),
+    date: eval(degree.date, mode: "markup"),
+    location: eval(degree.location, mode: "markup"),
+    logo: if "logo" in degree { image("../src/logos/" + degree.logo) } else { "" },
+  )
+}
