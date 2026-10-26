@@ -1,6 +1,6 @@
 import { attachPhotoNotes } from '$content';
 import { performancePhotos } from '$lib/media';
-import { content, reels } from '$lib/server/content';
+import { content, reel, reels } from '$lib/server/content';
 
 export function load() {
   const counts = new Map(reels.map(reel => [reel.path, { photos: reel.photos.length, videos: reel.videos.length }]));
@@ -8,5 +8,6 @@ export function load() {
   const spread = attachPhotoNotes(performancePhotos.filter(photo => photo.placement), content.shows)
     .map(photo => (photo.reel ? { ...photo, reelCount: counts.get(photo.reel) } : photo));
   const [stagePhoto] = attachPhotoNotes(performancePhotos.filter(photo => photo.hero), content.shows);
-  return { shows: content.shows, photos: spread, stagePhoto };
+  const startRecording = reel.find(recording => recording.start) ?? null;
+  return { shows: content.shows, photos: spread, stagePhoto, startRecording };
 }

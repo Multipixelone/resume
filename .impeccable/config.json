@@ -1,3 +1,18 @@
 {
-  "buildPath": "comp"
+  "buildPath": "comp",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "website/src/routes/+page.svelte"
+        ],
+        "createdAt": "2026-10-26T01:23:51.560Z",
+        "reason": "Agent: both image tags spread responsive(), which returns src and srcset for existing static/media masters portrait.jpg and 2X9A9381-X4.jpg"
+      }
+    ]
+  }
 }

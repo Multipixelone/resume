@@ -6,6 +6,7 @@
   import PageHead from '$lib/components/PageHead.svelte';
   import PhotoSpread from '$lib/components/PhotoSpread.svelte';
   import PerformanceNextSteps from '$lib/components/PerformanceNextSteps.svelte';
+  import Recording from '$lib/components/Recording.svelte';
   import { paperMotion, callboardEntrance } from '$lib/motion';
   import type { PageProps } from './$types';
 
@@ -61,6 +62,12 @@
   </div>
 </section>
 
+{#if data.startRecording}
+  <div class="home-recording" id="start-here">
+    <Recording video={data.startRecording} flyer />
+  </div>
+{/if}
+
 <CurrentProjects shows={data.shows} />
 
 <section class="performance-photos section-block" aria-labelledby="photos-title">
@@ -74,3 +81,11 @@
 </section>
 
 <PerformanceNextSteps resumePdf={data.resumePdf} />
+
+<style>
+  .home-recording {
+    container: home-recording / inline-size;
+    margin-top: clamp(2rem, 4vw, 3rem);
+    scroll-margin-top: 2rem;
+  }
+</style>
