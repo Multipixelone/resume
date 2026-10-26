@@ -3,7 +3,7 @@
   // Previews need absolute URLs, so the origin comes from the layout load (SITE_ORIGIN)
   // and sitePath keeps the mount. The card is drawn by scripts/gen_social_card.py.
   import { page } from '$app/state';
-  import { sitePath } from '$lib/paths';
+  import { sitePath } from '#lib/paths.js';
 
   const siteDescription = 'Finn Rutis is a New York City Based performance artist that is interested in using the magic of theatre to shine a light on unconscious parts of the human experience';
   let { title, description = siteDescription }: { title: string; description?: string } = $props();

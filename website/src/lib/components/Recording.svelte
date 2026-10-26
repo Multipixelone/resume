@@ -1,8 +1,8 @@
 <script lang="ts">
   import { tick } from 'svelte';
-  import { sitePath } from '$lib/paths';
-  import Arrow from '$lib/components/Arrow.svelte';
-  import type { Recording, ShowVideo } from '$lib/types';
+  import { sitePath } from '#lib/paths.js';
+  import Arrow from '#lib/components/Arrow.svelte';
+  import type { Recording, ShowVideo } from '#lib/types.ts';
 
   // A clip on its sheet, introduced by the song in Cooper Bold,
   // then small labels for the show, role and year. `label` sits above a title that is

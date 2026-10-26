@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { sitePath } from '$lib/paths';
-  import { portraitSizes, responsive } from '$lib/images';
-  import Arrow from '$lib/components/Arrow.svelte';
-  import CurrentProjects from '$lib/components/CurrentProjects.svelte';
-  import PageHead from '$lib/components/PageHead.svelte';
-  import PhotoSpread from '$lib/components/PhotoSpread.svelte';
-  import PerformanceNextSteps from '$lib/components/PerformanceNextSteps.svelte';
-  import Recording from '$lib/components/Recording.svelte';
-  import { paperMotion, callboardEntrance } from '$lib/motion';
-  import type { PageProps } from './$types';
+  import { sitePath } from '#lib/paths.js';
+  import { portraitSizes, responsive } from '#lib/images.ts';
+  import Arrow from '#lib/components/Arrow.svelte';
+  import CurrentProjects from '#lib/components/CurrentProjects.svelte';
+  import PageHead from '#lib/components/PageHead.svelte';
+  import PhotoSpread from '#lib/components/PhotoSpread.svelte';
+  import PerformanceNextSteps from '#lib/components/PerformanceNextSteps.svelte';
+  import Recording from '#lib/components/Recording.svelte';
+  import { paperMotion, callboardEntrance } from '#lib/motion.ts';
+  import type { PageProps } from './$types.js';
 
   let { data }: PageProps = $props();
   let stagePhoto = $derived(data.stagePhoto);

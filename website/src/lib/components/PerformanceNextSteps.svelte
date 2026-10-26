@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { sitePath } from '$lib/paths';
+  import { sitePath } from '#lib/paths.js';
   import Arrow from './Arrow.svelte';
 
   // The homepage offers the reel; the reel offers the optional headshot PDF.

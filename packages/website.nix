@@ -42,11 +42,19 @@ buildNpmPackage {
   # Both fetchNpmDeps and the build unpack the same tree and enter website/.
   # npmRoot is not forwarded to fetchNpmDeps by this pinned buildNpmPackage.
   sourceRoot = "source/website";
-  npmDepsHash = "sha256-Kwtv0q+p0UBancMk01wQE0WPfvwKSp0R0pGNzT6MlfM=";
+  npmDepsHash = "sha256-NmpacHDXGCNde0xKg9UlOt9tp83ORzvbN135H9Wpv6E=";
   env.SITE_BASE = siteBase;
   env.SITE_ORIGIN = siteOrigin;
   env.SITE_COMMIT = commit;
   nativeBuildInputs = [ (python3.withPackages (p: [ p.pillow ])) ];
+
+  doCheck = true;
+  checkPhase = ''
+    runHook preCheck
+    npm run check
+    npm test
+    runHook postCheck
+  '';
 
   installPhase = ''
     runHook preInstall

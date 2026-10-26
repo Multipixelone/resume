@@ -1,4 +1,4 @@
-import type { IconName } from '$lib/components/Icon.svelte';
+import type { IconName } from '#lib/components/Icon.svelte';
 
 export interface FooterLink {
   /** Visible and accessible link label; the icon itself is aria-hidden. */

@@ -1,4 +1,4 @@
-import { content, reels } from '$lib/server/content';
+import { content, reels } from '#lib/server/content.js';
 
 export function load() {
   const byId = new Map(reels.map(reel => [reel.id, reel]));

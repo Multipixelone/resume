@@ -1,6 +1,6 @@
 <script>
-  import PageHead from '$lib/components/PageHead.svelte';
-  import BusinessCard from '$lib/components/BusinessCard.svelte';
+  import PageHead from '#lib/components/PageHead.svelte';
+  import BusinessCard from '#lib/components/BusinessCard.svelte';
 </script>
 
 <PageHead title="Contact | Finn Rutis" />

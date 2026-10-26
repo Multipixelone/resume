@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { sitePath } from '$lib/paths';
-  import Arrow from '$lib/components/Arrow.svelte';
-  import CoverPrint from '$lib/components/CoverPrint.svelte';
-  import PageHead from '$lib/components/PageHead.svelte';
-  import PerformanceNextSteps from '$lib/components/PerformanceNextSteps.svelte';
-  import Recording from '$lib/components/Recording.svelte';
-  import ReelPrint from '$lib/components/ReelPrint.svelte';
-  import type { PageProps } from './$types';
+  import { sitePath } from '#lib/paths.js';
+  import Arrow from '#lib/components/Arrow.svelte';
+  import CoverPrint from '#lib/components/CoverPrint.svelte';
+  import PageHead from '#lib/components/PageHead.svelte';
+  import PerformanceNextSteps from '#lib/components/PerformanceNextSteps.svelte';
+  import Recording from '#lib/components/Recording.svelte';
+  import ReelPrint from '#lib/components/ReelPrint.svelte';
+  import type { PageProps } from './$types.js';
 
   let { data }: PageProps = $props();
   let reel = $derived(data.reel);

@@ -8,5 +8,39 @@
   "automergeStrategy": "squash",
   "platformAutomerge": true,
   "semanticCommits": "enabled",
-  "prConcurrentLimit": 5
+  "prConcurrentLimit": 5,
+  "packageRules": [
+    {
+      "matchManagers": [
+        "npm"
+      ],
+      "matchFileNames": [
+        "website/package.json"
+      ],
+      "matchPackageNames": [
+        "@sveltejs/adapter-static",
+        "@sveltejs/kit",
+        "@sveltejs/vite-plugin-svelte",
+        "vite",
+        "svelte",
+        "svelte-check",
+        "typescript"
+      ],
+      "groupName": "svelte toolchain",
+      "separateMajorMinor": false,
+      "automerge": false
+    },
+    {
+      "matchManagers": [
+        "npm"
+      ],
+      "matchFileNames": [
+        "website/package.json"
+      ],
+      "matchPackageNames": [
+        "typescript"
+      ],
+      "allowedVersions": ">=6 <7"
+    }
+  ]
 }

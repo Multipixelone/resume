@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import { sitePath } from '$lib/paths';
-  import { footerLinks, repoUrl } from '$lib/footer';
+  import { sitePath } from '#lib/paths.js';
+  import { footerLinks, repoUrl } from '#lib/footer.ts';
   import Icon from './Icon.svelte';
 
   // commit is "<sha>", "<sha>-dirty", or "" for builds outside Nix (see +layout.server.js).

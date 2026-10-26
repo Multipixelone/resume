@@ -1,9 +1,9 @@
 <script lang="ts">
   import '../styles/site.css';
   import { page } from '$app/state';
-  import { sitePath } from '$lib/paths';
-  import { showAbout } from '$lib/about';
-  import SiteFooter from '$lib/components/SiteFooter.svelte';
+  import { sitePath } from '#lib/paths.js';
+  import { showAbout } from '#lib/about.ts';
+  import SiteFooter from '#lib/components/SiteFooter.svelte';
 
   let { children, data } = $props();
   const navigation = [

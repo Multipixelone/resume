@@ -7,7 +7,7 @@ of passing builds, browser tests, deployment, or final font/media clearance.
 
 ## Local toolchain and output
 
-Run from `website/`, using Node >=22.12 (the implementation environment reports
+Run from `website/`, using Node >=22.17 (the implementation environment reports
 Node 24.16). Package versions and the npm lock are pinned. SvelteKit 2.55.0,
 adapter-static 3.0.10, plugin-svelte 6.2.1, Svelte 5.57.2, Vite 7.3.1,
 TypeScript 5.9.3, svelte-check 4.7.7, and smol-toml 1.9.1 are the selected

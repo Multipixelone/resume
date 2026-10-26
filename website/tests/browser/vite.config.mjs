@@ -8,7 +8,7 @@ export default defineConfig({
   publicDir: fileURLToPath(new URL('../../static', import.meta.url)),
   plugins: [localFonts(), svelte({ configFile: false })],
   resolve: { alias: {
-    '$lib': fileURLToPath(new URL('../../src/lib', import.meta.url)),
+    '#lib': fileURLToPath(new URL('../../src/lib', import.meta.url)),
     '$shows': fileURLToPath(new URL('../../../lib/shows.mjs', import.meta.url)),
     '$app/paths': fileURLToPath(new URL('./app-paths.mjs', import.meta.url))
   } },
