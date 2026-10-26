@@ -137,7 +137,6 @@
   .recording--flyer .recording-start .ticket-card { padding-bottom: .5rem; }
   .recording--flyer .recording-caption { padding: 0; }
   .recording--flyer .recording-caption h2 {
-    max-width: 9ch;
     font-size: clamp(2.25rem, 5cqi, 3.5rem);
     font-weight: 900;
     line-height: 1.05;
