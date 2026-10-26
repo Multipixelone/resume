@@ -1,6 +1,8 @@
 import type { OnNavigate } from '$app/navigation';
 
 const PHOTO = '[data-transition-photo]';
+const TRANSITION_TIMEOUT = 1000;
+const MAX_VISITS = 64;
 
 function visible(node: HTMLElement) {
   const box = node.getBoundingClientRect();
@@ -24,50 +26,95 @@ function namePhoto(node: HTMLElement | undefined, active: boolean) {
   }
 }
 
-async function decodeVisibleImages() {
+async function decodeVisibleImages(signal: AbortSignal) {
+  if (signal.aborted) return;
   const images = [...document.images].filter(image => visible(image));
   for (const image of images) image.loading = 'eager';
   let timer: ReturnType<typeof setTimeout> | undefined;
+  let release: () => void = () => {};
   // A lazy image may not start loading while the browser holds the old frame.
   // Warm only the visible images, with one budget for the whole new view.
-  await Promise.race([
-    Promise.allSettled(images.map(image => image.decode())),
-    new Promise<void>(done => { timer = setTimeout(done, 120); })
-  ]);
-  clearTimeout(timer);
+  try {
+    await Promise.race([
+      Promise.allSettled(images.map(image => image.decode())),
+      new Promise<void>(done => {
+        release = done;
+        timer = setTimeout(done, 120);
+        signal.addEventListener('abort', release, { once: true });
+      })
+    ]);
+  } finally {
+    clearTimeout(timer);
+    signal.removeEventListener('abort', release);
+  }
 }
 
 /** Let Kit own navigation, scroll and focus; carry one visible print between pages. */
 export function createPageTransitions() {
-  // Remember the chosen photograph for the return trip, including shows with
-  // several homepage prints. Filenames identify photographs, not productions.
+  // Observe native entry identity without writing Kit's history state. A route
+  // pair is not enough: two visits to one show can start at different prints.
+  // Older browsers still animate clicked prints; history uses the page dissolve.
+  const historyNavigation = typeof window !== 'undefined' ? window.navigation : undefined;
+  let previousEntry: NavigationHistoryEntry | undefined;
+  function entryChanged(event: NavigationCurrentEntryChangeEvent) {
+    if (event.navigationType) previousEntry = event.from;
+  }
+  historyNavigation?.addEventListener('currententrychange', entryChanged);
   const visits = new Map<string, string>();
   let stop: (() => void) | undefined;
+  let destroyed = false;
 
   function navigate(navigation: OnNavigate) {
     stop?.();
     const { from, to } = navigation;
-    if (!from || !to || navigation.shallow || from.url.pathname === to.url.pathname
-      || !document.startViewTransition || document.hidden
-      || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (destroyed || !from || !to) return;
 
-    const trip = JSON.stringify([from.url.pathname, to.url.pathname]);
-    const reverseTrip = JSON.stringify([to.url.pathname, from.url.pathname]);
+    const entry = historyNavigation?.currentEntry;
+    let trip: string | undefined;
+    let reverseTrip: string | undefined;
+    if (previousEntry && entry && previousEntry.url === from.url.href && entry.url === to.url.href) {
+      trip = JSON.stringify([previousEntry.key, from.url.href, entry.key, to.url.href]);
+      reverseTrip = JSON.stringify([entry.key, to.url.href, previousEntry.key, from.url.href]);
+    }
     const link = navigation.type === 'link' && navigation.event.target instanceof Element
       ? navigation.event.target.closest<HTMLAnchorElement>('a') : null;
-    const file = link?.dataset.transitionPhoto ?? link?.dataset.transitionLink
-      ?? (navigation.type === 'popstate' ? visits.get(trip) : undefined);
+    const clickedFile = link?.dataset.transitionPhoto ?? link?.dataset.transitionLink;
+    const file = clickedFile ?? (navigation.type === 'popstate' && trip ? visits.get(trip) : undefined);
+    // Remember successful visits even when motion is disabled or an image is
+    // still loading. An interrupted animation does not undo a completed visit.
+    if (clickedFile && trip && reverseTrip) {
+      void navigation.complete.then(() => {
+        if (destroyed) return;
+        visits.set(trip, clickedFile);
+        visits.set(reverseTrip, clickedFile);
+        while (visits.size > MAX_VISITS) visits.delete(visits.keys().next().value!);
+      }, () => {});
+    }
+    if (navigation.shallow || from.url.pathname === to.url.pathname
+      || typeof document.startViewTransition !== 'function' || document.hidden
+      || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     const candidate = findPhoto(file);
-    const source = candidate?.querySelector('img')?.naturalWidth ? candidate : undefined;
+    const sourceImage = candidate?.querySelector('img');
+    const source = sourceImage?.complete && sourceImage.naturalWidth ? candidate : undefined;
     const root = document.documentElement;
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const cancellation = new AbortController();
+    const cancelled = new Promise<void>(resolve => {
+      cancellation.signal.addEventListener('abort', () => resolve(), { once: true });
+    });
     let target: HTMLElement | undefined;
     let transition: ViewTransition | undefined;
     let stopped = false;
+    let releaseNavigation: () => void = () => {};
+    let timer: ReturnType<typeof setTimeout> | undefined;
 
     function cleanup() {
       if (stopped) return;
       stopped = true;
+      releaseNavigation();
+      clearTimeout(timer);
+      cancellation.abort();
       namePhoto(source, false);
       namePhoto(target, false);
       reduced.removeEventListener('change', interrupt);
@@ -94,14 +141,19 @@ export function createPageTransitions() {
     document.addEventListener('visibilitychange', interrupt);
 
     return new Promise<void>(resolve => {
+      releaseNavigation = resolve;
+      // Capturing the old frame is an enhancement, never an indefinite gate on
+      // Kit. Also bound a stalled DOM update and release its image decode wait.
+      timer = setTimeout(cancel, TRANSITION_TIMEOUT);
       try {
         transition = document.startViewTransition(async () => {
           // Release Kit only after the old page has been captured. Its complete
           // promise includes the DOM update and native scroll/focus restoration.
           resolve();
-          await navigation.complete;
           if (stopped) return;
-          await decodeVisibleImages();
+          await Promise.race([navigation.complete, cancelled]);
+          if (stopped) return;
+          await decodeVisibleImages(cancellation.signal);
           if (stopped || !source || !file) return;
 
           target = findPhoto(file);
@@ -111,11 +163,10 @@ export function createPageTransitions() {
           if (!image.complete || !image.naturalWidth) return;
 
           namePhoto(target, true);
-          visits.set(trip, file);
-          visits.set(reverseTrip, file);
         });
         // Skipped and interrupted transitions are ordinary navigation outcomes.
-        void transition.ready.catch(() => {});
+        void transition.ready.catch(cancel);
+        void transition.updateCallbackDone.catch(cancel);
         void transition.finished.then(cleanup, cleanup);
       } catch {
         cleanup();
@@ -124,5 +175,13 @@ export function createPageTransitions() {
     });
   }
 
-  return { navigate, destroy: () => stop?.() };
+  return {
+    navigate,
+    destroy() {
+      destroyed = true;
+      stop?.();
+      visits.clear();
+      historyNavigation?.removeEventListener('currententrychange', entryChanged);
+    }
+  };
 }

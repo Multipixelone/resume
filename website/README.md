@@ -81,6 +81,20 @@ PY
 On macOS, `npm run inspect -- --channel chrome` uses installed Google Chrome if needed.
 This works independently of the browser tools attached to an agent session.
 
+With a dev or preview server running, exercise shared photo navigation in a real
+browser with `python3 tests/browser/navigation-transitions.py` (add
+`--channel chrome` on macOS).
+Use `--base-url http://127.0.0.1:4173/resume/` for a preview built with
+`SITE_BASE=/resume`. It checks desktop keyboard and emulated mobile touch,
+Back/Forward across repeated show visits, native scroll restoration, rapid
+navigation, resize, motion preferences, slow/failed images, and browser fallbacks.
+It also checks that show return links retain Home or Theatre credits through
+the show pager, refresh, and history traversal, with usable direct-entry fallbacks.
+Screenshots and its report go to `test-results/navigation-transitions/`.
+`npm test` also covers capture timeouts, aborted routes and cleanup races without
+a browser. Older browsers without history entry identity use the page dissolve
+on Back/Forward; clicked photos still travel when view transitions are supported.
+
 Licensed faces that fail remotely need their authorized local copies in
 `fonts-local/`; see the font notes above. Review typography only when the report
 shows the needed faces loaded.
