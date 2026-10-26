@@ -8,9 +8,25 @@ import { localFonts } from './lib/local-fonts.mjs';
 import { mediaRenditions } from './lib/renditions.mjs';
 
 const base = siteBase(process.env.SITE_BASE);
+const canonicalInputs = [
+  '../lib/shows.mjs',
+  '../metadata/theatre.toml',
+  '../metadata/film.toml',
+  '../variants.toml'
+].map(path => fileURLToPath(new URL(path, import.meta.url)));
+
+// Canonical data only enters SSR; relay its changes to browser clients too.
+const canonicalReload = {
+  name: 'canonical-inputs-reload',
+  hotUpdate({ file, server }) {
+    if (this.environment.name === 'ssr' && canonicalInputs.includes(file)) {
+      server.environments.client.hot.send({ type: 'full-reload' });
+    }
+  }
+};
 
 export default defineConfig({
-  plugins: [localFonts(), mediaRenditions(), sveltekit({
+  plugins: [canonicalReload, localFonts(), mediaRenditions(), sveltekit({
     preprocess: vitePreprocess(),
     adapter: adapter({ pages: 'build', assets: 'build', strict: true }),
     paths: { base, relative: false },
@@ -37,10 +53,7 @@ export default defineConfig({
     // The site deliberately consumes canonical sources one directory above it.
     fs: { allow: [
       fileURLToPath(new URL('.', import.meta.url)),
-      fileURLToPath(new URL('../lib/shows.mjs', import.meta.url)),
-      fileURLToPath(new URL('../metadata/theatre.toml', import.meta.url)),
-      fileURLToPath(new URL('../metadata/film.toml', import.meta.url)),
-      fileURLToPath(new URL('../variants.toml', import.meta.url))
+      ...canonicalInputs
     ] }
   }
 });
