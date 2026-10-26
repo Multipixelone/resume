@@ -32,16 +32,19 @@
   <p class="footer-meta">
     <span>&copy; {year} Finn Rutis</span>
     <a href={sitePath('/fonts/cooper/LICENSE.md')}>Cooper* license</a>
+    <span class="build-credit">
+      made by Finn with SvelteKit <span class="build-heart" role="img" aria-label="love">&lt;3</span>
+    </span>
     {#if sha}
       <a class="build-source" href="{repoUrl}/commit/{sha}">
         <Icon name="commit" />
-        <span>built from</span>
+        <span>built from this commit</span>
         <code>{sha.slice(0, 7)}{dirty ? '-dirty' : ''}</code>
       </a>
     {:else}
       <a class="build-source" href={repoUrl}>
         <Icon name="commit" />
-        <span>built from this repo</span>
+        <span>view source</span>
       </a>
     {/if}
   </p>
