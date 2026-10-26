@@ -19,7 +19,7 @@
   <div class="photo-layers" use:paperMotion use:printEntrance>
     <span class="photo-arrival-shadow" aria-hidden="true"></span>
     <div class="photo-object">
-      <a class="photo-mat" href={sitePath(`/media/${photo.file}`)} aria-label={`View full photo: ${photo.alt}`}
+      <a class="photo-mat" href={sitePath(`/media/${photo.file}`)} aria-label={`View full photo: ${photo.alt}`} data-transition-photo={photo.file}
         aria-describedby={photo.note?.blurb ? blurbId : undefined}>
         <img {...responsive(photo.file, reelSizes(orientation === 'portrait', solo, photo.width))} alt={photo.alt} width={photo.width} height={photo.height}
           loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />

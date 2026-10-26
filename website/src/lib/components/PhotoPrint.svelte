@@ -22,7 +22,7 @@
     <span class="photo-backing" aria-hidden="true"></span>
     <span class="photo-arrival-shadow" aria-hidden="true"></span>
     <div class="photo-object">
-      <a class="photo-mat" {href} aria-label={label}
+      <a class="photo-mat" {href} aria-label={label} data-transition-photo={photo.file}
         aria-describedby={photo.note ? noteId : undefined}>
         <img {...responsive(photo.file, spreadSizes[photo.placement ?? 'wide'])} alt={photo.alt} width={photo.width} height={photo.height} loading="lazy" decoding="async" />
       </a>
@@ -45,7 +45,7 @@
           <span class="photo-note" id={noteId}>
             {#if photo.note.title}
               <!-- A second pointer and touch target for the print's own link, which already names the show. -->
-              <span class="photo-note-title">{#if photo.reel}<a class="photo-note-link" {href} tabindex="-1" aria-hidden="true">{photo.note.title}</a>{:else}{photo.note.title}{/if}</span>
+              <span class="photo-note-title">{#if photo.reel}<a class="photo-note-link" {href} data-transition-link={photo.file} tabindex="-1" aria-hidden="true">{photo.note.title}</a>{:else}{photo.note.title}{/if}</span>
             {/if}
             {#if photo.note.role}<span class="photo-note-role">{photo.note.role}</span>{/if}
             {#if photo.reelCount}

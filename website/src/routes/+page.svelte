@@ -45,7 +45,7 @@
             <div class="hero-contact-print">
               <div class="photo-layers">
                 <div class="hero-print-hinge">
-                  <a class="photo-mat" href={sitePath(stagePhoto.reel ?? `/media/${stagePhoto.file}`)} aria-label={`More from ${stagePhoto.note?.title}: ${stagePhoto.alt}`}>
+                  <a class="photo-mat" href={sitePath(stagePhoto.reel ?? `/media/${stagePhoto.file}`)} aria-label={`More from ${stagePhoto.note?.title}: ${stagePhoto.alt}`} data-transition-photo={stagePhoto.file}>
                     <img {...responsive(stagePhoto.file, portraitSizes(.4, .36))} alt="" width={stagePhoto.width} height={stagePhoto.height} decoding="async" />
                     <span class="hero-print-caption">{stagePhoto.note?.title}</span>
                   </a>

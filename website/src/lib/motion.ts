@@ -37,6 +37,8 @@ export const callboardEntrance: Action<HTMLElement> = (node) => {
     if (entered || reduced.matches || document.hidden) return;
     entered = true;
     observer?.disconnect();
+    // The navigation snapshot supplies the arrival when returning to this page.
+    if (document.documentElement.hasAttribute('data-page-transition')) return;
     play(node.querySelector('.portrait-backing'), [
       { translate: '-10px 6px', rotate: '-2deg' },
       { translate: '0 0', rotate: '0deg' }
@@ -163,7 +165,8 @@ export const printEntrance: Action<HTMLElement> = (node) => {
   function arrive() {
     if (entered || reduced.matches || document.hidden) return;
     entered = true;
-    if (node.contains(document.activeElement)) {
+    if (node.contains(document.activeElement)
+      || document.documentElement.hasAttribute('data-page-transition')) {
       settle();
       return;
     }

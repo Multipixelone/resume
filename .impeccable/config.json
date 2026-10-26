@@ -12,6 +12,15 @@
         ],
         "createdAt": "2026-10-26T01:23:51.560Z",
         "reason": "Agent: both image tags spread responsive(), which returns src and srcset for existing static/media masters portrait.jpg and 2X9A9381-X4.jpg"
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "website/src/lib/components/PhotoPrint.svelte"
+        ],
+        "createdAt": "2026-10-26T16:35:46.081Z",
+        "reason": "Agent verified: responsive() supplies real src and srcset via Svelte attribute spread; desktop and mobile inspection reports show no broken images"
       }
     ]
   }

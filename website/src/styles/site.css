@@ -24,7 +24,28 @@
 }
 
 * { box-sizing: border-box; }
-html { background: var(--paper); scroll-behavior: auto; }
+html { background: var(--paper); scroll-behavior: auto; view-transition-name: none; }
+/* One print travels between callboards. The surrounding paper changes quietly;
+   captions are part of the page, never stretched inside the moving photograph.
+   Keep the header live: a root snapshot would block a second navigation click. */
+main { view-transition-name: page; }
+::view-transition { pointer-events: none; }
+::view-transition-group(page) { animation: none; }
+::view-transition-old(page) { animation: page-paper-out 120ms ease-in both; }
+::view-transition-new(page) { animation: page-paper-in 220ms ease-out both; }
+::view-transition-group(show-print),
+::view-transition-group(show-photo) { animation-duration: 460ms; animation-timing-function: cubic-bezier(.22, .8, .22, 1); }
+::view-transition-old(show-print),
+::view-transition-new(show-print),
+::view-transition-old(show-photo),
+::view-transition-new(show-photo) { height: 100%; object-fit: fill; }
+::view-transition-old(show-print):only-child,
+::view-transition-old(show-photo):only-child { animation-duration: 120ms; }
+@keyframes page-paper-out { to { opacity: 0; } }
+@keyframes page-paper-in { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}
 body { margin: 0; color: var(--ink); font-family: var(--font-body); font-size: 1.125rem; line-height: 1.6; font-synthesis: none; }
 ::selection { color: var(--ink); background: var(--selection-bg); }
 img { display: block; max-width: 100%; height: auto; }

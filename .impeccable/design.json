@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-23T06:17:52+00:00",
+  "generatedAt": "2026-10-26T16:50:29+00:00",
   "title": "Design System: Finn Rutis",
   "extensions": {
     "colorMeta": {
@@ -235,6 +235,16 @@
       }
     ],
     "motion": [
+      {
+        "name": "navigation-print",
+        "value": "460ms cubic-bezier(.22, .8, .22, 1)",
+        "purpose": "One visible photograph and its paper mat move into the show page and back through history. Separate image and mat snapshots preserve the image proportions. Reduced motion uses ordinary navigation."
+      },
+      {
+        "name": "navigation-page",
+        "value": "120ms ease-in exit; 220ms ease-out entrance",
+        "purpose": "The page dissolves while the header stays interactive. Offscreen photo matches use this dissolve alone, retaining native scroll restoration. Visible image decoding has a shared 120ms budget."
+      },
       {
         "name": "settle",
         "value": "cubic-bezier(.16, 1, .3, 1)",

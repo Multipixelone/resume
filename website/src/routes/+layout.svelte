@@ -1,11 +1,17 @@
 <script lang="ts">
   import '../styles/site.css';
+  import { onDestroy } from 'svelte';
+  import { onNavigate } from '$app/navigation';
   import { page } from '$app/state';
+  import { createPageTransitions } from '#lib/navigation-transitions.ts';
   import { sitePath } from '#lib/paths.js';
   import { showAbout } from '#lib/about.ts';
   import SiteFooter from '#lib/components/SiteFooter.svelte';
 
   let { children, data } = $props();
+  const transitions = createPageTransitions();
+  onNavigate(transitions.navigate);
+  onDestroy(transitions.destroy);
   const navigation = [
     { label: 'About', route: '/about', path: '/about/' },
     { label: 'Resume', route: '/resume', path: '/resume/' },
