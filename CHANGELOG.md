@@ -1,5 +1,109 @@
 # Changelog
 
+## [3.0.1] - 2026-10-26
+
+### 🚀 Features
+
+- *(website)* Add film section to performance reel in [7f3f342](https://github.com/Multipixelone/resume/commit/7f3f342544650402696c79a4b36fe2d3e11e5544)
+- *(website)* Add livestream flag to current project stubs in [b42177d](https://github.com/Multipixelone/resume/commit/b42177dea33dcbaded28cac4228fb22bc2a64c9a)
+- *(website)* Add about page scaffold in [d4b51c6](https://github.com/Multipixelone/resume/commit/d4b51c61b4de4c4bb296288ccd1cc279529147d8)
+- *(website)* Shorten the reel nav label in [6895309](https://github.com/Multipixelone/resume/commit/6895309659c09e96606e2c96cefb64f4f3582dd0)
+- *(website)* Add Molloy Showcase 2026 to the reel in [a1a1b23](https://github.com/Multipixelone/resume/commit/a1a1b23ee9c19a379f2eb58c8163c665d343bef0)
+- *(website)* Tape the hero stage print and swing it on hover in [ea4d99a](https://github.com/Multipixelone/resume/commit/ea4d99a857da8a85cb770dc1b34de92471d2d1bf)
+- *(website)* Lead the hero links with a reel slip in [a0fdf81](https://github.com/Multipixelone/resume/commit/a0fdf81be50485d896b8cbdae88882d060dd0488)
+- *(website)* Print the ticket stub end in solid rust in [9dfde83](https://github.com/Multipixelone/resume/commit/9dfde83c87c6402a50253896849660c4001cc4a2)
+- *(website)* Lift the ticket stub on hover in [aa6452e](https://github.com/Multipixelone/resume/commit/aa6452e62b64f473e6a465aa855f66afb15a6329)
+- *(website)* Lead performance reel with she loves me showcase in [56e5628](https://github.com/Multipixelone/resume/commit/56e5628308261ea35f73c13aa667235c897b31a2)
+- *(website)* Replace the current-project status dot with a perforation in [ed957d5](https://github.com/Multipixelone/resume/commit/ed957d5911e07f934881ae25d052847727b27299)
+- *(website)* Pivot the taped stage print at its tape in [6356511](https://github.com/Multipixelone/resume/commit/635651114786591d3910bf6c11835db351dc6f86)
+- *(website)* Head the current project like the on stage spread in [a430a1f](https://github.com/Multipixelone/resume/commit/a430a1f25f70c73447ef224f70301bde209b8fb7)
+- *(website)* Add tactile callboard motion in [75149b0](https://github.com/Multipixelone/resume/commit/75149b0dbeff7c615c9f5ce82d61c7a296f9a7d3)
+- *(website)* Add tactile gallery reveals and photo fastenings in [b034a1e](https://github.com/Multipixelone/resume/commit/b034a1efa8e12bb87afcb4d089e2f5a14fef2fa1)
+- *(website)* List only theatre and field resumes on /resumes/ in [5c46446](https://github.com/Multipixelone/resume/commit/5c464462b7620a86d03855f6a754362204458394)
+- *(website)* Add show pages linked from credits and homepage prints in [1001b1b](https://github.com/Multipixelone/resume/commit/1001b1bec4eaec1c3d0150fe09e284c8fc3e10c1)
+- *(website)* Keep about out of production builds until it is written in [842c219](https://github.com/Multipixelone/resume/commit/842c219254225da0841763afb6b34f0ae11fffc1)
+- *(website)* Ship a branded 404 page for unknown paths in [dea1153](https://github.com/Multipixelone/resume/commit/dea1153f7733393609131a234e0d3922db77710b)
+- *(website)* Caption reel clips like gallery prints in [242f56c](https://github.com/Multipixelone/resume/commit/242f56c1c109b7a9d40df19d13a5e1429d489d1d)
+- *(website)* Add joseph production photos in [0fd9a7d](https://github.com/Multipixelone/resume/commit/0fd9a7d40019d409a64953af35647d9d40f3ad41)
+- *(website)* Add more production photos to show pages in [cc1643b](https://github.com/Multipixelone/resume/commit/cc1643b3ccb3385520035339571fa4b808331cff)
+- *(website)* Add composer lights print to the homepage spread in [c41c543](https://github.com/Multipixelone/resume/commit/c41c5439f924c8bf44c13e51fc666f2d5189c25a)
+- *(website)* Load recordings from playable video previews in [b3a3983](https://github.com/Multipixelone/resume/commit/b3a3983cc46b74f629738a48948b01da3a51a5c3)
+- *(website)* Improve reel navigation and resume downloads in [b6d10ae](https://github.com/Multipixelone/resume/commit/b6d10aebbc0d727d277654652e3ee5727be69c61)
+- *(website)* Refine contact page design and accessibility in [697b6ec](https://github.com/Multipixelone/resume/commit/697b6ec07dba1df235366da185376edd91d8efef)
+- *(cards)* Add shared business card generator in [4e94aac](https://github.com/Multipixelone/resume/commit/4e94aac81a8357af68c1357268ed8488755068d8)
+- 3d business card design in [738c491](https://github.com/Multipixelone/resume/commit/738c491a157a3def90eeff9734faf963ef52f17b)
+- *(cards)* Mount the performance headshot as a tilted print in [3e51a85](https://github.com/Multipixelone/resume/commit/3e51a858adeedd65c6984cfbcbfe4aee5def3fd9)
+- *(website)* Make about escapade titles optional in [04817f2](https://github.com/Multipixelone/resume/commit/04817f2329556294dc36edaa1400f102a8cbd947)
+- *(website)* Add photos to the first and third escapades in [8b8ce41](https://github.com/Multipixelone/resume/commit/8b8ce416785b540b21b00b873da87b989a5cb316)
+- *(website)* Add playable start clip to homepage in [d8f5111](https://github.com/Multipixelone/resume/commit/d8f51116010e01384bd91a77109efafc20dab297)
+
+### 🐛 Bug Fixes
+
+- Comp build path in [b0b160d](https://github.com/Multipixelone/resume/commit/b0b160d7911a24c8b999d3d0fde6f2b3669d49b0)
+- *(website)* Center the ticket and tighten section spacing in [3c3450b](https://github.com/Multipixelone/resume/commit/3c3450be7eae8fe323be3d5d0217514e80f9f373)
+- *(website)* Keep ticket perforations stable during motion in [661387b](https://github.com/Multipixelone/resume/commit/661387b161c155063e56071f98a428f1edfa5da4)
+- *(website)* Refine homepage photos and gallery spacing in [d406383](https://github.com/Multipixelone/resume/commit/d4063831f8e07c293bc28fe6673502fce8338210)
+- Nicer spacing of final three photos in [c08f0cb](https://github.com/Multipixelone/resume/commit/c08f0cb4bf2e41391958157e452dd00058956345)
+- *(website)* Correct its and than typos in about escapades in [f7c5cd1](https://github.com/Multipixelone/resume/commit/f7c5cd1c563833a3befa4e5268d6dc64b01f3e53)
+- *(website)* Alternate about photos around text-only cards in [e51877b](https://github.com/Multipixelone/resume/commit/e51877bec9f9e1bd02c6f8fdba98d147c1ed70dc)
+- Thank u jordan the copy editor in [73e08a1](https://github.com/Multipixelone/resume/commit/73e08a1a4c0f17ee75369d0f64a0c59544219b5c)
+- *(website)* Reflow two-column layouts under large text in [1e1d92c](https://github.com/Multipixelone/resume/commit/1e1d92c7b82547094dc65ced98cb2ab1ac79eaf8)
+- *(website)* Clarify photo links and refine print layout in [1b25292](https://github.com/Multipixelone/resume/commit/1b252929d4e8e9c8ad0f89833661ef88bb686210)
+- *(website)* Add reel context and early resume download in [96c019d](https://github.com/Multipixelone/resume/commit/96c019d7dd4c96a94dfc9923ed90585c78c08d4d)
+- *(website)* Align footer with the callboard design in [688b445](https://github.com/Multipixelone/resume/commit/688b4457cd667822fe7811cf2917e103d4793271)
+- *(website)* Refine footer attribution in [319e4f1](https://github.com/Multipixelone/resume/commit/319e4f13f5d6834b8c27011d003a648cd7759d1e)
+- *(website)* Give agents a reliable page inspection command in [d03aa99](https://github.com/Multipixelone/resume/commit/d03aa99219b4e2179cb37e9fb42ba41758ce8edf)
+- *(website)* Link hero watch action to featured clip in [77cf356](https://github.com/Multipixelone/resume/commit/77cf356acd92549a99f88989d404f5973200d14f)
+- Display inches (thanks casron & jordan) in [3bd75b5](https://github.com/Multipixelone/resume/commit/3bd75b5232780373da010e80ec7e73246b686265)
+- Use hostPlatform.isDarwin in [c2a4d38](https://github.com/Multipixelone/resume/commit/c2a4d38ab4553924ee5aa7daf72104e0e31e3811)
+
+### 🚜 Refactor
+
+- *(cards)* Render business cards with typst in [4f72f1f](https://github.com/Multipixelone/resume/commit/4f72f1f0bd58ef921879fe7564d8118845862cba)
+
+### 📚 Documentation
+
+- *(impeccable)* Add product and design context for the site in [74e10a1](https://github.com/Multipixelone/resume/commit/74e10a17f7ade3cb7c235787be0111b5373017b5)
+- *(website)* Add ballpoint doodle design handoff in [04c8df3](https://github.com/Multipixelone/resume/commit/04c8df3f9081f70cd20ea036205926f638048e02)
+- *(design)* Describe the solid stub end and its hover in [fb4c58f](https://github.com/Multipixelone/resume/commit/fb4c58fb9fa81543c0cef9508a10b995d8ae1619)
+- *(design)* Sync design system with fastenings and hero links in [3d21c4a](https://github.com/Multipixelone/resume/commit/3d21c4af60036d247bf5abeb156f4ab399a68873)
+- First two 5.5 critiques in [e11e42f](https://github.com/Multipixelone/resume/commit/e11e42f11290216a37117d4658dacbd5e5e3914f)
+- Astra critique in [25a7c00](https://github.com/Multipixelone/resume/commit/25a7c00c3b1350122adee6bac56321dfc3d05469)
+- Add whole-site critique snapshot in [e0f9b1f](https://github.com/Multipixelone/resume/commit/e0f9b1f22af5f25c6af93dbe513e3dbcce5652cd)
+- Add two critique docs in [b694c03](https://github.com/Multipixelone/resume/commit/b694c030e1eb63c3f1005ab29f5e69cedc9d1618)
+
+### ⚡ Performance
+
+- *(website)* Generate responsive photo renditions in [9564019](https://github.com/Multipixelone/resume/commit/956401954f9e762f7f5c46bc2b3a50ae81bea6b2)
+
+### 🎨 Styling
+
+- *(cards)* Format card.typ with typstyle in [add5378](https://github.com/Multipixelone/resume/commit/add53785a8fc57b94c1a4124d9ecdf820f775e22)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update flake.lock (#111) in [9e6db24](https://github.com/Multipixelone/resume/commit/9e6db2486267a3c673598db4156da6a159ada353)
+- *(deps)* Update actions/checkout action to v7 (#114) in [e1c1133](https://github.com/Multipixelone/resume/commit/e1c11331e598e2e230ba600bd4effad51a071774)
+- *(agents)* Add impeccable design skill for each agent harness in [5b0269e](https://github.com/Multipixelone/resume/commit/5b0269eaecb0a8e66f9cf6af32892687658fad9b)
+- *(website)* Ignore impeccable live mode artifacts in [da7ddf5](https://github.com/Multipixelone/resume/commit/da7ddf5f45e50346c89531d1a396a8b4f379c311)
+- Add preview launch configs for the website dev servers in [d6d810a](https://github.com/Multipixelone/resume/commit/d6d810a411d477ec058efa51035e0329520870ff)
+- *(tooling)* Save impeccable hooks and live configuration in [f243f0a](https://github.com/Multipixelone/resume/commit/f243f0a9bb1977024b81b3b755bc1066bd4080a7)
+- Ignore python bytecode in [be8560c](https://github.com/Multipixelone/resume/commit/be8560cd9367e2abb9aae67557274b53f5cbc959)
+- *(website)* Refresh business card textures in [295b823](https://github.com/Multipixelone/resume/commit/295b82326956129b05b599be61757bb8bdd0af9c)
+- *(media)* Preserve supplied offstage photos in [81b7a62](https://github.com/Multipixelone/resume/commit/81b7a62293c77dd4a23cdb2b21e5d716c7defcdc)
+
+### 🔧 CI
+
+- *(ci)* Load the flake as git+file so pdfs keep the commit rev in [30ba517](https://github.com/Multipixelone/resume/commit/30ba517de9a1461ebd48d4b60977e091d4e25c3b)
+
+### Build
+
+- *(website)* Serve licensed fonts locally in dev in [caf3c44](https://github.com/Multipixelone/resume/commit/caf3c44596a28b023a0776ddea2b03f64e599114)
+
+### ✍️ Content
+
+- *(content)* Record production years and the molloy showcase in [6f2968b](https://github.com/Multipixelone/resume/commit/6f2968bbb409443350a5e9322dfb4a9b46808d67)
+
 ## [3.0.0] - 2026-10-21
 
 ### 🚀 Features
