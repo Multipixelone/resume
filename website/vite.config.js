@@ -12,6 +12,8 @@ const canonicalInputs = [
   '../lib/shows.mjs',
   '../metadata/theatre.toml',
   '../metadata/film.toml',
+  '../metadata/metadata.toml',
+  '../metadata/education.toml',
   '../variants.toml'
 ].map(path => fileURLToPath(new URL(path, import.meta.url)));
 

@@ -67,6 +67,26 @@ export interface ShowReel {
   photos: Photo[];
   videos: ShowVideo[];
 }
+/** Header facts from the resume's base metadata; a field hidden on the PDF is absent. */
+export interface ResumeVitals {
+  voicePart?: string;
+  height?: string;
+}
+export interface Degree {
+  title: string;
+  school: string;
+  location: string;
+  date: string;
+}
+export interface TrainingTechnique {
+  technique: string;
+  instructors: string[];
+}
+/** Consecutive training rows that share a discipline. */
+export interface TrainingDiscipline {
+  discipline: string;
+  techniques: TrainingTechnique[];
+}
 export interface CurrentShow extends Show {
   status: 'rehearsing' | 'performing';
   rehearsal_start: string;

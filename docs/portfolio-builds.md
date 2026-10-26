@@ -60,6 +60,9 @@ The npm source preserves repository layout but admits only:
   and `__pycache__` directories;
 - `lib/shows.mjs`;
 - `metadata/theatre.toml`;
+- `metadata/film.toml`;
+- `metadata/metadata.toml` (resume vitals);
+- `metadata/education.toml` (degrees and training, shared with the PDFs);
 - `variants.toml`;
 - `scripts/assemble-portfolio.py`.
 

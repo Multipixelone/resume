@@ -1,4 +1,4 @@
-import { content, reels } from '#lib/server/content.js';
+import { content, reels, resumeProfile } from '#lib/server/content.js';
 
 export function load() {
   const byId = new Map(reels.map(reel => [reel.id, reel]));
@@ -9,5 +9,5 @@ export function load() {
       ? { ...show, reel: { path: reel.path, cover: reel.photos[0], photos: reel.photos.length, videos: reel.videos.length } }
       : show;
   });
-  return { credits, download: content.theatreDownload, composite: content.composite };
+  return { credits, profile: resumeProfile, download: content.theatreDownload, composite: content.composite };
 }

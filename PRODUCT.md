@@ -49,7 +49,7 @@ Resume PDF and PNG downloads exist only in the Nix build (`nix build '.#website'
 ## Capabilities and Constraints
 
 - SvelteKit with adapter-static: prerendered pages, trailing slashes, no SPA fallback. Every essential piece of content works without JavaScript.
-- The site may read only four shared inputs from the parent repo: `metadata/theatre.toml`, `metadata/film.toml`, `variants.toml`, `lib/shows.mjs`. A new one must be added to `server.fs.allow` in `website/vite.config.js` and to the source filter in `packages/website.nix`.
+- The site may read only six shared inputs from the parent repo: `metadata/theatre.toml`, `metadata/film.toml`, `metadata/metadata.toml` (the resume vitals), `metadata/education.toml` (degrees and training), `variants.toml`, `lib/shows.mjs`. A new one must be added to `server.fs.allow` in `website/vite.config.js` and to the source filter in `packages/website.nix`.
 - No second variant list. No fabricated show dates, static "current" labels, or invented credits.
 - Existing terminology: "Current project(s)", "On stage", "Theatre credits", "Performance reel", "Resume with headshot", "All resumes", "Off stage", "Contact".
 - Open, not decided:

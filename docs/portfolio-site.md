@@ -78,7 +78,8 @@ with no client script (`src/routes/404/`), not an SPA shell.
   registry visibility/destinations, JSON projection, and base configuration.
 
 The npm build needs the repository's adjacent `lib/shows.mjs`,
-`metadata/theatre.toml`, `metadata/film.toml`, and `variants.toml`. Vite aliases resolve them explicitly;
+`metadata/theatre.toml`, `metadata/film.toml`, `metadata/metadata.toml`,
+`metadata/education.toml`, and `variants.toml`. Vite aliases resolve them explicitly;
 the dev server's filesystem allowance covers the site and those exact shared
 inputs, not the whole parent repository. Phase 3 must widen the Nix input source
 accordingly and update its dependency hash/output path. The old Nix website

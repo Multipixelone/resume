@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { parse } from 'smol-toml';
-import { filmRecording, attachPhotoNotes, parseShows, parseVariants, portfolioContent, reelRecordings, showReels } from '../lib/content.mjs';
+import { filmRecording, attachPhotoNotes, parseShows, parseVariants, portfolioContent, reelRecordings, resumeTraining, resumeVitals, showReels } from '../lib/content.mjs';
 import { performancePhotos, recordings } from '../src/lib/media.js';
 import { siteBase, siteOrigin } from '../lib/config.mjs';
 import { selectResumeShows } from '../../lib/shows.mjs';
@@ -178,4 +178,32 @@ test('film captions resolve canonical credits and reject missing or incomplete c
   assert.equal(result.duration, 687);
   assert.throws(() => filmRecording(source, { ...video, credit: 'missing' }), /Invalid film credit/);
   assert.throws(() => filmRecording('[shows.show-1]\ntitle="Incomplete"', video), /Invalid film credit/);
+});
+
+test('resume vitals come from the base metadata the theatre PDF prints, hidden fields left out', async () => {
+  const source = await readFile(new URL('../../metadata/metadata.toml', import.meta.url), 'utf8');
+  const { info } = parse(source).personal;
+  assert.deepEqual(resumeVitals(source), { voicePart: info['vocal-part'], height: info.height });
+  assert.deepEqual(resumeVitals('[personal.info]\nvocal-part = "Tenor"\nheight = ""\n'), { voicePart: 'Tenor' });
+  assert.deepEqual(resumeVitals('[personal.info]\nphone = "x"\n'), {});
+  assert.throws(() => resumeVitals('[personal.info]\nheight = 72\n'), /height must be a string/);
+  assert.throws(() => resumeVitals('[personal]\nfirst_name = "Finn"\n'), /personal.info/);
+});
+
+test('training reads the file the PDF reads, grouping consecutive rows by discipline', async () => {
+  const source = await readFile(new URL('../../metadata/education.toml', import.meta.url), 'utf8');
+  const parsed = parse(source);
+  const { degrees, training } = resumeTraining(source);
+  assert.deepEqual(degrees, parsed.degrees.map(({ title, school, location, date }) => ({ title, school, location, date })));
+  assert.deepEqual(training.flatMap(group => group.techniques.map(item => ({ discipline: group.discipline, ...item }))),
+    parsed.training.map(({ discipline, technique, instructors }) => ({ discipline, technique, instructors })));
+  const disciplines = training.map(group => group.discipline);
+  assert.equal(new Set(disciplines).size, disciplines.length);
+  const row = '[[training]]\ndiscipline = "Voice"\ntechnique = "Linklater"\ninstructors = ["A"]\n';
+  const empty = '[[degrees]]\ntitle = "BFA"\nschool = "School"\nlocation = "NYC"\ndate = "2026"\n';
+  assert.deepEqual(resumeTraining(empty + row + row.replace('Voice', 'Acting') + row).training.map(group => group.discipline), ['Voice', 'Acting', 'Voice']);
+  assert.throws(() => resumeTraining(row), /\[\[degrees\]\]/);
+  assert.throws(() => resumeTraining(empty + row.replace('["A"]', '[]')), /instructors must name/);
+  assert.throws(() => resumeTraining(empty + row.replace('"Linklater"', '"  "')), /technique must be a non-empty string/);
+  assert.throws(() => resumeTraining(empty.replace('school = "School"\n', '') + row), /school must be a non-empty string/);
 });

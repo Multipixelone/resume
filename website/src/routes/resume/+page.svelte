@@ -6,6 +6,7 @@
   import PerformanceNextSteps from '#lib/components/PerformanceNextSteps.svelte';
   import type { PageProps } from './$types.js';
   let { data }: PageProps = $props();
+  let { vitals, degrees, training } = $derived(data.profile);
   const plural = (count: number, noun: string) => `${count} ${noun}${count === 1 ? '' : 's'}`;
 </script>
 
@@ -13,21 +14,32 @@
 
 <header class="page-heading"><h1>Resume</h1></header>
 <div class="resume-intro">
-  <div class="download-actions">
-    <a class="primary-link" href={sitePath(data.download.pdf)} rel="external" download="Finn Rutis Artistic Resume.pdf">Download resume <span class="file-label">(PDF)</span> <Arrow dir="down" /></a>
-    <a href={sitePath(data.composite)} rel="external" download="Finn Rutis Resume with headshot.pdf">Resume with headshot <span class="file-label">(PDF)</span></a>
-    <a href={sitePath('/resumes/')}>All resumes <Arrow /></a>
-  </div>
-  <div class="resume-sheet">
-    <span class="photo-fastener photo-tape" aria-hidden="true"></span>
-    <!-- Phase 3 supplies the actual PNG and PDFs. Object fallback works without JS. -->
-    <object class="resume-preview" data={sitePath(data.download.preview)} type="image/png" aria-label="First-page preview of Finn Rutis's theatre resume">
-      <div class="preview-fallback">
-        <p>Resume preview</p>
-        <a href={sitePath(data.download.preview)} rel="external">Open preview image</a>
-        <a href={sitePath(data.download.pdf)} rel="external">Open resume (PDF)</a>
+  <div class="resume-intro-grid">
+    <div class="resume-facts">
+      {#if vitals.voicePart || vitals.height}
+        <!-- The PDF header's vitals, perforated from the downloads like a ticket's tear-off. -->
+        <dl class="resume-vitals">
+          {#if vitals.voicePart}<div><dt>Voice part</dt><dd>{vitals.voicePart}</dd></div>{/if}
+          {#if vitals.height}<div><dt>Height</dt><dd>{vitals.height}</dd></div>{/if}
+        </dl>
+      {/if}
+      <div class="download-actions">
+        <a class="primary-link" href={sitePath(data.download.pdf)} rel="external" download="Finn Rutis Artistic Resume.pdf">Download resume <span class="link-tail"><span class="file-label">(PDF)</span> <Arrow dir="down" /></span></a>
+        <a href={sitePath(data.composite)} rel="external" download="Finn Rutis Resume with headshot.pdf">Resume with headshot <span class="file-label">(PDF)</span></a>
+        <a class="all-resumes-link" href={sitePath('/resumes/')}>All resumes <Arrow /></a>
       </div>
-    </object>
+    </div>
+    <div class="resume-print">
+      <div class="resume-sheet">
+        <span class="photo-fastener photo-tape" aria-hidden="true"></span>
+        <!-- Phase 3 supplies the actual PNG and PDFs. Object fallback works without JS. -->
+        <object class="resume-preview" data={sitePath(data.download.preview)} type="image/png" aria-label="First-page preview of Finn Rutis's theatre resume">
+          <p class="preview-fallback">Resume preview</p>
+        </object>
+      </div>
+      <!-- Stretched over the sheet, so the whole page opens the PDF at a size a phone can read. -->
+      <a class="text-link resume-print-link" href={sitePath(data.download.pdf)} rel="external" aria-label="View PDF of the resume">View PDF <Arrow /></a>
+    </div>
   </div>
 </div>
 
@@ -55,6 +67,29 @@
       </li>
     {/each}
   </ol>
+</section>
+
+<section class="training section-block" aria-labelledby="training-title">
+  <h2 id="training-title">Training</h2>
+  <!-- The credit grid again, so degree and techniques line up with the credits above. -->
+  <ul class="credit-list training-list">
+    {#each degrees as degree}
+      <li>
+        <div><h3>{degree.title}</h3><p>{degree.school}</p></div>
+        <div><p>{degree.location}</p><p class="training-note">{degree.date}</p></div>
+      </li>
+    {/each}
+    {#each training as group}
+      <li>
+        <h3>{group.discipline}</h3>
+        <dl class="training-techniques">
+          {#each group.techniques as item}
+            <div><dt>{item.technique}</dt><dd class="training-note">{item.instructors.join(', ')}</dd></div>
+          {/each}
+        </dl>
+      </li>
+    {/each}
+  </ul>
 </section>
 
 <PerformanceNextSteps resumePdf={data.download.pdf} />

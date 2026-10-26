@@ -129,6 +129,57 @@ export function portfolioContent(theatreSource, variantSource) {
   };
 }
 
+/** The vitals the theatre resume prints in its header, from the base metadata.
+ * A field set to "" is hidden on the PDF, so it is left out here too.
+ * @returns {import('../src/lib/types').ResumeVitals}
+ */
+export function resumeVitals(source) {
+  const info = parse(source).personal?.info;
+  if (!info || typeof info !== 'object') throw new TypeError('metadata.toml has no [personal.info] table');
+  const field = key => {
+    const value = info[key] ?? '';
+    if (typeof value !== 'string') throw new TypeError(`personal.info.${key} must be a string`);
+    return value.trim();
+  };
+  return Object.fromEntries(Object.entries({ voicePart: field('vocal-part'), height: field('height') })
+    .filter(([, value]) => value));
+}
+
+/** Degrees and studio training, from the file the resume's Education and Training sections read.
+ * Consecutive rows that share a discipline group under it, as the resume prints them.
+ * @returns {{ degrees: import('../src/lib/types').Degree[], training: import('../src/lib/types').TrainingDiscipline[] }}
+ */
+export function resumeTraining(source) {
+  const data = parse(source);
+  const text = (value, where) => {
+    if (typeof value !== 'string' || !value.trim()) throw new TypeError(`${where} must be a non-empty string`);
+    return value.trim();
+  };
+  if (!Array.isArray(data.degrees) || !Array.isArray(data.training)) {
+    throw new TypeError('education.toml needs [[degrees]] and [[training]] entries');
+  }
+  const degrees = data.degrees.map((degree, i) => ({
+    title: text(degree.title, `degrees[${i}].title`),
+    school: text(degree.school, `degrees[${i}].school`),
+    location: text(degree.location, `degrees[${i}].location`),
+    date: text(degree.date, `degrees[${i}].date`)
+  }));
+  /** @type {import('../src/lib/types').TrainingDiscipline[]} */
+  const training = [];
+  data.training.forEach((row, i) => {
+    if (!Array.isArray(row.instructors) || !row.instructors.length) {
+      throw new TypeError(`training[${i}].instructors must name at least one instructor`);
+    }
+    const discipline = text(row.discipline, `training[${i}].discipline`);
+    const technique = { technique: text(row.technique, `training[${i}].technique`),
+      instructors: row.instructors.map((name, j) => text(name, `training[${i}].instructors[${j}]`)) };
+    const last = training.at(-1);
+    if (last?.discipline === discipline) last.techniques.push(technique);
+    else training.push({ discipline, techniques: [technique] });
+  });
+  return { degrees, training };
+}
+
 /** Resolve the film from the same credit used by the PDF. */
 export function filmRecording(source, video) {
   const credit = parse(source).shows?.[video.credit];

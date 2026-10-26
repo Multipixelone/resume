@@ -215,8 +215,8 @@ main:focus { outline: none; }
 /* Perforated like the ticket's own band, so the credits read as the tear-off. */
 .now-credits { display: flex; flex-wrap: wrap; gap: .8rem 2rem; margin: 1.1rem 0 0; padding-top: 1.1rem; border-top: 1px dashed var(--muted); }
 .now-credits > div { min-width: 0; }
-.now-credits dt { font: .6875rem/1.5 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-.now-credits dd { margin: .15rem 0 0; font-size: 1.125rem; line-height: 1.45; overflow-wrap: anywhere; }
+:is(.now-credits, .resume-vitals) dt { font: .6875rem/1.5 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+:is(.now-credits, .resume-vitals) dd { margin: .15rem 0 0; font-size: 1.125rem; line-height: 1.45; overflow-wrap: anywhere; }
 .now-aside { display: grid; width: min(100%, 19rem); min-width: 0; justify-items: start; perspective: 1000px; padding-inline: .25rem .5rem; }
 .now-photo { width: min(19rem, 100%); padding: .45rem; background: var(--paper); box-shadow: 0 2px 4px rgb(43 37 32 / .1), 0 12px 24px -12px rgb(43 37 32 / .32); rotate: 2deg; }
 .now-photo + .now-stub-shadow { position: relative; margin-top: -.75rem; }
@@ -374,27 +374,83 @@ main:focus { outline: none; }
   .photo-layers:hover .photo-mat { box-shadow: 0 4px 8px rgb(43 37 32 / .08), 0 25px 35px -14px rgb(43 37 32 / .32); }
 }
 
-/* The supporting pages share the paper, without competing with their content. */
-.resume-intro { display: grid; grid-template-columns: minmax(14rem, 1fr) minmax(0, 2fr); gap: 3rem; align-items: start; }
-.download-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+/* The supporting pages share the paper, without competing with their content.
+   The intro measures itself, so larger text reflows it like a narrower window: the sheet sits
+   beside the downloads from 55rem, fills the column from 40rem (its type stays near 10px), and
+   below that turns into a small print beside them that opens the PDF. The vitals show only
+   with the small print, which is too small to read them from. */
+.resume-intro { container: resume-intro / inline-size; }
+.resume-intro-grid { display: grid; gap: 2rem; align-items: start; }
+.resume-facts { display: grid; gap: 1.25rem; max-width: 24rem; }
+.resume-vitals { display: flex; flex-wrap: wrap; gap: .8rem 2rem; margin: 0; padding-bottom: 1.25rem; border-bottom: 1px dashed var(--muted); }
+.resume-vitals > div { min-width: 0; }
+.download-actions { display: flex; flex-direction: column; align-items: flex-start; gap: .25rem; }
 .download-actions > a { padding-block: .6rem; }
+/* The two PDFs belong together; the way to every other resume leaves the page. */
+.download-actions > .all-resumes-link { margin-top: 1rem; }
 .primary-link { font-weight: 600; font-size: 1.25rem; }
+.link-tail { white-space: nowrap; }
+.resume-print { position: relative; display: grid; justify-items: start; gap: .5rem; max-width: 42rem; }
 /* Taped to the board like the homepage prints: the same strip, fixed, on a sheet that stays still. */
-.resume-sheet { position: relative; background: var(--paper-shade); border: 1px solid var(--border); padding: 1rem; box-shadow: 0 5px 15px var(--shadow); }
+.resume-sheet { position: relative; width: 100%; background: var(--paper-shade); border: 1px solid var(--border); padding: 1rem; box-shadow: 0 5px 15px var(--shadow); transition: box-shadow 220ms ease, rotate 220ms cubic-bezier(.2, .75, .25, 1), translate 220ms cubic-bezier(.2, .75, .25, 1); }
 .resume-preview { display: block; width: 100%; aspect-ratio: 8.5 / 11; background: var(--paper); }
-.preview-fallback { padding: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+.preview-fallback { padding: 2rem; }
+.resume-print-link::after { content: ''; position: absolute; inset: 0; z-index: 2; }
+.resume-print:is(:hover, :focus-within) .resume-sheet { box-shadow: 0 8px 22px rgb(43 37 32 / .12); }
+.resume-print:hover .resume-print-link { color: var(--accent-hover); text-decoration-thickness: 2px; }
+/* The full sheet shows the voice part and height itself, so the vitals stay for screen readers. */
+@container resume-intro (width >= 40rem) {
+  .resume-vitals { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
+@container resume-intro (width >= 55rem) {
+  .resume-intro-grid { grid-template-columns: minmax(14rem, 1fr) minmax(0, 2fr); gap: 3rem; }
+  /* The downloads stay beside the tall sheet while it scrolls past. */
+  .resume-facts { position: sticky; top: 2rem; }
+  .resume-print { max-width: none; }
+}
+@container resume-intro (width < 40rem) {
+  .resume-intro-grid { grid-template-columns: minmax(0, 1fr) auto; gap: 1.25rem; }
+  .resume-facts { display: contents; }
+  .resume-vitals { grid-column: 1 / -1; }
+  .resume-print { width: clamp(6.5rem, 30cqi, 11rem); justify-items: center; }
+  /* A cover print of the page: matted, tilted and loose on the board. */
+  .resume-sheet { padding: .3rem .3rem .6rem; background: var(--paper); border: 0; box-shadow: 0 1px 2px rgb(43 37 32 / .12), 0 8px 14px -8px rgb(43 37 32 / .35); rotate: 3deg; }
+  .resume-sheet .photo-tape { display: none; }
+  .resume-print:is(:hover, :focus-within) .resume-sheet { box-shadow: 0 4px 8px rgb(43 37 32 / .08), 0 16px 22px -10px rgb(43 37 32 / .32); }
+  .preview-fallback { padding: .5rem; font-size: .75rem; }
+  /* Still the largest link here, and one line beside the print on a phone. */
+  .primary-link { font-size: 1.125rem; }
+}
+/* Too narrow for the downloads to share a row, as with much larger text: the print follows them. */
+@container resume-intro (width < 20rem) {
+  .resume-intro-grid { grid-template-columns: minmax(0, 1fr); }
+  .resume-print { justify-self: start; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @container resume-intro (width < 40rem) { .resume-print:focus-within .resume-sheet { translate: 0 -5px; rotate: 0deg; } }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  @container resume-intro (width < 40rem) { .resume-print:hover .resume-sheet { translate: 0 -5px; rotate: 0deg; } }
+}
 .credit-list { container: credits / inline-size; list-style: none; margin: 0; padding: 0; }
 /* The third column pins a cover print on credits that have a show page; the rest leave it empty. */
 .credit-list li { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 6rem; align-items: center; gap: 1rem 3rem; padding: 1.5rem 0; border-top: 1px solid var(--border); }
 .credit-list h3 { font-size: 1.25rem; }
 .credit-list p { margin-top: .35rem; }
-.credit-director { font-size: 1rem; color: var(--muted); }
+.credit-director, .training-note { font-size: 1rem; color: var(--muted); }
 .credit-reel-link { color: var(--ink); text-decoration-color: var(--accent); }
 .credit-reel-link::after { content: ''; position: absolute; inset: 0; }
 .has-reel:is(:hover, :focus-within) .credit-reel-link { color: var(--accent-hover); text-decoration-thickness: 2px; }
 .credit-reel { display: grid; justify-items: center; gap: .6rem; text-align: center; }
 .credit-reel-count { font: .6875rem/1.45 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent-hover); }
 .has-reel:nth-of-type(even) .cover-print { --cover-angle: -3deg; }
+/* Training keeps the credit columns: a discipline over its technique and instructor pairs. */
+.training-list li { align-items: start; row-gap: .6rem; }
+.training-list p:first-child { margin-top: 0; }
+.training-list li > h3, .training-techniques { grid-column: 1 / 3; }
+.training-techniques { display: grid; gap: .6rem; margin: 0; }
+.training-techniques > div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: baseline; gap: .2rem 3rem; }
+.training-techniques dd { margin: 0; }
 /* Rows measure their list, so larger text stacks them as surely as a narrow window does:
    title and company need 11.5rem each beside the 6rem print column, and a stacked
    credit needs 8rem beside its print before the print drops underneath. */
@@ -402,6 +458,8 @@ main:focus { outline: none; }
   .credit-list li { grid-template-columns: minmax(0, 1fr); gap: .5rem; }
   .credit-list li.has-reel { grid-template-columns: minmax(0, 1fr) auto; column-gap: 1.25rem; }
   .credit-reel { grid-column: 2; grid-row: 1 / span 2; }
+  .training-list li > h3, .training-techniques { grid-column: auto; }
+  .training-techniques > div { grid-template-columns: minmax(0, 1fr); }
 }
 @container credits (width < 16.5rem) {
   .credit-list li.has-reel { grid-template-columns: minmax(0, 1fr); }
@@ -556,8 +614,6 @@ main:focus { outline: none; }
   .bio-block { font-size: 1.2rem; }
   .photo-spread { gap: 2.5rem 1.5rem; }
   .photo-print--tall { margin-left: -1.25rem; }
-  .resume-intro { grid-template-columns: 1fr; gap: 2rem; }
-  .resume-sheet { max-width: 42rem; width: 100%; }
   .statement { grid-template-columns: 1fr; }
 }
 @media (max-width: 47.99em) {

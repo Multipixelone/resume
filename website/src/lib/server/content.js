@@ -1,7 +1,9 @@
+import educationSource from '$canonical/education.toml?raw';
 import filmSource from '$canonical/film.toml?raw';
+import metadataSource from '$canonical/metadata.toml?raw';
 import theatreSource from '$canonical/theatre.toml?raw';
 import variantSource from '../../../../variants.toml?raw';
-import { filmRecording, portfolioContent, reelRecordings, showReels } from '$content';
+import { filmRecording, portfolioContent, reelRecordings, resumeTraining, resumeVitals, showReels } from '$content';
 import { film, performancePhotos, recordings } from '#lib/media.js';
 
 // Module-level ingestion: parse and normalize once, not per page or browser tick.
@@ -15,3 +17,6 @@ export const reels = showReels(content.shows, performancePhotos, recordings);
 export const reel = reelRecordings(content.shows, recordings, reels);
 
 export const reelFilm = filmRecording(filmSource, film);
+
+// The theatre resume's header vitals and Training section, from the files the PDF reads.
+export const resumeProfile = { vitals: resumeVitals(metadataSource), ...resumeTraining(educationSource) };
