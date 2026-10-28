@@ -6,6 +6,9 @@ export function parseShows(source) {
   return normalizeShows(parse(source));
 }
 
+// Saved downloads take the title the visitor clicked, not the build's file stem.
+const savedAs = title => `Finn Rutis ${title}.pdf`;
+
 export function parseVariants(source) {
   const registry = parse(source);
   const destinations = new Set();
@@ -31,7 +34,8 @@ export function parseVariants(source) {
       field: record.field ?? '',
       hidden,
       pdf: `/resumes/${record.dest}.pdf`,
-      preview: `/resumes/${record.dest}.png`
+      preview: `/resumes/${record.dest}.png`,
+      filename: savedAs(record.title ?? record.dest)
     };
   });
 }
@@ -111,8 +115,9 @@ export function portfolioContent(theatreSource, variantSource) {
   if (!theatreDownload || theatreDownload.hidden) throw new TypeError('The cv variant is required and listed for the theatre resume');
   // Separate package, not a second variant registry. Phase 3 assembles this file.
   const composite = '/resumes/FINN RUTIS.pdf';
-  const headshotDownload = { id: 'composite', title: 'Resume with headshot', subtitle: '', field: theatreDownload.field,
-    hidden: false, pdf: composite, preview: '' };
+  const headshotTitle = 'Resume with headshot';
+  const headshotDownload = { id: 'composite', title: headshotTitle, subtitle: '', field: theatreDownload.field,
+    hidden: false, pdf: composite, preview: '', filename: savedAs(headshotTitle) };
   const listed = variants.filter(variant => !variant.hidden);
   // Theatre documents lead; every other field follows in registry order.
   const fields = [...new Set([theatreDownload.field, ...listed.map(variant => variant.field)])];
@@ -125,7 +130,7 @@ export function portfolioContent(theatreSource, variantSource) {
       downloads: listed.filter(variant => variant.field === field)
         .flatMap(variant => (variant === theatreDownload ? [variant, headshotDownload] : [variant]))
     })),
-    composite
+    headshotDownload
   };
 }
 

@@ -276,7 +276,7 @@ Character: plain, underlined, with one shared arrow.
 - Marquee Rust, 1px underline at 0.2em offset; hover turns Deep Marquee Rust with a 2px underline. Color transitions in 150ms.
 - Calls to action ("Watch me perform", "Theatre credits") are Sabon 600, 44px tall, with the single arrow glyph from `Arrow.svelte`, pointed by where the link goes: → stays on the site, ↗ leaves it (tickets, YouTube, the blog, a PDF opened in the browser), ↓ saves a file or jumps down the page, ← goes back. On hover it nudges 2px the way it points.
 - **Hero links:** "Watch me perform" and "See my resume" sit under the name as two equal paper slips at 1.1875rem in Deep Marquee Rust: a Callboard Card layer with a Rule Line border and slip shadow, rotated 1.5deg and -1.5deg behind level text, which settles to 0.45deg on hover or focus. They wrap onto two rows rather than shrink.
-- Download links pair the label with a mono file label, "(PDF)". The primary resume download is 1.25rem.
+- Download links read label, mono "(PDF)", then the ↓ arrow, everywhere including All resumes. The saved file is named "Finn Rutis <title>.pdf" from the variant's `title` in `variants.toml`. The primary resume download is 1.25rem.
 - **Buttons and inputs:** the business card's turn button uses the shared focus ring. Contact links sit over the printed address and handle, as siblings of the button. Its optional device-tilt button is styled like a quiet text link, with a 44px target. Use buttons for these local state changes; contact and navigation remain links. No form inputs exist.
 
 ### Photo Print
@@ -335,7 +335,7 @@ Character: heavier backing stock holding something.
 
 `PerformanceNextSteps.svelte` is the closing paper slip on the homepage, the resume page, every show page and the reel. It uses a tilted Callboard Card backing, level Cooper heading and links, and a perforation between the heading and actions. When the slip is narrower than 35rem, the actions sit below a horizontal perforation. It sits a section below the content before it; `--next-steps-space` tightens that, and the show pager sets it to 3rem.
 
-Pass `resumePdf` for the homepage's default "Reel & resume" section. Pass `variant="resume"` and `composite` on the reel page for "Resume", with the standard PDF first and the headshot PDF second. The optional headshot link is omitted when no composite is supplied. Each instance generates its own heading ID; links wrap and retain 44px targets, and forced colors flattens the paper to a visible outline.
+Pass `resume` (the theatre download) for the homepage's default "Reel & resume" section, whose reel link reads "Full reel" so it is not confused with the hero's "Watch me perform", which jumps to the start clip. Pass `variant="resume"` and `headshot` on the reel page for "Resume", with the standard PDF first and the headshot PDF second. The optional headshot link is omitted when no headshot download is supplied. Each instance generates its own heading ID; links wrap and retain 44px targets, and forced colors flattens the paper to a visible outline.
 
 ### Contact Business Card
 

@@ -1,12 +1,13 @@
 <script lang="ts">
   import { sitePath } from '#lib/paths.js';
   import Arrow from './Arrow.svelte';
+  import type { Download } from '#lib/types.ts';
 
   // The homepage offers the reel; the reel offers the optional headshot PDF.
-  let { resumePdf, variant = 'reel-and-resume', composite }: {
-    resumePdf: string;
+  let { resume, variant = 'reel-and-resume', headshot }: {
+    resume: Download;
     variant?: 'reel-and-resume' | 'resume';
-    composite?: string;
+    headshot?: Download;
   } = $props();
   const id = $props.id();
 </script>
@@ -17,11 +18,11 @@
     <svg class="perforation perforation-vertical" aria-hidden="true" focusable="false"><line x1="1" y1="0" x2="1" y2="100%" /></svg>
     <svg class="perforation perforation-horizontal" aria-hidden="true" focusable="false"><line x1="0" y1="1" x2="100%" y2="1" /></svg>
     {#if variant === 'reel-and-resume'}
-      <a class="lead-link" href={sitePath('/performance-reel/')}><span>Watch me perform</span> <Arrow /></a>
+      <a class="lead-link" href={sitePath('/performance-reel/')}><span>Full reel</span> <Arrow /></a>
     {/if}
-    <a class:lead-link={variant === 'resume'} href={sitePath(resumePdf)} rel="external" download="Finn Rutis Artistic Resume.pdf"><span>Download resume <span class="file-label">(PDF)</span></span> <Arrow dir="down" /></a>
-    {#if variant === 'resume' && composite}
-      <a href={sitePath(composite)} rel="external" download="Finn Rutis Resume with headshot.pdf"><span>Resume with headshot <span class="file-label">(PDF)</span></span> <Arrow dir="down" /></a>
+    <a class:lead-link={variant === 'resume'} href={sitePath(resume.pdf)} rel="external" download={resume.filename}><span>Download resume <span class="file-label">(PDF)</span></span> <Arrow dir="down" /></a>
+    {#if variant === 'resume' && headshot}
+      <a href={sitePath(headshot.pdf)} rel="external" download={headshot.filename}><span>{headshot.title} <span class="file-label">(PDF)</span></span> <Arrow dir="down" /></a>
     {/if}
   </div>
 </section>

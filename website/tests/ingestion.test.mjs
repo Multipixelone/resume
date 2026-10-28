@@ -27,12 +27,12 @@ test('actual canonical TOML parses through smol-toml and the production normaliz
 
 test('downloads group by field from the actual registry, theatre first; hidden entries stay out', () => {
   const registry = parse(variants);
-  const { downloadGroups, theatreDownload, composite } = portfolioContent(theatre, variants);
+  const { downloadGroups, theatreDownload, headshotDownload } = portfolioContent(theatre, variants);
   const entries = downloadGroups.flatMap(group => group.downloads).filter(entry => entry.id !== 'composite');
   assert.deepEqual(entries.map(entry => entry.id).sort(), Object.keys(registry).filter(id => registry[id].site_hidden !== true).sort());
   assert.equal(downloadGroups[0].field, registry.cv.field);
   assert.deepEqual(downloadGroups[0].downloads.slice(0, 2).map(entry => entry.id), ['cv', 'composite']);
-  assert.equal(downloadGroups[0].downloads[1].pdf, composite);
+  assert.equal(downloadGroups[0].downloads[1], headshotDownload);
   assert.equal(new Set(downloadGroups.map(group => group.field)).size, downloadGroups.length);
   for (const group of downloadGroups) {
     for (const entry of group.downloads.filter(item => item.id !== 'composite')) {
@@ -40,10 +40,12 @@ test('downloads group by field from the actual registry, theatre first; hidden e
       assert.equal(entry.title, registry[entry.id].title);
       assert.equal(entry.pdf, `/resumes/${registry[entry.id].dest}.pdf`);
       assert.equal(entry.preview, `/resumes/${registry[entry.id].dest}.png`);
+      assert.equal(entry.filename, `Finn Rutis ${registry[entry.id].title}.pdf`);
     }
   }
   assert.equal(theatreDownload.pdf, `/resumes/${registry.cv.dest}.pdf`);
-  assert.equal(composite, '/resumes/FINN RUTIS.pdf');
+  assert.equal(headshotDownload.pdf, '/resumes/FINN RUTIS.pdf');
+  assert.equal(headshotDownload.filename, 'Finn Rutis Resume with headshot.pdf');
 });
 
 test('cover letters stay unlisted', () => {

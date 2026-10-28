@@ -66,7 +66,7 @@
 
 {#if data.startRecording}
   <div class="home-recording" id="start-here">
-    <Recording video={data.startRecording} flyer resumePdf={data.resumePdf} />
+    <Recording video={data.startRecording} flyer resume={data.resumeDownload} />
   </div>
 {/if}
 
@@ -82,7 +82,7 @@
   <PhotoSpread photos={data.photos} />
 </section>
 
-<PerformanceNextSteps resumePdf={data.resumePdf} />
+<PerformanceNextSteps resume={data.resumeDownload} />
 
 <style>
   @media (prefers-reduced-motion: no-preference) {

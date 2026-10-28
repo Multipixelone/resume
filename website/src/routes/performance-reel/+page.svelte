@@ -13,7 +13,7 @@
 
 <header class="page-heading reel-heading">
   <h1>Performance reel</h1>
-  <a class="recording-watch" href={sitePath(data.download.pdf)} rel="external" download="Finn Rutis Artistic Resume.pdf">Download resume <span class="file-label">(PDF)</span> <Arrow dir="down" /></a>
+  <a class="recording-watch" href={sitePath(data.download.pdf)} rel="external" download={data.download.filename}>Download resume <span class="file-label">(PDF)</span> <Arrow dir="down" /></a>
 </header>
 <div class="recordings">
   {#each data.recordings as video, index (video.id)}
@@ -22,7 +22,7 @@
   <Recording video={data.film} label="Film" />
 </div>
 
-<PerformanceNextSteps variant="resume" resumePdf={data.download.pdf} composite={data.composite} />
+<PerformanceNextSteps variant="resume" resume={data.download} headshot={data.headshot} />
 
 <style>
   .reel-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 1rem 2rem; }

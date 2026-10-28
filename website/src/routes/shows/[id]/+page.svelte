@@ -106,4 +106,4 @@
   </nav>
 {/if}
 
-<PerformanceNextSteps resumePdf={data.resumePdf} />
+<PerformanceNextSteps resume={data.resumeDownload} />

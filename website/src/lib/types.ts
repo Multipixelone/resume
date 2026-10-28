@@ -93,3 +93,15 @@ export interface CurrentShow extends Show {
   performance_start: string;
   closing_night: string;
 }
+/** A registered resume (or the composite) as the site offers it. */
+export interface Download {
+  id: string;
+  title: string;
+  subtitle: string;
+  field: string;
+  hidden: boolean;
+  pdf: string;
+  preview: string;
+  /** Name the browser saves it under, from the title. */
+  filename: string;
+}

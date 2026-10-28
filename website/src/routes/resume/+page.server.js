@@ -9,5 +9,5 @@ export function load() {
       ? { ...show, reel: { path: reel.path, cover: reel.photos[0], photos: reel.photos.length, videos: reel.videos.length } }
       : show;
   });
-  return { credits, profile: resumeProfile, download: content.theatreDownload, composite: content.composite };
+  return { credits, profile: resumeProfile, download: content.theatreDownload, headshot: content.headshotDownload };
 }
