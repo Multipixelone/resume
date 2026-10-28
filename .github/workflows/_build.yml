@@ -41,10 +41,38 @@ jobs:
           path: ./result/
           if-no-files-found: error
 
+  business-cards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ inputs.ref }}
+      - uses: nixbuild/nix-quick-install-action@v35
+      - uses: ./.github/actions/licensed-fonts
+        with:
+          ssh-key: ${{ secrets.RESUME_FONTS_SSH_KEY }}
+          required: ${{ inputs.export_pdfs }}
+      - name: Note skipped cards
+        if: env.RESUME_FONT_DIR == ''
+        run: echo "::notice::No font key; skipping business cards, which have no Sabon fallback"
+      - name: Build business cards
+        if: env.RESUME_FONT_DIR != ''
+        # The renderer reads Sabon at runtime, so the font never enters the store.
+        run: >-
+          nix run '.#business-cards' -- --root . --output business-cards
+          --sabon "$RESUME_FONT_DIR/Sabon Next Regular.otf"
+      - name: Upload artifact
+        if: env.RESUME_FONT_DIR != ''
+        uses: actions/upload-artifact@v7
+        with:
+          name: business-cards
+          path: ./business-cards/
+          if-no-files-found: error
+
   export:
     name: export release PDFs
     if: ${{ inputs.export_pdfs }}
-    needs: build-package
+    needs: [build-package, business-cards]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7.0.1
@@ -52,6 +80,7 @@ jobs:
           ref: ${{ inputs.ref }}
           sparse-checkout: |
             variants.toml
+            cards/profiles.toml
           sparse-checkout-cone-mode: false
       - name: Download resume PDFs
         uses: actions/download-artifact@v8
@@ -63,6 +92,11 @@ jobs:
         with:
           name: finn-rutis
           path: ./artifacts/finn-rutis
+      - name: Download business cards
+        uses: actions/download-artifact@v8
+        with:
+          name: business-cards
+          path: ./artifacts/business-cards
       - name: Export complete flat release PDF set
         run: |
           python3 - <<'PY'
@@ -84,6 +118,14 @@ jobs:
                   raise SystemExit(f'Duplicate release destination: {name}')
               sources[name] = pathlib.Path('artifacts/resume') / name
           sources['FINN RUTIS.pdf'] = pathlib.Path('artifacts/finn-rutis/FINN RUTIS.pdf')
+          profiles = tomllib.loads(pathlib.Path('cards/profiles.toml').read_text())['profiles']
+          for profile in profiles:
+              if not re.fullmatch(r'[A-Za-z0-9_-]+', profile):
+                  raise SystemExit(f'Unsafe card profile: {profile!r}')
+              name = f'business-card-{profile}.pdf'
+              if name in sources:
+                  raise SystemExit(f'Duplicate release destination: {name}')
+              sources[name] = pathlib.Path('artifacts/business-cards') / profile / f'{profile}.pdf'
           for source in sources.values():
               if not source.is_file() or source.stat().st_size == 0:
                   raise SystemExit(f'Missing or empty required PDF: {source}')

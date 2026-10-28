@@ -45,6 +45,7 @@ variable up. Plain `nix build .#resume` gives the EB Garamond fallback.
 | CI (`ci.yml`, `_build.yml` on push and PR) | Falls back to EB Garamond with a notice |
 | Release PDFs (`post-release.yml`) | Fails |
 | Pages deploy (`website.yml`) | Fails |
+| Business cards (`_build.yml`, `business-cards` job) | Skips with a notice; fails on release |
 
 `nix flake check` stays pure, so it exercises the fallback.
 

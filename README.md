@@ -63,7 +63,9 @@ typst compile --input commit="dev" --input version="2026-04-22" resumes/tech.typ
 
 The card CLI validates explicit `card_profile` associations in `variants.toml`,
 then renders three shared profiles from `cards/profiles.toml`. It does not change
-the resume or website artifact inventory. Supply your authorized local Sabon font:
+the website artifact inventory. CI builds the cards with the Sabon OTFs from the
+private fonts repo, uploads them as the `business-cards` artifact, and attaches
+`business-card-<profile>.pdf` to each release. Locally, supply your authorized Sabon font:
 
 ```bash
 nix run "path:$PWD#business-cards" -- --root "$PWD" --output /tmp/business-cards --sabon "../blog/static/fonts/sabon/Sabon Next Regular.woff2"

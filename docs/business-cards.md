@@ -148,6 +148,16 @@ with front/back transparent ink, preview, actual-size PNGs, and a `validation.js
 per profile. The registry associates resumes with these shared outputs, not new
 copies. PDF page order is front then back. Existing resume inventory is unchanged.
 
+### CI
+
+The `business-cards` job in `.github/workflows/_build.yml` runs beside the
+resume builds. It uses `.github/actions/licensed-fonts`, passes
+`$RESUME_FONT_DIR/Sabon Next Regular.otf` as `--sabon` (the italic OTF sits
+beside it), and uploads the whole output directory as the `business-cards`
+artifact. Without the font key (forks, Dependabot) it skips with a notice, since
+cards have no fallback face. Releases require the key, and the export step adds
+each profile's PDF to the release as `business-card-<profile>.pdf`.
+
 ### Registry decisions and checks
 
 Every registry entry requires `card_profile`: `performance`, `technology`,
