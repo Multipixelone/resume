@@ -37,7 +37,7 @@
 {/snippet}
 
 {#snippet youtubeLink()}
-  <a class="recording-watch" href={`https://www.youtube.com/watch?v=${video.id}`} aria-label={`Watch ${video.title} on YouTube`}>Watch on YouTube <Arrow /></a>
+  <a class="recording-watch" href={`https://www.youtube.com/watch?v=${video.id}`} aria-label={`Watch ${video.title} on YouTube`}>Watch on YouTube <Arrow dir="out" /></a>
 {/snippet}
 
 <section class="recording" class:recording--start={start} class:recording--flyer={flyer} class:recording--playing={loaded} aria-labelledby={`recording-${video.id}`}>

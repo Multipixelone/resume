@@ -274,7 +274,7 @@ Character: a torn ticket and a row of paper slips.
 Character: plain, underlined, with one shared arrow.
 
 - Marquee Rust, 1px underline at 0.2em offset; hover turns Deep Marquee Rust with a 2px underline. Color transitions in 150ms.
-- Calls to action ("Watch me perform", "Theatre credits") are Sabon 600, 44px tall, with the single arrow glyph from `Arrow.svelte` (out, down or back) that nudges 2px up and right on hover.
+- Calls to action ("Watch me perform", "Theatre credits") are Sabon 600, 44px tall, with the single arrow glyph from `Arrow.svelte`, pointed by where the link goes: → stays on the site, ↗ leaves it (tickets, YouTube, the blog, a PDF opened in the browser), ↓ saves a file or jumps down the page, ← goes back. On hover it nudges 2px the way it points.
 - **Hero links:** "Watch me perform" and "See my resume" sit under the name as two equal paper slips at 1.1875rem in Deep Marquee Rust: a Callboard Card layer with a Rule Line border and slip shadow, rotated 1.5deg and -1.5deg behind level text, which settles to 0.45deg on hover or focus. They wrap onto two rows rather than shrink.
 - Download links pair the label with a mono file label, "(PDF)". The primary resume download is 1.25rem.
 - **Buttons and inputs:** the business card's turn button uses the shared focus ring. Contact links sit over the printed address and handle, as siblings of the button. Its optional device-tilt button is styled like a quiet text link, with a 44px target. Use buttons for these local state changes; contact and navigation remain links. No form inputs exist.

@@ -194,10 +194,14 @@ main:focus { outline: none; }
   .hero-links-slip:is(:hover, :focus-visible)::before { rotate: .45deg; }
 }
 .text-link { display: inline-flex; align-items: center; gap: .8rem; min-height: 44px; font-size: 1.0625rem; font-weight: 600; }
-.text-link > .arrow { transition: transform 250ms ease; }
+/* Each arrow nudges the way it points. */
+.text-link > .arrow { --nudge: 2px, -2px; transition: transform 250ms ease; }
+.text-link > .arrow[data-dir='next'] { --nudge: 2px, 0; }
+.text-link > .arrow[data-dir='down'] { --nudge: 0, 2px; }
+.text-link > .arrow[data-dir='back'] { --nudge: -2px, 0; }
 .text-link:focus-visible { color: var(--accent-hover); text-decoration-thickness: 2px; }
 @media (prefers-reduced-motion: no-preference) {
-  .text-link:is(:hover, :focus-visible) > .arrow { transform: translate(2px, -2px); }
+  .text-link:is(:hover, :focus-visible) > .arrow { transform: translate(var(--nudge)); }
 }
 
 /* A compact playbill notice with a landscape ticket. Keep the date and ticket action

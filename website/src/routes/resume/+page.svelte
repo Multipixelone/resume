@@ -25,7 +25,7 @@
       {/if}
       <div class="download-actions">
         <a class="primary-link" href={sitePath(data.download.pdf)} rel="external" download="Finn Rutis Artistic Resume.pdf">Download resume <span class="link-tail"><span class="file-label">(PDF)</span> <Arrow dir="down" /></span></a>
-        <a href={sitePath(data.composite)} rel="external" download="Finn Rutis Resume with headshot.pdf">Resume with headshot <span class="file-label">(PDF)</span></a>
+        <a href={sitePath(data.composite)} rel="external" download="Finn Rutis Resume with headshot.pdf">Resume with headshot <span class="file-label">(PDF)</span> <Arrow dir="down" /></a>
         <a class="all-resumes-link" href={sitePath('/resumes/')}>All resumes <Arrow /></a>
       </div>
     </div>
@@ -38,7 +38,7 @@
         </object>
       </div>
       <!-- Stretched over the sheet, so the whole page opens the PDF at a size a phone can read. -->
-      <a class="text-link resume-print-link" href={sitePath(data.download.pdf)} rel="external" aria-label="View PDF of the resume">View PDF <Arrow /></a>
+      <a class="text-link resume-print-link" href={sitePath(data.download.pdf)} rel="external" aria-label="View PDF of the resume">View PDF <Arrow dir="out" /></a>
     </div>
   </div>
 </div>

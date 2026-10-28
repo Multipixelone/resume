@@ -30,7 +30,7 @@
   <section class="offstage section-block" aria-labelledby="offstage-title">
     <div class="spread-heading">
       <div><h2 id="offstage-title">Off stage.</h2></div>
-      <a class="text-link" href="https://blog.finnrut.is/">More on the blog <Arrow /></a>
+      <a class="text-link" href="https://blog.finnrut.is/">More on the blog <Arrow dir="out" /></a>
     </div>
     <div class="offstage-list">
       {#each escapades as item, index}
@@ -47,7 +47,7 @@
             <div>
               {#if item.title}<h3>{item.title}</h3>{/if}
               {#each paragraphs(item.blurb) as paragraph}<p>{paragraph}</p>{/each}
-              {#if item.link}<a class="text-link" href={item.link.href}>{item.link.label} <Arrow /></a>{/if}
+              {#if item.link}<a class="text-link" href={item.link.href}>{item.link.label} <Arrow dir={item.link.href.startsWith('http') ? 'out' : 'next'} /></a>{/if}
             </div>
           </div>
         </article>

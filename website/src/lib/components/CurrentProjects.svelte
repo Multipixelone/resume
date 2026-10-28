@@ -88,7 +88,7 @@
                 {/if}
               </div>
               {#if show.ticket_url}
-                <span id={`${id}-tickets`} class="stub-action">Get tickets <Arrow /></span>
+                <span id={`${id}-tickets`} class="stub-action">Get tickets <Arrow dir="out" /></span>
               {/if}
             </div>
           </svelte:element>
