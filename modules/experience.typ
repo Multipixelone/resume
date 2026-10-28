@@ -1,4 +1,5 @@
 #import "../src/lib.typ": cvEntry, cvSection
+#import "../src/utils/styles.typ": fs
 
 /// Render an Experience section from `metadata.modules.experience_file`.
 /// The TOML at that path must define a [jobs] table whose entries each have
@@ -28,7 +29,7 @@
       if links.len() > 0 {
         parbreak()
         text(
-          size: 8pt,
+          size: fs(8pt),
           links
             .map(item => link(item.url, underline(item.label)))
             .join(h(10pt)),

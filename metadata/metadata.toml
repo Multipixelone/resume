@@ -51,8 +51,10 @@ display_entry_society_first = true
 display_logo = true
 
 [layout.fonts]
-regular_fonts = ["Libertinus Serif"]
-header_font = "Libertinus Serif"
+# Sabon Next is licensed and supplied out of tree (docs/fonts.md); builds
+# without it fall back to EB Garamond.
+regular_fonts = ["Sabon Next LT Pro", "EB Garamond"]
+header_font = ["Sabon Next LT Pro", "EB Garamond"]
 
 [layout.header]
 # Optional values: left, center, right

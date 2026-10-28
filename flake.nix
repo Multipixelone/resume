@@ -41,6 +41,19 @@
           submissionDate = pkgs.lib.removeSuffix "\n" (builtins.readFile ./metadata/submission-date.txt);
           src = self;
 
+          # Licensed fonts (Sabon Next) live out of tree; see docs/fonts.md. Pure
+          # builds read "" here and fall back to EB Garamond.
+          resumeFontDir = builtins.getEnv "RESUME_FONT_DIR";
+          extraFonts =
+            if resumeFontDir == "" then
+              null
+            else
+              builtins.path {
+                path = resumeFontDir;
+                name = "resume-fonts";
+                filter = path: type: (type == "directory" && baseNameOf path != ".git") || pkgs.lib.hasSuffix ".otf" path;
+              };
+
           tinymistWrapped =
             let
               fakeXdg = pkgs.writeShellScriptBin "xdg-open" ''
@@ -83,6 +96,7 @@
               src
               commit
               submissionDate
+              extraFonts
               ;
           };
           finnRutis = pkgs.callPackage ./packages/finn-rutis.nix {
@@ -92,6 +106,7 @@
               src
               commit
               submissionDate
+              extraFonts
               ;
           };
           website = pkgs.callPackage ./packages/website.nix {

@@ -6,7 +6,7 @@
 #import "./cv.typ": *
 #import "./letter.typ": *
 #import "./utils/lang.typ": isNonLatin
-#import "./utils/styles.typ": latinFontList, latinHeaderFont, overwriteFonts
+#import "./utils/styles.typ": fs, latinFontList, latinHeaderFont, overwriteFonts
 
 /// Resolve the (regularFonts, headerFont) pair for a given metadata.
 /// Applies the metadata's [layout.fonts] override if present, then injects
@@ -31,7 +31,7 @@
 ) = {
   let fonts = _resolveFonts(metadata)
 
-  set text(font: fonts.regularFonts, weight: "regular", size: 10pt)
+  set text(font: fonts.regularFonts, weight: "regular", size: fs(10pt))
   set align(left)
   set page(
     paper: "us-letter",
@@ -61,7 +61,7 @@
 ) = {
   let fonts = _resolveFonts(metadata)
 
-  set text(font: fonts.regularFonts, weight: "regular", size: 11pt)
+  set text(font: fonts.regularFonts, weight: "regular", size: fs(11pt))
   set align(left)
   set page(
     paper: "us-letter",
@@ -92,7 +92,7 @@
 ) = {
   let fonts = _resolveFonts(metadata)
 
-  set text(font: fonts.regularFonts, weight: "regular", size: 9pt)
+  set text(font: fonts.regularFonts, weight: "regular", size: fs(9pt))
   set align(left)
   set page(
     paper: "us-letter",
@@ -107,7 +107,7 @@
       awesomeColors: awesomeColors,
     ),
   )
-  set text(size: 12pt)
+  set text(size: fs(12pt))
 
   doc
 
