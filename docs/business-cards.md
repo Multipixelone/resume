@@ -390,8 +390,8 @@ perforation and only the block's vertical centre moves. PragmataPro remains on
 the back for the website address. The role is set with Typst's `smallcaps()`,
 which turns on Sabon's `smcp` feature; validation checks that the role's glyphs
 differ from the same letters in the contacts. The ReportLab renderer instead
-remapped a-z to the `.sc` glyphs in memory. It reads `Sabon Next Italic.woff2`
-beside the supplied `--sabon` file.
+remapped a-z to the `.sc` glyphs in memory. It reads `Sabon Next Italic` with the same extension
+(`.woff2` or `.otf`) beside the supplied `--sabon` file.
 
 All profiles share the back's code: a rust QR to `https://finnrut.is`, captioned
 by the human-readable website address. REFERENCE.md records `www.finnrut.is`; the

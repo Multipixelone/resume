@@ -139,9 +139,9 @@ def font_paths(root, sabon):
     paths = {
         'Cooper': root / 'website/scripts/fonts/cooper/Cooper-Black.ttf',
         # The role uses the regular file's own small caps; pronouns use the
-        # italic beside it.
+        # italic beside it, in the same format (WOFF2 locally, OTF in CI).
         'Sabon': sabon,
-        'Italic': sabon.with_name('Sabon Next Italic.woff2'),
+        'Italic': sabon.with_name('Sabon Next Italic' + sabon.suffix),
         'Labels': root / 'src/fonts/PragmataPro_Mono_Regular_ligatures_0827.ttf',
     }
     require(sabon.is_file(), f'Sabon Next not found at {sabon}. Supply --sabon FONT_PATH '

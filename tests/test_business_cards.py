@@ -621,6 +621,15 @@ class InterfaceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Supply --sabon FONT_PATH'):
             CARDS.font_paths(ROOT, ROOT / 'missing-sabon.woff2')
 
+    def test_italic_matches_regular_extension(self):
+        with tempfile.TemporaryDirectory() as temp:
+            for suffix in ('.woff2', '.otf'):
+                regular = Path(temp) / f'Sabon Next Regular{suffix}'
+                regular.touch()
+                (Path(temp) / f'Sabon Next Italic{suffix}').touch()
+                self.assertEqual(CARDS.font_paths(ROOT, regular)['Italic'],
+                                 Path(temp) / f'Sabon Next Italic{suffix}')
+
     def test_fonts_are_staged_as_plain_opentype(self):
         # Cooper is a local OFL fixture, not a proprietary font. Sabon's CFF
         # staging is covered by the validation owner's real artifact run.

@@ -69,7 +69,7 @@ the resume or website artifact inventory. Supply your authorized local Sabon fon
 nix run "path:$PWD#business-cards" -- --root "$PWD" --output /tmp/business-cards --sabon "../blog/static/fonts/sabon/Sabon Next Regular.woff2"
 ```
 
-`Sabon Next Italic.woff2` must sit beside the regular file; it sets the pronouns. The role uses the regular file's small caps.
+`Sabon Next Italic` with the same extension (`.woff2` or `.otf`) must sit beside the regular file; it sets the pronouns. The role uses the regular file's small caps.
 This packages the tool environment, not the proprietary font or finished cards.
 The renderer runs against the checkout outside the Nix build sandbox; Sabon is
 required explicitly, with no substitution or copying into this repository.
