@@ -7,7 +7,8 @@
   // A clip on its sheet, introduced by the song in Cooper Bold,
   // then small labels for the show, role and year. `label` sits above a title that is
   // not a song (the film). The clip to start with gets a ticket tucked under its sheet.
-  let { video, label = '', eager = false, flyer = false }: { video: ShowVideo | Recording; label?: string; eager?: boolean; flyer?: boolean } = $props();
+  // The flyer's slip offers the resume, the next step after watching; the poster already opens YouTube.
+  let { video, label = '', eager = false, flyer = false, resumePdf = '' }: { video: ShowVideo | Recording; label?: string; eager?: boolean; flyer?: boolean; resumePdf?: string } = $props();
   let start = $derived('start' in video && video.start);
   let credit = $derived('show' in video ? video.show : undefined);
   let loaded = $state(false);
@@ -104,7 +105,11 @@
   {#if flyer}
     <div class="recording-links">
       <a class="text-link" href={sitePath('/performance-reel/')}>More performances <Arrow /></a>
-      {@render youtubeLink()}
+      {#if resumePdf}
+        <a class="text-link" href={sitePath(resumePdf)} rel="external" download="Finn Rutis Artistic Resume.pdf">Download resume <span class="file-label">(PDF)</span> <Arrow dir="down" /></a>
+      {:else}
+        {@render youtubeLink()}
+      {/if}
     </div>
   {/if}
 </section>

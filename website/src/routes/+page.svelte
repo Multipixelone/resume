@@ -66,7 +66,7 @@
 
 {#if data.startRecording}
   <div class="home-recording" id="start-here">
-    <Recording video={data.startRecording} flyer />
+    <Recording video={data.startRecording} flyer resumePdf={data.resumePdf} />
   </div>
 {/if}
 
