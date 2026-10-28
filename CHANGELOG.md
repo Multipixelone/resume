@@ -1,5 +1,25 @@
 # Changelog
 
+## [3.1.1] - 2026-10-28
+
+### 🚀 Features
+
+- *(website)* Offer resume download on the start-here flyer in [ce8f4d7](https://github.com/Multipixelone/resume/commit/ce8f4d7528bde961747cac877e11d1456282a02b)
+
+### 🐛 Bug Fixes
+
+- *(cards)* Match italic extension to the supplied sabon file in [254d06a](https://github.com/Multipixelone/resume/commit/254d06a97e455d2e5f33997ca79c0dedb3f53ca8)
+- *(website)* Point link arrows by destination in [f20cf81](https://github.com/Multipixelone/resume/commit/f20cf817961f74363aec62df462b17c4c674d1f2)
+- *(website)* Name downloads from variant titles and unify labels in [47352de](https://github.com/Multipixelone/resume/commit/47352de10dd1546aacfb86cdf7ccf8d3307eeaea)
+
+### 📚 Documentation
+
+- Add whole-site critique doc in [49b60c0](https://github.com/Multipixelone/resume/commit/49b60c05f6a080a9298ad22e4f90a2ccb239faf5)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(cards)* Build business cards beside resumes and attach to releases in [4268123](https://github.com/Multipixelone/resume/commit/4268123b517ca9b8bd1b80a4509e76c2f7f6c31c)
+
 ## [3.1.0] - 2026-10-28
 
 ### 🚀 Features
