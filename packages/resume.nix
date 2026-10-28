@@ -6,11 +6,13 @@
   font-awesome,
   roboto,
   source-sans-pro,
-  eb-garamond,
+  texlivePackages,
   inputs,
   version ? "",
   commit ? "unknown",
   submissionDate ? lib.removeSuffix "\n" (builtins.readFile ../metadata/submission-date.txt),
+  # Out-of-tree licensed fonts (see docs/fonts.md); null falls back to EB Garamond.
+  extraFonts ? null,
   src ? null,
 }:
 let
@@ -49,9 +51,12 @@ stdenv.mkDerivation {
 
   postConfigure = ''
     ln -s ${font-awesome}/share/fonts/opentype/* src/fonts/
-    ln -s ${eb-garamond}/share/fonts/opentype/* src/fonts/
+    ln -s ${texlivePackages.ebgaramond.tex}/fonts/opentype/public/ebgaramond/* src/fonts/
     ln -s ${roboto}/share/fonts/truetype/* src/fonts/
     ln -s ${source-sans-pro}/share/fonts/truetype/* src/fonts/
+  ''
+  + lib.optionalString (extraFonts != null) ''
+    find ${extraFonts} -name '*.otf' -exec ln -s {} src/fonts/ \;
   '';
   TYPST_FONT_PATHS = "src/fonts";
 
@@ -71,6 +76,13 @@ stdenv.mkDerivation {
     mkdir -p $out
     ${lib.concatStringsSep "\n" (lib.mapAttrsToList installVariant variants)}
     runHook postInstall
+  '';
+
+  # A supplied font directory that Typst silently ignored would ship EB Garamond.
+  postInstall = lib.optionalString (extraFonts != null) ''
+    for pdf in $out/*.pdf; do
+      grep -aq SabonNextLTPro "$pdf" || { echo "Sabon Next not embedded: $pdf" >&2; exit 1; }
+    done
   '';
 
   meta = {

@@ -1,18 +1,17 @@
 #let metadata = toml("../metadata/metadata.toml")
 #import "../src/utils/styles.typ": (
-  awesomeColors, latinFontList, latinHeaderFont, overwriteFonts, regularColors,
-  setAccentColor,
+  awesomeColors, fs, latinFontList, latinHeaderFont, overwriteFonts,
+  regularColors, setAccentColor,
 )
 
 #let accentColor = setAccentColor(awesomeColors, metadata)
-#let headerFont = overwriteFonts(
-  metadata,
-  latinFontList,
-  latinHeaderFont,
-).headerFont
+#let fonts = overwriteFonts(metadata, latinFontList, latinHeaderFont)
+#let headerFont = fonts.headerFont
 #let firstName = metadata.personal.first_name
 #let lastName = metadata.personal.last_name
 #let pronouns = metadata.personal.pronouns
+
+#set text(font: fonts.regularFonts)
 
 #set page(
   width: 8in,
@@ -28,14 +27,14 @@
   row-gutter: 1em,
   align: right,
   [#image("../src/headshot.jpg", height: 95%)],
-  [#text(size: 14pt, fill: accentColor)[#pronouns]
+  [#text(size: fs(14pt), fill: accentColor)[#pronouns]
     #h(5pt)
     #text(
       font: headerFont,
-      size: 32pt,
+      size: fs(32pt),
       fill: regularColors.darkgray,
     )[#firstName]
     #h(5pt)
-    #text(font: headerFont, size: 32pt)[#lastName]],
+    #text(font: headerFont, size: fs(32pt))[#lastName]],
 ))
 #v(0fr)

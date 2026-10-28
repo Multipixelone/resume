@@ -48,3 +48,6 @@ test-*.pdf
 
 # python bytecode
 __pycache__/
+
+# licensed fonts checked out by CI (.github/actions/licensed-fonts)
+.ci-fonts/

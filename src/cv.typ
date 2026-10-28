@@ -4,7 +4,7 @@
 
 #import "@preview/fontawesome:0.6.2": *
 #import "./utils/styles.typ": (
-  awesomeColors, hBar, latinFontList, latinHeaderFont, regularColors,
+  awesomeColors, fs, hBar, latinFontList, latinHeaderFont, regularColors,
   setAccentColor,
 )
 #import "./utils/lang.typ": isNonLatin
@@ -45,22 +45,28 @@
   let headerFirstNameStyle(str) = {
     text(
       font: headerFont,
-      size: 32pt,
+      size: fs(32pt),
       fill: regularColors.darkgray,
       str,
     )
   }
   let headerLastNameStyle(str) = {
-    text(font: headerFont, size: 32pt, str)
+    text(font: headerFont, size: fs(32pt), str)
   }
   let headerPronounStyle(str) = {
-    text(size: 14pt, fill: accentColor, str)
+    text(size: fs(14pt), fill: accentColor, str)
   }
   let headerInfoStyle(str) = {
-    text(size: 10pt, fill: accentColor, str)
+    text(size: fs(10pt), fill: accentColor, str)
   }
   let headerQuoteStyle(str) = {
-    text(size: 10pt, weight: "medium", style: "italic", fill: accentColor, str)
+    text(
+      size: fs(10pt),
+      weight: "medium",
+      style: "italic",
+      fill: accentColor,
+      str,
+    )
   }
 
   // Components
@@ -209,7 +215,7 @@
   let commit = sys.inputs.at("commit", default: "unknown")
   let dateStr = buildDate().display("[month].[day].[year]")
   let footerStyle(str) = {
-    text(size: 8pt, fill: rgb("#999999"), smallcaps(str))
+    text(size: fs(8pt), fill: rgb("#999999"), smallcaps(str))
   }
   let commitStyle(str) = {
     text(size: 6pt, fill: rgb("#CCCCCC"), font: "PragmataPro Mono Liga", str)
@@ -254,7 +260,7 @@
   let highlightText = title.slice(0, letters)
   let normalText = title.slice(letters)
   let sectionTitleStyle(str, color: black) = {
-    text(size: 16pt, weight: "regular", fill: color, upper(str))
+    text(size: fs(16pt), weight: "regular", fill: color, upper(str))
   }
 
   block(breakable: false, {
@@ -306,7 +312,7 @@
   )
 
   let entryA1Style(str) = {
-    text(size: 10pt, weight: "bold", str)
+    text(size: fs(10pt), weight: "bold", str)
   }
   let entryA2Style(str) = {
     align(
@@ -315,12 +321,12 @@
     )
   }
   let entryB1Style(str) = {
-    text(size: 8pt, fill: accentColor, weight: "medium", smallcaps(str))
+    text(size: fs(8pt), fill: accentColor, weight: "medium", smallcaps(str))
   }
   let entryB2Style(str) = {
     align(
       right,
-      text(size: 8pt, weight: "medium", fill: gray, style: "oblique", str),
+      text(size: fs(8pt), weight: "medium", fill: gray, style: "oblique", str),
     )
   }
   let entryDescriptionStyle(str) = {
@@ -333,7 +339,7 @@
     )
   }
   let entryTagStyle(str) = {
-    align(center, text(size: 8pt, weight: "regular", str))
+    align(center, text(size: fs(8pt), weight: "regular", str))
   }
   let entryTagListStyle(tags) = {
     for tag in tags {
@@ -445,7 +451,7 @@
 /// -> content
 #let cvSkill(type: "Type", info: "Info") = {
   let skillTypeStyle(str) = {
-    align(right, text(size: 10pt, weight: "bold", str))
+    align(right, text(size: fs(10pt), weight: "bold", str))
   }
   let skillInfoStyle(str) = {
     text(str)
@@ -463,7 +469,7 @@
 
 #let cvTraining(type: "Type", info: "Info", instructors: "Instructors") = {
   let skillTypeStyle(str) = {
-    align(right, text(size: 10pt, weight: "bold", str))
+    align(right, text(size: fs(10pt), weight: "bold", str))
   }
   let skillInfoStyle(str) = {
     text(str)
@@ -487,7 +493,7 @@
 #let cvPerformance(metadata) = {
   import "./utils/shows.typ": resumeShows, showUpcoming
   let skillTypeStyle(str) = {
-    align(left, text(size: 10pt, str))
+    align(left, text(size: fs(10pt), str))
   }
   // Only canonical theatre opts in. Other credit categories retain every row.
   let theatre = metadata.at("schema", default: none) == "theatre-shows-v1"
@@ -539,7 +545,7 @@
 
   if hasUpcoming {
     v(-8pt)
-    align(right, text(size: 8pt, style: "italic")[\* upcoming])
+    align(right, text(size: fs(8pt), style: "italic")[\* upcoming])
     v(-11pt)
   }
 }

@@ -23,6 +23,7 @@ jobs:
 
   build:
     uses: ./.github/workflows/_build.yml
+    secrets: inherit
 
   website:
     name: website (${{ matrix.mount }})
@@ -42,6 +43,10 @@ jobs:
           extra_nix_config: |
             sandbox = true
             sandbox-fallback = false
+      - uses: ./.github/actions/licensed-fonts
+        with:
+          ssh-key: ${{ secrets.RESUME_FONTS_SSH_KEY }}
+          required: false
       - name: Check portfolio assembly and standalone 404 preservation
         run: python3 -B -m unittest discover -s tests -p test_portfolio_assembly.py -v
       - name: Build complete website artifact

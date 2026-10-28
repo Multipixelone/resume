@@ -9,6 +9,8 @@
     society: eval(degree.school, mode: "markup"),
     date: eval(degree.date, mode: "markup"),
     location: eval(degree.location, mode: "markup"),
-    logo: if "logo" in degree { image("../src/logos/" + degree.logo) } else { "" },
+    logo: if "logo" in degree { image("../src/logos/" + degree.logo) } else {
+      ""
+    },
   )
 }

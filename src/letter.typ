@@ -59,7 +59,7 @@
 
   // Styles
   let footerStyle(str) = {
-    text(size: 8pt, fill: rgb("#999999"), smallcaps(str))
+    text(size: fs(8pt), fill: rgb("#999999"), smallcaps(str))
   }
 
   return table(

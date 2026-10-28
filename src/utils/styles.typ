@@ -10,6 +10,12 @@
 
 #let latinHeaderFont = "Roboto"
 
+/// Every layout type size passes through `fs`. Sabon Next, the resume face, has
+/// an x-height about 11% taller than a classic Garamond, so 0.95 sets its body
+/// at 9.5pt.
+#let typeScale = 0.95
+#let fs(size) = size * typeScale
+
 #let awesomeColors = (
   skyblue: rgb("#0395DE"),
   red: rgb("#DC3522"),

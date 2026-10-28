@@ -1,0 +1,39 @@
+name: Licensed fonts
+description: >-
+  Check out Multipixelone/fonts and export RESUME_FONT_DIR so impure Nix builds
+  embed Sabon Next. Without a key (forks, Dependabot) the build falls back to
+  EB Garamond unless `required` is true.
+inputs:
+  ssh-key:
+    description: Read-only deploy key for Multipixelone/fonts.
+    required: false
+    default: ''
+  required:
+    description: Fail instead of falling back when the key is missing.
+    required: false
+    default: 'false'
+runs:
+  using: composite
+  steps:
+    - name: Require font key
+      if: inputs.ssh-key == '' && inputs.required == 'true'
+      shell: bash
+      run: |
+        echo "::error::RESUME_FONTS_SSH_KEY is not available; release PDFs must embed Sabon Next"
+        exit 1
+    - name: Note fallback
+      if: inputs.ssh-key == '' && inputs.required != 'true'
+      shell: bash
+      run: echo "::notice::No font key; building with EB Garamond"
+    - name: Check out fonts
+      if: inputs.ssh-key != ''
+      uses: actions/checkout@v7.0.1
+      with:
+        repository: Multipixelone/fonts
+        ssh-key: ${{ inputs.ssh-key }}
+        path: .ci-fonts
+        persist-credentials: false
+    - name: Export font directory
+      if: inputs.ssh-key != ''
+      shell: bash
+      run: echo "RESUME_FONT_DIR=$GITHUB_WORKSPACE/.ci-fonts/sabon-next" >> "$GITHUB_ENV"

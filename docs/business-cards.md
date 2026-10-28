@@ -132,7 +132,8 @@ PyMuPDF, Pillow, fontTools, Brotli (WOFF2 decoding), and zxing-cpp. ReportLab
 was dropped with the 2026-10-24 Typst renderer. Nix MCP was unavailable in this session; the
 pinned package attributes and runtime build were successfully validated using
 the local Nix CLI instead.
-No resume/site package depends on this CLI or on Sabon.
+No resume/site package depends on this CLI. The resume packages take Sabon
+separately through `RESUME_FONT_DIR`; see `docs/fonts.md`.
 
 The agreed renderer interface is:
 
