@@ -1,5 +1,36 @@
 # Changelog
 
+## [3.1.0] - 2026-10-28
+
+### 🚀 Features
+
+- *(website)* Add shared photo navigation transitions in [f97ebac](https://github.com/Multipixelone/resume/commit/f97ebacb1cb4794c9a58fe39a28b67f5f869b0ba)
+- *(website)* Show training and vitals on /resume/ from shared data in [5aaec85](https://github.com/Multipixelone/resume/commit/5aaec85de7210f6cc5865fcc11b3fbb374e9e630)
+- *(template)* [**breaking**] Set resumes in sabon next at 9.5pt (#139) in [274b3f9](https://github.com/Multipixelone/resume/commit/274b3f97cededd59d5388388613c3d0a164038c9)
+
+### 🐛 Bug Fixes
+
+- *(website)* Smoothly scroll to the featured video in [0f68ca8](https://github.com/Multipixelone/resume/commit/0f68ca8f634fbae76e0e9f4a91ed6fd571ca27db)
+- *(website)* Let homepage recording title use available width in [e59e22d](https://github.com/Multipixelone/resume/commit/e59e22db904838a9f6ee06f5fc1c7101ca3846a3)
+- *(website)* Harden photo navigation and return destinations in [e171338](https://github.com/Multipixelone/resume/commit/e17133836293e4825ef17cd2c388f8339e7df3b2)
+
+### 📚 Documentation
+
+- Add whole-site critique doc in [0dc14b1](https://github.com/Multipixelone/resume/commit/0dc14b17b072f1062dfa07481096549e18824dd9)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update dependency vite to v7.3.7 (#127) in [d95a768](https://github.com/Multipixelone/resume/commit/d95a7680f21d6c494c2383e3efbfeaa0b58ecfa5)
+- *(deps)* Update dependency @sveltejs/vite-plugin-svelte to v6.2.4 (#124) in [f2bc20b](https://github.com/Multipixelone/resume/commit/f2bc20b66fdcef713de99bbde4856f3bd826a370)
+- *(deps)* Update dependency @sveltejs/kit to v2.70.3 (#126) in [f4f6a4e](https://github.com/Multipixelone/resume/commit/f4f6a4e69be2444682a280926c817671817160c6)
+- *(deps)* Migrate website to sveltekit 3 in [097a145](https://github.com/Multipixelone/resume/commit/097a145d473b4c7d3902e02322ff17f61622b659)
+- *(deps)* Update flake.lock (#137) in [2cf557c](https://github.com/Multipixelone/resume/commit/2cf557c9934794aa0e7a455516360bcc653f9143)
+- *(deps)* Update dependency node to v26 (#138) in [2033784](https://github.com/Multipixelone/resume/commit/20337842b23c487a5601edfd3d0c8406d0b25e90)
+
+### 📋 Template
+
+- *(template)* Read education and training from education.toml in [31fe483](https://github.com/Multipixelone/resume/commit/31fe4838c1735f6fb52d9e05a2c67cac41349bae)
+
 ## [3.0.1] - 2026-10-26
 
 ### 🚀 Features
