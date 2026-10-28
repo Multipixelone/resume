@@ -22,6 +22,8 @@ typst compile --input commit="dev" --input version="2025-01-01" resumes/tech.typ
 typst watch resumes/cv.typ                    # Live preview
 ```
 
+Resumes are set in Sabon Next, a licensed font kept in the private `Multipixelone/fonts` repo. Pure builds fall back to EB Garamond; `RESUME_FONT_DIR=<fonts>/sabon-next nix build --impure .#resume` embeds Sabon. See `docs/fonts.md`.
+
 Every resume PDF comes out of the single `resume` package (`packages/resume.nix`). `finn-rutis` stays separate because it needs ghostscript and pdfunite for cropping and merging.
 
 The `--input commit=` and `--input version=` flags are supplied by Nix during a real build. Pass them by hand when compiling directly, or `src/utils/date.typ::buildDate()` falls back to today.

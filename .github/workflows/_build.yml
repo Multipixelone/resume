@@ -8,6 +8,9 @@ on:
       export_pdfs:
         type: boolean
         default: false
+    secrets:
+      RESUME_FONTS_SSH_KEY:
+        required: false
 
 permissions:
   contents: read
@@ -24,8 +27,13 @@ jobs:
         with:
           ref: ${{ inputs.ref }}
       - uses: nixbuild/nix-quick-install-action@v35
+      - uses: ./.github/actions/licensed-fonts
+        with:
+          ssh-key: ${{ secrets.RESUME_FONTS_SSH_KEY }}
+          required: ${{ inputs.export_pdfs }}
       - name: Build ${{ matrix.package }}
-        run: nix build '.#packages.x86_64-linux.${{ matrix.package }}' --print-build-logs
+        # --impure lets the flake read RESUME_FONT_DIR; unset, it is a pure build.
+        run: nix build --impure '.#packages.x86_64-linux.${{ matrix.package }}' --print-build-logs
       - name: Upload artifact
         uses: actions/upload-artifact@v7
         with:
