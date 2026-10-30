@@ -4,6 +4,27 @@ Every resume, letter, and the finn-rutis composite set in Sabon Next LT Pro,
 with EB Garamond as the open fallback. Both are listed in
 `metadata/metadata.toml` under `[layout.fonts]`.
 
+## Title-page display type
+
+The song dividers in `resumes/title-pages.typ` use Cooper Black, matching the
+website's playbill headings. The font's internal family is `Cooper*`, weight
+900. `packages/resume.nix` adds the existing
+`website/scripts/fonts/cooper/Cooper-Black.ttf` to Typst's font path, including
+in pure builds. This is the OFL-licensed Cooper* revival, not a proprietary
+Cooper font; its license stays beside the source font. Supporting text retains
+Sabon Next with the usual EB Garamond fallback.
+
+For a direct compile, include the display-font directory alongside your body
+fonts:
+
+```sh
+typst compile --root . --font-path website/scripts/fonts/cooper resumes/title-pages.typ
+```
+
+The dividers use the site's warm paper, brown ink and rust accent, with one
+US Letter page per song and no trailing blank sheet. Other resume and letter
+layouts are unchanged.
+
 ## Where Sabon comes from
 
 Sabon Next is licensed, so it never enters this repository. The OTFs live in

@@ -50,6 +50,7 @@ stdenv.mkDerivation {
   nativeBuildInputs = [ typstWithPackages ];
 
   postConfigure = ''
+    ln -s "$PWD/website/scripts/fonts/cooper/Cooper-Black.ttf" src/fonts/
     ln -s ${font-awesome}/share/fonts/opentype/* src/fonts/
     ln -s ${texlivePackages.ebgaramond.tex}/fonts/opentype/public/ebgaramond/* src/fonts/
     ln -s ${roboto}/share/fonts/truetype/* src/fonts/
