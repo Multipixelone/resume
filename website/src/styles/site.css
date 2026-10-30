@@ -555,6 +555,7 @@ main:focus { outline: none; }
 /* The card carries the contact details and native links. */
 .contact-page { width: min(100%, 46rem); margin-inline: auto; }
 .contact-page .page-heading { margin: 0 8.825%; }
+@media (max-width: 39.99em) { .contact-page .page-heading { margin-inline: 0; } }
 /* All resumes: each field is a label column beside its ruled list, the resume intro's split.
    Each group measures itself, so text size, not only window width, decides when it stacks
    (see the container queries below); the split always gives the label at least 14rem. */

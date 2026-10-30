@@ -501,22 +501,32 @@
   </div>
   <figcaption class="card-caption">
     <span id={`${id}-identity`} class="sr-only">Finn Rutis, they / them, musical theatre performer.</span>
-    <span class="card-instruction" id={`${id}-instruction`}>
-      {#if webgl && !reduced}Drag to turn{' · '}{fine ? 'Click' : 'Tap'} to flip{:else if mounted}{fine ? 'Click' : 'Tap'} to flip{:else}Business card{/if}
-    </span>
-    <!-- Plain text beside the card's mailto, for webmail users who copy it. -->
-    <span class="card-address">me@finnrut.is</span>
-    <div class="card-actions" hidden={!mounted || !tiltAvailable}>
-      {#if tiltAvailable}
-        <button class="card-action card-tilt" type="button" onclick={() => toggleTilt()}
+    <div class="card-controls">
+      <span class="card-instruction" id={`${id}-instruction`}>
+        {#if webgl && !reduced}Drag to turn{' · '}{fine ? 'Click' : 'Tap'} to flip{:else if mounted}{fine ? 'Click' : 'Tap'} to flip{:else}Business card{/if}
+      </span>
+      {#if mounted && tiltAvailable}
+        <button class="card-tilt" type="button" onclick={() => toggleTilt()}
           aria-pressed={tiltEnabled} disabled={tiltPending}>
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2" /><path d="M10 17h4M3 8 1 12l2 4m18-8 2 4-2 4" /></svg>
           {tiltEnabled ? 'Turn off tilt' : 'Use device tilt'}
         </button>
       {/if}
     </div>
-    <span id={`${id}-side`} class="sr-only" aria-live="polite">{back ? 'Headshot and QR back' : 'Contact front'}</span>
     <span class="card-status" role="status">{message}</span>
+    <!-- The card's lettering is artwork and cannot follow the visitor's text
+         size, so the details are torn off below it as live body-size links. -->
+    <dl class="card-details">
+      <div>
+        <dt>Email</dt>
+        <dd><a href="mailto:me@finnrut.is">me@finnrut.is</a></dd>
+      </div>
+      <div>
+        <dt>Instagram</dt>
+        <dd><a href="https://www.instagram.com/finnrutis/">@finnrutis</a></dd>
+      </div>
+    </dl>
+    <span id={`${id}-side`} class="sr-only" aria-live="polite">{back ? 'Headshot and QR back' : 'Contact front'}</span>
   </figcaption>
 </figure>
 
@@ -525,6 +535,12 @@
   .card-stage { container-type: inline-size; position: relative; width: 100%; aspect-ratio: 1.42; touch-action: pan-y pinch-zoom; user-select: none; -webkit-user-select: none; }
   .card-turn { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; border-radius: 0; background: transparent; appearance: none; overflow: visible; cursor: inherit; }
   .card-stage.interactive { cursor: pointer; }
+  /* Ring the card itself rather than the taller stage around it. Focus squares
+     the 3D card up, so its ring is level; the flat card keeps its lean. */
+  .card-turn:focus-visible { outline: none; }
+  .card-turn::after { content: ''; position: absolute; left: 50%; top: 50%; width: 82.35%; aspect-ratio: 1050 / 600; transform: translate(-50%, -50%) rotate(-2.58deg); pointer-events: none; }
+  .webgl .card-turn::after { transform: translate(-50%, -50%) scale(1.02); }
+  .card-turn:focus-visible::after { outline: 3px solid var(--accent); outline-offset: 5px; }
   .card-stage.webgl { cursor: grab; }
   .card-stage.dragging { cursor: grabbing; }
   .card-flat { position: absolute; width: 82.35%; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-2.58deg); background: var(--ticket-paper); box-shadow: 0 2px 4px rgb(43 37 32 / .1), 5px 19px 32px -10px rgb(43 37 32 / .25); }
@@ -547,27 +563,33 @@
   .card-contact:hover::after { height: calc(2px / var(--card-scale)); background: var(--accent-hover); }
   .card-contact:focus-visible { outline-width: calc(3px / var(--card-scale)); }
   .dragging .card-contact { cursor: grabbing; }
-  .card-caption { position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .1rem 1rem; margin: -1rem 8.825% 0; }
+  .card-caption { position: relative; margin: -1rem 8.825% 0; }
+  .card-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 1rem; }
   .card-instruction { color: var(--muted); font: .6875rem/1.6 var(--font-mono); letter-spacing: .015em; }
-  .card-address { color: var(--muted); font: .6875rem/1.6 var(--font-mono); letter-spacing: .015em; user-select: all; -webkit-user-select: all; }
-  .card-actions { display: flex; flex-wrap: wrap; gap: 0 1.25rem; }
-  .card-actions[hidden] { display: none; }
-  .card-action { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; min-height: 44px; padding: .5rem 0; border: 0; background: transparent; color: var(--accent); text-decoration: underline; text-underline-offset: .2em; font-size: 1rem; }
-  .card-action:hover { color: var(--accent-hover); text-decoration-thickness: 2px; }
-  .card-action:disabled { color: var(--muted); cursor: wait; }
-  .card-action svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
-  .card-tilt[aria-pressed='true'] { color: var(--accent-hover); }
+  /* A quiet mono label: the details below, not the sensor, lead the caption. */
+  .card-tilt { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; margin: 0; padding: 0; border: 0; background: transparent; color: var(--muted); font: .6875rem/1.6 var(--font-mono); letter-spacing: .015em; text-decoration: underline dotted; text-underline-offset: .3em; cursor: pointer; }
+  .card-tilt:hover { color: var(--accent-hover); text-decoration-style: solid; }
+  .card-tilt:disabled { cursor: wait; }
+  .card-tilt svg { width: .875rem; height: .875rem; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  .card-tilt[aria-pressed='true'] { color: var(--accent); }
+  /* Perforated like the Now Playing credits, so the details read as the card's tear-off. */
+  .card-details { display: flex; flex-wrap: wrap; gap: .5rem 2.5rem; margin: .5rem 0 0; padding-top: .75rem; border-top: 1px dashed var(--muted); }
+  .card-details > div { min-width: 0; }
+  .card-details dt { color: var(--muted); font: .6875rem/1.5 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+  .card-details dd { margin: 0; }
+  .card-details a { display: inline-flex; align-items: center; min-height: 44px; font-size: 1.125rem; line-height: 1.3; overflow-wrap: anywhere; }
   .card-status { flex-basis: 100%; color: var(--muted); font-size: .9375rem; line-height: 1.5; }
   .card-status:empty { display: none; }
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
   @media (max-width: 40em) {
-    .card-caption { margin-top: -.5rem; gap: .15rem .75rem; }
-    .card-actions { gap: 0 1rem; }
-    .card-instruction { flex-basis: 100%; }
+    /* The stage runs into the page gutters so the card itself nearly fills the
+       column; the caption and heading drop their card insets to match. */
+    .card-stage { width: calc(100% + 2.5rem); margin-inline: -1.25rem; }
+    .card-caption { margin: 0; }
   }
   @media (prefers-reduced-motion: reduce) {
     .card-stage.interactive { cursor: pointer; }
-    .card-flat, .card-links { transform: translate(-50%, -50%); }
+    .card-flat, .card-links, .card-turn::after { transform: translate(-50%, -50%); }
   }
   @media (forced-colors: active) {
     .card-stage canvas { display: none; }
@@ -576,6 +598,6 @@
     .card-contact { display: flex; align-items: center; padding: 2px; background: Canvas; color: LinkText; }
     .card-contact::after { display: none; }
     .card-contact .sr-only { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip-path: none; white-space: normal; overflow-wrap: anywhere; font: 1rem/1.3 var(--font-body); }
-    .card-action { color: LinkText; }
+    .card-tilt { color: LinkText; }
   }
 </style>
