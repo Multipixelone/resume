@@ -17,13 +17,13 @@
   },
   "dependencies": {
     "smol-toml": "1.9.1",
-    "three": "0.186.1"
+    "three": "0.187.0"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "4.0.0",
     "@sveltejs/kit": "3.1.0",
     "@sveltejs/vite-plugin-svelte": "7.3.1",
-    "@types/three": "0.186.0",
+    "@types/three": "0.187.0",
     "svelte": "5.57.2",
     "svelte-check": "4.7.7",
     "typescript": "6.0.3",
