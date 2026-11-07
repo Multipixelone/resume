@@ -42,7 +42,7 @@ buildNpmPackage {
   # Both fetchNpmDeps and the build unpack the same tree and enter website/.
   # npmRoot is not forwarded to fetchNpmDeps by this pinned buildNpmPackage.
   sourceRoot = "source/website";
-  npmDepsHash = "sha256-NmpacHDXGCNde0xKg9UlOt9tp83ORzvbN135H9Wpv6E=";
+  npmDepsHash = "sha256-VK4fZd5eUTiWvTiwFdtlzu2497QzPK4UQvZTE815dj0=";
   env.SITE_BASE = siteBase;
   env.SITE_ORIGIN = siteOrigin;
   env.SITE_COMMIT = commit;
