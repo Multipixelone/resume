@@ -82,6 +82,11 @@
               p.playwright
               # website/scripts/gen_social_card.py draws the Open Graph card.
               p.pillow
+              # tests/test_business_cards.py imports the card renderer.
+              p.pymupdf
+              p.fonttools
+              p.brotli
+              p.zxing-cpp
               p.mypy
               p.pytest
               p.ruff
