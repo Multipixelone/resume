@@ -51,6 +51,8 @@ Before committing site changes, run `npm run check` and `npm test` from `website
 
 For website layout, typography, or browser behavior, start with `npm --prefix website run inspect` inside the Nix dev shell, then open the desktop and mobile viewport PNGs with the agent's image viewer and read `report.json`. This uses the Python Playwright and Chromium already in the shell, reuses a running Vite server, or starts and cleans up its own. A failed font load makes the command fail so fallback typography cannot silently pass review.
 
+For interactive visual work in OpenCode, use the project-local `chrome-devtools` MCP configured in `opencode.json`. Start Vite, open its local URL with the browser tools, and inspect screenshots at desktop and mobile sizes before and after changes, plus console errors. Use a vision-capable agent for screenshot review. The MCP launches a separate Chrome profile; keep the inspection command above for repeatable font and asset checks.
+
 See [rendered page inspection](website/README.md#rendered-page-inspection) for routes, viewport sizes, preview servers, and interactive Playwright. Use this repo workflow directly when browser integrations are unavailable.
 
 ## How Resume Variants Work
