@@ -132,9 +132,11 @@ main:focus { outline: none; }
 .footer-meta > a:is(:hover, :focus-visible) { color: var(--accent-hover); }
 .build-credit { margin-left: auto; }
 .build-heart { color: var(--accent); }
-.build-source { flex-wrap: wrap; gap: .4rem; }
+.footer-meta > .build-source { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .4rem; min-height: 44px; color: var(--muted); text-decoration: none; }
 .build-source .icon { width: .95rem; height: .95rem; }
-.build-source code { font: .75rem/1.5 var(--font-mono); }
+.build-source .source-label { font: .75rem/1.5 var(--font-mono); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .22em; }
+.build-source .source-label code { font: inherit; }
+.build-source:is(:hover, :focus-visible) .source-label { text-decoration-thickness: 2px; }
 @media (prefers-reduced-motion: no-preference) {
   .footer-link-paper { transform-origin: 1.2rem 50%; transform: rotate(0deg); transition: opacity 150ms ease, transform 220ms cubic-bezier(.16, 1, .3, 1); }
   .footer-links a:is(:hover, :focus-visible, [aria-current="page"]) .footer-link-paper { transform: rotate(var(--slip-angle, -2deg)); }

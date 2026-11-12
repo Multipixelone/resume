@@ -35,17 +35,9 @@
     <span class="build-credit">
       made by Finn with SvelteKit <span class="build-heart" role="img" aria-label="love">&lt;3</span>
     </span>
-    {#if sha}
-      <a class="build-source" href="{repoUrl}/commit/{sha}">
-        <Icon name="commit" />
-        <span>built from this commit</span>
-        <code>{sha.slice(0, 7)}{dirty ? '-dirty' : ''}</code>
-      </a>
-    {:else}
-      <a class="build-source" href={repoUrl}>
-        <Icon name="commit" />
-        <span>view source</span>
-      </a>
-    {/if}
+    <a class="build-source" href={sha ? `${repoUrl}/commit/${sha}` : repoUrl}>
+      <Icon name="commit" />
+      <span class="source-label">{#if sha}built from this commit <code>{sha.slice(0, 7)}{dirty ? '-dirty' : ''}</code>{:else}view source{/if}</span>
+    </a>
   </p>
 </footer>
