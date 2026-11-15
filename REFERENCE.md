@@ -468,7 +468,7 @@ Each entry includes the canonical facts, every summary variant that's been writt
 
 | Show | Role | Company | Director |
 | --- | --- | --- | --- |
-| Revisiting Theory of Relativity Cabaret | Self | The Green Room 42 | Justine-Elise Beall |
+| Revisiting Theory of Relativity Cabaret | Self | Producer's Club Sonnet Theater | Justine-Elise Beall |
 | Samantha Single Handed | Shelley | First Table Read | Aaron Gandy |
 | Christmas Cabaret | Self | Bridgetown Conservatory | Marcus Harbaugh |
 | Song & Dance Revue | Self | CAP21 / Molloy Univ. | Lori Leshner |
@@ -478,9 +478,9 @@ Each entry includes the canonical facts, every summary variant that's been writt
 
 Finn confirmed on 2026-10-23 that the Molloy Showcase was in 2026, directed by Melissa Firlit, with Finn performing as themself, and that Seussical was in 2025. Its "She Loves Me" recording leads the website's performance reel; the showcase stays off the PDF.
 
-Revisiting Theory of Relativity Cabaret is a one-night performance on 2026-11-15 at The Green Room 42. Finn supplied the date on 2026-10-21 and asked for rehearsal to count from that day; it stays off the PDF and shows on the website's Current projects until closing.
+Revisiting Theory of Relativity Cabaret is a one-night performance on 2026-11-15 at Producer's Club Sonnet Theater. Finn supplied the date on 2026-10-21 and asked for rehearsal to count from that day; it stays off the PDF and shows on the website's Current projects until closing.
 
-Finn supplied the [ticket booking page](https://thegreenroom42.venuetix.com/showdetails/rTOb8o15Tf5KEEyZQQEN/Egdk6ElXMZBj9v3iTbLM) on 2026-10-21 for the website's ticket stub. The show is also livestreamed, with stream tickets sold on that same page; Finn asked on 2026-10-21 for the stub to say "Livestream available".
+Finn supplied the [ticket booking page](https://partiful.com/e/Cq8fRzRwKhfwgLRYptfr?c=d5y-Yo0k) on 2026-10-21 for the website's ticket stub. The show is also livestreamed, with stream tickets sold on that same page; Finn asked on 2026-10-21 for the stub to say "Livestream available".
 
 ### Film / Commercial
 
