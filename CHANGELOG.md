@@ -1,5 +1,31 @@
 # Changelog
 
+## [3.1.2] - 2026-11-18
+
+### 🚀 Features
+
+- Title-pages set in cooper black in [30898c5](https://github.com/Multipixelone/resume/commit/30898c5ad4b84849713031e4a98debe3195984b6)
+- *(website)* Show live contact links under the business card in [b861dc2](https://github.com/Multipixelone/resume/commit/b861dc215b258933522229576012f2a97f673757)
+- Chrome devtools in [d3df4d7](https://github.com/Multipixelone/resume/commit/d3df4d7ada4929f24cd242df6ab17e8a984def45)
+
+### 🐛 Bug Fixes
+
+- *(deps)* Update dependency three to v0.187.0 (#142) in [47592a2](https://github.com/Multipixelone/resume/commit/47592a22054a2263e891ec56c02049109ac3f719)
+- *(format)* Better formatting of commit footer in [2c964f5](https://github.com/Multipixelone/resume/commit/2c964f5e192443216a3972559174573a88887457)
+- *(resume)* Update rttor link and venue in [bf36e8d](https://github.com/Multipixelone/resume/commit/bf36e8daf58238fa95ada845ecd98a73b010a2ba)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Bump impeccable to 4.8.1 in [3336972](https://github.com/Multipixelone/resume/commit/3336972e965c00e67aa3bdb6651e8566e5c7dc8a)
+- *(deps)* Update svelte toolchain (#136) in [3810979](https://github.com/Multipixelone/resume/commit/3810979cd69b4e843f0a958be36020518730dd68)
+- *(deps)* Update cachix/install-nix-action action to v31.11.4 (#148) in [bb8d6ab](https://github.com/Multipixelone/resume/commit/bb8d6abb78d3742fd9701c653131d8aa475b5b5e)
+- *(deps)* Update cachix/install-nix-action action to v31.11.5 (#149) in [f1601eb](https://github.com/Multipixelone/resume/commit/f1601ebc9f5036d4d70fde96c699b428a61d4c89)
+- *(deps)* Update flake.lock (#151) in [9badf60](https://github.com/Multipixelone/resume/commit/9badf60e0fa29dbad8d9122c18ba63397070f301)
+
+### ✍️ Content
+
+- *(content)* Add salt and straw assistant general manager resume in [9f62992](https://github.com/Multipixelone/resume/commit/9f629924746457cfe4c80878c59684c1fd445ec9)
+
 ## [3.1.1] - 2026-10-28
 
 ### 🚀 Features
