@@ -1,0 +1,41 @@
+[jobs.house-manager]
+title = "House & Facilities Manager"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "October 2021 - September 2022"
+location = "Portland, OR"
+summary = "Opened and closed the theatre, often as the only staff member on shift. Handled tickets at the door, ran the lobby through intermission and dealt with patron complaints and equipment failures. Between shows, kept the rehearsal rooms clean and stocked. Served as the main contact for renters and building management."
+
+[jobs.developer-relations]
+title = "Developer Relations Manager (Contract)"
+company = "Prem AI"
+date = "June 2026 - September 2026"
+location = "New York, NY (remote)"
+summary = "Coordinated product announcements with marketing and engineering. Caught errors in draft copy and wrote the fact sheet the team used to check product claims. Wrote a script and storyboard for a company film and walked the outside editor through both."
+
+[jobs.voiceover]
+title = "Freelance Voiceover Artist"
+company = "Self-employed | Fiverr"
+date = "2013 - Present"
+location = "Remote"
+summary = "Quote voiceover jobs, schedule recording sessions and handle revisions directly with clients. The business has more than 1,000 verified five-star reviews on Fiverr."
+
+[jobs.shift-coordinator]
+title = "Shift Coordinator"
+company = "Salt & Straw"
+date = "April 2026 - Present"
+location = "West Village, New York, NY"
+summary = "Train new hires and manage station rotations, using the Daily Visual Planner to keep the team on schedule."
+
+[jobs.student-ambassador]
+title = "Student Ambassador"
+company = "Molloy University"
+date = "October 2022 - May 2026"
+location = "Rockville Centre, NY"
+summary = "Helped the admissions team run open houses, from setting up the space to leading families on campus tours. Fielded questions about dorms, classes and campus life, adjusting each tour to what the students and parents wanted to know."
+
+[jobs.virtual-choir]
+title = "Video Editor, Virtual Choir"
+company = "Bridgetown Conservatory of Musical Theatre"
+date = "April 2020"
+location = "Portland, OR"
+summary = "Coordinated recordings from 20 performers working from home. Helped singers troubleshoot their setups one-on-one and edited their recordings into a finished concert video on deadline."

@@ -1,0 +1,13 @@
+section_title = "Qualifications"
+
+[skills.food-safety]
+type = "Food Safety"
+info = "NYC Food Protection Certificate"
+
+[skills.operations]
+type = "Shop Operations"
+info = "Cash handling, POS systems, solo opening and closing"
+
+[skills.languages]
+type = "Languages"
+info = "English (native), American Sign Language (intermediate)"

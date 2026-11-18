@@ -111,6 +111,17 @@ title = "Salt & Straw SC Resume"
 subtitle = "Shift coordinator"
 site_hidden = true
 
+[saltandstraw-agm]
+card_profile = "work"
+source = "saltandstraw-agm"
+dest = "saltandstraw-agm-resume"
+override_toml = "saltandstraw-agm-metadata.toml"
+expected_pages = 1
+check_metadata = true
+title = "Salt & Straw AGM Resume"
+subtitle = "Assistant General Manager"
+site_hidden = true
+
 [writer]
 card_profile = "technology"
 source = "writer"

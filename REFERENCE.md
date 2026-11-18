@@ -137,7 +137,8 @@ Each entry includes the canonical facts, every summary variant that's been writt
 
 **Concrete tasks performed:**
 
-- Coordinate service shifts, assign stations, and train new hires
+- Coordinate service shifts and train new hires
+- Manage the team's station rotations and make sure everyone follows the schedule and Daily Visual Planner (clarified by Finn on 2026-11-18)
 - Open and close the shop solo on some shifts (confirmed 2026-09-29)
 - Adjust the plan during peak demand
 - Resolve guest issues during service

@@ -1,0 +1,24 @@
+[modules]
+experience_file = "saltandstraw-agm-experience.toml"
+skills_file = "saltandstraw-agm-skills.toml"
+
+[lang.en]
+header_quote = "West Village shift coordinator and former theatre house manager."
+cv_footer = "Salt & Straw | Assistant General Manager Application"
+
+[layout.header]
+display_profile_photo = false
+
+[layout.entry]
+display_entry_society_first = false
+display_logo = false
+
+[inject]
+inject_keywords = false
+
+[personal.info]
+email = "work@finnrut.is"
+location = "Brooklyn, NY"
+instagram = ""
+vocal-part = ""
+height = ""
