@@ -17,7 +17,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Install Nix
-        uses: nixbuild/nix-quick-install-action@v35
+        uses: nixbuild/nix-quick-install-action@v36
       - name: Update flake.lock
         id: update
         uses: DeterminateSystems/update-flake-lock@v29
